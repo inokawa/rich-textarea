@@ -1,7 +1,7 @@
 {
   "name": "relight",
   "version": "0.0.1",
-  "description": "",
+  "description": "A tiny React component for flexible text highlighting.",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
   "types": "lib/index.d.ts",
