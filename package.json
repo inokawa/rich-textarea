@@ -40,5 +40,8 @@
   "bugs": {
     "url": "https://github.com/inokawa/relight/issues"
   },
-  "homepage": "https://github.com/inokawa/relight#readme"
+  "homepage": "https://github.com/inokawa/relight#readme",
+  "dependencies": {
+    "range-at-index": "^1.0.4"
+  }
 }
