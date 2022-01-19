@@ -1,6 +1,6 @@
-# relight
+# rich-textarea
 
-A tiny [React](https://github.com/facebook/react) component for flexible text highlighting.
+A small [React](https://github.com/facebook/react) component to colorize, highlight and decorate your textarea.
 
 ## Demo
 
@@ -9,7 +9,7 @@ TODO
 ## Install
 
 ```sh
-npm install relight
+npm install rich-textarea
 ```
 
 ### Requirements

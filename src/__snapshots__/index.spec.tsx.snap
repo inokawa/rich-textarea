@@ -1,0 +1,546 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`match emoji 1`] = `
+<DocumentFragment>
+  <div
+    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+  >
+    <textarea
+      style="color: transparent;"
+    >
+      Lorem😇 ipsum dolor sit amet👨‍👩‍👧‍👦 Lorem ipsum dolor👍🏽 sit amet Lorem👩‍💻 ipsum dolor sit amet
+    </textarea>
+    <div
+      aria-hidden="true"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+    >
+      Lorem
+      <span
+        style="background: yellow;"
+      >
+        😇
+      </span>
+       ipsum dolor sit amet
+      <span
+        style="background: yellow;"
+      >
+        👨
+      </span>
+      ‍
+      <span
+        style="background: yellow;"
+      >
+        👩
+      </span>
+      ‍
+      <span
+        style="background: yellow;"
+      >
+        👧
+      </span>
+      ‍
+      <span
+        style="background: yellow;"
+      >
+        👦
+      </span>
+       Lorem ipsum dolor
+      <span
+        style="background: yellow;"
+      >
+        👍
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        🏽
+      </span>
+       sit amet Lorem
+      <span
+        style="background: yellow;"
+      >
+        👩
+      </span>
+      ‍
+      <span
+        style="background: yellow;"
+      >
+        💻
+      </span>
+       ipsum dolor sit amet
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`match japanese 1`] = `
+<DocumentFragment>
+  <div
+    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+  >
+    <textarea
+      style="color: transparent;"
+    >
+      あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。
+    </textarea>
+    <div
+      aria-hidden="true"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+    >
+      <span
+        style="background: yellow;"
+      >
+        あ
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        の
+      </span>
+      イーハトーヴォ
+      <span
+        style="background: yellow;"
+      >
+        の
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        す
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        き
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        と
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        お
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        っ
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        た
+      </span>
+      風、夏
+      <span
+        style="background: yellow;"
+      >
+        で
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        も
+      </span>
+      底
+      <span
+        style="background: yellow;"
+      >
+        に
+      </span>
+      冷
+      <span
+        style="background: yellow;"
+      >
+        た
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        さ
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        を
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        も
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        つ
+      </span>
+      青
+      <span
+        style="background: yellow;"
+      >
+        い
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        そ
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        ら
+      </span>
+      、
+      <span
+        style="background: yellow;"
+      >
+        う
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        つ
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        く
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        し
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        い
+      </span>
+      森
+      <span
+        style="background: yellow;"
+      >
+        で
+      </span>
+      飾
+      <span
+        style="background: yellow;"
+      >
+        ら
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        れ
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        た
+      </span>
+      モリーオ市、郊外
+      <span
+        style="background: yellow;"
+      >
+        の
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        ぎ
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        ら
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        ぎ
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        ら
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        ひ
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        か
+      </span>
+      <span
+        style="background: yellow;"
+      >
+        る
+      </span>
+      草
+      <span
+        style="background: yellow;"
+      >
+        の
+      </span>
+      波。
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`match match many 1`] = `
+<DocumentFragment>
+  <div
+    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+  >
+    <textarea
+      style="color: transparent;"
+    >
+      Lorem ipsum dolor sit amet
+    </textarea>
+    <div
+      aria-hidden="true"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+    >
+      L
+      <span
+        style="color: red;"
+      >
+        o
+      </span>
+      <span
+        style="color: red;"
+      >
+        r
+      </span>
+      em ipsum d
+      <span
+        style="color: red;"
+      >
+        o
+      </span>
+      l
+      <span
+        style="color: red;"
+      >
+        o
+      </span>
+      <span
+        style="color: red;"
+      >
+        r
+      </span>
+       sit amet
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`match match one 1`] = `
+<DocumentFragment>
+  <div
+    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+  >
+    <textarea
+      style="color: transparent;"
+    >
+      Lorem ipsum dolor sit amet
+    </textarea>
+    <div
+      aria-hidden="true"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+    >
+      Lorem 
+      <span
+        style="color: red;"
+      >
+        ipsum
+      </span>
+       dolor sit amet
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`match multiple matchers 1`] = `
+<DocumentFragment>
+  <div
+    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+  >
+    <textarea
+      style="color: transparent;"
+    >
+      Lorem ipsum dolor sit amet
+    </textarea>
+    <div
+      aria-hidden="true"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+    >
+      L
+      <span
+        style="color: red; background: red;"
+      >
+        o
+      </span>
+      <span
+        style="color: blue; border: 1px solid blue;"
+      >
+        o
+      </span>
+      <span
+        style="color: red; background: red;"
+      >
+        r
+      </span>
+      <span
+        style="color: blue; border: 1px solid blue;"
+      >
+        e
+      </span>
+      m ipsum d
+      <span
+        style="color: red; background: red;"
+      >
+        o
+      </span>
+      <span
+        style="color: blue; border: 1px solid blue;"
+      >
+        o
+      </span>
+      l
+      <span
+        style="color: red; background: red;"
+      >
+        o
+      </span>
+      <span
+        style="color: blue; border: 1px solid blue;"
+      >
+        o
+      </span>
+      <span
+        style="color: red; background: red;"
+      >
+        r
+      </span>
+       sit am
+      <span
+        style="color: blue; border: 1px solid blue;"
+      >
+        e
+      </span>
+      t
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`style background 1`] = `
+<DocumentFragment>
+  <div
+    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+  >
+    <textarea
+      style="color: transparent;"
+    >
+      Lorem ipsum dolor sit amet
+    </textarea>
+    <div
+      aria-hidden="true"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+    >
+      L
+      <span
+        style="background: red;"
+      >
+        ore
+      </span>
+      m ipsum dolor sit amet
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`style border 1`] = `
+<DocumentFragment>
+  <div
+    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+  >
+    <textarea
+      style="color: transparent;"
+    >
+      Lorem ipsum dolor sit amet
+    </textarea>
+    <div
+      aria-hidden="true"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+    >
+      L
+      <span
+        style="border: 1px solid red;"
+      >
+        ore
+      </span>
+      m ipsum dolor sit amet
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`style color 1`] = `
+<DocumentFragment>
+  <div
+    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+  >
+    <textarea
+      style="color: transparent;"
+    >
+      Lorem ipsum dolor sit amet
+    </textarea>
+    <div
+      aria-hidden="true"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+    >
+      L
+      <span
+        style="color: red;"
+      >
+        ore
+      </span>
+      m ipsum dolor sit amet
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`style decoration 1`] = `
+<DocumentFragment>
+  <div
+    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+  >
+    <textarea
+      style="color: transparent;"
+    >
+      Lorem ipsum dolor sit amet
+    </textarea>
+    <div
+      aria-hidden="true"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+    >
+      L
+      <span
+        style="text-decoration: undeline;"
+      >
+        ore
+      </span>
+      m ipsum dolor sit amet
+    </div>
+  </div>
+</DocumentFragment>
+`;
