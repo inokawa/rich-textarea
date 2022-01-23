@@ -206,8 +206,8 @@ export const Textarea = ({
             WebkitUserSelect: "none",
             // https://stackoverflow.com/questions/2545542/font-size-rendering-inconsistencies-on-an-iphone
             textSizeAdjust: "100%",
+            WebkitTextSizeAdjust: "100%",
           };
-          (s as any)["-webkit-text-size-adjust"] = "100%";
           if (!style) return s;
           if (style.background) s.background = style.background;
           if (style.backgroundColor) s.backgroundColor = style.backgroundColor;
