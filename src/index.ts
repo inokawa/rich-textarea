@@ -173,6 +173,9 @@ export const Textarea = ({
     backdropRef.current.style.borderColor = "transparent";
   }, [style]);
 
+  const totalWidth = width + hPadding;
+  const totalHeight = height + vPadding;
+
   return createElement(
     "div",
     {
@@ -180,43 +183,57 @@ export const Textarea = ({
         (): React.CSSProperties => ({
           display: "inline-block",
           position: "relative",
-          overflow: "hidden",
-          width: width + hPadding,
-          height: height + vPadding,
+          width: totalWidth,
+          height: totalHeight,
         }),
-        [width, height, hPadding, vPadding]
+        [totalWidth, totalHeight]
       ),
     },
+
     createElement(
       "div",
       {
-        ref: backdropRef,
-        "aria-hidden": true,
-        style: useMemo((): React.CSSProperties => {
-          const s: React.CSSProperties = {
+        style: useMemo(
+          (): React.CSSProperties => ({
             position: "absolute",
+            overflow: "hidden",
             top: 0,
             left: 0,
-            width,
             zIndex: -1,
-            transform: `translate(${-left}px, ${-top}px)`,
-            pointerEvents: "none",
-            userSelect: "none",
-            msUserSelect: "none",
-            WebkitUserSelect: "none",
-            // https://stackoverflow.com/questions/2545542/font-size-rendering-inconsistencies-on-an-iphone
-            textSizeAdjust: "100%",
-            WebkitTextSizeAdjust: "100%",
-          };
-          if (!style) return s;
-          if (style.background) s.background = style.background;
-          if (style.backgroundColor) s.backgroundColor = style.backgroundColor;
-          return s;
-        }, [left, top, width, style]),
+            width: totalWidth,
+            height: totalHeight,
+          }),
+          [totalWidth, totalHeight]
+        ),
       },
-      useMemo(
-        () => valueToReact(String(props.value), matchers),
-        [props.value, matchers]
+      createElement(
+        "div",
+        {
+          ref: backdropRef,
+          "aria-hidden": true,
+          style: useMemo((): React.CSSProperties => {
+            const s: React.CSSProperties = {
+              width,
+              transform: `translate(${-left}px, ${-top}px)`,
+              pointerEvents: "none",
+              userSelect: "none",
+              msUserSelect: "none",
+              WebkitUserSelect: "none",
+              // https://stackoverflow.com/questions/2545542/font-size-rendering-inconsistencies-on-an-iphone
+              textSizeAdjust: "100%",
+              WebkitTextSizeAdjust: "100%",
+            };
+            if (!style) return s;
+            if (style.background) s.background = style.background;
+            if (style.backgroundColor)
+              s.backgroundColor = style.backgroundColor;
+            return s;
+          }, [left, top, width, style]),
+        },
+        useMemo(
+          () => valueToReact(String(props.value), matchers),
+          [props.value, matchers]
+        )
       )
     ),
     createElement("textarea", {
