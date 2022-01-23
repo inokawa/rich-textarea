@@ -9,6 +9,7 @@ import React, {
 import { execReg, MatchChunk, merge } from "./utils";
 
 const STYLE_KEYS: (keyof React.CSSProperties)[] = [
+  "direction",
   "padding",
   "paddingTop",
   "paddingBottom",
@@ -32,9 +33,22 @@ const STYLE_KEYS: (keyof React.CSSProperties)[] = [
   "borderRightStyle",
   "fontSize",
   "fontFamily",
+  "fontStyle",
+  "fontVariant",
+  "fontWeight",
+  "fontStretch",
+  "fontSizeAdjust",
+  "textAlign",
+  "textTransform",
+  "textIndent",
+  "letterSpacing",
+  "wordSpacing",
+  "lineHeight",
   "whiteSpace",
   "wordBreak",
   "overflowWrap",
+  "tabSize",
+  "MozTabSize",
 ];
 
 export type RegExpMatcher = [RegExp, React.CSSProperties];
