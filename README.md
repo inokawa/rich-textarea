@@ -4,6 +4,8 @@
 
 A small [React](https://github.com/facebook/react) component to colorize, highlight and decorate your textarea.
 
+<img src="./sample.gif" width="600px" />
+
 ## Demo
 
 https://inokawa.github.io/rich-textarea/
