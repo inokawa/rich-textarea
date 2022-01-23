@@ -201,6 +201,9 @@ export const Textarea = ({
             zIndex: -1,
             transform: `translate(${-left}px, ${-top}px)`,
             pointerEvents: "none",
+            userSelect: "none",
+            msUserSelect: "none",
+            WebkitUserSelect: "none",
             // https://stackoverflow.com/questions/2545542/font-size-rendering-inconsistencies-on-an-iphone
             textSizeAdjust: "100%",
           };

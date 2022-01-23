@@ -7,7 +7,7 @@ exports[`match emoji 1`] = `
   >
     <div
       aria-hidden="true"
-      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; user-select: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
     >
       Lorem
       <span
@@ -80,7 +80,7 @@ exports[`match japanese 1`] = `
   >
     <div
       aria-hidden="true"
-      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; user-select: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
     >
       <span
         style="background: yellow;"
@@ -300,7 +300,7 @@ exports[`match match many 1`] = `
   >
     <div
       aria-hidden="true"
-      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; user-select: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
     >
       L
       <span
@@ -348,7 +348,7 @@ exports[`match match one 1`] = `
   >
     <div
       aria-hidden="true"
-      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; user-select: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
     >
       Lorem 
       <span
@@ -374,7 +374,7 @@ exports[`match multiple matchers 1`] = `
   >
     <div
       aria-hidden="true"
-      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; user-select: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
     >
       L
       <span
@@ -433,7 +433,7 @@ exports[`style background 1`] = `
   >
     <div
       aria-hidden="true"
-      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; user-select: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
     >
       L
       <span
@@ -459,7 +459,7 @@ exports[`style border 1`] = `
   >
     <div
       aria-hidden="true"
-      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; user-select: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
     >
       L
       <span
@@ -485,7 +485,7 @@ exports[`style color 1`] = `
   >
     <div
       aria-hidden="true"
-      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; user-select: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
     >
       L
       <span
@@ -511,7 +511,7 @@ exports[`style decoration 1`] = `
   >
     <div
       aria-hidden="true"
-      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
+      style="position: absolute; top: 0px; left: 0px; width: 0px; z-index: -1; transform: translate(0px, 0px); pointer-events: none; user-select: none; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; white-space: pre-wrap; border-color: transparent;"
     >
       L
       <span
