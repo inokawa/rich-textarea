@@ -171,7 +171,7 @@ export const Textarea = ({
     ref.current.style.color = "transparent";
     ref.current.style.caretColor = caretColorRef.current;
     backdropRef.current.style.borderColor = "transparent";
-  }, [style, width, height]);
+  }, [style]);
 
   return createElement(
     "div",
