@@ -44,11 +44,21 @@ export default {
 const style = { width: "600px", height: "400px" };
 
 const basicMatcher: Matcher[] = [
-  [/[A-Z][a-z]+/g, { borderRadius: "3px", backgroundColor: "#d0bfff" }],
+  [/[A-Z][A-x]+/g, { color: "blue" }],
+  [
+    /[A-Z][A-Z]+/g,
+    { borderRadius: "3px", backgroundColor: "blue", color: "white" },
+  ],
+  [/[!?]+/g, { textDecoration: "underline wavy", color: "red" }],
+  [/(but|and|so|also)+/g, { textDecoration: "line-through", color: "green" }],
+  [/[0123456789]+/g, { color: "violet", fontWeight: "bold" }],
 ];
 
 export const Basic = () => {
-  const [text, setText] = useState(lorem);
+  const [text, setText] = useState(
+    `This is just a TEXTAREA but bit rich!!!
+12345`
+  );
   return (
     <Textarea
       matchers={basicMatcher}
@@ -59,6 +69,21 @@ export const Basic = () => {
   );
 };
 
+const simpleMatcher: Matcher[] = [
+  [/[A-Z][a-z]+/g, { borderRadius: "3px", backgroundColor: "#d0bfff" }],
+];
+
+export const Simple = () => {
+  const [text, setText] = useState(lorem);
+  return (
+    <Textarea
+      matchers={simpleMatcher}
+      style={style}
+      onChange={useCallback((e) => setText(e.target.value), [])}
+      value={text}
+    />
+  );
+};
 const manyMatcher: Matcher[] = [
   [/[A-Z][a-z]+/g, { borderRadius: "3px", backgroundColor: "#d0bfff" }],
   [/ipsum/g, { color: "blue", textDecoration: "underline wavy" }],
