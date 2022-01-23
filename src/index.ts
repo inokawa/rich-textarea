@@ -178,6 +178,7 @@ export const Textarea = ({
     {
       style: useMemo(
         (): React.CSSProperties => ({
+          display: "inline-block",
           position: "relative",
           overflow: "hidden",
           width: width + hPadding,

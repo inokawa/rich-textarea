@@ -3,7 +3,7 @@
 exports[`match emoji 1`] = `
 <DocumentFragment>
   <div
-    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+    style="display: inline-block; position: relative; overflow: hidden; width: 0px; height: 0px;"
   >
     <div
       aria-hidden="true"
@@ -76,7 +76,7 @@ exports[`match emoji 1`] = `
 exports[`match japanese 1`] = `
 <DocumentFragment>
   <div
-    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+    style="display: inline-block; position: relative; overflow: hidden; width: 0px; height: 0px;"
   >
     <div
       aria-hidden="true"
@@ -296,7 +296,7 @@ exports[`match japanese 1`] = `
 exports[`match match many 1`] = `
 <DocumentFragment>
   <div
-    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+    style="display: inline-block; position: relative; overflow: hidden; width: 0px; height: 0px;"
   >
     <div
       aria-hidden="true"
@@ -344,7 +344,7 @@ exports[`match match many 1`] = `
 exports[`match match one 1`] = `
 <DocumentFragment>
   <div
-    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+    style="display: inline-block; position: relative; overflow: hidden; width: 0px; height: 0px;"
   >
     <div
       aria-hidden="true"
@@ -370,7 +370,7 @@ exports[`match match one 1`] = `
 exports[`match multiple matchers 1`] = `
 <DocumentFragment>
   <div
-    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+    style="display: inline-block; position: relative; overflow: hidden; width: 0px; height: 0px;"
   >
     <div
       aria-hidden="true"
@@ -429,7 +429,7 @@ exports[`match multiple matchers 1`] = `
 exports[`style background 1`] = `
 <DocumentFragment>
   <div
-    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+    style="display: inline-block; position: relative; overflow: hidden; width: 0px; height: 0px;"
   >
     <div
       aria-hidden="true"
@@ -455,7 +455,7 @@ exports[`style background 1`] = `
 exports[`style border 1`] = `
 <DocumentFragment>
   <div
-    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+    style="display: inline-block; position: relative; overflow: hidden; width: 0px; height: 0px;"
   >
     <div
       aria-hidden="true"
@@ -481,7 +481,7 @@ exports[`style border 1`] = `
 exports[`style color 1`] = `
 <DocumentFragment>
   <div
-    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+    style="display: inline-block; position: relative; overflow: hidden; width: 0px; height: 0px;"
   >
     <div
       aria-hidden="true"
@@ -507,7 +507,7 @@ exports[`style color 1`] = `
 exports[`style decoration 1`] = `
 <DocumentFragment>
   <div
-    style="position: relative; overflow: hidden; width: 0px; height: 0px;"
+    style="display: inline-block; position: relative; overflow: hidden; width: 0px; height: 0px;"
   >
     <div
       aria-hidden="true"
