@@ -218,7 +218,10 @@ export const Textarea = ({
     createElement("textarea", {
       ...props,
       ref,
-      style: useMemo(() => ({ ...style, background: "transparent" }), [style]),
+      style: useMemo(
+        () => ({ ...style, background: "transparent", margin: 0 }),
+        [style]
+      ),
       onScroll: useCallback(
         (e: React.UIEvent<HTMLTextAreaElement>) => {
           setPos([e.currentTarget.scrollLeft, e.currentTarget.scrollTop]);
