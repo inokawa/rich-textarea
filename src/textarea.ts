@@ -51,10 +51,6 @@ const STYLE_KEYS: (keyof React.CSSProperties)[] = [
   "MozTabSize",
 ];
 
-export type RegExpMatcher = [RegExp, React.CSSProperties];
-
-export type Matcher = RegExpMatcher;
-
 const getValueFromStyle = (style: CSSStyleDeclaration, key: string): number => {
   const value = style.getPropertyValue(key);
   if (!value) {
