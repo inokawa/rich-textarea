@@ -157,7 +157,6 @@ export const Textarea = ({
         [totalWidth, totalHeight]
       ),
     },
-
     createElement(
       "div",
       {
