@@ -133,7 +133,7 @@ export const Textarea = ({
     copyStyle(STYLE_KEYS, backdropRef.current.style, s);
 
     ref.current.style.color = "transparent";
-    ref.current.style.caretColor = caretColorRef.current;
+    ref.current.style.caretColor = style?.caretColor ?? caretColorRef.current;
     backdropRef.current.style.borderColor = "transparent";
   }, [style]);
 
