@@ -16,4 +16,5 @@ export default {
     },
   ],
   plugins: [typescript(), terser()],
+  external: Object.keys(pkg.dependencies),
 };
