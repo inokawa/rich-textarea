@@ -18,7 +18,7 @@ const NOP = () => {};
 
 afterEach(cleanup);
 
-describe("style", () => {
+describe("style value", () => {
   it("color", () => {
     const { asFragment } = render(
       <Textarea
@@ -57,6 +57,92 @@ describe("style", () => {
       <Textarea
         render={createRegexRenderer([[/ore/g, { border: "solid 1px red" }]])}
         value={"Lorem ipsum dolor sit amet"}
+        onChange={NOP}
+      />
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+});
+
+describe("style textarea", () => {
+  it("width & height", () => {
+    const { asFragment } = render(
+      <Textarea
+        render={createRegexRenderer([[/ore/g, { color: "red" }]])}
+        value={"Lorem ipsum dolor sit amet"}
+        style={{ width: "123px", height: "456px" }}
+        onChange={NOP}
+      />
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it("color", () => {
+    const { asFragment } = render(
+      <Textarea
+        render={createRegexRenderer([[/ore/g, { color: "red" }]])}
+        value={"Lorem ipsum dolor sit amet"}
+        style={{ color: "blue" }}
+        onChange={NOP}
+      />
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it("caret-color", () => {
+    const { asFragment } = render(
+      <Textarea
+        render={createRegexRenderer([[/ore/g, { color: "red" }]])}
+        value={"Lorem ipsum dolor sit amet"}
+        style={{ caretColor: "blue" }}
+        onChange={NOP}
+      />
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it("background", () => {
+    const { asFragment } = render(
+      <Textarea
+        render={createRegexRenderer([[/ore/g, { color: "red" }]])}
+        value={"Lorem ipsum dolor sit amet"}
+        style={{ background: "blue" }}
+        onChange={NOP}
+      />
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it("background-color", () => {
+    const { asFragment } = render(
+      <Textarea
+        render={createRegexRenderer([[/ore/g, { color: "red" }]])}
+        value={"Lorem ipsum dolor sit amet"}
+        style={{ backgroundColor: "blue" }}
+        onChange={NOP}
+      />
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it("border", () => {
+    const { asFragment } = render(
+      <Textarea
+        render={createRegexRenderer([[/ore/g, { color: "red" }]])}
+        value={"Lorem ipsum dolor sit amet"}
+        style={{ border: "solid 1px blue" }}
+        onChange={NOP}
+      />
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it("border-color", () => {
+    const { asFragment } = render(
+      <Textarea
+        render={createRegexRenderer([[/ore/g, { color: "red" }]])}
+        value={"Lorem ipsum dolor sit amet"}
+        style={{ borderColor: "blue" }}
         onChange={NOP}
       />
     );
