@@ -44,11 +44,12 @@ export const App = () => {
 
   return (
     <Textarea
-      render={renderer}
       value={text}
       style={{ width: "600px", height: "400px" }}
       onChange={(e) => setText(e.target.value)}
-    />
+    >
+      {renderer}
+    </Textarea>
   );
 };
 ```

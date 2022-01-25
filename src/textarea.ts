@@ -90,12 +90,18 @@ const getHorizontalPadding = (style: CSSStyleDeclaration): number => {
   );
 };
 
-export type TextareaProps = JSX.IntrinsicElements["textarea"] & {
-  render: Renderer;
+export type TextareaProps = Omit<
+  JSX.IntrinsicElements["textarea"],
+  "children"
+> & {
+  children: Renderer;
 };
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ render, style, onScroll, ...props }, propRef): React.ReactElement => {
+  (
+    { children: render, style, onScroll, ...props },
+    propRef
+  ): React.ReactElement => {
     const ref = useRef<HTMLTextAreaElement>(null);
     const backdropRef = useRef<HTMLDivElement>(null);
     const [[left, top], setPos] = useState<[left: number, top: number]>([0, 0]);

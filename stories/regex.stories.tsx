@@ -61,11 +61,12 @@ export const Basic = () => {
   );
   return (
     <Textarea
-      render={basicRegex}
       style={style}
       onChange={useCallback((e) => setText(e.target.value), [])}
       value={text}
-    />
+    >
+      {basicRegex}
+    </Textarea>
   );
 };
 
@@ -83,23 +84,22 @@ export const Search = () => {
         />
       </div>
       <Textarea
-        render={
-          searchText
-            ? createRegexRenderer([
-                [
-                  new RegExp(
-                    searchText.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
-                    "ig"
-                  ),
-                  { borderRadius: "3px", backgroundColor: "yellow" },
-                ],
-              ])
-            : (v) => v
-        }
         style={style}
         onChange={useCallback((e) => setText(e.target.value), [])}
         value={text}
-      />
+      >
+        {searchText
+          ? createRegexRenderer([
+              [
+                new RegExp(
+                  searchText.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+                  "ig"
+                ),
+                { borderRadius: "3px", backgroundColor: "yellow" },
+              ],
+            ])
+          : (v) => v}
+      </Textarea>
     </div>
   );
 };
@@ -114,11 +114,12 @@ export const Many = () => {
   const [text, setText] = useState(lorem);
   return (
     <Textarea
-      render={manyRegex}
       style={style}
       onChange={useCallback((e) => setText(e.target.value), [])}
       value={text}
-    />
+    >
+      {manyRegex}
+    </Textarea>
   );
 };
 Many.storyName = "Many (WIP)";
@@ -142,10 +143,11 @@ export const Emoji = () => {
   );
   return (
     <Textarea
-      render={emojiRegex}
       style={style}
       onChange={useCallback((e) => setText(e.target.value), [])}
       value={text}
-    />
+    >
+      {emojiRegex}
+    </Textarea>
   );
 };

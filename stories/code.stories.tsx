@@ -57,10 +57,11 @@ function Example() {
   );
   return (
     <Textarea
-      render={renderer}
       style={style}
       onChange={useCallback((e) => setText(e.target.value), [])}
       value={text}
-    />
+    >
+      {renderer}
+    </Textarea>
   );
 };

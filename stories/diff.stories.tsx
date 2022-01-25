@@ -162,17 +162,19 @@ export const Basic = () => {
   return (
     <div>
       <Textarea
-        render={createDiffRenderer(token, "base")}
         style={style}
         onChange={useCallback((e) => setBaseText(e.target.value), [])}
         value={baseText}
-      />
+      >
+        {createDiffRenderer(token, "base")}
+      </Textarea>
       <Textarea
-        render={createDiffRenderer(token, "target")}
         style={style}
         onChange={useCallback((e) => setTargetText(e.target.value), [])}
         value={targetText}
-      />
+      >
+        {createDiffRenderer(token, "target")}
+      </Textarea>
     </div>
   );
 };
