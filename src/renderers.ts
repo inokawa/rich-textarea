@@ -1,5 +1,5 @@
 import React, { createElement } from "react";
-import { execReg, MatchChunk, merge } from "./utils";
+import { execReg, MatchChunk, merge } from "./regex";
 
 export type Renderer = (value: string) => React.ReactNode;
 

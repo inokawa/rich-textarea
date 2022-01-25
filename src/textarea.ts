@@ -8,7 +8,7 @@ import React, {
   forwardRef,
 } from "react";
 import mergeRefs from "react-merge-refs";
-import { Renderer } from ".";
+import { Renderer } from "./renderers";
 
 const STYLE_KEYS: (keyof React.CSSProperties)[] = [
   "direction",
