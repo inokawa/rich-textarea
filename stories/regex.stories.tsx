@@ -61,7 +61,7 @@ export const Basic = () => {
   );
   return (
     <Textarea
-      renderer={basicRegex}
+      render={basicRegex}
       style={style}
       onChange={useCallback((e) => setText(e.target.value), [])}
       value={text}
@@ -83,7 +83,7 @@ export const Search = () => {
         />
       </div>
       <Textarea
-        renderer={
+        render={
           searchText
             ? createRegexRenderer([
                 [
@@ -114,14 +114,14 @@ export const Many = () => {
   const [text, setText] = useState(lorem);
   return (
     <Textarea
-      renderer={manyRegex}
+      render={manyRegex}
       style={style}
       onChange={useCallback((e) => setText(e.target.value), [])}
       value={text}
     />
   );
 };
-Many.storyName = 'Many (WIP)'
+Many.storyName = "Many (WIP)";
 
 const emojiRegex = createRegexRenderer([
   [
@@ -142,7 +142,7 @@ export const Emoji = () => {
   );
   return (
     <Textarea
-      renderer={emojiRegex}
+      render={emojiRegex}
       style={style}
       onChange={useCallback((e) => setText(e.target.value), [])}
       value={text}

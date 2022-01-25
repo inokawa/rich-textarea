@@ -44,7 +44,7 @@ export const App = () => {
 
   return (
     <Textarea
-      renderer={renderer}
+      render={renderer}
       value={text}
       style={{ width: "600px", height: "400px" }}
       onChange={(e) => setText(e.target.value)}

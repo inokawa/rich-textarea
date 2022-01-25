@@ -89,11 +89,11 @@ const getHorizontalPadding = (style: CSSStyleDeclaration): number => {
 };
 
 export type TextareaProps = JSX.IntrinsicElements["textarea"] & {
-  renderer: Renderer;
+  render: Renderer;
 };
 
 export const Textarea = ({
-  renderer,
+  render,
   style,
   onScroll,
   ...props
@@ -192,7 +192,7 @@ export const Textarea = ({
             return s;
           }, [left, top, width, style]),
         },
-        useMemo(() => renderer(String(props.value)), [props.value, renderer])
+        useMemo(() => render(String(props.value)), [props.value, render])
       )
     ),
     createElement("textarea", {

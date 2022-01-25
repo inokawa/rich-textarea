@@ -57,7 +57,7 @@ function Example() {
   );
   return (
     <Textarea
-      renderer={renderer}
+      render={renderer}
       style={style}
       onChange={useCallback((e) => setText(e.target.value), [])}
       value={text}
