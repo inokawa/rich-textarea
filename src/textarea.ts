@@ -5,7 +5,9 @@ import React, {
   useMemo,
   useCallback,
   createElement,
+  forwardRef,
 } from "react";
+import mergeRefs from "react-merge-refs";
 import { Renderer } from ".";
 
 const STYLE_KEYS: (keyof React.CSSProperties)[] = [
@@ -92,123 +94,121 @@ export type TextareaProps = JSX.IntrinsicElements["textarea"] & {
   render: Renderer;
 };
 
-export const Textarea = ({
-  render,
-  style,
-  onScroll,
-  ...props
-}: TextareaProps): React.ReactElement => {
-  const ref = useRef<HTMLTextAreaElement>(null);
-  const backdropRef = useRef<HTMLDivElement>(null);
-  const [[left, top], setPos] = useState<[left: number, top: number]>([0, 0]);
-  const [[width, height, hPadding, vPadding], setRect] = useState<
-    [width: number, height: number, hPadding: number, vPadding: number]
-  >([0, 0, 0, 0]);
-  const caretColorRef = useRef("");
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ render, style, onScroll, ...props }, propRef): React.ReactElement => {
+    const ref = useRef<HTMLTextAreaElement>(null);
+    const backdropRef = useRef<HTMLDivElement>(null);
+    const [[left, top], setPos] = useState<[left: number, top: number]>([0, 0]);
+    const [[width, height, hPadding, vPadding], setRect] = useState<
+      [width: number, height: number, hPadding: number, vPadding: number]
+    >([0, 0, 0, 0]);
+    const caretColorRef = useRef("");
 
-  useEffect(() => {
-    if (!ref.current) return;
-    const observer = new ResizeObserver((entries) => {
+    useEffect(() => {
       if (!ref.current) return;
-      const style = window.getComputedStyle(ref.current);
-      setRect([
-        entries[0].contentRect.width,
-        entries[0].contentRect.height,
-        getHorizontalPadding(style),
-        getVerticalPadding(style),
-      ]);
-    });
-    observer.observe(ref.current);
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+      const observer = new ResizeObserver((entries) => {
+        if (!ref.current) return;
+        const style = window.getComputedStyle(ref.current);
+        setRect([
+          entries[0].contentRect.width,
+          entries[0].contentRect.height,
+          getHorizontalPadding(style),
+          getVerticalPadding(style),
+        ]);
+      });
+      observer.observe(ref.current);
+      return () => {
+        observer.disconnect();
+      };
+    }, []);
 
-  useEffect(() => {
-    if (!backdropRef.current || !ref.current) return;
-    const s = window.getComputedStyle(ref.current);
-    if (!caretColorRef.current) {
-      caretColorRef.current = s.getPropertyValue("color");
-    }
-    copyStyle(STYLE_KEYS, backdropRef.current.style, s);
+    useEffect(() => {
+      if (!backdropRef.current || !ref.current) return;
+      const s = window.getComputedStyle(ref.current);
+      if (!caretColorRef.current) {
+        caretColorRef.current = s.getPropertyValue("color");
+      }
+      copyStyle(STYLE_KEYS, backdropRef.current.style, s);
 
-    ref.current.style.color = "transparent";
-    ref.current.style.caretColor = style?.caretColor ?? caretColorRef.current;
-    backdropRef.current.style.borderColor = "transparent";
-  }, [style]);
+      ref.current.style.color = "transparent";
+      ref.current.style.caretColor = style?.caretColor ?? caretColorRef.current;
+      backdropRef.current.style.borderColor = "transparent";
+    }, [style]);
 
-  const totalWidth = width + hPadding;
-  const totalHeight = height + vPadding;
+    const totalWidth = width + hPadding;
+    const totalHeight = height + vPadding;
 
-  return createElement(
-    "div",
-    {
-      style: useMemo(
-        (): React.CSSProperties => ({
-          display: "inline-block",
-          position: "relative",
-          width: totalWidth,
-          height: totalHeight,
-        }),
-        [totalWidth, totalHeight]
-      ),
-    },
-    createElement(
+    return createElement(
       "div",
       {
-        style: useMemo((): React.CSSProperties => {
-          const s: React.CSSProperties = {
-            position: "absolute",
-            overflow: "hidden",
-            top: 0,
-            left: 0,
-            zIndex: -1,
+        style: useMemo(
+          (): React.CSSProperties => ({
+            display: "inline-block",
+            position: "relative",
             width: totalWidth,
             height: totalHeight,
-          };
-          if (!style) return s;
-          if (style.background) s.background = style.background;
-          if (style.backgroundColor) s.backgroundColor = style.backgroundColor;
-          return s;
-        }, [totalWidth, totalHeight]),
+          }),
+          [totalWidth, totalHeight]
+        ),
       },
       createElement(
         "div",
         {
-          ref: backdropRef,
-          "aria-hidden": true,
           style: useMemo((): React.CSSProperties => {
             const s: React.CSSProperties = {
-              width,
-              transform: `translate(${-left}px, ${-top}px)`,
-              pointerEvents: "none",
-              userSelect: "none",
-              msUserSelect: "none",
-              WebkitUserSelect: "none",
-              // https://stackoverflow.com/questions/2545542/font-size-rendering-inconsistencies-on-an-iphone
-              textSizeAdjust: "100%",
-              WebkitTextSizeAdjust: "100%",
+              position: "absolute",
+              overflow: "hidden",
+              top: 0,
+              left: 0,
+              zIndex: -1,
+              width: totalWidth,
+              height: totalHeight,
             };
+            if (!style) return s;
+            if (style.background) s.background = style.background;
+            if (style.backgroundColor)
+              s.backgroundColor = style.backgroundColor;
             return s;
-          }, [left, top, width, style]),
+          }, [totalWidth, totalHeight]),
         },
-        useMemo(() => render(String(props.value)), [props.value, render])
-      )
-    ),
-    createElement("textarea", {
-      ...props,
-      ref,
-      style: useMemo(
-        () => ({ ...style, background: "transparent", margin: 0 }),
-        [style]
+        createElement(
+          "div",
+          {
+            ref: backdropRef,
+            "aria-hidden": true,
+            style: useMemo((): React.CSSProperties => {
+              const s: React.CSSProperties = {
+                width,
+                transform: `translate(${-left}px, ${-top}px)`,
+                pointerEvents: "none",
+                userSelect: "none",
+                msUserSelect: "none",
+                WebkitUserSelect: "none",
+                // https://stackoverflow.com/questions/2545542/font-size-rendering-inconsistencies-on-an-iphone
+                textSizeAdjust: "100%",
+                WebkitTextSizeAdjust: "100%",
+              };
+              return s;
+            }, [left, top, width, style]),
+          },
+          useMemo(() => render(String(props.value)), [props.value, render])
+        )
       ),
-      onScroll: useCallback(
-        (e: React.UIEvent<HTMLTextAreaElement>) => {
-          setPos([e.currentTarget.scrollLeft, e.currentTarget.scrollTop]);
-          onScroll?.(e);
-        },
-        [onScroll]
-      ),
-    })
-  );
-};
+      createElement("textarea", {
+        ...props,
+        ref: useMemo(() => mergeRefs([ref, propRef]), [ref, propRef]),
+        style: useMemo(
+          () => ({ ...style, background: "transparent", margin: 0 }),
+          [style]
+        ),
+        onScroll: useCallback(
+          (e: React.UIEvent<HTMLTextAreaElement>) => {
+            setPos([e.currentTarget.scrollLeft, e.currentTarget.scrollTop]);
+            onScroll?.(e);
+          },
+          [onScroll]
+        ),
+      })
+    );
+  }
+);

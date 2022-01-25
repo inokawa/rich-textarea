@@ -17,6 +17,9 @@
     "build-storybook": "build-storybook",
     "prepublishOnly": "rimraf lib && npm run build && npm run tsc:d"
   },
+  "dependencies": {
+    "react-merge-refs": "^1.1.0"
+  },
   "devDependencies": {
     "@rollup/plugin-typescript": "8.3.0",
     "@storybook/addon-essentials": "6.4.14",
