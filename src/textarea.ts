@@ -156,8 +156,8 @@ export const Textarea = ({
     createElement(
       "div",
       {
-        style: useMemo(
-          (): React.CSSProperties => ({
+        style: useMemo((): React.CSSProperties => {
+          const s: React.CSSProperties = {
             position: "absolute",
             overflow: "hidden",
             top: 0,
@@ -165,9 +165,12 @@ export const Textarea = ({
             zIndex: -1,
             width: totalWidth,
             height: totalHeight,
-          }),
-          [totalWidth, totalHeight]
-        ),
+          };
+          if (!style) return s;
+          if (style.background) s.background = style.background;
+          if (style.backgroundColor) s.backgroundColor = style.backgroundColor;
+          return s;
+        }, [totalWidth, totalHeight]),
       },
       createElement(
         "div",
@@ -186,10 +189,6 @@ export const Textarea = ({
               textSizeAdjust: "100%",
               WebkitTextSizeAdjust: "100%",
             };
-            if (!style) return s;
-            if (style.background) s.background = style.background;
-            if (style.backgroundColor)
-              s.backgroundColor = style.backgroundColor;
             return s;
           }, [left, top, width, style]),
         },
