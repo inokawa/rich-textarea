@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { Renderer, Textarea } from "../src";
 
 export default {
-  title: "language",
+  title: "examples",
 };
 
 const style: React.CSSProperties = {

@@ -4,7 +4,7 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/dracula";
 
 export default {
-  title: "code",
+  title: "examples",
 };
 
 const style: React.CSSProperties = {
@@ -38,7 +38,7 @@ const renderer: Renderer = (value) => {
   );
 };
 
-export const Basic = () => {
+export const Prism = () => {
   const [text, setText] = useState(
     `import React, { useState } from "react";
 

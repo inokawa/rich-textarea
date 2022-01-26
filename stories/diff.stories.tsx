@@ -4,7 +4,7 @@ import diff from "monaco-diff";
 import type { ILineChange } from "monaco-diff";
 
 export default {
-  title: "diff",
+  title: "examples",
 };
 
 const style: React.CSSProperties = {
@@ -147,7 +147,7 @@ const createDiffRenderer =
     });
   };
 
-export const Basic = () => {
+export const Diff = () => {
   const [baseText, setBaseText] = useState(
     "This line is removed on the right.\njust some text\nabcd\nefgh\nSome more text\nSome more text\nSome more text"
   );
