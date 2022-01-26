@@ -69,7 +69,7 @@ exports[`match emoji 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; color: transparent;"
+      style="background: transparent; margin: 0px; position: absolute; color: transparent;"
     >
       Lorem😇 ipsum dolor sit amet👨‍👩‍👧‍👦 Lorem ipsum dolor👍🏽 sit amet Lorem👩‍💻 ipsum dolor sit amet
     </textarea>
@@ -293,7 +293,7 @@ exports[`match japanese 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; color: transparent;"
+      style="background: transparent; margin: 0px; position: absolute; color: transparent;"
     >
       あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。
     </textarea>
@@ -345,7 +345,7 @@ exports[`match match many 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; color: transparent;"
+      style="background: transparent; margin: 0px; position: absolute; color: transparent;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -375,7 +375,7 @@ exports[`match match one 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; color: transparent;"
+      style="background: transparent; margin: 0px; position: absolute; color: transparent;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -438,7 +438,7 @@ exports[`match multiple matchers 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; color: transparent;"
+      style="background: transparent; margin: 0px; position: absolute; color: transparent;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -468,7 +468,7 @@ exports[`style textarea background 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; color: transparent;"
+      style="background: transparent; margin: 0px; position: absolute; color: transparent;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -498,7 +498,7 @@ exports[`style textarea background-color 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; color: transparent;"
+      style="background: transparent; margin: 0px; position: absolute; color: transparent;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -528,7 +528,7 @@ exports[`style textarea border 1`] = `
       </div>
     </div>
     <textarea
-      style="border: 1px solid blue; background: transparent; margin: 0px; color: transparent;"
+      style="border: 1px solid blue; background: transparent; margin: 0px; position: absolute; color: transparent;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -558,7 +558,7 @@ exports[`style textarea border-color 1`] = `
       </div>
     </div>
     <textarea
-      style="border-color: blue; background: transparent; margin: 0px; color: transparent;"
+      style="border-color: blue; background: transparent; margin: 0px; position: absolute; color: transparent;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -588,7 +588,7 @@ exports[`style textarea caret-color 1`] = `
       </div>
     </div>
     <textarea
-      style="caret-color: blue; background: transparent; margin: 0px; color: transparent;"
+      style="caret-color: blue; background: transparent; margin: 0px; position: absolute; color: transparent;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -618,7 +618,7 @@ exports[`style textarea color 1`] = `
       </div>
     </div>
     <textarea
-      style="color: transparent; background: transparent; margin: 0px; caret-color: blue;"
+      style="color: transparent; background: transparent; margin: 0px; position: absolute; caret-color: blue;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -648,7 +648,7 @@ exports[`style textarea width & height 1`] = `
       </div>
     </div>
     <textarea
-      style="width: 123px; height: 456px; background: transparent; margin: 0px; color: transparent;"
+      style="width: 123px; height: 456px; background: transparent; margin: 0px; position: absolute; color: transparent;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -678,7 +678,7 @@ exports[`style value background 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; color: transparent;"
+      style="background: transparent; margin: 0px; position: absolute; color: transparent;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -708,7 +708,7 @@ exports[`style value border 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; color: transparent;"
+      style="background: transparent; margin: 0px; position: absolute; color: transparent;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -738,7 +738,7 @@ exports[`style value color 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; color: transparent;"
+      style="background: transparent; margin: 0px; position: absolute; color: transparent;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -768,7 +768,7 @@ exports[`style value decoration 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; color: transparent;"
+      style="background: transparent; margin: 0px; position: absolute; color: transparent;"
     >
       Lorem ipsum dolor sit amet
     </textarea>

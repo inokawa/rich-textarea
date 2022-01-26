@@ -204,7 +204,13 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         ...props,
         ref: useMemo(() => mergeRefs([ref, propRef]), [ref, propRef]),
         style: useMemo(
-          () => ({ ...style, background: "transparent", margin: 0 }),
+          () => ({
+            ...style,
+            background: "transparent",
+            margin: 0,
+            // Fixed bug that sometimes texts disappear in Chrome for unknown reason
+            position: "absolute",
+          }),
           [style]
         ),
         onScroll: useCallback(
