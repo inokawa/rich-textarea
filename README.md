@@ -6,6 +6,8 @@
 A small [React](https://github.com/facebook/react) component to colorize, highlight and decorate your textarea.
 
 <img src="./sample.gif" width="600px" />
+<img src="./sample2.gif" width="600px" />
+<img src="./sample3.gif" width="600px" />
 
 ## Demo
 
