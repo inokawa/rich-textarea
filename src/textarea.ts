@@ -90,14 +90,14 @@ const getHorizontalPadding = (style: CSSStyleDeclaration): number => {
   );
 };
 
-export type TextareaProps = Omit<
+export type RichTextareaProps = Omit<
   JSX.IntrinsicElements["textarea"],
   "children"
 > & {
   children: Renderer;
 };
 
-export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+export const RichTextarea = forwardRef<HTMLTextAreaElement, RichTextareaProps>(
   (
     { children: render, style, onScroll, ...props },
     propRef

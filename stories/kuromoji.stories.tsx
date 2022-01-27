@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { Renderer, Textarea } from "../src";
-
+import { RichTextarea } from "../src";
 import { getTokenizer, Tokenizer } from "kuromojin";
 
 export default {
@@ -30,7 +29,7 @@ export const Kuromoji = () => {
   return (
     <div>
       {!tokenizer && <div>{"Loading dictionaries"}</div>}
-      <Textarea
+      <RichTextarea
         style={style}
         onChange={useCallback((e) => setText(e.target.value), [])}
         value={text}
@@ -68,7 +67,7 @@ export const Kuromoji = () => {
           }
           return nodes;
         }}
-      </Textarea>
+      </RichTextarea>
     </div>
   );
 };

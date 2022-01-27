@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Renderer, Textarea } from "../src";
+import { Renderer, RichTextarea } from "../src";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/dracula";
 
@@ -56,12 +56,12 @@ function Example() {
 }`
   );
   return (
-    <Textarea
+    <RichTextarea
       style={style}
       onChange={useCallback((e) => setText(e.target.value), [])}
       value={text}
     >
       {renderer}
-    </Textarea>
+    </RichTextarea>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { Renderer, Textarea } from "../src";
+import { RichTextarea } from "../src";
 
 export default {
   title: "examples",
@@ -32,7 +32,7 @@ export const Segmenter = () => {
           <option value={"sentence"}>sentence</option>
         </select>
       </div>
-      <Textarea
+      <RichTextarea
         style={style}
         onChange={useCallback((e) => setText(e.target.value), [])}
         value={text}
@@ -60,7 +60,7 @@ export const Segmenter = () => {
           }
           return nodes;
         }}
-      </Textarea>
+      </RichTextarea>
     </div>
   );
 };

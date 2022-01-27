@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Renderer, Textarea } from "../src";
+import { Renderer, RichTextarea } from "../src";
 import diff from "monaco-diff";
 import type { ILineChange } from "monaco-diff";
 
@@ -161,20 +161,20 @@ export const Diff = () => {
 
   return (
     <div>
-      <Textarea
+      <RichTextarea
         style={style}
         onChange={useCallback((e) => setBaseText(e.target.value), [])}
         value={baseText}
       >
         {createDiffRenderer(token, "base")}
-      </Textarea>
-      <Textarea
+      </RichTextarea>
+      <RichTextarea
         style={style}
         onChange={useCallback((e) => setTargetText(e.target.value), [])}
         value={targetText}
       >
         {createDiffRenderer(token, "target")}
-      </Textarea>
+      </RichTextarea>
     </div>
   );
 };

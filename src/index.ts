@@ -1,3 +1,3 @@
-export { Textarea } from "./textarea";
-export type { TextareaProps } from "./textarea";
+export { RichTextarea } from "./textarea";
+export type { RichTextareaProps } from "./textarea";
 export * from "./renderers";

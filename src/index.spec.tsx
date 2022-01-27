@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cleanup, fireEvent, render } from "@testing-library/react";
-import { Textarea, createRegexRenderer } from ".";
+import { RichTextarea, createRegexRenderer } from ".";
 
 global.ResizeObserver = class mockResizeObjerver {
   instanceResize: ResizeObserver | null = null;
@@ -21,36 +21,36 @@ afterEach(cleanup);
 describe("style value", () => {
   it("color", () => {
     const { asFragment } = render(
-      <Textarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
+      <RichTextarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
         {createRegexRenderer([[/ore/g, { color: "red" }]])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it("decoration", () => {
     const { asFragment } = render(
-      <Textarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
+      <RichTextarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
         {createRegexRenderer([[/ore/g, { textDecoration: "undeline" }]])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it("background", () => {
     const { asFragment } = render(
-      <Textarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
+      <RichTextarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
         {createRegexRenderer([[/ore/g, { background: "red" }]])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it("border", () => {
     const { asFragment } = render(
-      <Textarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
+      <RichTextarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
         {createRegexRenderer([[/ore/g, { border: "solid 1px red" }]])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -59,91 +59,91 @@ describe("style value", () => {
 describe("style textarea", () => {
   it("width & height", () => {
     const { asFragment } = render(
-      <Textarea
+      <RichTextarea
         value={"Lorem ipsum dolor sit amet"}
         style={{ width: "123px", height: "456px" }}
         onChange={NOP}
       >
         {createRegexRenderer([[/ore/g, { color: "red" }]])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it("color", () => {
     const { asFragment } = render(
-      <Textarea
+      <RichTextarea
         value={"Lorem ipsum dolor sit amet"}
         style={{ color: "blue" }}
         onChange={NOP}
       >
         {createRegexRenderer([[/ore/g, { color: "red" }]])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it("caret-color", () => {
     const { asFragment } = render(
-      <Textarea
+      <RichTextarea
         value={"Lorem ipsum dolor sit amet"}
         style={{ caretColor: "blue" }}
         onChange={NOP}
       >
         {createRegexRenderer([[/ore/g, { color: "red" }]])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it("background", () => {
     const { asFragment } = render(
-      <Textarea
+      <RichTextarea
         value={"Lorem ipsum dolor sit amet"}
         style={{ background: "blue" }}
         onChange={NOP}
       >
         {createRegexRenderer([[/ore/g, { color: "red" }]])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it("background-color", () => {
     const { asFragment } = render(
-      <Textarea
+      <RichTextarea
         value={"Lorem ipsum dolor sit amet"}
         style={{ backgroundColor: "blue" }}
         onChange={NOP}
       >
         {createRegexRenderer([[/ore/g, { color: "red" }]])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it("border", () => {
     const { asFragment } = render(
-      <Textarea
+      <RichTextarea
         value={"Lorem ipsum dolor sit amet"}
         style={{ border: "solid 1px blue" }}
         onChange={NOP}
       >
         {createRegexRenderer([[/ore/g, { color: "red" }]])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it("border-color", () => {
     const { asFragment } = render(
-      <Textarea
+      <RichTextarea
         value={"Lorem ipsum dolor sit amet"}
         style={{ borderColor: "blue" }}
         onChange={NOP}
       >
         {createRegexRenderer([[/ore/g, { color: "red" }]])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -152,51 +152,51 @@ describe("style textarea", () => {
 describe("match", () => {
   it("match one", () => {
     const { asFragment } = render(
-      <Textarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
+      <RichTextarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
         {createRegexRenderer([[/ipsum/g, { color: "red" }]])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it("match many", () => {
     const { asFragment } = render(
-      <Textarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
+      <RichTextarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
         {createRegexRenderer([[/[or]/g, { color: "red" }]])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it("multiple matchers", () => {
     const { asFragment } = render(
-      <Textarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
+      <RichTextarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
         {createRegexRenderer([
           [/[or]/g, { color: "red", background: "red" }],
           [/[oe]/g, { color: "blue", border: "solid 1px blue" }],
         ])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it("japanese", () => {
     const { asFragment } = render(
-      <Textarea
+      <RichTextarea
         value={
           "あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。"
         }
         onChange={NOP}
       >
         {createRegexRenderer([[/[あ-ん]/g, { background: "yellow" }]])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it("emoji", () => {
     const { asFragment } = render(
-      <Textarea
+      <RichTextarea
         value={
           "Lorem😇 ipsum dolor sit amet👨‍👩‍👧‍👦 Lorem ipsum dolor👍🏽 sit amet Lorem👩‍💻 ipsum dolor sit amet"
         }
@@ -208,7 +208,7 @@ describe("match", () => {
             { background: "yellow" },
           ],
         ])}
-      </Textarea>
+      </RichTextarea>
     );
     expect(asFragment()).toMatchSnapshot();
   });

@@ -34,7 +34,7 @@ npm install rich-textarea
 
 ```jsx
 import * as React from "react";
-import { Textarea, createRegexRenderer } from "rich-textarea";
+import { RichTextarea, createRegexRenderer } from "rich-textarea";
 
 const renderer = createRegexRenderer([
   [/[A-Z][a-z]+/g, { borderRadius: "3px", backgroundColor: "#d0bfff" }],
@@ -44,13 +44,13 @@ export const App = () => {
   const [text, setText] = React.useState("Lorem ipsum");
 
   return (
-    <Textarea
+    <RichTextarea
       value={text}
       style={{ width: "600px", height: "400px" }}
       onChange={(e) => setText(e.target.value)}
     >
       {renderer}
-    </Textarea>
+    </RichTextarea>
   );
 };
 ```
