@@ -14,6 +14,7 @@ export const Segmenter = () => {
   const [text, setText] = useState(
     "すもももももももものうち。\n\n吾輩 （ わがはい ） は猫である。名前はまだ無い。"
   );
+  const [locale, setLocale] = useState("ja");
   const [granularity, setGranularity] = useState<string>("word");
 
   const hasSegmenter = !!(Intl as any)?.Segmenter;
@@ -23,6 +24,7 @@ export const Segmenter = () => {
         <div>{"Intl.Segmenter is not supported in this browser."}</div>
       )}
       <div>
+        <input value={locale} onChange={(e) => setLocale(e.target.value)} />
         <select
           value={granularity}
           onChange={(e) => setGranularity(e.target.value)}
@@ -40,25 +42,29 @@ export const Segmenter = () => {
         {(v) => {
           if (!hasSegmenter) return v;
 
-          const segmenter = new (Intl as any).Segmenter("ja", {
-            granularity,
-          });
-          const tokens = segmenter.segment(v);
-          const nodes: React.ReactElement[] = [];
-          for (const { segment, index, isWordLike } of tokens) {
-            nodes.push(
-              <span
-                key={index}
-                style={{
-                  background: isWordLike ? "palegreen" : undefined,
-                  outline: "solid 1px green",
-                }}
-              >
-                {segment}
-              </span>
-            );
+          try {
+            const segmenter = new (Intl as any).Segmenter(locale, {
+              granularity,
+            });
+            const tokens = segmenter.segment(v);
+            const nodes: React.ReactElement[] = [];
+            for (const { segment, index, isWordLike } of tokens) {
+              nodes.push(
+                <span
+                  key={index}
+                  style={{
+                    background: isWordLike ? "palegreen" : undefined,
+                    outline: "solid 1px green",
+                  }}
+                >
+                  {segment}
+                </span>
+              );
+            }
+            return nodes;
+          } catch (e) {
+            return v;
           }
-          return nodes;
         }}
       </RichTextarea>
     </div>
