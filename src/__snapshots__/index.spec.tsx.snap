@@ -66,6 +66,11 @@ exports[`match emoji 1`] = `
           💻
         </span>
          ipsum dolor sit amet
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
@@ -290,6 +295,11 @@ exports[`match japanese 1`] = `
           の
         </span>
         波。
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
@@ -342,6 +352,11 @@ exports[`match match many 1`] = `
           r
         </span>
          sit amet
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
@@ -372,6 +387,11 @@ exports[`match match one 1`] = `
           ipsum
         </span>
          dolor sit amet
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
@@ -435,6 +455,11 @@ exports[`match multiple matchers 1`] = `
           e
         </span>
         t
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
@@ -465,6 +490,11 @@ exports[`style textarea background 1`] = `
           ore
         </span>
         m ipsum dolor sit amet
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
@@ -495,6 +525,11 @@ exports[`style textarea background-color 1`] = `
           ore
         </span>
         m ipsum dolor sit amet
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
@@ -525,6 +560,11 @@ exports[`style textarea border 1`] = `
           ore
         </span>
         m ipsum dolor sit amet
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
@@ -555,6 +595,11 @@ exports[`style textarea border-color 1`] = `
           ore
         </span>
         m ipsum dolor sit amet
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
@@ -585,6 +630,11 @@ exports[`style textarea caret-color 1`] = `
           ore
         </span>
         m ipsum dolor sit amet
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
@@ -615,6 +665,11 @@ exports[`style textarea color 1`] = `
           ore
         </span>
         m ipsum dolor sit amet
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
@@ -645,6 +700,11 @@ exports[`style textarea width & height 1`] = `
           ore
         </span>
         m ipsum dolor sit amet
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
@@ -675,6 +735,11 @@ exports[`style value background 1`] = `
           ore
         </span>
         m ipsum dolor sit amet
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
@@ -705,6 +770,11 @@ exports[`style value border 1`] = `
           ore
         </span>
         m ipsum dolor sit amet
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
@@ -735,6 +805,11 @@ exports[`style value color 1`] = `
           ore
         </span>
         m ipsum dolor sit amet
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
@@ -765,6 +840,11 @@ exports[`style value decoration 1`] = `
           ore
         </span>
         m ipsum dolor sit amet
+        <span
+          style="color: transparent;"
+        >
+           
+        </span>
       </div>
     </div>
     <textarea
