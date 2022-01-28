@@ -1,4 +1,3 @@
-import React, { createElement } from "react";
 import { execReg, MatchChunk, merge } from "./regex";
 
 export type Renderer = (value: string) => React.ReactNode;
@@ -36,14 +35,9 @@ export const createRegexRenderer = (
         return acc;
       }, {} as React.CSSProperties);
       res.push(
-        createElement(
-          "span",
-          {
-            key: i,
-            style,
-          },
-          value.slice(start, end)
-        )
+        <span key={i} style={style}>
+          {value.slice(start, end)}
+        </span>
       );
       prevEnd = end;
       prevStart = start;

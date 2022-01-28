@@ -1,10 +1,9 @@
-import React, {
+import {
   useEffect,
   useRef,
   useState,
   useMemo,
   useCallback,
-  createElement,
   forwardRef,
 } from "react";
 import mergeRefs from "react-merge-refs";
@@ -144,10 +143,9 @@ export const RichTextarea = forwardRef<HTMLTextAreaElement, RichTextareaProps>(
     const totalWidth = width + hPadding;
     const totalHeight = height + vPadding;
 
-    return createElement(
-      "div",
-      {
-        style: useMemo(
+    return (
+      <div
+        style={useMemo(
           (): React.CSSProperties => ({
             display: "inline-block",
             position: "relative",
@@ -155,12 +153,10 @@ export const RichTextarea = forwardRef<HTMLTextAreaElement, RichTextareaProps>(
             height: totalHeight,
           }),
           [totalWidth, totalHeight]
-        ),
-      },
-      createElement(
-        "div",
-        {
-          style: useMemo((): React.CSSProperties => {
+        )}
+      >
+        <div
+          style={useMemo((): React.CSSProperties => {
             const s: React.CSSProperties = {
               position: "absolute",
               overflow: "hidden",
@@ -175,14 +171,12 @@ export const RichTextarea = forwardRef<HTMLTextAreaElement, RichTextareaProps>(
             if (style.backgroundColor)
               s.backgroundColor = style.backgroundColor;
             return s;
-          }, [totalWidth, totalHeight]),
-        },
-        createElement(
-          "div",
-          {
-            ref: backdropRef,
-            "aria-hidden": true,
-            style: useMemo((): React.CSSProperties => {
+          }, [totalWidth, totalHeight])}
+        >
+          <div
+            ref={backdropRef}
+            aria-hidden
+            style={useMemo((): React.CSSProperties => {
               const s: React.CSSProperties = {
                 width,
                 transform: `translate(${-left}px, ${-top}px)`,
@@ -195,32 +189,34 @@ export const RichTextarea = forwardRef<HTMLTextAreaElement, RichTextareaProps>(
                 WebkitTextSizeAdjust: "100%",
               };
               return s;
-            }, [left, top, width, style]),
-          },
-          useMemo(() => render(String(props.value)), [props.value, render])
-        )
-      ),
-      createElement("textarea", {
-        ...props,
-        ref: useMemo(() => mergeRefs([ref, propRef]), [ref, propRef]),
-        style: useMemo(
-          () => ({
-            ...style,
-            background: "transparent",
-            margin: 0,
-            // Fixed bug that sometimes texts disappear in Chrome for unknown reason
-            position: "absolute",
-          }),
-          [style]
-        ),
-        onScroll: useCallback(
-          (e: React.UIEvent<HTMLTextAreaElement>) => {
-            setPos([e.currentTarget.scrollLeft, e.currentTarget.scrollTop]);
-            onScroll?.(e);
-          },
-          [onScroll]
-        ),
-      })
+            }, [left, top, width, style])}
+          >
+            {useMemo(() => render(String(props.value)), [props.value, render])}
+          </div>
+        </div>
+
+        <textarea
+          {...props}
+          ref={useMemo(() => mergeRefs([ref, propRef]), [ref, propRef])}
+          style={useMemo(
+            () => ({
+              ...style,
+              background: "transparent",
+              margin: 0,
+              // Fixed bug that sometimes texts disappear in Chrome for unknown reason
+              position: "absolute",
+            }),
+            [style]
+          )}
+          onScroll={useCallback(
+            (e: React.UIEvent<HTMLTextAreaElement>) => {
+              setPos([e.currentTarget.scrollLeft, e.currentTarget.scrollTop]);
+              onScroll?.(e);
+            },
+            [onScroll]
+          )}
+        />
+      </div>
     );
   }
 );
