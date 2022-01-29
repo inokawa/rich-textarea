@@ -23,8 +23,8 @@ export const Emoji = () => {
   const match = pos && targetText.match(MENTION_REG);
   const name = match?.[1] ?? "";
   const chars = useMemo(() => emoji.search(name).slice(0, MAX_CHARS), [name]);
-  const complete = () => {
-    const selected = chars[index].emoji;
+  const complete = (i: number) => {
+    const selected = chars[i].emoji;
     setText(
       targetText.replace(MENTION_REG, "") +
         `${selected} ` +
@@ -56,7 +56,7 @@ export const Emoji = () => {
               break;
             case "Enter":
               e.preventDefault();
-              complete();
+              complete(index);
               break;
             case "Escape":
               e.preventDefault();
@@ -94,10 +94,6 @@ export const Emoji = () => {
               background: "white",
               cursor: "pointer",
             }}
-            onMouseDown={(e) => {
-              e.preventDefault();
-              complete();
-            }}
           >
             {(() => {
               return chars.map((c, i) => (
@@ -109,6 +105,10 @@ export const Emoji = () => {
                       color: "white",
                       background: "#2A6AD3",
                     }),
+                  }}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    complete(i);
                   }}
                 >
                   {`${c.emoji} ${c.key}`}
