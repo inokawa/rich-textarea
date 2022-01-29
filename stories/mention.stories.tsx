@@ -414,6 +414,7 @@ const CHARACTERS = [
 
 const style = { width: "400px", height: "300px" };
 
+const MAX_CHARS = 8;
 const MENTION_REG = /\B@([\-+\w]*)$/;
 const MENTION_HIGHLIGHT_REG = new RegExp(
   `(${CHARACTERS.map((c) => `@${c}`).join("|")})`,
@@ -440,7 +441,9 @@ export const Mention = () => {
   const name = match?.[1] ?? "";
   const chars = useMemo(
     () =>
-      CHARACTERS.filter((c) => c.toLowerCase().startsWith(name.toLowerCase())),
+      CHARACTERS.filter((c) =>
+        c.toLowerCase().startsWith(name.toLowerCase())
+      ).slice(0, MAX_CHARS),
     [name]
   );
   const complete = () => {
