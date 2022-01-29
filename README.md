@@ -3,11 +3,12 @@
 ![npm](https://img.shields.io/npm/v/rich-textarea) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/rich-textarea)
 ![check](https://github.com/inokawa/rich-textarea/workflows/check/badge.svg) ![demo](https://github.com/inokawa/rich-textarea/workflows/demo/badge.svg)
 
-A small [React](https://github.com/facebook/react) component to colorize, highlight and decorate your textarea.
+A small customizable textarea for [React](https://github.com/facebook/react) to colorize, highlight, decorate texts and offer autocomplete.
 
 <img src="./sample.gif" width="600px" />
-<img src="./sample2.gif" width="600px" />
-<img src="./sample3.gif" width="600px" />
+<img src="./sample-mention.gif" width="600px" />
+<img src="./sample-diff.gif" width="600px" />
+<img src="./sample-prism.gif" width="600px" />
 
 ## Demo
 
@@ -54,3 +55,5 @@ export const App = () => {
   );
 };
 ```
+
+And see [examples](./stories) for more usages.
