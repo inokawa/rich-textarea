@@ -7,6 +7,8 @@ import {
   forwardRef,
 } from "react";
 import mergeRefs from "react-merge-refs";
+// @ts-expect-error no type definition
+import rangeAtIndex from "range-at-index";
 import { Renderer } from "./renderers";
 
 const STYLE_KEYS: (keyof React.CSSProperties)[] = [
@@ -89,16 +91,37 @@ const getHorizontalPadding = (style: CSSStyleDeclaration): number => {
   );
 };
 
+const caretDetectorStyle = { color: "transparent" };
+
+export type CaretPosition = {
+  top: number;
+  left: number;
+  height: number;
+  caretStart: number;
+};
+
 export type RichTextareaProps = Omit<
   JSX.IntrinsicElements["textarea"],
-  "children"
+  "value" | "children"
 > & {
-  children: Renderer;
+  value: string;
+  children?: Renderer;
+  onCaretPositionChange?: (pos: CaretPosition | null, value: string) => void;
 };
 
 export const RichTextarea = forwardRef<HTMLTextAreaElement, RichTextareaProps>(
   (
-    { children: render, style, onScroll, ...props },
+    {
+      children: render,
+      style,
+      onScroll,
+      onInput,
+      onKeyDown,
+      onFocus,
+      onBlur,
+      onCaretPositionChange,
+      ...props
+    },
     propRef
   ): React.ReactElement => {
     const ref = useRef<HTMLTextAreaElement>(null);
@@ -107,6 +130,7 @@ export const RichTextarea = forwardRef<HTMLTextAreaElement, RichTextareaProps>(
     const [[width, height, hPadding, vPadding], setRect] = useState<
       [width: number, height: number, hPadding: number, vPadding: number]
     >([0, 0, 0, 0]);
+    const [caretStart, setCaretStart] = useState<number | null>(null);
     const caretColorRef = useRef("");
 
     useEffect(() => {
@@ -139,6 +163,29 @@ export const RichTextarea = forwardRef<HTMLTextAreaElement, RichTextareaProps>(
       ref.current.style.caretColor = style?.caretColor ?? caretColorRef.current;
       backdropRef.current.style.borderColor = "transparent";
     }, [style]);
+
+    useEffect(() => {
+      if (!onCaretPositionChange) return;
+      if (caretStart == null) {
+        onCaretPositionChange(null, props.value);
+      } else {
+        const range = rangeAtIndex(
+          backdropRef.current,
+          caretStart,
+          caretStart + 1
+        ) as Range;
+        const rect = range.getBoundingClientRect();
+        onCaretPositionChange(
+          {
+            top: rect.top,
+            left: rect.left,
+            height: rect.height,
+            caretStart,
+          },
+          props.value
+        );
+      }
+    }, [caretStart]);
 
     const totalWidth = width + hPadding;
     const totalHeight = height + vPadding;
@@ -191,10 +238,14 @@ export const RichTextarea = forwardRef<HTMLTextAreaElement, RichTextareaProps>(
               return s;
             }, [left, top, width, style])}
           >
-            {useMemo(() => render(String(props.value)), [props.value, render])}
+            {useMemo(
+              () => (render ? render(props.value) : props.value),
+              [props.value, render]
+            )}
+            {/* for caret position detection */}
+            <span style={caretDetectorStyle}> </span>
           </div>
         </div>
-
         <textarea
           {...props}
           ref={useMemo(() => mergeRefs([ref, propRef]), [ref, propRef])}
@@ -214,6 +265,46 @@ export const RichTextarea = forwardRef<HTMLTextAreaElement, RichTextareaProps>(
               onScroll?.(e);
             },
             [onScroll]
+          )}
+          onInput={useCallback(
+            (e: React.FormEvent<HTMLTextAreaElement>) => {
+              onInput?.(e);
+              if (!onCaretPositionChange) return;
+              setTimeout(() => {
+                if (!ref.current) return;
+                setCaretStart(ref.current.selectionStart);
+              });
+            },
+            [onInput, onCaretPositionChange]
+          )}
+          onKeyDown={useCallback(
+            (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+              onKeyDown?.(e);
+              if (!onCaretPositionChange) return;
+              setTimeout(() => {
+                if (!ref.current) return;
+                setCaretStart(ref.current.selectionStart);
+              });
+            },
+            [onKeyDown, onCaretPositionChange]
+          )}
+          onFocus={useCallback(
+            (e: React.FocusEvent<HTMLTextAreaElement>) => {
+              onFocus?.(e);
+              if (!onCaretPositionChange) return;
+              setTimeout(() => {
+                if (!ref.current) return;
+                setCaretStart(ref.current.selectionStart);
+              });
+            },
+            [onFocus, onCaretPositionChange]
+          )}
+          onBlur={useCallback(
+            (e: React.FocusEvent<HTMLTextAreaElement>) => {
+              onBlur?.(e);
+              setCaretStart(null);
+            },
+            [onBlur]
           )}
         />
       </div>
