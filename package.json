@@ -18,8 +18,7 @@
     "prepublishOnly": "rimraf lib && npm run build && npm run tsc:d"
   },
   "dependencies": {
-    "range-at-index": "^1.0.4",
-    "react-merge-refs": "^1.1.0"
+    "range-at-index": "^1.0.4"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "8.3.0",

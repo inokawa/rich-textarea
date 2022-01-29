@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { RichTextarea, createRegexRenderer } from "../src";
+import { RichTextarea, createRegexRenderer, RichTextareaHandle } from "../src";
 
 export default {
   title: "examples",
@@ -428,7 +428,7 @@ const mentionRenderer = createRegexRenderer([
 ]);
 
 export const Mention = () => {
-  const ref = useRef<HTMLTextAreaElement>(null);
+  const ref = useRef<RichTextareaHandle>(null);
   const [text, setText] = useState(
     `Hi, @Captain Gregor and @Jaxxon . Please enter @ to show suggestions.\n\n`
   );
@@ -448,10 +448,11 @@ export const Mention = () => {
   );
   const complete = (i: number) => {
     const selected = chars[i];
-    setText(
-      targetText.replace(MENTION_REG, "") +
-        `@${selected} ` +
-        text.slice(pos.caretStart)
+    ref.current.setRangeText(
+      `@${selected} `,
+      pos.caretStart - name.length - 1,
+      pos.caretStart,
+      "end"
     );
     setPos(null);
     setIndex(null);

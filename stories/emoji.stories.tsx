@@ -2,6 +2,7 @@ import React, { useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { RichTextarea } from "../src";
 import emoji from "node-emoji";
+import { RichTextareaHandle } from "../src";
 
 export default {
   title: "examples",
@@ -13,7 +14,7 @@ const MAX_CHARS = 8;
 const MENTION_REG = /:([\-+\w]*)$/;
 
 export const Emoji = () => {
-  const ref = useRef<HTMLTextAreaElement>(null);
+  const ref = useRef<RichTextareaHandle>(null);
   const [text, setText] = useState(`Type : to show suggestions 💪\n\n`);
   const [pos, setPos] =
     useState<{ top: number; left: number; caretStart: number } | null>(null);
@@ -25,10 +26,11 @@ export const Emoji = () => {
   const chars = useMemo(() => emoji.search(name).slice(0, MAX_CHARS), [name]);
   const complete = (i: number) => {
     const selected = chars[i].emoji;
-    setText(
-      targetText.replace(MENTION_REG, "") +
-        `${selected} ` +
-        text.slice(pos.caretStart)
+    ref.current.setRangeText(
+      `${selected} `,
+      pos.caretStart - name.length - 1,
+      pos.caretStart,
+      "end"
     );
     setPos(null);
     setIndex(null);
