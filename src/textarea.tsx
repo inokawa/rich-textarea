@@ -149,7 +149,14 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         textareaRef: ref,
         setRangeText: (text, start, end, preserve) => {
           if (!ref.current) return;
-          ref.current.setRangeText(text, start, end, preserve);
+          if (typeof ref.current.setRangeText === "function") {
+            ref.current.setRangeText(text, start, end, preserve);
+          } else {
+            ref.current.focus();
+            ref.current.selectionStart = start;
+            ref.current.selectionEnd = end;
+            document.execCommand("insertText", false, text);
+          }
           // Invoke onChange to lift state up
           ref.current.dispatchEvent(new Event("input", { bubbles: true }));
         },
