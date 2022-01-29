@@ -168,7 +168,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       if (!ref.current) return;
       const observer = new ResizeObserver((entries) => {
         if (!ref.current) return;
-        const style = window.getComputedStyle(ref.current);
+        const style = getComputedStyle(ref.current);
         setRect([
           entries[0].contentRect.width,
           entries[0].contentRect.height,
@@ -184,7 +184,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
 
     useEffect(() => {
       if (!backdropRef.current || !ref.current) return;
-      const s = window.getComputedStyle(ref.current);
+      const s = getComputedStyle(ref.current);
       if (!caretColorRef.current) {
         caretColorRef.current = s.getPropertyValue("color");
       }
