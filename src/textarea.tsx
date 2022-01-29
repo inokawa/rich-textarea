@@ -5,8 +5,8 @@ import {
   useMemo,
   useCallback,
   forwardRef,
+  useImperativeHandle,
 } from "react";
-import mergeRefs from "react-merge-refs";
 // @ts-expect-error no type definition
 import rangeAtIndex from "range-at-index";
 import { Renderer } from "./renderers";
@@ -100,6 +100,16 @@ export type CaretPosition = {
   caretStart: number;
 };
 
+export type RichTextareaHandle = {
+  textareaRef: React.RefObject<HTMLTextAreaElement>;
+  setRangeText: (
+    text: string,
+    start: number,
+    end: number,
+    preserve: SelectionMode
+  ) => void;
+};
+
 export type RichTextareaProps = Omit<
   JSX.IntrinsicElements["textarea"],
   "value" | "children"
@@ -109,7 +119,7 @@ export type RichTextareaProps = Omit<
   onCaretPositionChange?: (pos: CaretPosition | null, value: string) => void;
 };
 
-export const RichTextarea = forwardRef<HTMLTextAreaElement, RichTextareaProps>(
+export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
   (
     {
       children: render,
@@ -132,6 +142,20 @@ export const RichTextarea = forwardRef<HTMLTextAreaElement, RichTextareaProps>(
     >([0, 0, 0, 0]);
     const [caretStart, setCaretStart] = useState<number | null>(null);
     const caretColorRef = useRef("");
+
+    useImperativeHandle(
+      propRef,
+      () => ({
+        textareaRef: ref,
+        setRangeText: (text, start, end, preserve) => {
+          if (!ref.current) return;
+          ref.current.setRangeText(text, start, end, preserve);
+          // Invoke onChange to lift state up
+          ref.current.dispatchEvent(new Event("input", { bubbles: true }));
+        },
+      }),
+      [ref]
+    );
 
     useEffect(() => {
       if (!ref.current) return;
@@ -248,7 +272,7 @@ export const RichTextarea = forwardRef<HTMLTextAreaElement, RichTextareaProps>(
         </div>
         <textarea
           {...props}
-          ref={useMemo(() => mergeRefs([ref, propRef]), [ref, propRef])}
+          ref={ref}
           style={useMemo(
             () => ({
               ...style,
