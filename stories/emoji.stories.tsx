@@ -86,8 +86,8 @@ export const Emoji = () => {
           <div
             style={{
               position: "fixed",
-              top: window.pageYOffset + pos.top,
-              left: window.pageXOffset + pos.left,
+              top: pos.top,
+              left: pos.left,
               fontSize: "16px",
               border: "solid 1px gray",
               borderRadius: "3px",

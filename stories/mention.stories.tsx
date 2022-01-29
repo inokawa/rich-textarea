@@ -511,8 +511,8 @@ export const Mention = () => {
           <div
             style={{
               position: "fixed",
-              top: window.pageYOffset + pos.top,
-              left: window.pageXOffset + pos.left,
+              top: pos.top,
+              left: pos.left,
               fontSize: "12px",
               border: "solid 1px gray",
               borderRadius: "3px",
