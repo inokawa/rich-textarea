@@ -95,26 +95,24 @@ export const Emoji = () => {
               cursor: "pointer",
             }}
           >
-            {(() => {
-              return chars.map((c, i) => (
-                <div
-                  key={c}
-                  style={{
-                    padding: "4px",
-                    ...(index === i && {
-                      color: "white",
-                      background: "#2A6AD3",
-                    }),
-                  }}
-                  onMouseDown={(e) => {
-                    e.preventDefault();
-                    complete(i);
-                  }}
-                >
-                  {`${c.emoji} ${c.key}`}
-                </div>
-              ));
-            })()}
+            {chars.map((c, i) => (
+              <div
+                key={c.key}
+                style={{
+                  padding: "4px",
+                  ...(index === i && {
+                    color: "white",
+                    background: "#2A6AD3",
+                  }),
+                }}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  complete(i);
+                }}
+              >
+                {`${c.emoji} ${c.key}`}
+              </div>
+            ))}
           </div>,
           document.body
         )}

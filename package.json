@@ -28,6 +28,7 @@
     "@storybook/react": "6.4.14",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "27.4.0",
+    "@types/node-emoji": "1.8.1",
     "jest": "27.4.7",
     "kuromojin": "3.0.0",
     "monaco-diff": "1.1.1",
