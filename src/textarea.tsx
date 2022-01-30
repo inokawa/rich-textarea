@@ -127,6 +127,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       onScroll,
       onInput,
       onKeyDown,
+      onMouseDown,
       onFocus,
       onBlur,
       onCaretPositionChange,
@@ -318,6 +319,17 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               });
             },
             [onKeyDown, onCaretPositionChange]
+          )}
+          onMouseDown={useCallback(
+            (e: React.MouseEvent<HTMLTextAreaElement>) => {
+              onMouseDown?.(e);
+              if (!onCaretPositionChange) return;
+              setTimeout(() => {
+                if (!ref.current) return;
+                setCaretStart(ref.current.selectionStart);
+              });
+            },
+            [onMouseDown, onCaretPositionChange]
           )}
           onFocus={useCallback(
             (e: React.FocusEvent<HTMLTextAreaElement>) => {
