@@ -133,7 +133,7 @@ export type CaretPosition =
     };
 
 export type RichTextareaHandle = {
-  textareaRef: React.RefObject<HTMLTextAreaElement>;
+  ref: React.RefObject<HTMLTextAreaElement>;
   selectionStart: number;
   selectionEnd: number;
   focus: () => void;
@@ -193,7 +193,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     useImperativeHandle(
       propRef,
       () => ({
-        textareaRef: ref,
+        ref: ref,
         get selectionStart() {
           return ref.current?.selectionStart ?? 0;
         },
