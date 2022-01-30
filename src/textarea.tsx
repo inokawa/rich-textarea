@@ -123,6 +123,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
   (
     {
       children: render,
+      value,
       style,
       onScroll,
       onInput,
@@ -199,7 +200,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     useEffect(() => {
       if (!onCaretPositionChange) return;
       if (caretStart == null) {
-        onCaretPositionChange(null, props.value);
+        onCaretPositionChange(null, value);
       } else {
         const range = rangeAtIndex(
           backdropRef.current,
@@ -214,7 +215,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             height: rect.height,
             caretStart,
           },
-          props.value
+          value
         );
       }
     }, [caretStart]);
@@ -278,10 +279,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               [left, top, width]
             )}
           >
-            {useMemo(
-              () => (render ? render(props.value) : props.value),
-              [props.value, render]
-            )}
+            {useMemo(() => (render ? render(value) : value), [value, render])}
             {/* for caret position detection */}
             <span style={caretDetectorStyle}> </span>
           </div>
@@ -289,6 +287,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         <textarea
           {...props}
           ref={ref}
+          value={value}
           style={useMemo(
             () => ({
               ...style,
