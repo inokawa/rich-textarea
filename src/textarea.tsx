@@ -263,8 +263,8 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           <div
             ref={backdropRef}
             aria-hidden
-            style={useMemo((): React.CSSProperties => {
-              const s: React.CSSProperties = {
+            style={useMemo(
+              (): React.CSSProperties => ({
                 width,
                 transform: `translate(${-left}px, ${-top}px)`,
                 pointerEvents: "none",
@@ -274,9 +274,9 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
                 // https://stackoverflow.com/questions/2545542/font-size-rendering-inconsistencies-on-an-iphone
                 textSizeAdjust: "100%",
                 WebkitTextSizeAdjust: "100%",
-              };
-              return s;
-            }, [left, top, width])}
+              }),
+              [left, top, width]
+            )}
           >
             {useMemo(
               () => (render ? render(props.value) : props.value),
