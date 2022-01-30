@@ -267,7 +267,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
                 WebkitTextSizeAdjust: "100%",
               };
               return s;
-            }, [left, top, width, style])}
+            }, [left, top, width])}
           >
             {useMemo(
               () => (render ? render(props.value) : props.value),
