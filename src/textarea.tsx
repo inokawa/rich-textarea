@@ -91,13 +91,32 @@ const getHorizontalPadding = (style: CSSStyleDeclaration): number => {
   );
 };
 
+const setRangeText = (
+  el: HTMLTextAreaElement,
+  text: string,
+  start: number,
+  end: number,
+  preserve?: SelectionMode
+) => {
+  if (typeof el.setRangeText === "function") {
+    el.setRangeText(text, start, end, preserve);
+  } else {
+    el.focus();
+    el.selectionStart = start;
+    el.selectionEnd = end;
+    document.execCommand("insertText", false, text);
+  }
+  // Invoke onChange to lift state up
+  el.dispatchEvent(new Event("input", { bubbles: true }));
+};
+
 const caretDetectorStyle = { color: "transparent" };
 
 export type CaretPosition = {
   top: number;
   left: number;
   height: number;
-  caretStart: number;
+  selectionStart: number;
 };
 
 export type RichTextareaHandle = {
@@ -106,7 +125,7 @@ export type RichTextareaHandle = {
     text: string,
     start: number,
     end: number,
-    preserve: SelectionMode
+    preserve?: SelectionMode
   ) => void;
 };
 
@@ -142,7 +161,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     const [[width, height, hPadding, vPadding], setRect] = useState<
       [width: number, height: number, hPadding: number, vPadding: number]
     >([0, 0, 0, 0]);
-    const [caretStart, setCaretStart] = useState<number | null>(null);
+    const [selectionStart, setSelectionStart] = useState<number | null>(null);
     const caretColorRef = useRef("");
 
     useImperativeHandle(
@@ -151,16 +170,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         textareaRef: ref,
         setRangeText: (text, start, end, preserve) => {
           if (!ref.current) return;
-          if (typeof ref.current.setRangeText === "function") {
-            ref.current.setRangeText(text, start, end, preserve);
-          } else {
-            ref.current.focus();
-            ref.current.selectionStart = start;
-            ref.current.selectionEnd = end;
-            document.execCommand("insertText", false, text);
-          }
-          // Invoke onChange to lift state up
-          ref.current.dispatchEvent(new Event("input", { bubbles: true }));
+          setRangeText(ref.current, text, start, end, preserve);
         },
       }),
       [ref]
@@ -199,13 +209,13 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
 
     useEffect(() => {
       if (!onCaretPositionChange) return;
-      if (caretStart == null) {
+      if (selectionStart == null) {
         onCaretPositionChange(null, value);
       } else {
         const range = rangeAtIndex(
           backdropRef.current,
-          caretStart,
-          caretStart + 1
+          selectionStart,
+          selectionStart + 1
         ) as Range;
         const rect = range.getBoundingClientRect();
         onCaretPositionChange(
@@ -213,18 +223,18 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             top: rect.top,
             left: rect.left,
             height: rect.height,
-            caretStart,
+            selectionStart: selectionStart,
           },
           value
         );
       }
-    }, [caretStart]);
+    }, [selectionStart]);
 
     const setCaretPosition = useCallback(() => {
       if (!onCaretPositionChange) return;
       setTimeout(() => {
         if (!ref.current) return;
-        setCaretStart(ref.current.selectionStart);
+        setSelectionStart(ref.current.selectionStart);
       });
     }, [onCaretPositionChange]);
 
@@ -336,7 +346,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           onBlur={useCallback(
             (e: React.FocusEvent<HTMLTextAreaElement>) => {
               onBlur?.(e);
-              setCaretStart(null);
+                setSelectionStart(null);
             },
             [onBlur]
           )}
