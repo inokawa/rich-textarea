@@ -11,6 +11,11 @@ import {
 import rangeAtIndex from "range-at-index";
 import { Renderer } from "./renderers";
 
+const useForceRefresh = () => {
+  const setState = useState(0)[1];
+  return useCallback(() => setState((p) => p + 1), []);
+};
+
 const STYLE_KEYS: (keyof React.CSSProperties)[] = [
   "direction",
   "padding",
@@ -117,6 +122,7 @@ export type CaretPosition = {
   left: number;
   height: number;
   selectionStart: number;
+  selectionEnd: number;
 };
 
 export type RichTextareaHandle = {
@@ -145,7 +151,7 @@ export type RichTextareaProps = Omit<
 > & {
   value: string;
   children?: Renderer;
-  onCaretPositionChange?: (pos: CaretPosition | null, value: string) => void;
+  onSelectionChange?: (pos: CaretPosition | null, value: string) => void;
 };
 
 export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
@@ -158,9 +164,10 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       onInput,
       onKeyDown,
       onMouseDown,
+      onMouseUp,
       onFocus,
       onBlur,
-      onCaretPositionChange,
+      onSelectionChange,
       ...props
     },
     propRef
@@ -171,7 +178,9 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     const [[width, height, hPadding, vPadding], setRect] = useState<
       [width: number, height: number, hPadding: number, vPadding: number]
     >([0, 0, 0, 0]);
-    const [selectionStart, setSelectionStart] = useState<number | null>(null);
+    const refresh = useForceRefresh();
+    const [focused, setFocused] = useState<boolean>(false);
+
     const caretColorRef = useRef("");
 
     useImperativeHandle(
@@ -227,10 +236,14 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       backdropRef.current.style.borderColor = "transparent";
     }, [style]);
 
+    const selectionStart = ref.current?.selectionStart;
+    const selectionEnd = ref.current?.selectionEnd;
+
     useEffect(() => {
-      if (!onCaretPositionChange) return;
-      if (selectionStart == null) {
-        onCaretPositionChange(null, value);
+      if (selectionStart == null || selectionEnd == null || !onSelectionChange)
+        return;
+      if (!focused) {
+        onSelectionChange(null, value);
       } else {
         const range = rangeAtIndex(
           backdropRef.current,
@@ -238,25 +251,25 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           selectionStart + 1
         ) as Range;
         const rect = range.getBoundingClientRect();
-        onCaretPositionChange(
+        onSelectionChange(
           {
             top: rect.top,
             left: rect.left,
             height: rect.height,
             selectionStart: selectionStart,
+            selectionEnd: selectionEnd,
           },
           value
         );
       }
-    }, [selectionStart]);
+    }, [focused, selectionStart, selectionEnd]);
 
     const setCaretPosition = useCallback(() => {
-      if (!onCaretPositionChange) return;
+      if (!onSelectionChange) return;
       setTimeout(() => {
-        if (!ref.current) return;
-        setSelectionStart(ref.current.selectionStart);
+        refresh();
       });
-    }, [onCaretPositionChange]);
+    }, [onSelectionChange]);
 
     const totalWidth = width + hPadding;
     const totalHeight = height + vPadding;
@@ -356,17 +369,24 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             },
             [onMouseDown, setCaretPosition]
           )}
+          onMouseUp={useCallback(
+            (e: React.MouseEvent<HTMLTextAreaElement>) => {
+              onMouseUp?.(e);
+              setCaretPosition();
+            },
+            [onMouseUp, setCaretPosition]
+          )}
           onFocus={useCallback(
             (e: React.FocusEvent<HTMLTextAreaElement>) => {
               onFocus?.(e);
-              setCaretPosition();
+              setFocused(true);
             },
-            [onFocus, setCaretPosition]
+            [onFocus]
           )}
           onBlur={useCallback(
             (e: React.FocusEvent<HTMLTextAreaElement>) => {
               onBlur?.(e);
-              setSelectionStart(null);
+              setFocused(false);
             },
             [onBlur]
           )}

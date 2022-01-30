@@ -491,7 +491,7 @@ export const Mention = () => {
               break;
           }
         }}
-        onCaretPositionChange={(r) => {
+        onSelectionChange={(r) => {
           if (r && MENTION_REG.test(text.slice(0, r.selectionStart))) {
             setPos({
               top: r.top + r.height,
