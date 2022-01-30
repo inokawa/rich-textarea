@@ -249,7 +249,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             if (style.backgroundColor)
               s.backgroundColor = style.backgroundColor;
             return s;
-          }, [totalWidth, totalHeight])}
+          }, [totalWidth, totalHeight, style])}
         >
           <div
             ref={backdropRef}
