@@ -17,8 +17,8 @@ export const Toolbar = () => {
       <div>
         <button
           onClick={() => {
-            const start = ref.current.textareaRef.current.selectionStart;
-            const end = ref.current.textareaRef.current.selectionEnd;
+            const start = ref.current.selectionStart;
+            const end = ref.current.selectionEnd;
             ref.current.setRangeText(
               `**${text.slice(start, end)}**`,
               start,
@@ -30,8 +30,8 @@ export const Toolbar = () => {
         </button>
         <button
           onClick={() => {
-            const start = ref.current.textareaRef.current.selectionStart;
-            const end = ref.current.textareaRef.current.selectionEnd;
+            const start = ref.current.selectionStart;
+            const end = ref.current.selectionEnd;
             ref.current.setRangeText(`*${text.slice(start, end)}*`, start, end);
           }}
         >
@@ -39,8 +39,8 @@ export const Toolbar = () => {
         </button>
         <button
           onClick={() => {
-            const start = ref.current.textareaRef.current.selectionStart;
-            const end = ref.current.textareaRef.current.selectionEnd;
+            const start = ref.current.selectionStart;
+            const end = ref.current.selectionEnd;
             ref.current.setRangeText(
               `~~${text.slice(start, end)}~~`,
               start,

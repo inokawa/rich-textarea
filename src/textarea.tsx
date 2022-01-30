@@ -121,6 +121,8 @@ export type CaretPosition = {
 
 export type RichTextareaHandle = {
   textareaRef: React.RefObject<HTMLTextAreaElement>;
+  selectionStart: number;
+  selectionEnd: number;
   setRangeText: (
     text: string,
     start: number,
@@ -168,6 +170,12 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       propRef,
       () => ({
         textareaRef: ref,
+        get selectionStart() {
+          return ref.current?.selectionStart ?? 0;
+        },
+        get selectionEnd() {
+          return ref.current?.selectionEnd ?? 0;
+        },
         setRangeText: (text, start, end, preserve) => {
           if (!ref.current) return;
           setRangeText(ref.current, text, start, end, preserve);
