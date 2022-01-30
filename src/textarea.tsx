@@ -203,7 +203,11 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         focus: () => ref.current?.focus(),
         blur: () => ref.current?.blur(),
         select: () => ref.current?.select(),
-        setSelectionRange: (...args) => ref.current?.setSelectionRange(...args),
+        setSelectionRange: (...args) => {
+          if (!ref.current) return;
+          ref.current.focus();
+          ref.current.setSelectionRange(...args);
+        },
         setRangeText: (...args) => {
           if (!ref.current) return;
           setRangeText(ref.current, ...args);
