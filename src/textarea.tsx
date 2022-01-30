@@ -126,6 +126,11 @@ export type RichTextareaHandle = {
   focus: () => void;
   blur: () => void;
   select: () => void;
+  setSelectionRange: (
+    start: number,
+    end: number,
+    direction?: "forward" | "backward" | "none"
+  ) => void;
   setRangeText: (
     text: string,
     start: number,
@@ -182,9 +187,10 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         focus: () => ref.current?.focus(),
         blur: () => ref.current?.blur(),
         select: () => ref.current?.select(),
-        setRangeText: (text, start, end, preserve) => {
+        setSelectionRange: (...args) => ref.current?.setSelectionRange(...args),
+        setRangeText: (...args) => {
           if (!ref.current) return;
-          setRangeText(ref.current, text, start, end, preserve);
+          setRangeText(ref.current, ...args);
         },
       }),
       [ref]
