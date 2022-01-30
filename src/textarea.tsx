@@ -219,6 +219,14 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       }
     }, [caretStart]);
 
+    const setCaretPosition = useCallback(() => {
+      if (!onCaretPositionChange) return;
+      setTimeout(() => {
+        if (!ref.current) return;
+        setCaretStart(ref.current.selectionStart);
+      });
+    }, [onCaretPositionChange]);
+
     const totalWidth = width + hPadding;
     const totalHeight = height + vPadding;
 
@@ -301,46 +309,30 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           onInput={useCallback(
             (e: React.FormEvent<HTMLTextAreaElement>) => {
               onInput?.(e);
-              if (!onCaretPositionChange) return;
-              setTimeout(() => {
-                if (!ref.current) return;
-                setCaretStart(ref.current.selectionStart);
-              });
+              setCaretPosition();
             },
-            [onInput, onCaretPositionChange]
+            [onInput, setCaretPosition]
           )}
           onKeyDown={useCallback(
             (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
               onKeyDown?.(e);
-              if (!onCaretPositionChange) return;
-              setTimeout(() => {
-                if (!ref.current) return;
-                setCaretStart(ref.current.selectionStart);
-              });
+              setCaretPosition();
             },
-            [onKeyDown, onCaretPositionChange]
+            [onKeyDown, setCaretPosition]
           )}
           onMouseDown={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
               onMouseDown?.(e);
-              if (!onCaretPositionChange) return;
-              setTimeout(() => {
-                if (!ref.current) return;
-                setCaretStart(ref.current.selectionStart);
-              });
+              setCaretPosition();
             },
-            [onMouseDown, onCaretPositionChange]
+            [onMouseDown, setCaretPosition]
           )}
           onFocus={useCallback(
             (e: React.FocusEvent<HTMLTextAreaElement>) => {
               onFocus?.(e);
-              if (!onCaretPositionChange) return;
-              setTimeout(() => {
-                if (!ref.current) return;
-                setCaretStart(ref.current.selectionStart);
-              });
+              setCaretPosition();
             },
-            [onFocus, onCaretPositionChange]
+            [onFocus, setCaretPosition]
           )}
           onBlur={useCallback(
             (e: React.FocusEvent<HTMLTextAreaElement>) => {
