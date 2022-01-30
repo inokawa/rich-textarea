@@ -123,6 +123,9 @@ export type RichTextareaHandle = {
   textareaRef: React.RefObject<HTMLTextAreaElement>;
   selectionStart: number;
   selectionEnd: number;
+  focus: () => void;
+  blur: () => void;
+  select: () => void;
   setRangeText: (
     text: string,
     start: number,
@@ -176,6 +179,9 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         get selectionEnd() {
           return ref.current?.selectionEnd ?? 0;
         },
+        focus: () => ref.current?.focus(),
+        blur: () => ref.current?.blur(),
+        select: () => ref.current?.select(),
         setRangeText: (text, start, end, preserve) => {
           if (!ref.current) return;
           setRangeText(ref.current, text, start, end, preserve);
@@ -354,7 +360,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           onBlur={useCallback(
             (e: React.FocusEvent<HTMLTextAreaElement>) => {
               onBlur?.(e);
-                setSelectionStart(null);
+              setSelectionStart(null);
             },
             [onBlur]
           )}
