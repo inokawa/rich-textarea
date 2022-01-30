@@ -154,7 +154,7 @@ export type RichTextareaHandle = {
 
 export type RichTextareaProps = Omit<
   JSX.IntrinsicElements["textarea"],
-  "value" | "children"
+  "value" | "defaultValue" | "children"
 > & {
   value: string;
   children?: Renderer;
