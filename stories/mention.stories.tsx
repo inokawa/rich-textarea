@@ -492,7 +492,7 @@ export const Mention = () => {
           }
         }}
         onSelectionChange={(r) => {
-          if (r && MENTION_REG.test(text.slice(0, r.selectionStart))) {
+          if (r.focused && MENTION_REG.test(text.slice(0, r.selectionStart))) {
             setPos({
               top: r.top + r.height,
               left: r.left,

@@ -117,13 +117,20 @@ const setRangeText = (
 
 const caretDetectorStyle = { color: "transparent" };
 
-export type CaretPosition = {
-  top: number;
-  left: number;
-  height: number;
-  selectionStart: number;
-  selectionEnd: number;
-};
+export type CaretPosition =
+  | {
+      focused: false;
+      selectionStart: number;
+      selectionEnd: number;
+    }
+  | {
+      focused: true;
+      selectionStart: number;
+      selectionEnd: number;
+      top: number;
+      left: number;
+      height: number;
+    };
 
 export type RichTextareaHandle = {
   textareaRef: React.RefObject<HTMLTextAreaElement>;
@@ -243,7 +250,14 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       if (selectionStart == null || selectionEnd == null || !onSelectionChange)
         return;
       if (!focused) {
-        onSelectionChange(null, value);
+        onSelectionChange(
+          {
+            focused: false,
+            selectionStart: selectionStart,
+            selectionEnd: selectionEnd,
+          },
+          value
+        );
       } else {
         const range = rangeAtIndex(
           backdropRef.current,
@@ -253,6 +267,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         const rect = range.getBoundingClientRect();
         onSelectionChange(
           {
+            focused: true,
             top: rect.top,
             left: rect.left,
             height: rect.height,
