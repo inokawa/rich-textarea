@@ -158,7 +158,7 @@ export type RichTextareaProps = Omit<
 > & {
   value: string;
   children?: Renderer;
-  onSelectionChange?: (pos: CaretPosition | null, value: string) => void;
+  onSelectionChange?: (pos: CaretPosition, value: string) => void;
 };
 
 export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
