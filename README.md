@@ -29,7 +29,7 @@ npm install rich-textarea
 
 ### Requirements
 
-- react >= 17.0
+- react >= 16.14
 
 ## Usage
 
