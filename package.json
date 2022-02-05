@@ -26,6 +26,8 @@
     "@storybook/addon-links": "6.4.14",
     "@storybook/react": "6.4.14",
     "@testing-library/react": "^12.1.2",
+    "@textlint/kernel": "12.1.0",
+    "@textlint/textlint-plugin-text": "12.1.0",
     "@types/jest": "27.4.0",
     "@types/node-emoji": "1.8.1",
     "jest": "27.4.7",
@@ -39,6 +41,7 @@
     "rimraf": "3.0.2",
     "rollup": "2.66.0",
     "rollup-plugin-terser": "7.0.2",
+    "textlint-rule-preset-japanese": "^7.0.0",
     "ts-jest": "27.1.3",
     "typescript": "4.5.5"
   },
