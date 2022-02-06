@@ -6,7 +6,7 @@ exports[`match emoji 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
     >
       <div
         aria-hidden="true"
@@ -88,7 +88,7 @@ exports[`match japanese 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
     >
       <div
         aria-hidden="true"
@@ -317,7 +317,7 @@ exports[`match match many 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
     >
       <div
         aria-hidden="true"
@@ -374,7 +374,7 @@ exports[`match match one 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
     >
       <div
         aria-hidden="true"
@@ -409,7 +409,7 @@ exports[`match multiple matchers 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
     >
       <div
         aria-hidden="true"
@@ -477,7 +477,7 @@ exports[`style textarea background 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px; background: blue;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px; background: blue;"
     >
       <div
         aria-hidden="true"
@@ -512,7 +512,7 @@ exports[`style textarea background-color 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px; background-color: blue;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px; background-color: blue;"
     >
       <div
         aria-hidden="true"
@@ -547,7 +547,7 @@ exports[`style textarea border 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
     >
       <div
         aria-hidden="true"
@@ -582,7 +582,7 @@ exports[`style textarea border-color 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
     >
       <div
         aria-hidden="true"
@@ -617,7 +617,7 @@ exports[`style textarea caret-color 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
     >
       <div
         aria-hidden="true"
@@ -652,7 +652,7 @@ exports[`style textarea color 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
     >
       <div
         aria-hidden="true"
@@ -687,7 +687,7 @@ exports[`style textarea width & height 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
     >
       <div
         aria-hidden="true"
@@ -722,7 +722,7 @@ exports[`style value background 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
     >
       <div
         aria-hidden="true"
@@ -757,7 +757,7 @@ exports[`style value border 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
     >
       <div
         aria-hidden="true"
@@ -792,7 +792,7 @@ exports[`style value color 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
     >
       <div
         aria-hidden="true"
@@ -827,7 +827,7 @@ exports[`style value decoration 1`] = `
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
   >
     <div
-      style="position: absolute; overflow: hidden; top: 0px; left: 0px; z-index: -1; width: 0px; height: 0px;"
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
     >
       <div
         aria-hidden="true"

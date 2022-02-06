@@ -115,6 +115,24 @@ const setRangeText = (
   el.dispatchEvent(new Event("input", { bubbles: true }));
 };
 
+const dispatchMouseEventOnBackdrop = (
+  textarea: HTMLTextAreaElement,
+  backdrop: HTMLDivElement,
+  e: React.MouseEvent
+) => {
+  const prev = textarea.style.getPropertyValue("pointer-events");
+  const backPrev = backdrop.style.getPropertyValue("pointer-events");
+  textarea.style.setProperty("pointer-events", "none");
+  backdrop.style.setProperty("pointer-events", "auto");
+
+  const pointed = document.elementFromPoint(e.clientX, e.clientY);
+
+  textarea.style.setProperty("pointer-events", prev);
+  backdrop.style.setProperty("pointer-events", backPrev);
+
+  pointed?.dispatchEvent(new MouseEvent(e.nativeEvent.type, e.nativeEvent));
+};
+
 const caretDetectorStyle = { color: "transparent" };
 
 export type CaretPosition =
@@ -171,6 +189,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       onInput,
       onKeyDown,
       onMouseDown,
+      onMouseMove,
       onMouseUp,
       onFocus,
       onBlur,
@@ -318,7 +337,6 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               overflow: "hidden",
               top: 0,
               left: 0,
-              zIndex: -1,
               width: totalWidth,
               height: totalHeight,
             };
@@ -387,10 +405,20 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             },
             [onKeyDown, setCaretPosition]
           )}
+          onMouseMove={useCallback(
+            (e: React.MouseEvent<HTMLTextAreaElement>) => {
+              onMouseMove?.(e);
+              if (!ref.current || !backdropRef.current) return;
+              dispatchMouseEventOnBackdrop(ref.current, backdropRef.current, e);
+            },
+            [onMouseMove]
+          )}
           onMouseDown={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
               onMouseDown?.(e);
               setCaretPosition();
+              if (!ref.current || !backdropRef.current) return;
+              dispatchMouseEventOnBackdrop(ref.current, backdropRef.current, e);
             },
             [onMouseDown, setCaretPosition]
           )}
@@ -398,6 +426,8 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
               onMouseUp?.(e);
               setCaretPosition();
+              if (!ref.current || !backdropRef.current) return;
+              dispatchMouseEventOnBackdrop(ref.current, backdropRef.current, e);
             },
             [onMouseUp, setCaretPosition]
           )}
