@@ -73,28 +73,33 @@ export const Textlint = () => {
             return acc;
           }, {} as { [key: number]: TextlintMessage[] });
           v.split("\n").forEach((l, i) => {
-            const texts: (React.ReactElement | string)[] = [];
-            let prevEnd = 0;
-            let prevStart = 0;
-            for (const { column, message, fix } of tokensByLine[i + 1] || []) {
-              const start = column - 1;
-              const end = start + 1;
-              texts.push(l.slice(prevEnd, start));
-              texts.push(
-                <span
-                  key={start}
-                  style={{
-                    textDecoration: "underline dashed red",
-                  }}
-                >
-                  {l.slice(start, end)}
-                </span>
-              );
-              prevEnd = end;
-              prevStart = start;
+            let res: (React.ReactElement | string)[] = [l];
+            if (tokensByLine[i + 1]) {
+              const texts: (React.ReactElement | string)[] = [];
+              let prevEnd = 0;
+              let prevStart = 0;
+              for (const { column, message, fix } of tokensByLine[i + 1]) {
+                const start = column - 1;
+                const end = start + 1;
+                texts.push(l.slice(prevEnd, start));
+                texts.push(
+                  <span
+                    key={start}
+                    style={{
+                      textDecoration: "underline dashed red",
+                    }}
+                  >
+                    {l.slice(start, end)}
+                  </span>
+                );
+                prevEnd = end;
+                prevStart = start;
+              }
+              texts.push(l.slice(prevEnd));
+              res = texts;
             }
-            texts.push(l.slice(prevEnd));
-            nodes.push(<div key={i}>{texts}</div>);
+            res.push(" ");
+            nodes.push(<div key={i}>{res}</div>);
           });
 
           return nodes;
