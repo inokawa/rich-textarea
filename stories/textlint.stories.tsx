@@ -47,10 +47,11 @@ const style: React.CSSProperties = {
 
 export const Textlint = () => {
   const [text, setText] = useState(
-    "⾼齢者の活躍と地域における⽀えあいの推進。\nホ゜ケット エンシ゛ン"
+    "⾼齢者の活躍と地域における⽀えあいの\u0019推進\u0010。\nホ゜ケット エンシ゛ン\nテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト"
   );
 
   const [tokens, setTokens] = useState<TextlintMessage[]>([]);
+  const [description, setDescription] = useState<string | null>(null);
   useEffect(() => {
     (async () => {
       const res = await kernel.lintText(text, options);
@@ -59,6 +60,7 @@ export const Textlint = () => {
   }, [text]);
   return (
     <div>
+      <div>{description}</div>
       <RichTextarea
         style={style}
         onChange={useCallback((e) => setText(e.target.value), [])}
@@ -88,6 +90,7 @@ export const Textlint = () => {
                     style={{
                       textDecoration: "underline dashed red",
                     }}
+                    onMouseMove={() => setDescription(message)}
                   >
                     {l.slice(start, end)}
                   </span>
