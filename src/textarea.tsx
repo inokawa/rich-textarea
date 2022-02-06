@@ -349,7 +349,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           >
             {useMemo(() => (render ? render(value) : value), [value, render])}
             {/* for caret position detection */}
-            <span style={caretDetectorStyle}> </span>
+            <span style={caretDetectorStyle}>{"\u200b"}</span>
           </div>
         </div>
         <textarea

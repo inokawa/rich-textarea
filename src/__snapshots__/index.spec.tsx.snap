@@ -69,7 +69,7 @@ exports[`match emoji 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
@@ -298,7 +298,7 @@ exports[`match japanese 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
@@ -355,7 +355,7 @@ exports[`match match many 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
@@ -390,7 +390,7 @@ exports[`match match one 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
@@ -458,7 +458,7 @@ exports[`match multiple matchers 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
@@ -493,7 +493,7 @@ exports[`style textarea background 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
@@ -528,7 +528,7 @@ exports[`style textarea background-color 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
@@ -563,7 +563,7 @@ exports[`style textarea border 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
@@ -598,7 +598,7 @@ exports[`style textarea border-color 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
@@ -633,7 +633,7 @@ exports[`style textarea caret-color 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
@@ -668,7 +668,7 @@ exports[`style textarea color 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
@@ -703,7 +703,7 @@ exports[`style textarea width & height 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
@@ -738,7 +738,7 @@ exports[`style value background 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
@@ -773,7 +773,7 @@ exports[`style value border 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
@@ -808,7 +808,7 @@ exports[`style value color 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
@@ -843,7 +843,7 @@ exports[`style value decoration 1`] = `
         <span
           style="color: transparent;"
         >
-           
+          ​
         </span>
       </div>
     </div>
