@@ -1,4 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { createPortal } from "react-dom";
 import { RichTextarea } from "../src";
 import { TextlintKernel, TextlintMessage } from "@textlint/kernel";
 import { TextlintKernelOptions } from "@textlint/kernel/lib/src/textlint-kernel-interface";
@@ -45,13 +52,62 @@ const style: React.CSSProperties = {
   height: "200px",
 };
 
+const Mark = ({
+  token: { column, message, fix },
+  children,
+}: {
+  token: TextlintMessage;
+  children: string;
+}) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [tooltip, setShow] =
+    useState<{ top: number; left: number; description: string } | null>(null);
+
+  return (
+    <span
+      ref={ref}
+      style={{
+        textDecoration: "underline dashed red",
+      }}
+      onMouseOver={(e) => {
+        if (!ref.current) return;
+        const rect = ref.current.getBoundingClientRect();
+        setShow({
+          top: rect.top + window.pageYOffset - rect.height * 2 /* FIXME */,
+          left: rect.left + window.pageXOffset,
+          description: message,
+        });
+      }}
+      onMouseOut={() => setShow(null)}
+    >
+      {children}
+      {tooltip &&
+        createPortal(
+          <div
+            style={{
+              position: "fixed",
+              top: tooltip.top,
+              left: tooltip.left,
+              background: "white",
+              fontSize: 16,
+              padding: 2,
+              border: "solid 1px gray",
+            }}
+          >
+            {tooltip.description}
+          </div>,
+          document.body
+        )}
+    </span>
+  );
+};
+
 export const Textlint = () => {
   const [text, setText] = useState(
     "⾼齢者の活躍と地域における⽀えあいの\u0019推進\u0010。\nホ゜ケット エンシ゛ン\nテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト"
   );
 
   const [tokens, setTokens] = useState<TextlintMessage[]>([]);
-  const [description, setDescription] = useState<string | null>(null);
   useEffect(() => {
     (async () => {
       const res = await kernel.lintText(text, options);
@@ -59,8 +115,7 @@ export const Textlint = () => {
     })();
   }, [text]);
   return (
-    <div>
-      <div>{description}</div>
+    <div style={{ marginTop: 16 }}>
       <RichTextarea
         style={style}
         onChange={useCallback((e) => setText(e.target.value), [])}
@@ -80,20 +135,14 @@ export const Textlint = () => {
               const texts: (React.ReactElement | string)[] = [];
               let prevEnd = 0;
               let prevStart = 0;
-              for (const { column, message, fix } of tokensByLine[i + 1]) {
-                const start = column - 1;
+              for (const token of tokensByLine[i + 1]) {
+                const start = token.column - 1;
                 const end = start + 1;
                 texts.push(l.slice(prevEnd, start));
                 texts.push(
-                  <span
-                    key={start}
-                    style={{
-                      textDecoration: "underline dashed red",
-                    }}
-                    onMouseMove={() => setDescription(message)}
-                  >
+                  <Mark key={start} token={token}>
                     {l.slice(start, end)}
-                  </span>
+                  </Mark>
                 );
                 prevEnd = end;
                 prevStart = start;

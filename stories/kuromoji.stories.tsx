@@ -1,6 +1,13 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { createPortal } from "react-dom";
 import { RichTextarea } from "../src";
-import { getTokenizer, Tokenizer } from "kuromojin";
+import { getTokenizer, Tokenizer, KuromojiToken } from "kuromojin";
 
 export default {
   title: "examples",
@@ -12,14 +19,16 @@ const style: React.CSSProperties = {
 };
 
 const Mark = ({
-  pos,
+  token: { pos, pos_detail_1, pos_detail_2, pos_detail_3, surface_form },
   children,
-  onMouseMove,
 }: {
-  pos: string;
+  token: KuromojiToken;
   children: string;
-  onMouseMove: () => void;
 }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [tooltip, setShow] =
+    useState<{ top: number; left: number; description: string } | null>(null);
+
   const color =
     pos === "名詞"
       ? "rgba(255, 0, 0, 0.2)"
@@ -37,14 +46,41 @@ const Mark = ({
 
   return (
     <span
+      ref={ref}
       style={{
         position: "relative",
         background: color,
         outline: "solid 1px lightgray",
       }}
-      onMouseMove={onMouseMove}
+      onMouseOver={(e) => {
+        if (!ref.current) return;
+        const rect = ref.current.getBoundingClientRect();
+        setShow({
+          top: rect.top + window.pageYOffset - rect.height * 2 /* FIXME */,
+          left: rect.left + window.pageXOffset,
+          description: `${surface_form}: ${pos} | ${pos_detail_1} | ${pos_detail_2} | ${pos_detail_3}`,
+        });
+      }}
+      onMouseOut={() => setShow(null)}
     >
       {children}
+      {tooltip &&
+        createPortal(
+          <div
+            style={{
+              position: "fixed",
+              top: tooltip.top,
+              left: tooltip.left,
+              background: "white",
+              fontSize: 16,
+              padding: 2,
+              border: "solid 1px gray",
+            }}
+          >
+            {tooltip.description}
+          </div>,
+          document.body
+        )}
     </span>
   );
 };
@@ -54,7 +90,6 @@ export const Kuromoji = () => {
     "すもももももももものうち。\n\n吾輩 （ わがはい ） は猫である。名前はまだ無い。\n\nあのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。\n\n山路を登りながら、こう考えた。智に働けば角が立つ。情に棹させば流される。意地を通せば窮屈だ。とかくに人の世は住みにくい。住みにくさが高じると、安い所へ引き越したくなる。どこへ越しても住みにくいと悟った時、詩が生れて、画が出来る。"
   );
   const [tokenizer, setTokenizer] = useState<Tokenizer | null>(null);
-  const [description, setDescription] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -66,9 +101,8 @@ export const Kuromoji = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ marginTop: 16 }}>
       {!tokenizer && <div>{"Loading dictionaries"}</div>}
-      <div>{description}</div>
       <RichTextarea
         style={style}
         onChange={useCallback((e) => setText(e.target.value), [])}
@@ -78,25 +112,10 @@ export const Kuromoji = () => {
           if (!tokenizer) return v;
           const tokens = tokenizer.tokenize(text);
           const nodes: React.ReactElement[] = [];
-          for (const {
-            pos,
-            pos_detail_1,
-            pos_detail_2,
-            pos_detail_3,
-            surface_form,
-            word_position,
-          } of tokens) {
+          for (const token of tokens) {
             nodes.push(
-              <Mark
-                key={word_position}
-                pos={pos}
-                onMouseMove={() =>
-                  setDescription(
-                    `${surface_form}: ${pos} | ${pos_detail_1} | ${pos_detail_2} | ${pos_detail_3}`
-                  )
-                }
-              >
-                {surface_form}
+              <Mark key={token.word_position} token={token}>
+                {token.surface_form}
               </Mark>
             );
           }
