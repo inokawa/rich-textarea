@@ -9,6 +9,7 @@ A small customizable textarea for [React](https://github.com/facebook/react) to 
 <img src="./images/sample-mention.gif" width="600px" />
 <img src="./images/sample-diff.gif" width="600px" />
 <img src="./images/sample-prism.gif" width="600px" />
+<img src="./images/sample-kuromoji.gif" width="600px" />
 
 ## Demo
 
