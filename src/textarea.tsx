@@ -115,22 +115,48 @@ const setRangeText = (
   el.dispatchEvent(new Event("input", { bubbles: true }));
 };
 
-const dispatchMouseEventOnBackdrop = (
+const dispatchMouseEvent = (
   textarea: HTMLTextAreaElement,
   backdrop: HTMLDivElement,
-  e: React.MouseEvent
+  e: React.MouseEvent,
+  pointedRef: React.MutableRefObject<HTMLElement | null>,
+  isMouseMove?: boolean
 ) => {
   const prev = textarea.style.getPropertyValue("pointer-events");
   const backPrev = backdrop.style.getPropertyValue("pointer-events");
   textarea.style.setProperty("pointer-events", "none");
   backdrop.style.setProperty("pointer-events", "auto");
 
-  const pointed = document.elementFromPoint(e.clientX, e.clientY);
+  const pointed = document.elementFromPoint(
+    e.clientX,
+    e.clientY
+  ) as HTMLElement | null;
 
   textarea.style.setProperty("pointer-events", prev);
   backdrop.style.setProperty("pointer-events", backPrev);
 
-  pointed?.dispatchEvent(new MouseEvent(e.nativeEvent.type, e.nativeEvent));
+  const isInsideBackdrop =
+    !!pointed && backdrop !== pointed && backdrop.contains(pointed);
+
+  if (isMouseMove) {
+    if (pointedRef.current !== pointed) {
+      pointedRef.current?.dispatchEvent(
+        new MouseEvent("mouseout", e.nativeEvent)
+      );
+      pointedRef.current = pointed;
+      if (isInsideBackdrop) {
+        pointed?.dispatchEvent(new MouseEvent("mouseover", e.nativeEvent));
+      }
+    }
+  }
+  if (isInsideBackdrop) {
+    pointed?.dispatchEvent(new MouseEvent(e.nativeEvent.type, e.nativeEvent));
+  }
+};
+
+const stopPropagation = (event: React.MouseEvent) => {
+  event.preventDefault();
+  event.stopPropagation();
 };
 
 const caretDetectorStyle = { color: "transparent" };
@@ -208,6 +234,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     const [focused, setFocused] = useState<boolean>(false);
 
     const caretColorRef = useRef("");
+    const pointedRef = useRef<HTMLElement>(null!);
 
     useImperativeHandle(
       propRef,
@@ -364,6 +391,11 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               }),
               [left, top, width]
             )}
+            onMouseOver={stopPropagation}
+            onMouseOut={stopPropagation}
+            onMouseMove={stopPropagation}
+            onMouseDown={stopPropagation}
+            onMouseUp={stopPropagation}
           >
             {useMemo(() => (render ? render(value) : value), [value, render])}
             {/* for caret position detection */}
@@ -409,7 +441,13 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
               onMouseMove?.(e);
               if (!ref.current || !backdropRef.current) return;
-              dispatchMouseEventOnBackdrop(ref.current, backdropRef.current, e);
+              dispatchMouseEvent(
+                ref.current,
+                backdropRef.current,
+                e,
+                pointedRef,
+                true
+              );
             },
             [onMouseMove]
           )}
@@ -418,7 +456,12 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               onMouseDown?.(e);
               setCaretPosition();
               if (!ref.current || !backdropRef.current) return;
-              dispatchMouseEventOnBackdrop(ref.current, backdropRef.current, e);
+              dispatchMouseEvent(
+                ref.current,
+                backdropRef.current,
+                e,
+                pointedRef
+              );
             },
             [onMouseDown, setCaretPosition]
           )}
@@ -427,7 +470,12 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               onMouseUp?.(e);
               setCaretPosition();
               if (!ref.current || !backdropRef.current) return;
-              dispatchMouseEventOnBackdrop(ref.current, backdropRef.current, e);
+              dispatchMouseEvent(
+                ref.current,
+                backdropRef.current,
+                e,
+                pointedRef
+              );
             },
             [onMouseUp, setCaretPosition]
           )}
