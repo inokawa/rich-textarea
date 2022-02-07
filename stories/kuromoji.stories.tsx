@@ -56,8 +56,8 @@ const Mark = ({
         if (!ref.current) return;
         const rect = ref.current.getBoundingClientRect();
         setShow({
-          top: rect.top + window.pageYOffset - rect.height * 2 /* FIXME */,
-          left: rect.left + window.pageXOffset,
+          top: rect.top - rect.height * 2 /* FIXME */,
+          left: rect.left,
           description: `${surface_form}: ${pos} | ${pos_detail_1} | ${pos_detail_2} | ${pos_detail_3}`,
         });
       }}
