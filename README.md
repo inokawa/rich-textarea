@@ -20,7 +20,7 @@ https://inokawa.github.io/rich-textarea/
 Sometimes we need rich text editor in web. However creating it with [raw contenteditable is so hard](https://github.com/grammarly/contenteditable) and editor frameworks are usually too heavy... Maybe all you really need is just a textarea with highlighting?
 
 This library is a simple native [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) but has a function to style texts with regex or other tokenizers.
-Not just highlighting texts like similar libraries, this library also supports colorizing, decorating and more.
+Not just highlighting texts like similar libraries, this library also supports colorizing, decorating and much more.
 
 ## Install
 
