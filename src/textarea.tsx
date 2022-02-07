@@ -215,8 +215,9 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       onInput,
       onKeyDown,
       onMouseDown,
-      onMouseMove,
       onMouseUp,
+      onMouseMove,
+      onMouseLeave,
       onFocus,
       onBlur,
       onSelectionChange,
@@ -234,7 +235,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     const [focused, setFocused] = useState<boolean>(false);
 
     const caretColorRef = useRef("");
-    const pointedRef = useRef<HTMLElement>(null!);
+    const pointedRef = useRef<HTMLElement | null>(null);
 
     useImperativeHandle(
       propRef,
@@ -437,20 +438,6 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             },
             [onKeyDown, setCaretPosition]
           )}
-          onMouseMove={useCallback(
-            (e: React.MouseEvent<HTMLTextAreaElement>) => {
-              onMouseMove?.(e);
-              if (!ref.current || !backdropRef.current) return;
-              dispatchMouseEvent(
-                ref.current,
-                backdropRef.current,
-                e,
-                pointedRef,
-                true
-              );
-            },
-            [onMouseMove]
-          )}
           onMouseDown={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
               onMouseDown?.(e);
@@ -478,6 +465,30 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               );
             },
             [onMouseUp, setCaretPosition]
+          )}
+          onMouseMove={useCallback(
+            (e: React.MouseEvent<HTMLTextAreaElement>) => {
+              onMouseMove?.(e);
+              if (!ref.current || !backdropRef.current) return;
+              dispatchMouseEvent(
+                ref.current,
+                backdropRef.current,
+                e,
+                pointedRef,
+                true
+              );
+            },
+            [onMouseMove]
+          )}
+          onMouseLeave={useCallback(
+            (e: React.MouseEvent<HTMLTextAreaElement>) => {
+              onMouseLeave?.(e);
+              pointedRef.current?.dispatchEvent(
+                new MouseEvent("mouseout", e.nativeEvent)
+              );
+              pointedRef.current = null;
+            },
+            [onMouseLeave]
           )}
           onFocus={useCallback(
             (e: React.FocusEvent<HTMLTextAreaElement>) => {
