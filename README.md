@@ -58,3 +58,27 @@ export const App = () => {
 ```
 
 And see [examples](./stories) for more usages.
+
+## Props
+
+For other props not mentioned below will be passed to textarea. If not worked properly, please report it in an [issue](https://github.com/inokawa/rich-textarea/issues) or [PR](https://github.com/inokawa/rich-textarea/pulls).
+
+| Name              | Type                                          | Description                                                                                                                                                                                                                                                    |
+| ----------------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| value             | `string`                                      | Same as textarea but only string                                                                                                                                                                                                                               |
+| defaultValue      | -                                             | Omitted for simplicity of logic                                                                                                                                                                                                                                |
+| children          | `(value: string) => React.ReactNode`          | This function should return ReactNodes which texts are positioned the same as textarea (see examples for detailed usage). Currently limited event handlers will work for the nodes (`onMouseOver`, `onMouseOut`, `onMouseMove`, `onMouseDown` and `onMouseUp`) |
+| onSelectionChange | `(pos: CaretPosition, value: string) => void` | Called when selection in textarea changes. It gives position of caret at the time, which is useful to position menu.                                                                                                                                           |
+
+## Methods
+
+| Name              | Type                                   | Description                                                                                                                                       |
+| ----------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ref               | `React.RefObject<HTMLTextAreaElement>` | Ref of textarea                                                                                                                                   |
+| selectionStart    |                                        | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/)                                                                             |
+| selectionEnd      |                                        | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/)                                                                             |
+| focus             |                                        | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement)                                                          |
+| blur              |                                        | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement)                                                          |
+| select            |                                        | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement)                                                          |
+| setSelectionRange |                                        | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement)                                                          |
+| setRangeText      |                                        | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement) but has fallback to `document.execCommand("insertText")` |
