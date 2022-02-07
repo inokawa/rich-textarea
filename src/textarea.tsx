@@ -133,44 +133,44 @@ const getPointedElement = (
   textarea.style.setProperty("pointer-events", prev);
   backdrop.style.setProperty("pointer-events", backPrev);
 
-  return pointed;
+  if (isInsideBackdrop(pointed, backdrop)) {
+    return pointed;
+  } else {
+    return null;
+  }
 };
 
-const isInBackdrop = (
+const isInsideBackdrop = (
   pointed: HTMLElement | null,
   backdrop: HTMLDivElement
 ): boolean => !!pointed && backdrop !== pointed && backdrop.contains(pointed);
 
-const dispatchMouseEvent = (
-  pointed: HTMLElement | null,
+const dispatchClonedMouseEvent = (
+  pointed: HTMLElement,
   e: React.MouseEvent
 ) => {
-  pointed?.dispatchEvent(new MouseEvent(e.nativeEvent.type, e.nativeEvent));
+  pointed.dispatchEvent(new MouseEvent(e.nativeEvent.type, e.nativeEvent));
 };
 
 const dispatchMouseMoveEvent = (
   pointed: HTMLElement | null,
   prevPointed: React.MutableRefObject<HTMLElement | null>,
-  e: React.MouseEvent,
-  isInside: boolean
+  e: React.MouseEvent
 ) => {
+  if (pointed) {
+    dispatchClonedMouseEvent(pointed, e);
+  }
+
   if (prevPointed.current !== pointed) {
     dispatchMouseOutEvent(prevPointed, e, pointed);
-    if (isInside) {
+    if (pointed) {
       dispatchMouseOverEvent(pointed, e);
     }
   }
-
-  if (isInside) {
-    dispatchMouseEvent(pointed, e);
-  }
 };
 
-const dispatchMouseOverEvent = (
-  pointed: HTMLElement | null,
-  e: React.MouseEvent
-) => {
-  pointed?.dispatchEvent(new MouseEvent("mouseover", e.nativeEvent));
+const dispatchMouseOverEvent = (pointed: HTMLElement, e: React.MouseEvent) => {
+  pointed.dispatchEvent(new MouseEvent("mouseover", e.nativeEvent));
 };
 
 const dispatchMouseOutEvent = (
@@ -476,8 +476,8 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
                 backdropRef.current,
                 e
               );
-              if (isInBackdrop(pointed, backdropRef.current)) {
-                dispatchMouseEvent(pointed, e);
+              if (pointed) {
+                dispatchClonedMouseEvent(pointed, e);
               }
             },
             [onMouseDown, setCaretPosition]
@@ -492,8 +492,8 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
                 backdropRef.current,
                 e
               );
-              if (isInBackdrop(pointed, backdropRef.current)) {
-                dispatchMouseEvent(pointed, e);
+              if (pointed) {
+                dispatchClonedMouseEvent(pointed, e);
               }
             },
             [onMouseUp, setCaretPosition]
@@ -507,12 +507,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
                 backdropRef.current,
                 e
               );
-              dispatchMouseMoveEvent(
-                pointed,
-                pointedRef,
-                e,
-                isInBackdrop(pointed, backdropRef.current)
-              );
+              dispatchMouseMoveEvent(pointed, pointedRef, e);
             },
             [onMouseMove]
           )}
