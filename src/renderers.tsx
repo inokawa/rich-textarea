@@ -3,11 +3,19 @@ import { RangeChunk, merge } from "./utils";
 
 export type Renderer = (value: string) => React.ReactNode;
 
+export type StyleOrRender =
+  | React.CSSProperties
+  | ((props: {
+      children: React.ReactNode;
+      value: string;
+      key?: string;
+    }) => React.ReactNode);
+
 export const createRegexRenderer = (
-  matchers: [RegExp, React.CSSProperties][]
+  matchers: [RegExp, StyleOrRender][]
 ): Renderer => {
   return (value) => {
-    const styles: { [key: string]: React.CSSProperties } = {};
+    const styles: { [key: string]: StyleOrRender } = {};
     const ranges: RangeChunk[] = [];
     matchers.forEach(([matcher, style], i) => {
       ranges.push(
@@ -21,24 +29,28 @@ export const createRegexRenderer = (
     });
 
     const chunks = merge(ranges);
-    const res: (string | React.ReactElement)[] = [];
+    const res: React.ReactNode[] = [];
     let prevEnd = 0;
     let prevStart = 0;
     for (let i = 0; i < chunks.length; i++) {
       const [start, end, styleIds] = chunks[i];
       res.push(value.slice(prevEnd, start));
 
-      const style = Object.keys(styleIds).reduce((acc, i) => {
-        const s = styles[i];
-        Object.keys(s).forEach((k) => {
-          (acc as any)[k] = (s as any)[k];
-        });
-        return acc;
-      }, {} as React.CSSProperties);
+      const v = value.slice(start, end);
       res.push(
-        <span key={i} style={style}>
-          {value.slice(start, end)}
-        </span>
+        Object.keys(styleIds).reduceRight((acc, si, index) => {
+          const styleOrRender = styles[si];
+          const key = index === 0 ? String(start) : undefined;
+          if (typeof styleOrRender === "function") {
+            return styleOrRender({ children: acc, value: v, key });
+          } else {
+            return (
+              <span key={key} style={styleOrRender}>
+                {acc}
+              </span>
+            );
+          }
+        }, v as React.ReactNode)
       );
       prevEnd = end;
       prevStart = start;

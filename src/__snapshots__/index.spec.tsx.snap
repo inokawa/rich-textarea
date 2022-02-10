@@ -417,9 +417,13 @@ exports[`match multiple matchers 1`] = `
       >
         L
         <span
-          style="color: blue; background: red; border: 1px solid blue;"
+          style="color: red; background: red;"
         >
-          o
+          <span
+            style="color: blue; border: 1px solid blue;"
+          >
+            o
+          </span>
         </span>
         <span
           style="color: red; background: red;"
@@ -433,15 +437,23 @@ exports[`match multiple matchers 1`] = `
         </span>
         m ipsum d
         <span
-          style="color: blue; background: red; border: 1px solid blue;"
+          style="color: red; background: red;"
         >
-          o
+          <span
+            style="color: blue; border: 1px solid blue;"
+          >
+            o
+          </span>
         </span>
         l
         <span
-          style="color: blue; background: red; border: 1px solid blue;"
+          style="color: red; background: red;"
         >
-          o
+          <span
+            style="color: blue; border: 1px solid blue;"
+          >
+            o
+          </span>
         </span>
         <span
           style="color: red; background: red;"
