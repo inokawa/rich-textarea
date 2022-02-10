@@ -5,7 +5,7 @@
 
 A small customizable textarea for [React](https://github.com/facebook/react) to colorize, highlight, decorate texts and offer autocomplete.
 
-<img src="./images/sample.gif" width="400px" />
+<img src="./images/sample.gif" width="400px" /><img src="./images/sample-url.gif" width="400px" />
 
 <img src="./images/sample-mention.gif" width="400px" /><img src="./images/sample-diff.gif" width="400px" />
 
