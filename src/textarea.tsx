@@ -239,6 +239,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       onScroll,
       onInput,
       onKeyDown,
+      onClick,
       onMouseDown,
       onMouseUp,
       onMouseMove,
@@ -462,6 +463,21 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               setCaretPosition();
             },
             [onKeyDown, setCaretPosition]
+          )}
+          onClick={useCallback(
+            (e: React.MouseEvent<HTMLTextAreaElement>) => {
+              onClick?.(e);
+              if (!ref.current || !backdropRef.current) return;
+              const pointed = getPointedElement(
+                ref.current,
+                backdropRef.current,
+                e
+              );
+              if (pointed) {
+                dispatchClonedMouseEvent(pointed, e.nativeEvent);
+              }
+            },
+            [onClick]
           )}
           onMouseDown={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
