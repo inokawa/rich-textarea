@@ -59,8 +59,19 @@ const STYLE_KEYS: (keyof React.CSSProperties)[] = [
   "MozTabSize",
 ];
 
+const getPropertyValue = (style: CSSStyleDeclaration, key: string): string => {
+  return style.getPropertyValue(key);
+};
+const setProperty = (
+  style: CSSStyleDeclaration,
+  key: string,
+  value: string
+) => {
+  style.setProperty(key, value);
+};
+
 const getValueFromStyle = (style: CSSStyleDeclaration, key: string): number => {
-  const value = style.getPropertyValue(key);
+  const value = getPropertyValue(style, key);
   if (!value) {
     return 0;
   } else {
@@ -120,18 +131,20 @@ const getPointedElement = (
   backdrop: HTMLDivElement,
   e: React.MouseEvent
 ): HTMLElement | null => {
-  const prev = textarea.style.getPropertyValue("pointer-events");
-  const backPrev = backdrop.style.getPropertyValue("pointer-events");
-  textarea.style.setProperty("pointer-events", "none");
-  backdrop.style.setProperty("pointer-events", "auto");
+  const POINTER_EVENTS = "pointer-events";
+
+  const prev = getPropertyValue(textarea.style, POINTER_EVENTS);
+  const backPrev = getPropertyValue(backdrop.style, POINTER_EVENTS);
+  setProperty(textarea.style, POINTER_EVENTS, "none");
+  setProperty(backdrop.style, POINTER_EVENTS, "auto");
 
   const pointed = document.elementFromPoint(
     e.clientX,
     e.clientY
   ) as HTMLElement | null;
 
-  textarea.style.setProperty("pointer-events", prev);
-  backdrop.style.setProperty("pointer-events", backPrev);
+  setProperty(textarea.style, POINTER_EVENTS, prev);
+  setProperty(backdrop.style, POINTER_EVENTS, backPrev);
 
   if (isInsideBackdrop(pointed, backdrop)) {
     return pointed;
@@ -145,8 +158,16 @@ const isInsideBackdrop = (
   backdrop: HTMLDivElement
 ): boolean => !!pointed && backdrop !== pointed && backdrop.contains(pointed);
 
+const dispatchMouseEvent = (
+  target: HTMLElement,
+  type: string,
+  init: MouseEventInit
+) => {
+  target.dispatchEvent(new MouseEvent(type, init));
+};
+
 const dispatchClonedMouseEvent = (pointed: HTMLElement, e: MouseEvent) => {
-  pointed.dispatchEvent(new MouseEvent(e.type, e));
+  dispatchMouseEvent(pointed, e.type, e);
 };
 
 const dispatchMouseMoveEvent = (
@@ -167,7 +188,7 @@ const dispatchMouseMoveEvent = (
 };
 
 const dispatchMouseOverEvent = (pointed: HTMLElement, e: MouseEvent) => {
-  pointed.dispatchEvent(new MouseEvent("mouseover", e));
+  dispatchMouseEvent(pointed, "mouseover", e);
 };
 
 const dispatchMouseOutEvent = (
@@ -175,7 +196,9 @@ const dispatchMouseOutEvent = (
   e: MouseEvent,
   pointed: HTMLElement | null
 ) => {
-  prevPointed.current?.dispatchEvent(new MouseEvent("mouseout", e));
+  if (prevPointed.current) {
+    dispatchMouseEvent(prevPointed.current, "mouseout", e);
+  }
   prevPointed.current = pointed;
 };
 
@@ -317,7 +340,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       if (!backdropRef.current || !ref.current) return;
       const s = getComputedStyle(ref.current);
       if (!caretColorRef.current) {
-        caretColorRef.current = s.getPropertyValue("color");
+        caretColorRef.current = getPropertyValue(s, "color");
       }
       copyStyle(STYLE_KEYS, backdropRef.current.style, s);
 
