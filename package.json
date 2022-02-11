@@ -1,6 +1,6 @@
 {
   "name": "rich-textarea",
-  "version": "0.11.4",
+  "version": "0.11.5",
   "description": "A small customizable textarea for React to colorize, highlight, decorate texts, offer autocomplete and much more.",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
