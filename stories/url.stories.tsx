@@ -11,12 +11,7 @@ const regexRenderer = createRegexRenderer([
   [
     /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+/g,
     ({ children, key, value }) => (
-      <a
-        key={key}
-        style={{ color: "blue", textDecoration: "underline" }}
-        href={value}
-        target="_blank"
-      >
+      <a key={key} href={value} target="_blank">
         {children}
       </a>
     ),
