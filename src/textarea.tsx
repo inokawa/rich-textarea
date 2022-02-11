@@ -114,7 +114,7 @@ const setRangeText = (
   end: number,
   preserve?: SelectionMode
 ) => {
-  if (typeof el.setRangeText === "function") {
+  if (el.setRangeText) {
     el.setRangeText(text, start, end, preserve);
   } else {
     el.focus();
@@ -207,7 +207,8 @@ const stopPropagation = (event: React.MouseEvent) => {
   event.stopPropagation();
 };
 
-const caretDetectorStyle = { color: "transparent" };
+// for caret position detection
+const CARET_DETECTOR = <span style={{ color: "transparent" }}>{"\u200b"}</span>;
 
 export type CaretPosition =
   | {
@@ -344,9 +345,9 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       }
       copyStyle(STYLE_KEYS, backdropRef.current.style, s);
 
-      ref.current.style.color = "transparent";
+      ref.current.style.color = backdropRef.current.style.borderColor =
+        "transparent";
       ref.current.style.caretColor = style?.caretColor ?? caretColorRef.current;
-      backdropRef.current.style.borderColor = "transparent";
     }, [style]);
 
     const selectionStart = ref.current?.selectionStart;
@@ -448,8 +449,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             onMouseUp={stopPropagation}
           >
             {useMemo(() => (render ? render(value) : value), [value, render])}
-            {/* for caret position detection */}
-            <span style={caretDetectorStyle}>{"\u200b"}</span>
+            {CARET_DETECTOR}
           </div>
         </div>
         <textarea
