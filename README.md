@@ -5,11 +5,11 @@
 
 A small customizable textarea for [React](https://github.com/facebook/react) to colorize, highlight, decorate texts, offer autocomplete and much more.
 
-<img src="./images/sample-mention.gif" width="400px" /><img src="./images/sample-diff.gif" width="400px" />
+<img src="./images/sample-mention.gif" width="350px" /><img src="./images/sample-diff.gif" width="350px" />
 
-<img src="./images/sample.gif" width="400px" /><img src="./images/sample-url.gif" width="400px" />
+<img src="./images/sample.gif" width="350px" /><img src="./images/sample-url.gif" width="350px" />
 
-<img src="./images/sample-prism.gif" width="400px" /><img src="./images/sample-kuromoji.gif" width="400px" />
+<img src="./images/sample-prism.gif" width="350px" /><img src="./images/sample-kuromoji.gif" width="350px" />
 
 ## Demo
 
