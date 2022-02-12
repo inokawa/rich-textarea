@@ -9,9 +9,9 @@ export default {
 
 const style: React.CSSProperties = {
   width: "600px",
-  height: "400px",
   caretColor: "white",
   backgroundColor: "rgb(40, 42, 54)",
+  maxHeight: "500px",
 };
 
 const renderer: Renderer = (value) => {
@@ -60,6 +60,7 @@ function Example() {
       style={style}
       onChange={useCallback((e) => setText(e.target.value), [])}
       value={text}
+      autoHeight
     >
       {renderer}
     </RichTextarea>
