@@ -251,6 +251,7 @@ export type RichTextareaProps = Omit<
 > & {
   value: string;
   children?: Renderer;
+  autoHeight?: boolean;
   onSelectionChange?: (pos: CaretPosition, value: string) => void;
 };
 
@@ -259,6 +260,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     {
       children: render,
       value,
+      autoHeight,
       style,
       onScroll,
       onInput,
@@ -392,6 +394,12 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         refresh();
       });
     }, [onSelectionChange]);
+
+    useEffect(() => {
+      if (!autoHeight || !ref.current) return;
+      ref.current.style.height = "auto";
+      ref.current.style.height = `${ref.current.scrollHeight}px`;
+    });
 
     const totalWidth = width + hPadding;
     const totalHeight = height + vPadding;

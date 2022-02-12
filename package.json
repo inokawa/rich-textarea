@@ -60,6 +60,7 @@
     "highlight",
     "autocomplete",
     "tagging",
+    "autosize",
     "richtext",
     "editor",
     "contenteditable"
