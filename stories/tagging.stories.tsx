@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { RichTextarea, RichTextareaHandle } from "../src";
+import React, { useState } from "react";
+import { RichTextarea } from "../src";
 
 export default {
   title: "examples",
@@ -37,7 +37,6 @@ const Tag = ({
 };
 
 export const Tagging = () => {
-  const ref = useRef<RichTextareaHandle>(null);
   const [tags, setTags] = useState<string[]>(["Apple", "Orange", "Banana"]);
   const [text, setText] = useState("");
   const [pos, setPos] = useState<number | null>(null);
@@ -63,7 +62,6 @@ export const Tagging = () => {
   return (
     <div>
       <RichTextarea
-        ref={ref}
         rows={1}
         style={style}
         onChange={(e) => setText(e.target.value.slice(textStart))}
@@ -114,7 +112,7 @@ export const Tagging = () => {
             text
               ? text
               : pos === textStart && (
-                  <span key={"last"} style={{ color: "darkgray" }}>
+                  <span key={"__placeholder"} style={{ color: "darkgray" }}>
                     Type anything and press Enter key...
                   </span>
                 ),
