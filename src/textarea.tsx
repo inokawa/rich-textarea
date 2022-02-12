@@ -79,15 +79,7 @@ const getValueFromStyle = (style: CSSStyleDeclaration, key: string): number => {
   }
 };
 
-const copyStyle = (
-  keys: string[],
-  style: CSSStyleDeclaration,
-  baseStyle: CSSStyleDeclaration
-) => {
-  keys.forEach((k) => {
-    style[k as any] = baseStyle[k as any];
-  });
-};
+const getStyle = (e: HTMLElement) => getComputedStyle(e);
 
 const getVerticalPadding = (style: CSSStyleDeclaration): number => {
   return (
@@ -182,13 +174,9 @@ const dispatchMouseMoveEvent = (
   if (prevPointed.current !== pointed) {
     dispatchMouseOutEvent(prevPointed, e, pointed);
     if (pointed) {
-      dispatchMouseOverEvent(pointed, e);
+      dispatchMouseEvent(pointed, "mouseover", e);
     }
   }
-};
-
-const dispatchMouseOverEvent = (pointed: HTMLElement, e: MouseEvent) => {
-  dispatchMouseEvent(pointed, "mouseover", e);
 };
 
 const dispatchMouseOutEvent = (
@@ -325,7 +313,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       if (!ref.current) return;
       const observer = new ResizeObserver((entries) => {
         if (!ref.current) return;
-        const style = getComputedStyle(ref.current);
+        const style = getStyle(ref.current);
         setRect([
           entries[0].contentRect.width,
           entries[0].contentRect.height,
@@ -341,15 +329,18 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
 
     useEffect(() => {
       if (!backdropRef.current || !ref.current) return;
-      const s = getComputedStyle(ref.current);
+      const s = getStyle(ref.current);
       if (!caretColorRef.current) {
         caretColorRef.current = getPropertyValue(s, "color");
       }
-      copyStyle(STYLE_KEYS, backdropRef.current.style, s);
 
-      ref.current.style.color = backdropRef.current.style.borderColor =
-        "transparent";
-      ref.current.style.caretColor = style?.caretColor ?? caretColorRef.current;
+      const textareaStyle = ref.current.style;
+      const backdropStyle = backdropRef.current.style;
+      STYLE_KEYS.forEach((k) => {
+        backdropStyle[k as any] = s[k as any];
+      });
+      textareaStyle.color = backdropStyle.borderColor = "transparent";
+      textareaStyle.caretColor = style?.caretColor ?? caretColorRef.current;
     }, [style]);
 
     const selectionStart = ref.current?.selectionStart;

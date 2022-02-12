@@ -14,6 +14,11 @@ export default {
       format: "es",
     },
   ],
-  plugins: [typescript(), terser()],
+  plugins: [
+    typescript(),
+    terser({
+      compress: { passes: 2 },
+    }),
+  ],
   external: Object.keys(pkg.dependencies),
 };
