@@ -56,8 +56,10 @@
     "react",
     "react-component",
     "textarea",
+    "input",
     "highlight",
     "autocomplete",
+    "tagging",
     "richtext",
     "editor",
     "contenteditable"
