@@ -125,18 +125,20 @@ const getPointedElement = (
 ): HTMLElement | null => {
   const POINTER_EVENTS = "pointer-events";
 
-  const prev = getPropertyValue(textarea.style, POINTER_EVENTS);
-  const backPrev = getPropertyValue(backdrop.style, POINTER_EVENTS);
-  setProperty(textarea.style, POINTER_EVENTS, "none");
-  setProperty(backdrop.style, POINTER_EVENTS, "auto");
+  const textareaStyle = textarea.style;
+  const backdropStyle = backdrop.style;
+  const prev = getPropertyValue(textareaStyle, POINTER_EVENTS);
+  const backPrev = getPropertyValue(backdropStyle, POINTER_EVENTS);
+  setProperty(textareaStyle, POINTER_EVENTS, "none");
+  setProperty(backdropStyle, POINTER_EVENTS, "auto");
 
   const pointed = document.elementFromPoint(
     e.clientX,
     e.clientY
   ) as HTMLElement | null;
 
-  setProperty(textarea.style, POINTER_EVENTS, prev);
-  setProperty(backdrop.style, POINTER_EVENTS, backPrev);
+  setProperty(textareaStyle, POINTER_EVENTS, prev);
+  setProperty(backdropStyle, POINTER_EVENTS, backPrev);
 
   if (isInsideBackdrop(pointed, backdrop)) {
     return pointed;
@@ -282,19 +284,24 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       () => ({
         ref: ref,
         get selectionStart() {
-          return ref.current?.selectionStart ?? 0;
+          if (!ref.current) return 0;
+          return ref.current.selectionStart;
         },
         get selectionEnd() {
-          return ref.current?.selectionEnd ?? 0;
+          if (!ref.current) return 0;
+          return ref.current.selectionEnd;
         },
         focus: () => {
-          ref.current?.focus();
+          if (!ref.current) return;
+          ref.current.focus();
         },
         blur: () => {
-          ref.current?.blur();
+          if (!ref.current) return;
+          ref.current.blur();
         },
         select: () => {
-          ref.current?.select();
+          if (!ref.current) return;
+          ref.current.select();
         },
         setSelectionRange: (...args) => {
           if (!ref.current) return;
@@ -340,11 +347,11 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         backdropStyle[k as any] = s[k as any];
       });
       textareaStyle.color = backdropStyle.borderColor = "transparent";
-      textareaStyle.caretColor = style?.caretColor ?? caretColorRef.current;
+      textareaStyle.caretColor = style?.caretColor || caretColorRef.current;
     }, [style]);
 
-    const selectionStart = ref.current?.selectionStart;
-    const selectionEnd = ref.current?.selectionEnd;
+    const selectionStart = ref.current && ref.current.selectionStart;
+    const selectionEnd = ref.current && ref.current.selectionEnd;
 
     useEffect(() => {
       if (selectionStart == null || selectionEnd == null || !onSelectionChange)
