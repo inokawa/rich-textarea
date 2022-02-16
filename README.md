@@ -38,6 +38,35 @@ npm install rich-textarea
 
 ## Usage
 
+You can create your own render function
+
+```jsx
+import { useState } from "react";
+import { RichTextarea } from "rich-textarea";
+
+export const App = () => {
+  const [text, setText] = useState("Lorem ipsum");
+
+  return (
+    <RichTextarea
+      value={text}
+      style={{ width: "600px", height: "400px" }}
+      onChange={(e) => setText(e.target.value)}
+    >
+      {(v) => {
+        return v.split("").map((t, i) => (
+          <span key={i} style={{ color: i % 2 === 0 ? "red" : undefined }}>
+            {t}
+          </span>
+        ));
+      }}
+    </RichTextarea>
+  );
+};
+```
+
+or you can use helper for regex.
+
 ```jsx
 import { useState } from "react";
 import { RichTextarea, createRegexRenderer } from "rich-textarea";
