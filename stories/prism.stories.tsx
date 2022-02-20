@@ -10,7 +10,7 @@ export default {
 const style: React.CSSProperties = {
   width: "600px",
   caretColor: "white",
-  backgroundColor: "rgb(40, 42, 54)",
+  backgroundColor: "rgb(40, 42, 54)", // FIXME
   maxHeight: "500px",
 };
 
@@ -18,13 +18,7 @@ const renderer: Renderer = (value) => {
   return (
     <Highlight {...defaultProps} theme={theme} code={value} language="jsx">
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <div
-          className={className}
-          style={{
-            ...style,
-            margin: 0, // necessary to fit pre to textarea
-          }}
-        >
+        <div className={className} style={style}>
           {tokens.map((line, i) => (
             <div {...getLineProps({ line, key: i })}>
               {line.map((token, key) => (

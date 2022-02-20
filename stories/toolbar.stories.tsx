@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { RichTextarea } from "../src";
 import { RichTextareaHandle } from "../src";
@@ -9,13 +9,47 @@ export default {
 
 const style = { width: "400px", height: "300px" };
 
+const Menu = ({
+  top,
+  left,
+  onSelectBold,
+  onSelectItalic,
+  onSelectStrike,
+}: {
+  top: number;
+  left: number;
+  onSelectBold: () => void;
+  onSelectItalic: () => void;
+  onSelectStrike: () => void;
+}) => {
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: top,
+        left: left,
+      }}
+    >
+      <button onMouseDown={onSelectBold}>
+        <b>B</b>
+      </button>
+      <button onMouseDown={onSelectItalic}>
+        <i>I</i>
+      </button>
+      <button onMouseDown={onSelectStrike}>
+        <s>S</s>
+      </button>
+    </div>
+  );
+};
+
 export const Toolbar = () => {
   const ref = useRef<RichTextareaHandle>(null);
   const [text, setText] = useState(`Select text and click any button.\n\n`);
   const [[selectionStart, selectionEnd, pos], setSelection] = useState<
     [number, number, { top: number; left: number }] | []
   >([]);
-  const disabled =
+  const hideMenu =
     selectionStart == null ||
     selectionEnd == null ||
     selectionStart === selectionEnd;
@@ -45,58 +79,39 @@ export const Toolbar = () => {
         }}
       />
       {pos &&
-        !disabled &&
+        !hideMenu &&
         createPortal(
-          <div
-            style={{
-              position: "fixed",
-              top: pos.top,
-              left: pos.left,
+          <Menu
+            top={pos.top}
+            left={pos.left}
+            onSelectBold={() => {
+              const start = ref.current.selectionStart;
+              const end = ref.current.selectionEnd;
+              ref.current.setRangeText(
+                `**${text.slice(start, end)}**`,
+                start,
+                end
+              );
             }}
-          >
-            <button
-              disabled={disabled}
-              onMouseDown={() => {
-                const start = ref.current.selectionStart;
-                const end = ref.current.selectionEnd;
-                ref.current.setRangeText(
-                  `**${text.slice(start, end)}**`,
-                  start,
-                  end
-                );
-              }}
-            >
-              <b>B</b>
-            </button>
-            <button
-              disabled={disabled}
-              onMouseDown={() => {
-                const start = ref.current.selectionStart;
-                const end = ref.current.selectionEnd;
-                ref.current.setRangeText(
-                  `*${text.slice(start, end)}*`,
-                  start,
-                  end
-                );
-              }}
-            >
-              <i>I</i>
-            </button>
-            <button
-              disabled={disabled}
-              onMouseDown={() => {
-                const start = ref.current.selectionStart;
-                const end = ref.current.selectionEnd;
-                ref.current.setRangeText(
-                  `~~${text.slice(start, end)}~~`,
-                  start,
-                  end
-                );
-              }}
-            >
-              <s>S</s>
-            </button>
-          </div>,
+            onSelectItalic={() => {
+              const start = ref.current.selectionStart;
+              const end = ref.current.selectionEnd;
+              ref.current.setRangeText(
+                `*${text.slice(start, end)}*`,
+                start,
+                end
+              );
+            }}
+            onSelectStrike={() => {
+              const start = ref.current.selectionStart;
+              const end = ref.current.selectionEnd;
+              ref.current.setRangeText(
+                `~~${text.slice(start, end)}~~`,
+                start,
+                end
+              );
+            }}
+          />,
           document.body
         )}
     </div>

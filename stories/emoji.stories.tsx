@@ -13,6 +13,54 @@ const style = { width: "400px", height: "300px" };
 const MAX_CHARS = 8;
 const MENTION_REG = /:([\-+\w]*)$/;
 
+const Menu = ({
+  chars,
+  index,
+  top,
+  left,
+  complete,
+}: {
+  chars: emoji.Emoji[];
+  index: number;
+  top: number;
+  left: number;
+  complete: (index: number) => void;
+}) => {
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: top,
+        left: left,
+        fontSize: "16px",
+        border: "solid 1px gray",
+        borderRadius: "3px",
+        background: "white",
+        cursor: "pointer",
+      }}
+    >
+      {chars.map((c, i) => (
+        <div
+          key={c.key}
+          style={{
+            padding: "4px",
+            ...(index === i && {
+              color: "white",
+              background: "#2A6AD3",
+            }),
+          }}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            complete(i);
+          }}
+        >
+          {`${c.emoji} ${c.key}`}
+        </div>
+      ))}
+    </div>
+  );
+};
+
 export const Emoji = () => {
   const ref = useRef<RichTextareaHandle>(null);
   const [text, setText] = useState(`Type : to show suggestions 💪\n\n`);
@@ -85,37 +133,13 @@ export const Emoji = () => {
       />
       {pos &&
         createPortal(
-          <div
-            style={{
-              position: "fixed",
-              top: pos.top,
-              left: pos.left,
-              fontSize: "16px",
-              border: "solid 1px gray",
-              borderRadius: "3px",
-              background: "white",
-              cursor: "pointer",
-            }}
-          >
-            {chars.map((c, i) => (
-              <div
-                key={c.key}
-                style={{
-                  padding: "4px",
-                  ...(index === i && {
-                    color: "white",
-                    background: "#2A6AD3",
-                  }),
-                }}
-                onMouseDown={(e) => {
-                  e.preventDefault();
-                  complete(i);
-                }}
-              >
-                {`${c.emoji} ${c.key}`}
-              </div>
-            ))}
-          </div>,
+          <Menu
+            top={pos.top}
+            left={pos.left}
+            chars={chars}
+            index={index}
+            complete={complete}
+          />,
           document.body
         )}
     </div>
