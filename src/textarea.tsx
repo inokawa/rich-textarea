@@ -192,6 +192,28 @@ const dispatchMouseOutEvent = (
   prevPointed.current = pointed;
 };
 
+const getSelectionStart = (
+  el: HTMLTextAreaElement,
+  compositionEvent: CompositionEvent | null
+): number => {
+  let pos = el.selectionStart;
+  if (compositionEvent) {
+    pos = Math.min(pos, el.selectionEnd - compositionEvent.data.length);
+  }
+  return pos;
+};
+
+const getSelectionEnd = (
+  el: HTMLTextAreaElement,
+  compositionEvent: CompositionEvent | null
+): number => {
+  let pos = el.selectionEnd;
+  if (compositionEvent) {
+    pos = Math.min(pos, el.selectionStart + compositionEvent.data.length);
+  }
+  return pos;
+};
+
 const stopPropagation = (event: React.MouseEvent) => {
   event.preventDefault();
   event.stopPropagation();
@@ -219,6 +241,7 @@ export type RichTextareaHandle = {
   ref: React.RefObject<HTMLTextAreaElement>;
   selectionStart: number;
   selectionEnd: number;
+  isComposing: boolean;
   focus: () => void;
   blur: () => void;
   select: () => void;
@@ -254,6 +277,9 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       style,
       onScroll,
       onInput,
+      onCompositionStart,
+      onCompositionUpdate,
+      onCompositionEnd,
       onKeyDown,
       onClick,
       onMouseDown,
@@ -276,6 +302,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     const refresh = useForceRefresh();
     const [focused, setFocused] = useState<boolean>(false);
 
+    const compositionRef = useRef<CompositionEvent | null>(null);
     const caretColorRef = useRef("");
     const pointedRef = useRef<HTMLElement | null>(null);
 
@@ -285,11 +312,14 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         ref: ref,
         get selectionStart() {
           if (!ref.current) return 0;
-          return ref.current.selectionStart;
+          return getSelectionStart(ref.current, compositionRef.current);
         },
         get selectionEnd() {
           if (!ref.current) return 0;
-          return ref.current.selectionEnd;
+          return getSelectionEnd(ref.current, compositionRef.current);
+        },
+        get isComposing(): boolean {
+          return !!compositionRef.current;
         },
         focus: () => {
           if (!ref.current) return;
@@ -352,13 +382,15 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       textareaStyle.caretColor = style?.caretColor || caretColorRef.current;
     }, [style]);
 
-    const selectionStart = ref.current && ref.current.selectionStart;
-    const selectionEnd = ref.current && ref.current.selectionEnd;
+    const selectionStart =
+      ref.current && getSelectionStart(ref.current, compositionRef.current);
+    const selectionEnd =
+      ref.current && getSelectionEnd(ref.current, compositionRef.current);
 
     useEffect(() => {
       if (selectionStart == null || selectionEnd == null || !onSelectionChange)
         return;
-      if (!focused) {
+      if (!focused && !compositionRef.current) {
         onSelectionChange(
           {
             focused: false,
@@ -488,6 +520,27 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               setCaretPosition();
             },
             [onInput, setCaretPosition]
+          )}
+          onCompositionStart={useCallback(
+            (e: React.CompositionEvent<HTMLTextAreaElement>) => {
+              compositionRef.current = e.nativeEvent;
+              onCompositionStart?.(e);
+            },
+            [onCompositionStart]
+          )}
+          onCompositionUpdate={useCallback(
+            (e: React.CompositionEvent<HTMLTextAreaElement>) => {
+              compositionRef.current = e.nativeEvent;
+              onCompositionUpdate?.(e);
+            },
+            [onCompositionUpdate]
+          )}
+          onCompositionEnd={useCallback(
+            (e: React.CompositionEvent<HTMLTextAreaElement>) => {
+              compositionRef.current = null;
+              onCompositionEnd?.(e);
+            },
+            [onCompositionEnd]
           )}
           onKeyDown={useCallback(
             (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
