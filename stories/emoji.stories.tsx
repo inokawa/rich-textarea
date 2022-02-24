@@ -92,7 +92,7 @@ export const Emoji = () => {
         onChange={(e) => setText(e.target.value)}
         value={text}
         onKeyDown={(e) => {
-          if (!pos || !chars.length) return;
+          if (!pos || !chars.length || ref.current.isComposing) return;
           switch (e.code) {
             case "ArrowUp":
               e.preventDefault();
