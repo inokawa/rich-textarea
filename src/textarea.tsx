@@ -306,6 +306,21 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     const caretColorRef = useRef("");
     const pointedRef = useRef<HTMLElement | null>(null);
 
+    const selectionStart =
+      ref.current && getSelectionStart(ref.current, compositionRef.current);
+    const selectionEnd =
+      ref.current && getSelectionEnd(ref.current, compositionRef.current);
+
+    const totalWidth = width + hPadding;
+    const totalHeight = height + vPadding;
+
+    const setCaretPosition = useCallback(() => {
+      if (!onSelectionChange) return;
+      setTimeout(() => {
+        refresh();
+      });
+    }, [onSelectionChange]);
+
     useImperativeHandle(
       propRef,
       () => ({
@@ -348,12 +363,12 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
 
     useEffect(() => {
       if (!ref.current) return;
-      const observer = new ResizeObserver((entries) => {
+      const observer = new ResizeObserver(([{ contentRect }]) => {
         if (!ref.current) return;
         const style = getStyle(ref.current);
         setRect([
-          entries[0].contentRect.width,
-          entries[0].contentRect.height,
+          contentRect.width,
+          contentRect.height,
           getHorizontalPadding(style),
           getVerticalPadding(style),
         ]);
@@ -381,11 +396,6 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       textareaStyle.color = backdropStyle.borderColor = "transparent";
       textareaStyle.caretColor = style?.caretColor || caretColorRef.current;
     }, [style]);
-
-    const selectionStart =
-      ref.current && getSelectionStart(ref.current, compositionRef.current);
-    const selectionEnd =
-      ref.current && getSelectionEnd(ref.current, compositionRef.current);
 
     useEffect(() => {
       if (selectionStart == null || selectionEnd == null || !onSelectionChange)
@@ -420,22 +430,12 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       }
     }, [focused, selectionStart, selectionEnd]);
 
-    const setCaretPosition = useCallback(() => {
-      if (!onSelectionChange) return;
-      setTimeout(() => {
-        refresh();
-      });
-    }, [onSelectionChange]);
-
     useEffect(() => {
       const textarea = ref.current;
       if (!autoHeight || !textarea) return;
       textarea.style.height = "auto";
       textarea.style.height = `${textarea.scrollHeight}px`;
     });
-
-    const totalWidth = width + hPadding;
-    const totalHeight = height + vPadding;
 
     return (
       <div
