@@ -241,7 +241,6 @@ export type RichTextareaHandle = {
   ref: React.RefObject<HTMLTextAreaElement>;
   selectionStart: number;
   selectionEnd: number;
-  isComposing: boolean;
   focus: () => void;
   blur: () => void;
   select: () => void;
@@ -332,9 +331,6 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         get selectionEnd() {
           if (!ref.current) return 0;
           return getSelectionEnd(ref.current, compositionRef.current);
-        },
-        get isComposing(): boolean {
-          return !!compositionRef.current;
         },
         focus: () => {
           if (!ref.current) return;
@@ -544,6 +540,13 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           )}
           onKeyDown={useCallback(
             (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+              // Ignore keydown events during IME composition.
+              // Safari sometimes fires keydown event after compositionend so also ignore it.
+              // https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event#ignoring_keydown_during_ime_composition
+              if (e.nativeEvent.isComposing || e.nativeEvent.keyCode === 229) {
+                return;
+              }
+
               onKeyDown?.(e);
               setCaretPosition();
             },
