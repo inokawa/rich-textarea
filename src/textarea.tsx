@@ -241,7 +241,6 @@ export type RichTextareaHandle = {
   ref: React.RefObject<HTMLTextAreaElement>;
   selectionStart: number;
   selectionEnd: number;
-  isComposing: boolean;
   focus: () => void;
   blur: () => void;
   select: () => void;
@@ -332,9 +331,6 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         get selectionEnd() {
           if (!ref.current) return 0;
           return getSelectionEnd(ref.current, compositionRef.current);
-        },
-        get isComposing(): boolean {
-          return !!compositionRef.current;
         },
         focus: () => {
           if (!ref.current) return;
