@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
-import { createRegexRenderer, RichTextarea } from "../src";
+import { RichTextarea } from "../src";
 import { LOREM } from "./mocks";
+import Highlighter from "react-highlight-words";
 
 export default {
   title: "examples",
@@ -8,7 +9,7 @@ export default {
 
 const style = { width: "600px", height: "400px" };
 
-export const Search = () => {
+export const Highlight = () => {
   const [text, setText] = useState(LOREM);
   const [searchText, setSearchText] = useState("dolor");
   return (
@@ -23,20 +24,16 @@ export const Search = () => {
       </div>
       <RichTextarea
         style={style}
-        onChange={useCallback((e) => setText(e.target.value), [])}
+        onChange={(e) => setText(e.target.value)}
         value={text}
       >
-        {searchText
-          ? createRegexRenderer([
-              [
-                new RegExp(
-                  searchText.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
-                  "ig"
-                ),
-                { borderRadius: "3px", backgroundColor: "yellow" },
-              ],
-            ])
-          : undefined}
+        {(v) => (
+          <Highlighter
+            searchWords={searchText.split(" ")}
+            autoEscape={true}
+            textToHighlight={v}
+          />
+        )}
       </RichTextarea>
     </div>
   );
