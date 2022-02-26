@@ -54,7 +54,7 @@ const Mark = ({
   children: string;
 }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const [tooltip, setShow] =
+  const [tooltip, setTooltip] =
     useState<{ top: number; left: number; description: string } | null>(null);
 
   return (
@@ -66,13 +66,13 @@ const Mark = ({
       onMouseOver={(e) => {
         if (!ref.current) return;
         const rect = ref.current.getBoundingClientRect();
-        setShow({
+        setTooltip({
           top: rect.top - rect.height * 2 /* FIXME */,
           left: rect.left,
           description: message,
         });
       }}
-      onMouseOut={() => setShow(null)}
+      onMouseOut={() => setTooltip(null)}
     >
       {children}
       {tooltip &&

@@ -36,7 +36,7 @@ export const Search = () => {
                 { borderRadius: "3px", backgroundColor: "yellow" },
               ],
             ])
-          : (v) => v}
+          : undefined}
       </RichTextarea>
     </div>
   );
