@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { RichTextarea } from "../src";
 import { TextlintKernel, TextlintMessage } from "@textlint/kernel";
@@ -112,7 +112,7 @@ export const Textlint = () => {
     <div style={{ marginTop: 16 }}>
       <RichTextarea
         style={style}
-        onChange={useCallback((e) => setText(e.target.value), [])}
+        onChange={(e) => setText(e.target.value)}
         value={text}
       >
         {(v) => {

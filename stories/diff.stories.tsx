@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { Renderer, RichTextarea } from "../src";
 import diff from "monaco-diff";
 import type { ILineChange } from "monaco-diff";
@@ -16,13 +16,9 @@ const createDiffRenderer =
   (tokens: ILineChange[], type: "base" | "target"): Renderer =>
   (value) => {
     const orgLines: ({ start?: number; end?: number }[] | undefined)[] =
-      Array.from({
-        length: value.length,
-      });
+      Array.from({ length: value.length });
     const modLines: ({ start?: number; end?: number }[] | undefined)[] =
-      Array.from({
-        length: value.length,
-      });
+      Array.from({ length: value.length });
     for (const token of tokens) {
       for (
         let i = token.originalStartLineNumber;
@@ -154,7 +150,7 @@ export const Diff = () => {
   const [targetText, setTargetText] = useState(
     "just some text\nabcz\nzzzzefgh\nSome more text.\nThis line is removed on the left."
   );
-  const token = React.useMemo(
+  const tokens = React.useMemo(
     () => diff(baseText.split("\n"), targetText.split("\n")),
     [baseText, targetText]
   );
@@ -163,17 +159,17 @@ export const Diff = () => {
     <div>
       <RichTextarea
         style={style}
-        onChange={useCallback((e) => setBaseText(e.target.value), [])}
+        onChange={(e) => setBaseText(e.target.value)}
         value={baseText}
       >
-        {createDiffRenderer(token, "base")}
+        {createDiffRenderer(tokens, "base")}
       </RichTextarea>
       <RichTextarea
         style={style}
-        onChange={useCallback((e) => setTargetText(e.target.value), [])}
+        onChange={(e) => setTargetText(e.target.value)}
         value={targetText}
       >
-        {createDiffRenderer(token, "target")}
+        {createDiffRenderer(tokens, "target")}
       </RichTextarea>
     </div>
   );

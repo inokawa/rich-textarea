@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { RichTextarea } from "../src";
 import { getTokenizer, Tokenizer, KuromojiToken } from "kuromojin";
@@ -105,7 +99,7 @@ export const Kuromoji = () => {
       {!tokenizer && <div>{"Loading dictionaries"}</div>}
       <RichTextarea
         style={style}
-        onChange={useCallback((e) => setText(e.target.value), [])}
+        onChange={(e) => setText(e.target.value)}
         value={text}
       >
         {(v) => {

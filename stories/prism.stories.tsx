@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { Renderer, RichTextarea } from "../src";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/dracula";
@@ -52,7 +52,7 @@ function Example() {
   return (
     <RichTextarea
       style={style}
-      onChange={useCallback((e) => setText(e.target.value), [])}
+      onChange={(e) => setText(e.target.value)}
       value={text}
       autoHeight
     >

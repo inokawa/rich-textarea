@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useState } from "react";
 import { RichTextarea } from "../src";
 
 export default {
@@ -36,7 +36,7 @@ export const Segmenter = () => {
       </div>
       <RichTextarea
         style={style}
-        onChange={useCallback((e) => setText(e.target.value), [])}
+        onChange={(e) => setText(e.target.value)}
         value={text}
       >
         {(v) => {
