@@ -215,7 +215,6 @@ const getSelectionEnd = (
 };
 
 const stopPropagation = (event: React.MouseEvent) => {
-  event.preventDefault();
   event.stopPropagation();
 };
 
@@ -480,6 +479,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               [left, top, width]
             )}
             // Stop propagation of events dispatched on backdrop
+            onClick={stopPropagation}
             onMouseDown={stopPropagation}
             onMouseUp={stopPropagation}
             onMouseOver={stopPropagation}
