@@ -479,6 +479,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               }),
               [left, top, width]
             )}
+            onClick={stopPropagation}
             onMouseOver={stopPropagation}
             onMouseOut={stopPropagation}
             onMouseMove={stopPropagation}
