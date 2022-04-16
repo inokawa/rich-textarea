@@ -11,7 +11,7 @@
   "scripts": {
     "build": "rollup -c",
     "tsc": "tsc -p . --noEmit",
-    "tsc:d": "tsc -p . --outDir lib -d --emitDeclarationOnly",
+    "tsc:d": "tsc -p ./tsconfig-build.json --outDir lib -d --emitDeclarationOnly",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
