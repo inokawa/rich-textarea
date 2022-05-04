@@ -79,7 +79,7 @@ const getValueFromStyle = (style: CSSStyleDeclaration, key: string): number => {
   }
 };
 
-const getStyle = (e: HTMLElement) => getComputedStyle(e);
+const getStyle = getComputedStyle;
 
 const getVerticalPadding = (style: CSSStyleDeclaration): number => {
   return (
