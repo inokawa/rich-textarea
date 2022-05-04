@@ -8,4 +8,5 @@ module.exports = {
     // for kuromojin
     { from: "../node_modules/kuromoji/dict", to: "/dict" },
   ],
+  framework: "@storybook/react",
 };
