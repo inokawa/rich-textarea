@@ -20,6 +20,8 @@
     "range-at-index": "^1.0.4"
   },
   "devDependencies": {
+    "@babel/plugin-transform-react-pure-annotations": "^7.16.7",
+    "@rollup/plugin-babel": "5.3.1",
     "@rollup/plugin-typescript": "8.3.0",
     "@storybook/addon-essentials": "6.5.0-alpha.63",
     "@storybook/addon-links": "6.5.0-alpha.63",
