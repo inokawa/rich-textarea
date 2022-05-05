@@ -15,7 +15,12 @@ export default {
     },
   ],
   plugins: [
-    typescript(),
+    typescript({
+      tsconfig: "./tsconfig.json",
+      outDir: ".",
+      declaration: true,
+      exclude: ["src/**/*.spec.*"],
+    }),
     terser({
       compress: { passes: 3 },
     }),
