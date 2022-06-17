@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import { RichTextarea, createRegexRenderer } from ".";
 
 global.ResizeObserver = class mockResizeObjerver {
@@ -9,8 +9,8 @@ global.ResizeObserver = class mockResizeObjerver {
     this.callbackResize = callback;
   }
   disconnect() {}
-  observe(target: Element, options?: ResizeObserverOptions) {}
-  unobserve(target: Element) {}
+  observe(_target: Element, _options?: ResizeObserverOptions) {}
+  unobserve(_target: Element) {}
 };
 
 const NOP = () => {};

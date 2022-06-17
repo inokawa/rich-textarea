@@ -9,7 +9,7 @@ import {
 } from "react";
 // @ts-expect-error no type definition
 import rangeAtIndex from "range-at-index";
-import { Renderer } from "./renderers";
+import type { Renderer } from "./renderers";
 
 const useForceRefresh = () => {
   const setState = useState(0)[1];
@@ -358,7 +358,8 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
 
     useEffect(() => {
       if (!ref.current) return;
-      const observer = new ResizeObserver(([{ contentRect }]) => {
+      const observer = new ResizeObserver(([entry]) => {
+        const contentRect = entry!.contentRect;
         if (!ref.current) return;
         const style = getStyle(ref.current);
         setRect([
@@ -386,7 +387,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       }
 
       STYLE_KEYS.forEach((k) => {
-        backdropStyle[k as any] = s[k as any];
+        backdropStyle[k as any] = s[k as any]!;
       });
       textareaStyle.color = backdropStyle.borderColor = "transparent";
       textareaStyle.caretColor = style?.caretColor || caretColorRef.current;

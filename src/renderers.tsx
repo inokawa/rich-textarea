@@ -8,7 +8,7 @@ export type StyleOrRender =
   | ((props: {
       children: React.ReactNode;
       value: string;
-      key?: string;
+      key?: string | undefined;
     }) => React.ReactNode);
 
 export const createRegexRenderer = (
@@ -21,7 +21,7 @@ export const createRegexRenderer = (
       ranges.push(
         ...execReg(matcher, value).map((m): RangeChunk => {
           const start = m.index;
-          const end = m.index + m[0].length;
+          const end = m.index + m[0]!.length;
           return [start, end, i];
         })
       );
@@ -31,9 +31,9 @@ export const createRegexRenderer = (
     const chunks = merge(ranges);
     const res: React.ReactNode[] = [];
     let prevEnd = 0;
-    let prevStart = 0;
+    // let prevStart = 0;
     for (let i = 0; i < chunks.length; i++) {
-      const [start, end, styleIds] = chunks[i];
+      const [start, end, styleIds] = chunks[i]!;
       res.push(value.slice(prevEnd, start));
 
       const v = value.slice(start, end);
@@ -53,7 +53,7 @@ export const createRegexRenderer = (
         }, v as React.ReactNode)
       );
       prevEnd = end;
-      prevStart = start;
+      // prevStart = start;
     }
     res.push(value.slice(prevEnd));
     return res;
