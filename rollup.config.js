@@ -23,7 +23,13 @@ export default {
       exclude: ["src/**/*.spec.*"],
     }),
     getBabelOutputPlugin({
-      plugins: ["@babel/plugin-transform-react-pure-annotations"],
+      plugins: [
+        "@babel/plugin-transform-react-pure-annotations",
+        [
+          "replace-import-extensions",
+          { "^react/jsx-runtime$": "react/jsx-runtime.js" },
+        ],
+      ],
     }),
     terser({
       compress: { passes: 3 },
