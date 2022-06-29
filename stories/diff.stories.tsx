@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useMemo } from "react";
 import { Renderer, RichTextarea } from "../src";
 import diff from "monaco-diff";
 import type { ILineChange } from "monaco-diff";
@@ -150,7 +150,7 @@ export const Diff = () => {
   const [targetText, setTargetText] = useState(
     "just some text\nabcz\nzzzzefgh\nSome more text.\nThis line is removed on the left."
   );
-  const tokens = React.useMemo(
+  const tokens = useMemo(
     () => diff(baseText.split("\n"), targetText.split("\n")),
     [baseText, targetText]
   );
