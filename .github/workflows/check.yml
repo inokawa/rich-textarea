@@ -29,3 +29,4 @@ jobs:
       - run: npm run tsc
       - run: npm run test
       - run: npm run build
+      - run: npm run storybook:test

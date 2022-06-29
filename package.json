@@ -14,7 +14,8 @@
     "tsc": "tsc -p . --noEmit",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "storybook:build": "build-storybook",
+    "storybook:test": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"npm run storybook -- --quiet --no-open\" \"wait-on tcp:6006 && test-storybook\"",
     "prepublishOnly": "rimraf lib && npm run build"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "@storybook/addon-essentials": "6.5.6",
     "@storybook/addon-links": "6.5.6",
     "@storybook/react": "6.5.6",
+    "@storybook/test-runner": "0.3.0",
     "@testing-library/react": "^13.1.1",
     "@textlint/kernel": "12.1.0",
     "@textlint/textlint-plugin-text": "12.1.0",
@@ -34,6 +36,7 @@
     "@types/node-emoji": "1.8.1",
     "@types/react-highlight-words": "^0.16.4",
     "babel-plugin-replace-import-extensions": "1.0.1",
+    "concurrently": "7.2.2",
     "jest": "27.5.1",
     "kuromojin": "3.0.0",
     "monaco-diff": "1.1.1",
@@ -48,7 +51,8 @@
     "rollup-plugin-terser": "7.0.2",
     "textlint-rule-preset-japanese": "^7.0.0",
     "ts-jest": "27.1.3",
-    "typescript": "4.6.4"
+    "typescript": "4.6.4",
+    "wait-on": "6.0.1"
   },
   "peerDependencies": {
     "react": ">= 16.14.0"
