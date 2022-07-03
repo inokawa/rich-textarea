@@ -219,13 +219,11 @@ const stopPropagation = (event: React.MouseEvent) => {
 // for caret position detection
 const CARET_DETECTOR = <span style={{ color: "transparent" }}>{"\u200b"}</span>;
 
-const initSelectionStore = (
-  ref: React.RefObject<HTMLTextAreaElement>,
-  compositionRef: React.RefObject<CompositionEvent | null>
-) => {
+const initSelectionStore = (ref: React.RefObject<HTMLTextAreaElement>) => {
   let listener = NOOP;
   let cache: [number | null, number | null] = [null, null];
-  return {
+  let compositionEvent: CompositionEvent | null = null;
+  const handle = {
     _subscribe: (callback: () => void) => {
       listener = callback;
       return () => {
@@ -235,11 +233,20 @@ const initSelectionStore = (
     _update: () => {
       setTimeout(listener);
     },
-    _get: (): [number | null, number | null] => {
+    _setComposition: (comp: CompositionEvent | null) => {
+      compositionEvent = comp;
+    },
+    _getSelectionStart: () => {
       const el = ref.current;
-      const composition = compositionRef.current;
-      const selectionStart = el && getSelectionStart(el, composition);
-      const selectionEnd = el && getSelectionEnd(el, composition);
+      return el && getSelectionStart(el, compositionEvent);
+    },
+    _getSelectionEnd: () => {
+      const el = ref.current;
+      return el && getSelectionEnd(el, compositionEvent);
+    },
+    _getSelection: (): [number | null, number | null] => {
+      const selectionStart = handle._getSelectionStart();
+      const selectionEnd = handle._getSelectionEnd();
       if (cache[0] === selectionStart && cache[1] === selectionEnd) {
         return cache;
       }
@@ -247,6 +254,7 @@ const initSelectionStore = (
       return cache;
     },
   };
+  return handle;
 };
 
 export type CaretPosition =
@@ -327,16 +335,13 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     >([0, 0, 0, 0]);
     const [focused, setFocused] = useState<boolean>(false);
 
-    const compositionRef = useRef<CompositionEvent | null>(null);
     const caretColorRef = useRef("");
     const pointedRef = useRef<HTMLElement | null>(null);
 
-    const selectionStore = useState(() =>
-      initSelectionStore(ref, compositionRef)
-    )[0];
+    const selectionStore = useState(() => initSelectionStore(ref))[0];
     const [selectionStart, selectionEnd] = useSyncExternalStore(
       selectionStore._subscribe,
-      selectionStore._get
+      selectionStore._getSelection
     );
     const updateCaretPosition = selectionStore._update;
 
@@ -348,12 +353,20 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       () => ({
         ref: ref,
         get selectionStart() {
-          if (!ref.current) return 0;
-          return getSelectionStart(ref.current, compositionRef.current);
+          const sel = selectionStore._getSelectionEnd();
+          if (sel == null) {
+            return 0;
+          } else {
+            return sel;
+          }
         },
         get selectionEnd() {
-          if (!ref.current) return 0;
-          return getSelectionEnd(ref.current, compositionRef.current);
+          const sel = selectionStore._getSelectionStart();
+          if (sel == null) {
+            return 0;
+          } else {
+            return sel;
+          }
         },
         focus: () => {
           if (!ref.current) return;
@@ -420,7 +433,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     useEffect(() => {
       if (selectionStart == null || selectionEnd == null || !onSelectionChange)
         return;
-      if (!focused && !compositionRef.current) {
+      if (!focused) {
         onSelectionChange(
           {
             focused: false,
@@ -545,21 +558,21 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           )}
           onCompositionStart={useCallback(
             (e: React.CompositionEvent<HTMLTextAreaElement>) => {
-              compositionRef.current = e.nativeEvent;
+              selectionStore._setComposition(e.nativeEvent);
               onCompositionStart?.(e);
             },
             [onCompositionStart]
           )}
           onCompositionUpdate={useCallback(
             (e: React.CompositionEvent<HTMLTextAreaElement>) => {
-              compositionRef.current = e.nativeEvent;
+              selectionStore._setComposition(e.nativeEvent);
               onCompositionUpdate?.(e);
             },
             [onCompositionUpdate]
           )}
           onCompositionEnd={useCallback(
             (e: React.CompositionEvent<HTMLTextAreaElement>) => {
-              compositionRef.current = null;
+              selectionStore._setComposition(null);
               onCompositionEnd?.(e);
             },
             [onCompositionEnd]
