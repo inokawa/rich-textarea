@@ -340,7 +340,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       () => ({
         ref: ref,
         get selectionStart() {
-          const sel = selectionStore._getSelectionEnd();
+          const sel = selectionStore._getSelectionStart();
           if (sel == null) {
             return 0;
           } else {
@@ -348,7 +348,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           }
         },
         get selectionEnd() {
-          const sel = selectionStore._getSelectionStart();
+          const sel = selectionStore._getSelectionEnd();
           if (sel == null) {
             return 0;
           } else {
