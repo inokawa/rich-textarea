@@ -595,6 +595,11 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
               onMouseDown?.(e);
               selectionStore._update();
+              const mouseup = () => {
+                selectionStore._update();
+                document.removeEventListener("mouseup", mouseup);
+              };
+              document.addEventListener("mouseup", mouseup);
               const textarea = ref.current;
               const backdrop = backdropRef.current;
               if (!textarea || !backdrop) return;
@@ -608,7 +613,6 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           onMouseUp={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
               onMouseUp?.(e);
-              selectionStore._update();
               const textarea = ref.current;
               const backdrop = backdropRef.current;
               if (!textarea || !backdrop) return;
