@@ -331,7 +331,6 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       selectionStore._subscribe,
       selectionStore._getSelection
     );
-    const updateCaretPosition = selectionStore._update;
 
     const totalWidth = width + hPadding;
     const totalHeight = height + vPadding;
@@ -540,9 +539,9 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           onInput={useCallback(
             (e: React.FormEvent<HTMLTextAreaElement>) => {
               onInput?.(e);
-              updateCaretPosition();
+              selectionStore._update();
             },
-            [onInput, updateCaretPosition]
+            [onInput]
           )}
           onCompositionStart={useCallback(
             (e: React.CompositionEvent<HTMLTextAreaElement>) => {
@@ -575,9 +574,9 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               }
 
               onKeyDown?.(e);
-              updateCaretPosition();
+              selectionStore._update();
             },
-            [onKeyDown, updateCaretPosition]
+            [onKeyDown]
           )}
           onClick={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
@@ -595,7 +594,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           onMouseDown={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
               onMouseDown?.(e);
-              updateCaretPosition();
+              selectionStore._update();
               const textarea = ref.current;
               const backdrop = backdropRef.current;
               if (!textarea || !backdrop) return;
@@ -604,12 +603,12 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
                 dispatchClonedMouseEvent(pointed, e.nativeEvent);
               }
             },
-            [onMouseDown, updateCaretPosition]
+            [onMouseDown]
           )}
           onMouseUp={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
               onMouseUp?.(e);
-              updateCaretPosition();
+              selectionStore._update();
               const textarea = ref.current;
               const backdrop = backdropRef.current;
               if (!textarea || !backdrop) return;
@@ -618,7 +617,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
                 dispatchClonedMouseEvent(pointed, e.nativeEvent);
               }
             },
-            [onMouseUp, updateCaretPosition]
+            [onMouseUp]
           )}
           onMouseMove={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
