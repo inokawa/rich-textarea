@@ -90,6 +90,7 @@ export const Mention = () => {
     [name]
   );
   const complete = (i: number) => {
+    if (!ref.current || !pos) return;
     const selected = chars[i];
     ref.current.setRangeText(
       `@${selected} `,
@@ -98,7 +99,7 @@ export const Mention = () => {
       "end"
     );
     setPos(null);
-    setIndex(null);
+    setIndex(0);
   };
 
   return (
@@ -128,7 +129,7 @@ export const Mention = () => {
             case "Escape":
               e.preventDefault();
               setPos(null);
-              setIndex(null);
+              setIndex(0);
               break;
             default:
               break;
@@ -144,7 +145,7 @@ export const Mention = () => {
             setIndex(0);
           } else {
             setPos(null);
-            setIndex(null);
+            setIndex(0);
           }
         }}
       >

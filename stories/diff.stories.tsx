@@ -27,7 +27,7 @@ const createDiffRenderer =
       ) {
         orgLines[i - 1] || (orgLines[i - 1] = []);
         if (token.modifiedEndLineNumber === 0) {
-          orgLines[i - 1].push({ start: undefined, end: undefined });
+          orgLines[i - 1]!.push({ start: undefined, end: undefined });
         }
       }
       for (
@@ -37,7 +37,7 @@ const createDiffRenderer =
       ) {
         modLines[i - 1] || (modLines[i - 1] = []);
         if (token.originalEndLineNumber === 0) {
-          modLines[i - 1].push({ start: undefined, end: undefined });
+          modLines[i - 1]!.push({ start: undefined, end: undefined });
         }
       }
 

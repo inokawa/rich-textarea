@@ -47,7 +47,7 @@ export const Toolbar = () => {
   const ref = useRef<RichTextareaHandle>(null);
   const [text, setText] = useState(`Select text and click any button.\n\n`);
   const [[selectionStart, selectionEnd, pos], setSelection] = useState<
-    [number, number, { top: number; left: number }] | []
+    [number, number, { top: number; left: number } | undefined] | []
   >([]);
   const hideMenu =
     selectionStart == null ||
@@ -62,6 +62,7 @@ export const Toolbar = () => {
         style={style}
         onChange={(e) => setText(e.target.value)}
         onBlur={() => {
+          if (!ref.current) return;
           ref.current.setSelectionRange(0, 0);
           ref.current.blur();
         }}
@@ -85,6 +86,7 @@ export const Toolbar = () => {
             top={pos.top}
             left={pos.left}
             onSelectBold={() => {
+              if (!ref.current) return;
               const start = ref.current.selectionStart;
               const end = ref.current.selectionEnd;
               ref.current.setRangeText(
@@ -94,6 +96,7 @@ export const Toolbar = () => {
               );
             }}
             onSelectItalic={() => {
+              if (!ref.current) return;
               const start = ref.current.selectionStart;
               const end = ref.current.selectionEnd;
               ref.current.setRangeText(
@@ -103,6 +106,7 @@ export const Toolbar = () => {
               );
             }}
             onSelectStrike={() => {
+              if (!ref.current) return;
               const start = ref.current.selectionStart;
               const end = ref.current.selectionEnd;
               ref.current.setRangeText(

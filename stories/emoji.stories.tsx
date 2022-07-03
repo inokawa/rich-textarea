@@ -73,6 +73,7 @@ export const Emoji = () => {
   const name = match?.[1] ?? "";
   const chars = useMemo(() => emoji.search(name).slice(0, MAX_CHARS), [name]);
   const complete = (i: number) => {
+    if (!ref.current || !pos) return;
     const selected = chars[i].emoji;
     ref.current.setRangeText(
       `${selected} `,
@@ -81,7 +82,7 @@ export const Emoji = () => {
       "end"
     );
     setPos(null);
-    setIndex(null);
+    setIndex(0);
   };
 
   return (
@@ -111,7 +112,7 @@ export const Emoji = () => {
             case "Escape":
               e.preventDefault();
               setPos(null);
-              setIndex(null);
+              setIndex(0);
               break;
             default:
               break;
@@ -127,7 +128,7 @@ export const Emoji = () => {
             setIndex(0);
           } else {
             setPos(null);
-            setIndex(null);
+            setIndex(0);
           }
         }}
       />
