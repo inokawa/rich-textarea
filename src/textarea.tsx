@@ -7,14 +7,12 @@ import {
   forwardRef,
   useImperativeHandle,
 } from "react";
+import { useSyncExternalStore } from "use-sync-external-store/shim";
 // @ts-expect-error no type definition
 import rangeAtIndex from "range-at-index";
 import type { Renderer } from "./renderers";
 
-const useForceRefresh = () => {
-  const setState = useState(0)[1];
-  return useCallback(() => setState((p) => p + 1), []);
-};
+const NOOP = () => {};
 
 const STYLE_KEYS: (keyof React.CSSProperties)[] = [
   "direction",
@@ -221,6 +219,36 @@ const stopPropagation = (event: React.MouseEvent) => {
 // for caret position detection
 const CARET_DETECTOR = <span style={{ color: "transparent" }}>{"\u200b"}</span>;
 
+const initSelectionStore = (
+  ref: React.RefObject<HTMLTextAreaElement>,
+  compositionRef: React.RefObject<CompositionEvent | null>
+) => {
+  let listener = NOOP;
+  let cache: [number | null, number | null] = [null, null];
+  return {
+    _subscribe: (callback: () => void) => {
+      listener = callback;
+      return () => {
+        listener = NOOP;
+      };
+    },
+    _update: () => {
+      setTimeout(listener);
+    },
+    _get: (): [number | null, number | null] => {
+      const el = ref.current;
+      const composition = compositionRef.current;
+      const selectionStart = el && getSelectionStart(el, composition);
+      const selectionEnd = el && getSelectionEnd(el, composition);
+      if (cache[0] === selectionStart && cache[1] === selectionEnd) {
+        return cache;
+      }
+      cache = [selectionStart, selectionEnd];
+      return cache;
+    },
+  };
+};
+
 export type CaretPosition =
   | {
       focused: false;
@@ -297,27 +325,23 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     const [[width, height, hPadding, vPadding], setRect] = useState<
       [width: number, height: number, hPadding: number, vPadding: number]
     >([0, 0, 0, 0]);
-    const refresh = useForceRefresh();
     const [focused, setFocused] = useState<boolean>(false);
 
     const compositionRef = useRef<CompositionEvent | null>(null);
     const caretColorRef = useRef("");
     const pointedRef = useRef<HTMLElement | null>(null);
 
-    const selectionStart =
-      ref.current && getSelectionStart(ref.current, compositionRef.current);
-    const selectionEnd =
-      ref.current && getSelectionEnd(ref.current, compositionRef.current);
+    const selectionStore = useState(() =>
+      initSelectionStore(ref, compositionRef)
+    )[0];
+    const [selectionStart, selectionEnd] = useSyncExternalStore(
+      selectionStore._subscribe,
+      selectionStore._get
+    );
+    const updateCaretPosition = selectionStore._update;
 
     const totalWidth = width + hPadding;
     const totalHeight = height + vPadding;
-
-    const setCaretPosition = useCallback(() => {
-      if (!onSelectionChange) return;
-      setTimeout(() => {
-        refresh();
-      });
-    }, [onSelectionChange]);
 
     useImperativeHandle(
       propRef,
@@ -515,9 +539,9 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           onInput={useCallback(
             (e: React.FormEvent<HTMLTextAreaElement>) => {
               onInput?.(e);
-              setCaretPosition();
+              updateCaretPosition();
             },
-            [onInput, setCaretPosition]
+            [onInput, updateCaretPosition]
           )}
           onCompositionStart={useCallback(
             (e: React.CompositionEvent<HTMLTextAreaElement>) => {
@@ -550,9 +574,9 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               }
 
               onKeyDown?.(e);
-              setCaretPosition();
+              updateCaretPosition();
             },
-            [onKeyDown, setCaretPosition]
+            [onKeyDown, updateCaretPosition]
           )}
           onClick={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
@@ -570,7 +594,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           onMouseDown={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
               onMouseDown?.(e);
-              setCaretPosition();
+              updateCaretPosition();
               const textarea = ref.current;
               const backdrop = backdropRef.current;
               if (!textarea || !backdrop) return;
@@ -579,12 +603,12 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
                 dispatchClonedMouseEvent(pointed, e.nativeEvent);
               }
             },
-            [onMouseDown, setCaretPosition]
+            [onMouseDown, updateCaretPosition]
           )}
           onMouseUp={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
               onMouseUp?.(e);
-              setCaretPosition();
+              updateCaretPosition();
               const textarea = ref.current;
               const backdrop = backdropRef.current;
               if (!textarea || !backdrop) return;
@@ -593,7 +617,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
                 dispatchClonedMouseEvent(pointed, e.nativeEvent);
               }
             },
-            [onMouseUp, setCaretPosition]
+            [onMouseUp, updateCaretPosition]
           )}
           onMouseMove={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
