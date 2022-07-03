@@ -46,5 +46,9 @@ export default {
       },
     }),
   ],
-  external: Object.keys(pkg.dependencies),
+  external: (id) =>
+    [
+      ...Object.keys(pkg.dependencies),
+      ...Object.keys(pkg.devDependencies),
+    ].some((d) => id.startsWith(d)),
 };
