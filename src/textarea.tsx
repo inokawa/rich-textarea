@@ -190,28 +190,6 @@ const dispatchMouseOutEvent = (
   prevPointed.current = pointed;
 };
 
-const getSelectionStart = (
-  el: HTMLTextAreaElement,
-  compositionEvent: CompositionEvent | null
-): number => {
-  let pos = el.selectionStart;
-  if (compositionEvent) {
-    pos = Math.min(pos, el.selectionEnd - compositionEvent.data.length);
-  }
-  return pos;
-};
-
-const getSelectionEnd = (
-  el: HTMLTextAreaElement,
-  compositionEvent: CompositionEvent | null
-): number => {
-  let pos = el.selectionEnd;
-  if (compositionEvent) {
-    pos = Math.min(pos, el.selectionStart + compositionEvent.data.length);
-  }
-  return pos;
-};
-
 const stopPropagation = (event: React.MouseEvent) => {
   event.stopPropagation();
 };
@@ -236,13 +214,23 @@ const initSelectionStore = (ref: React.RefObject<HTMLTextAreaElement>) => {
     _setComposition: (comp: CompositionEvent | null) => {
       compositionEvent = comp;
     },
-    _getSelectionStart: () => {
+    _getSelectionStart: (): number | null => {
       const el = ref.current;
-      return el && getSelectionStart(el, compositionEvent);
+      if (!el) return null;
+      let pos = el.selectionStart;
+      if (compositionEvent) {
+        pos = Math.min(pos, el.selectionEnd - compositionEvent.data.length);
+      }
+      return pos;
     },
-    _getSelectionEnd: () => {
+    _getSelectionEnd: (): number | null => {
       const el = ref.current;
-      return el && getSelectionEnd(el, compositionEvent);
+      if (!el) return null;
+      let pos = el.selectionEnd;
+      if (compositionEvent) {
+        pos = Math.min(pos, el.selectionStart + compositionEvent.data.length);
+      }
+      return pos;
     },
     _getSelection: (): [number | null, number | null] => {
       const selectionStart = handle._getSelectionStart();
