@@ -315,7 +315,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     },
     propRef
   ): React.ReactElement => {
-    const ref = useRef<HTMLTextAreaElement>(null);
+    const textAreaRef = useRef<HTMLTextAreaElement>(null);
     const backdropRef = useRef<HTMLDivElement>(null);
     const [[left, top], setPos] = useState<[left: number, top: number]>([0, 0]);
     const [[width, height, hPadding, vPadding], setRect] = useState<
@@ -326,7 +326,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     const caretColorRef = useRef("");
     const pointedRef = useRef<HTMLElement | null>(null);
 
-    const selectionStore = useState(() => initSelectionStore(ref))[0];
+    const selectionStore = useState(() => initSelectionStore(textAreaRef))[0];
     const [selectionStart, selectionEnd] = useSyncExternalStore(
       selectionStore._subscribe,
       selectionStore._getSelection
@@ -338,7 +338,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     useImperativeHandle(
       propRef,
       () => ({
-        ref: ref,
+        ref: textAreaRef,
         get selectionStart() {
           const sel = selectionStore._getSelectionStart();
           if (sel == null) {
@@ -356,36 +356,36 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           }
         },
         focus: () => {
-          if (!ref.current) return;
-          ref.current.focus();
+          if (!textAreaRef.current) return;
+          textAreaRef.current.focus();
         },
         blur: () => {
-          if (!ref.current) return;
-          ref.current.blur();
+          if (!textAreaRef.current) return;
+          textAreaRef.current.blur();
         },
         select: () => {
-          if (!ref.current) return;
-          ref.current.select();
+          if (!textAreaRef.current) return;
+          textAreaRef.current.select();
         },
         setSelectionRange: (...args) => {
-          if (!ref.current) return;
-          ref.current.focus();
-          ref.current.setSelectionRange(...args);
+          if (!textAreaRef.current) return;
+          textAreaRef.current.focus();
+          textAreaRef.current.setSelectionRange(...args);
         },
         setRangeText: (...args) => {
-          if (!ref.current) return;
-          setRangeText(ref.current, ...args);
+          if (!textAreaRef.current) return;
+          setRangeText(textAreaRef.current, ...args);
         },
       }),
-      [ref]
+      [textAreaRef]
     );
 
     useEffect(() => {
-      if (!ref.current) return;
+      const textarea = textAreaRef.current;
+      if (!textarea) return;
       const observer = new ResizeObserver(([entry]) => {
         const contentRect = entry!.contentRect;
-        if (!ref.current) return;
-        const style = getStyle(ref.current);
+        const style = getStyle(textarea);
         setRect([
           contentRect.width,
           contentRect.height,
@@ -393,14 +393,14 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           getVerticalPadding(style),
         ]);
       });
-      observer.observe(ref.current);
+      observer.observe(textarea);
       return () => {
         observer.disconnect();
       };
     }, []);
 
     useEffect(() => {
-      const textarea = ref.current;
+      const textarea = textAreaRef.current;
       const backdrop = backdropRef.current;
       if (!backdrop || !textarea) return;
       const s = getStyle(textarea);
@@ -451,7 +451,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     }, [focused, selectionStart, selectionEnd]);
 
     useEffect(() => {
-      const textarea = ref.current;
+      const textarea = textAreaRef.current;
       if (!autoHeight || !textarea) return;
       textarea.style.height = "auto";
       textarea.style.height = `${textarea.scrollHeight}px`;
@@ -517,7 +517,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         </div>
         <textarea
           {...props}
-          ref={ref}
+          ref={textAreaRef}
           value={value}
           style={useMemo(
             () => ({
@@ -581,7 +581,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           onClick={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
               onClick?.(e);
-              const textarea = ref.current;
+              const textarea = textAreaRef.current;
               const backdrop = backdropRef.current;
               if (!textarea || !backdrop) return;
               const pointed = getPointedElement(textarea, backdrop, e);
@@ -595,12 +595,13 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
               onMouseDown?.(e);
               selectionStore._update();
+              const MOUSE_UP = "mouseup";
               const mouseup = () => {
                 selectionStore._update();
-                document.removeEventListener("mouseup", mouseup);
+                document.removeEventListener(MOUSE_UP, mouseup);
               };
-              document.addEventListener("mouseup", mouseup);
-              const textarea = ref.current;
+              document.addEventListener(MOUSE_UP, mouseup);
+              const textarea = textAreaRef.current;
               const backdrop = backdropRef.current;
               if (!textarea || !backdrop) return;
               const pointed = getPointedElement(textarea, backdrop, e);
@@ -613,7 +614,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           onMouseUp={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
               onMouseUp?.(e);
-              const textarea = ref.current;
+              const textarea = textAreaRef.current;
               const backdrop = backdropRef.current;
               if (!textarea || !backdrop) return;
               const pointed = getPointedElement(textarea, backdrop, e);
@@ -626,7 +627,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           onMouseMove={useCallback(
             (e: React.MouseEvent<HTMLTextAreaElement>) => {
               onMouseMove?.(e);
-              const textarea = ref.current;
+              const textarea = textAreaRef.current;
               const backdrop = backdropRef.current;
               if (!textarea || !backdrop) return;
               const pointed = getPointedElement(textarea, backdrop, e);
