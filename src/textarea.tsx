@@ -97,25 +97,6 @@ const getHorizontalPadding = (style: CSSStyleDeclaration): number => {
   );
 };
 
-const setRangeText = (
-  el: HTMLTextAreaElement,
-  text: string,
-  start: number,
-  end: number,
-  preserve?: SelectionMode
-) => {
-  if (el.setRangeText) {
-    el.setRangeText(text, start, end, preserve);
-  } else {
-    el.focus();
-    el.selectionStart = start;
-    el.selectionEnd = end;
-    document.execCommand("insertText", false, text);
-  }
-  // Invoke onChange to lift state up
-  el.dispatchEvent(new Event("input", { bubbles: true }));
-};
-
 const getPointedElement = (
   textarea: HTMLTextAreaElement,
   backdrop: HTMLDivElement,
@@ -372,9 +353,24 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           textAreaRef.current.focus();
           textAreaRef.current.setSelectionRange(...args);
         },
-        setRangeText: (...args) => {
-          if (!textAreaRef.current) return;
-          setRangeText(textAreaRef.current, ...args);
+        setRangeText: (
+          text: string,
+          start: number,
+          end: number,
+          preserve?: SelectionMode
+        ) => {
+          const el = textAreaRef.current;
+          if (!el) return;
+          if (el.setRangeText) {
+            el.setRangeText(text, start, end, preserve);
+          } else {
+            el.focus();
+            el.selectionStart = start;
+            el.selectionEnd = end;
+            document.execCommand("insertText", false, text);
+          }
+          // Invoke onChange to lift state up
+          el.dispatchEvent(new Event("input", { bubbles: true }));
         },
       }),
       [textAreaRef]
