@@ -14,7 +14,7 @@ import type { Renderer } from "./renderers";
 
 const NOOP = () => {};
 
-const STYLE_KEYS: (keyof React.CSSProperties)[] = [
+const TEXT_STYLE_KEYS: (keyof React.CSSProperties)[] = [
   "direction",
   "padding",
   "paddingTop",
@@ -399,15 +399,18 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       const textarea = textAreaRef.current;
       const backdrop = backdropRef.current;
       if (!backdrop || !textarea) return;
-      const s = getStyle(textarea);
+      const computedTextAreaStyle = getStyle(textarea);
       const textareaStyle = textarea.style;
       const backdropStyle = backdrop.style;
       if (!caretColorRef.current) {
-        caretColorRef.current = getPropertyValue(s, "color");
+        caretColorRef.current = getPropertyValue(
+          computedTextAreaStyle,
+          "color"
+        );
       }
 
-      STYLE_KEYS.forEach((k) => {
-        backdropStyle[k as any] = s[k as any]!;
+      TEXT_STYLE_KEYS.forEach((k) => {
+        backdropStyle[k as any] = computedTextAreaStyle[k as any]!;
       });
       textareaStyle.color = backdropStyle.borderColor = "transparent";
       textareaStyle.caretColor = style?.caretColor || caretColorRef.current;
@@ -476,9 +479,9 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               height: totalHeight,
             };
             if (!style) return s;
-            if (style.background) s.background = style.background;
-            if (style.backgroundColor)
-              s.backgroundColor = style.backgroundColor;
+            (["background", "backgroundColor"] as const).forEach((k) => {
+              if (style[k]) s[k] = style[k] as any;
+            });
             return s;
           }, [totalWidth, totalHeight, style])}
         >
