@@ -116,3 +116,15 @@ For other props not mentioned below will be passed to textarea.
 | select            |                                        | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement)                                                          |
 | setSelectionRange |                                        | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement)                                                          |
 | setRangeText      |                                        | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement) but has fallback to `document.execCommand("insertText")` |
+
+## Contribute
+
+All contributions are welcome!
+If you have any feature requests or improvements, please create a [issue](https://github.com/inokawa/rich-textarea/issues) or [PR](https://github.com/inokawa/rich-textarea/pulls).
+
+### Making a Pull Request
+
+1. Clone this repo.
+2. Run `npm install`.
+3. Commit your fix.
+4. Make a PR and confirm all the CI checks passed.
