@@ -35,7 +35,7 @@
     "@textlint/textlint-plugin-text": "12.1.0",
     "@types/jest": "27.4.0",
     "@types/node-emoji": "1.8.1",
-    "@types/react": "18.0.14",
+    "@types/react": "18.0.15",
     "@types/react-highlight-words": "0.16.4",
     "@types/use-sync-external-store": "0.0.3",
     "babel-plugin-replace-import-extensions": "1.0.1",
