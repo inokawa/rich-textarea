@@ -119,8 +119,8 @@ For other props not mentioned below will be passed to textarea.
 
 ## Contribute
 
-All contributions are welcome!
-If you have any feature requests or improvements, please create a [issue](https://github.com/inokawa/rich-textarea/issues) or [PR](https://github.com/inokawa/rich-textarea/pulls).
+All contributions are welcome.
+If you find a problem, feel free to create an [issue](https://github.com/inokawa/rich-textarea/issues) or a [PR](https://github.com/inokawa/rich-textarea/pulls).
 
 ### Making a Pull Request
 
