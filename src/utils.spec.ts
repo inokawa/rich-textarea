@@ -1,3 +1,4 @@
+import { it, describe, expect } from "@jest/globals";
 import { merge } from "./utils";
 
 describe("merge", () => {

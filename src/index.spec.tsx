@@ -1,3 +1,4 @@
+import { it, describe, expect, afterEach } from "@jest/globals";
 import { cleanup, render } from "@testing-library/react";
 import { RichTextarea, createRegexRenderer } from ".";
 
