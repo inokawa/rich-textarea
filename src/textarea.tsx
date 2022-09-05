@@ -6,6 +6,7 @@ import {
   useCallback,
   forwardRef,
   useImperativeHandle,
+  useLayoutEffect,
 } from "react";
 import { useSyncExternalStore } from "use-sync-external-store/shim";
 // @ts-expect-error no type definition
@@ -395,7 +396,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       };
     }, []);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       const textarea = textAreaRef.current;
       const backdrop = backdropRef.current;
       if (!backdrop || !textarea) return;
