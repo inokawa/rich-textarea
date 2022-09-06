@@ -18,7 +18,7 @@ https://inokawa.github.io/rich-textarea/
 
 - **Styleable texts:** Not just highlighting texts like similar libraries, this library also supports colorizing, decorating and more. Regex or any tokenizers can be used.
 - **Easy to interact with events:** You can get caret position and can catch some mouse events on texts, which are useful to display something reflects user actions.
-- **Compatible with textarea:** Except added features, this library is designed to behave as native [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) as much as possible. If not worked properly, please report it in an [issue](https://github.com/inokawa/rich-textarea/issues) or [PR](https://github.com/inokawa/rich-textarea/pulls).
+- **Compatible with textarea:** Except added features, this library is designed to behave as native [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) as much as possible. Supports [formik](https://github.com/jaredpalmer/formik). If not worked properly, please report it in an [issue](https://github.com/inokawa/rich-textarea/issues) or [PR](https://github.com/inokawa/rich-textarea/pulls).
 - **IME composition handling:** IME related events have some cross browser problems. This library handles them for easy to use.
 - **Lightweight:** Trying to support many usecases but also keep bundle size small. Currently [about 3kB (gzipped)](https://bundlephobia.com/package/rich-textarea).
 
