@@ -17,7 +17,7 @@ export const WithFormik = () => {
         return { text: "This field is required" };
       }
       if (!values.text.toLowerCase().includes("formik")) {
-        return { text: "Text must be include formik" };
+        return { text: "Text must include formik" };
       }
     },
   });
@@ -55,15 +55,11 @@ export const WithReactHookForm = () => {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      text: "Hello react-hook-form",
-    },
-  });
-  const onSubmit = (data) => alert(JSON.stringify(data));
+  } = useForm();
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}>
       <Controller
+        defaultValue="Hello react-hook-form"
         control={control}
         name="text"
         rules={{
@@ -99,7 +95,7 @@ export const WithReactHookForm = () => {
         <span style={{ color: "red" }}>This field is required</span>
       )}
       {errors.text?.type === "validate" && (
-        <span style={{ color: "red" }}>Text must be include hook</span>
+        <span style={{ color: "red" }}>Text must include hook</span>
       )}
       <button type="submit">submit</button>
     </form>
