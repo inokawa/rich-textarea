@@ -61,11 +61,6 @@ export const Toolbar = () => {
         value={text}
         style={style}
         onChange={(e) => setText(e.target.value)}
-        onBlur={() => {
-          if (!ref.current) return;
-          ref.current.setSelectionRange(0, 0);
-          ref.current.blur();
-        }}
         onSelectionChange={(p) => {
           setSelection([
             p.selectionStart,
