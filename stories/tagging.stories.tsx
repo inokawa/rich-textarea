@@ -5,15 +5,65 @@ export default {
   title: "examples",
 };
 
+const INPUT_HEIGHT = 20;
+const INPUT_WIDTH = 400;
+
 const style: React.CSSProperties = {
-  width: "400px",
+  height: INPUT_HEIGHT,
+  width: INPUT_WIDTH,
   whiteSpace: "pre",
   overflowWrap: "normal",
   overflowX: "auto",
   overflowY: "hidden",
+  resize: "none",
 };
 
 const SPACER = " ";
+
+const Menu = ({
+  items,
+  onSelect,
+}: {
+  items: string[];
+  onSelect: (name: string) => void;
+}) => {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: INPUT_HEIGHT + 4,
+        left: 0,
+        width: INPUT_WIDTH,
+        fontSize: "12px",
+        border: "solid 1px gray",
+        borderRadius: "3px",
+      }}
+    >
+      <div
+        style={{
+          borderBottom: "solid 1px gray",
+        }}
+      >
+        Current tags
+      </div>
+      <ul
+        style={{
+          listStyleType: "none",
+          margin: 0,
+          padding: 0,
+          cursor: "pointer",
+          background: "white",
+        }}
+      >
+        {items.map((item) => (
+          <li key={item} onMouseDown={() => onSelect(item)}>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 const Tag = ({
   children,
@@ -41,6 +91,8 @@ export const Tagging = () => {
   const [text, setText] = useState("");
   const [pos, setPos] = useState<number | null>(null);
 
+  const [focused, setFocused] = useState(false);
+
   const tagsText = tags.join(SPACER) + (tags.length ? SPACER : "");
   const textStart = tagsText.length;
   const tagIndex =
@@ -60,12 +112,14 @@ export const Tagging = () => {
         )[0];
 
   return (
-    <div>
+    <div style={{ position: "relative", padding: 0 }}>
       <RichTextarea
         rows={1}
         style={style}
         onChange={(e) => setText(e.target.value.slice(textStart))}
         value={tagsText + text}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
         onKeyDown={(e) => {
           if (!pos) return;
           switch (e.code) {
@@ -119,6 +173,14 @@ export const Tagging = () => {
           ];
         }}
       </RichTextarea>
+      {focused && !!tags.length && (
+        <Menu
+          items={tags}
+          onSelect={(text) => {
+            setTags((prev) => prev.filter((p) => p !== text));
+          }}
+        />
+      )}
     </div>
   );
 };
