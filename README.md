@@ -106,16 +106,14 @@ For other props not mentioned below will be passed to textarea.
 
 ## Methods
 
-| Name              | Type                                   | Description                                                                                                                                       |
-| ----------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ref               | `React.RefObject<HTMLTextAreaElement>` | Ref of textarea                                                                                                                                   |
-| selectionStart    | `number`                               | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/) but has handling of composition event                                       |
-| selectionEnd      | `number`                               | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/) but has handling of composition event                                       |
-| focus             |                                        | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement)                                                          |
-| blur              |                                        | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement)                                                          |
-| select            |                                        | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement)                                                          |
-| setSelectionRange |                                        | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement)                                                          |
-| setRangeText      |                                        | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement) but has fallback to `document.execCommand("insertText")` |
+All the others not mentioned are proxied to ref of [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement).
+
+| Name              | Type     | Description                                                                                                                                       |
+| ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| selectionStart    | `number` | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/) but has handling of composition event                                       |
+| selectionEnd      | `number` | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/) but has handling of composition event                                       |
+| setSelectionRange |          | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement) but with focus                                           |
+| setRangeText      |          | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement) but has fallback to `document.execCommand("insertText")` |
 
 ## Contribute
 

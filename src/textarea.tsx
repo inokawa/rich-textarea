@@ -242,25 +242,7 @@ export type CaretPosition =
       height: number;
     };
 
-export type RichTextareaHandle = {
-  ref: React.RefObject<HTMLTextAreaElement>;
-  selectionStart: number;
-  selectionEnd: number;
-  focus: () => void;
-  blur: () => void;
-  select: () => void;
-  setSelectionRange: (
-    start: number,
-    end: number,
-    direction?: "forward" | "backward" | "none"
-  ) => void;
-  setRangeText: (
-    text: string,
-    start: number,
-    end: number,
-    preserve?: SelectionMode
-  ) => void;
-};
+export type RichTextareaHandle = HTMLTextAreaElement;
 
 export type RichTextareaProps = Omit<
   JSX.IntrinsicElements["textarea"],
@@ -319,61 +301,60 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
 
     useImperativeHandle(
       propRef,
-      () => ({
-        ref: textAreaRef,
-        get selectionStart() {
-          const sel = selectionStore._getSelectionStart();
-          if (sel == null) {
-            return 0;
-          } else {
-            return sel;
-          }
-        },
-        get selectionEnd() {
-          const sel = selectionStore._getSelectionEnd();
-          if (sel == null) {
-            return 0;
-          } else {
-            return sel;
-          }
-        },
-        focus: () => {
-          if (!textAreaRef.current) return;
-          textAreaRef.current.focus();
-        },
-        blur: () => {
-          if (!textAreaRef.current) return;
-          textAreaRef.current.blur();
-        },
-        select: () => {
-          if (!textAreaRef.current) return;
-          textAreaRef.current.select();
-        },
-        setSelectionRange: (...args) => {
-          if (!textAreaRef.current) return;
-          textAreaRef.current.focus();
-          textAreaRef.current.setSelectionRange(...args);
-        },
-        setRangeText: (
-          text: string,
-          start: number,
-          end: number,
-          preserve?: SelectionMode
-        ) => {
-          const el = textAreaRef.current;
-          if (!el) return;
-          if (el.setRangeText) {
-            el.setRangeText(text, start, end, preserve);
-          } else {
+      () => {
+        const el = textAreaRef.current!;
+        const overrides = {
+          get selectionStart() {
+            const sel = selectionStore._getSelectionStart();
+            if (sel == null) {
+              return 0;
+            } else {
+              return sel;
+            }
+          },
+          get selectionEnd() {
+            const sel = selectionStore._getSelectionEnd();
+            if (sel == null) {
+              return 0;
+            } else {
+              return sel;
+            }
+          },
+          setSelectionRange: (
+            ...args: Parameters<HTMLTextAreaElement["setSelectionRange"]>
+          ) => {
             el.focus();
-            el.selectionStart = start;
-            el.selectionEnd = end;
-            document.execCommand("insertText", false, text);
-          }
-          // Invoke onChange to lift state up
-          el.dispatchEvent(new Event("input", { bubbles: true }));
-        },
-      }),
+            el.setSelectionRange(...args);
+          },
+          setRangeText: (
+            text: string,
+            start: number,
+            end: number,
+            preserve?: SelectionMode
+          ) => {
+            if (el.setRangeText) {
+              el.setRangeText(text, start, end, preserve);
+            } else {
+              el.focus();
+              el.selectionStart = start;
+              el.selectionEnd = end;
+              document.execCommand("insertText", false, text);
+            }
+            // Invoke onChange to lift state up
+            el.dispatchEvent(new Event("input", { bubbles: true }));
+          },
+        };
+
+        return new Proxy(el, {
+          get(target, prop: keyof HTMLTextAreaElement) {
+            if ((overrides as any)[prop]) {
+              return (overrides as any)[prop];
+            }
+            const value = target[prop];
+            return typeof value === "function" ? value.bind(target) : value;
+          },
+        }) as HTMLTextAreaElement;
+      },
       [textAreaRef]
     );
 
