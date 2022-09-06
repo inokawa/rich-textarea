@@ -378,6 +378,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     }, []);
 
     useLayoutEffect(() => {
+      // Sync backdrop style
       const textarea = textAreaRef.current;
       const backdrop = backdropRef.current;
       if (!backdrop || !textarea) return;
