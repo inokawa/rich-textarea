@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Renderer, RichTextarea } from "../src";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/dracula";
+import prettier from "prettier";
+import parser from "prettier/parser-typescript";
 
 export default {
   title: "examples",
@@ -50,13 +52,28 @@ function Example() {
 }`
   );
   return (
-    <RichTextarea
-      style={style}
-      onChange={(e) => setText(e.target.value)}
-      value={text}
-      autoHeight
-    >
-      {renderer}
-    </RichTextarea>
+    <div>
+      <div>
+        <button
+          onClick={() =>
+            setText((prev) =>
+              prettier.format(prev, { parser: "typescript", plugins: [parser] })
+            )
+          }
+        >
+          format
+        </button>
+      </div>
+      <div>
+        <RichTextarea
+          style={style}
+          onChange={(e) => setText(e.target.value)}
+          value={text}
+          autoHeight
+        >
+          {renderer}
+        </RichTextarea>
+      </div>
+    </div>
   );
 };

@@ -45,6 +45,7 @@
     "kuromojin": "3.0.0",
     "monaco-diff": "1.1.1",
     "node-emoji": "1.11.0",
+    "prettier": "2.7.1",
     "prism-react-renderer": "1.3.5",
     "react": "18.1.0",
     "react-dom": "18.1.0",
