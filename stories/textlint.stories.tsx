@@ -4,35 +4,42 @@ import { RichTextarea } from "../src";
 import { TextlintKernel, TextlintMessage } from "@textlint/kernel";
 import { TextlintKernelOptions } from "@textlint/kernel/lib/src/textlint-kernel-interface";
 
+import pluginText from "@textlint/textlint-plugin-text";
+import ruleSentenceLength from "textlint-rule-sentence-length";
+import ruleNoNfd from "textlint-rule-no-nfd";
+import ruleNoInvalidControlCharacter from "@textlint-rule/textlint-rule-no-invalid-control-character";
+import ruleNoZeroWidthSpaces from "textlint-rule-no-zero-width-spaces";
+import noKangxiRadicals from "textlint-rule-no-kangxi-radicals";
+
 const kernel = new TextlintKernel();
 const options: TextlintKernelOptions = {
   ext: ".txt",
   plugins: [
     {
       pluginId: "text",
-      plugin: require("@textlint/textlint-plugin-text").default,
+      plugin: pluginText,
     },
   ],
   rules: [
     {
       ruleId: "sentence-length",
-      rule: require("textlint-rule-sentence-length").default,
+      rule: ruleSentenceLength,
     },
     {
       ruleId: "no-nfd",
-      rule: require("textlint-rule-no-nfd"),
+      rule: ruleNoNfd,
     },
     {
       ruleId: "no-invalid-control-character",
-      rule: require("@textlint-rule/textlint-rule-no-invalid-control-character"),
+      rule: ruleNoInvalidControlCharacter,
     },
     {
       ruleId: "no-zero-width-spaces",
-      rule: require("textlint-rule-no-zero-width-spaces").default,
+      rule: ruleNoZeroWidthSpaces,
     },
     {
       ruleId: "no-kangxi-radicals",
-      rule: require("textlint-rule-no-kangxi-radicals").default,
+      rule: noKangxiRadicals,
     },
   ],
 };
@@ -54,8 +61,11 @@ const Mark = ({
   children: string;
 }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const [tooltip, setTooltip] =
-    useState<{ top: number; left: number; description: string } | null>(null);
+  const [tooltip, setTooltip] = useState<{
+    top: number;
+    left: number;
+    description: string;
+  } | null>(null);
 
   return (
     <span
