@@ -1,9 +1,9 @@
 import { StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { RichTextarea, createRegexRenderer } from "../src";
+import { RichTextarea, createRegexRenderer } from "../../src";
 
 export default {
-  title: "examples",
+  component: RichTextarea,
 };
 
 const style = { width: "400px", height: "300px" };

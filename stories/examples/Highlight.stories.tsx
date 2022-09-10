@@ -1,11 +1,11 @@
 import { StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { RichTextarea } from "../src";
-import { LOREM } from "./mocks";
+import { RichTextarea } from "../../src";
+import { LOREM } from "../mocks";
 import Highlighter from "react-highlight-words";
 
 export default {
-  title: "examples",
+  component: RichTextarea,
 };
 
 const style = { width: "600px", height: "400px" };

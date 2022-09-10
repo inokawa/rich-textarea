@@ -1,11 +1,11 @@
 import { StoryObj } from "@storybook/react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { RichTextarea } from "../src";
+import { RichTextarea } from "../../src";
 import { getTokenizer, Tokenizer, KuromojiToken } from "kuromojin";
 
 export default {
-  title: "examples",
+  component: RichTextarea,
 };
 
 const style: React.CSSProperties = {

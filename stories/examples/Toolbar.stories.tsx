@@ -1,11 +1,11 @@
 import { StoryObj } from "@storybook/react";
 import { useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { RichTextarea } from "../src";
-import { RichTextareaHandle } from "../src";
+import { RichTextarea } from "../../src";
+import { RichTextareaHandle } from "../../src";
 
 export default {
-  title: "examples",
+  component: RichTextarea,
 };
 
 const style = { width: "400px", height: "300px" };

@@ -1,7 +1,7 @@
 import { StoryObj } from "@storybook/react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { RichTextarea } from "../src";
+import { RichTextarea } from "../../src";
 import { TextlintKernel, TextlintMessage } from "@textlint/kernel";
 import { TextlintKernelOptions } from "@textlint/kernel/lib/src/textlint-kernel-interface";
 
@@ -46,7 +46,7 @@ const options: TextlintKernelOptions = {
 };
 
 export default {
-  title: "examples",
+  component: RichTextarea,
 };
 
 const style: React.CSSProperties = {

@@ -1,9 +1,9 @@
 import { StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { RichTextarea } from "../src";
+import { RichTextarea } from "../../src";
 
 export default {
-  title: "examples",
+  component: RichTextarea,
 };
 
 const INPUT_HEIGHT = 20;

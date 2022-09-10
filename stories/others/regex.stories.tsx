@@ -1,10 +1,10 @@
 import { StoryObj } from "@storybook/react";
 import { useCallback, useState } from "react";
-import { createRegexRenderer, RichTextarea } from "../src";
-import { LOREM } from "./mocks";
+import { createRegexRenderer, RichTextarea } from "../../src";
+import { LOREM } from "../mocks";
 
 export default {
-  title: "regex",
+  component: RichTextarea,
 };
 
 const style = { width: "600px", height: "400px" };

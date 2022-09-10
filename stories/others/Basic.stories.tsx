@@ -1,9 +1,9 @@
 import { StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { RichTextarea } from "../src";
+import { RichTextarea } from "../../src";
 
 export default {
-  title: "render",
+  component: RichTextarea,
 };
 
 const style = { width: "600px", height: "400px" };

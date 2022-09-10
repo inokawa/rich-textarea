@@ -1,13 +1,13 @@
 import { StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { Renderer, RichTextarea } from "../src";
+import { Renderer, RichTextarea } from "../../src";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/dracula";
 import prettier from "prettier";
 import parser from "prettier/parser-typescript";
 
 export default {
-  title: "examples",
+  component: RichTextarea,
 };
 
 const style: React.CSSProperties = {
