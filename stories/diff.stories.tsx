@@ -1,3 +1,4 @@
+import type { StoryObj } from "@storybook/react";
 import { useState, useMemo } from "react";
 import { Renderer, RichTextarea } from "../src";
 import diff from "monaco-diff";
@@ -143,34 +144,36 @@ const createDiffRenderer =
     });
   };
 
-export const Diff = () => {
-  const [baseText, setBaseText] = useState(
-    "This line is removed on the right.\njust some text\nabcd\nefgh\nSome more text\nSome more text\nSome more text"
-  );
-  const [targetText, setTargetText] = useState(
-    "just some text\nabcz\nzzzzefgh\nSome more text.\nThis line is removed on the left."
-  );
-  const tokens = useMemo(
-    () => diff(baseText.split("\n"), targetText.split("\n")),
-    [baseText, targetText]
-  );
+export const Diff: StoryObj = {
+  render: () => {
+    const [baseText, setBaseText] = useState(
+      "This line is removed on the right.\njust some text\nabcd\nefgh\nSome more text\nSome more text\nSome more text"
+    );
+    const [targetText, setTargetText] = useState(
+      "just some text\nabcz\nzzzzefgh\nSome more text.\nThis line is removed on the left."
+    );
+    const tokens = useMemo(
+      () => diff(baseText.split("\n"), targetText.split("\n")),
+      [baseText, targetText]
+    );
 
-  return (
-    <div>
-      <RichTextarea
-        style={style}
-        onChange={(e) => setBaseText(e.target.value)}
-        value={baseText}
-      >
-        {createDiffRenderer(tokens, "base")}
-      </RichTextarea>
-      <RichTextarea
-        style={style}
-        onChange={(e) => setTargetText(e.target.value)}
-        value={targetText}
-      >
-        {createDiffRenderer(tokens, "target")}
-      </RichTextarea>
-    </div>
-  );
+    return (
+      <div>
+        <RichTextarea
+          style={style}
+          onChange={(e) => setBaseText(e.target.value)}
+          value={baseText}
+        >
+          {createDiffRenderer(tokens, "base")}
+        </RichTextarea>
+        <RichTextarea
+          style={style}
+          onChange={(e) => setTargetText(e.target.value)}
+          value={targetText}
+        >
+          {createDiffRenderer(tokens, "target")}
+        </RichTextarea>
+      </div>
+    );
+  },
 };

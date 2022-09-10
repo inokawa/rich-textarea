@@ -1,3 +1,4 @@
+import { StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { Renderer, RichTextarea } from "../src";
 import Highlight, { defaultProps } from "prism-react-renderer";
@@ -34,9 +35,10 @@ const renderer: Renderer = (value) => {
   );
 };
 
-export const Prism = () => {
-  const [text, setText] = useState(
-    `import React, { useState } from "react";
+export const Prism: StoryObj = {
+  render: () => {
+    const [text, setText] = useState(
+      `import React, { useState } from "react";
 
 function Example() {
   const [count, setCount] = useState(0);
@@ -50,30 +52,34 @@ function Example() {
     </div>
   );
 }`
-  );
-  return (
-    <div>
+    );
+    return (
       <div>
-        <button
-          onClick={() =>
-            setText((prev) =>
-              prettier.format(prev, { parser: "typescript", plugins: [parser] })
-            )
-          }
-        >
-          format
-        </button>
+        <div>
+          <button
+            onClick={() =>
+              setText((prev) =>
+                prettier.format(prev, {
+                  parser: "typescript",
+                  plugins: [parser],
+                })
+              )
+            }
+          >
+            format
+          </button>
+        </div>
+        <div>
+          <RichTextarea
+            style={style}
+            onChange={(e) => setText(e.target.value)}
+            value={text}
+            autoHeight
+          >
+            {renderer}
+          </RichTextarea>
+        </div>
       </div>
-      <div>
-        <RichTextarea
-          style={style}
-          onChange={(e) => setText(e.target.value)}
-          value={text}
-          autoHeight
-        >
-          {renderer}
-        </RichTextarea>
-      </div>
-    </div>
-  );
+    );
+  },
 };

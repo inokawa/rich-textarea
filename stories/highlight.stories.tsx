@@ -1,3 +1,4 @@
+import { StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { RichTextarea } from "../src";
 import { LOREM } from "./mocks";
@@ -9,32 +10,34 @@ export default {
 
 const style = { width: "600px", height: "400px" };
 
-export const Highlight = () => {
-  const [text, setText] = useState(LOREM);
-  const [searchText, setSearchText] = useState("dolor");
-  return (
-    <div>
+export const Highlight: StoryObj = {
+  render: () => {
+    const [text, setText] = useState(LOREM);
+    const [searchText, setSearchText] = useState("dolor");
+    return (
       <div>
-        <label htmlFor="search">input search word: </label>
-        <input
-          name="search"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-      </div>
-      <RichTextarea
-        style={style}
-        onChange={(e) => setText(e.target.value)}
-        value={text}
-      >
-        {(v) => (
-          <Highlighter
-            searchWords={searchText.split(" ")}
-            autoEscape={true}
-            textToHighlight={v}
+        <div>
+          <label htmlFor="search">input search word: </label>
+          <input
+            name="search"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
           />
-        )}
-      </RichTextarea>
-    </div>
-  );
+        </div>
+        <RichTextarea
+          style={style}
+          onChange={(e) => setText(e.target.value)}
+          value={text}
+        >
+          {(v) => (
+            <Highlighter
+              searchWords={searchText.split(" ")}
+              autoEscape={true}
+              textToHighlight={v}
+            />
+          )}
+        </RichTextarea>
+      </div>
+    );
+  },
 };

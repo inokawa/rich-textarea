@@ -1,3 +1,4 @@
+import { StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { RichTextarea, createRegexRenderer } from "../src";
 
@@ -18,20 +19,22 @@ const regexRenderer = createRegexRenderer([
   ],
 ]);
 
-export const Url = () => {
-  const [text, setText] = useState(
-    `Click this url https://github.com/inokawa/rich-textarea !\n\n`
-  );
+export const Url: StoryObj = {
+  render: () => {
+    const [text, setText] = useState(
+      `Click this url https://github.com/inokawa/rich-textarea !\n\n`
+    );
 
-  return (
-    <div>
-      <RichTextarea
-        style={style}
-        onChange={(e) => setText(e.target.value)}
-        value={text}
-      >
-        {regexRenderer}
-      </RichTextarea>
-    </div>
-  );
+    return (
+      <div>
+        <RichTextarea
+          style={style}
+          onChange={(e) => setText(e.target.value)}
+          value={text}
+        >
+          {regexRenderer}
+        </RichTextarea>
+      </div>
+    );
+  },
 };

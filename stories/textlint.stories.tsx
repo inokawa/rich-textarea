@@ -1,3 +1,4 @@
+import { StoryObj } from "@storybook/react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { RichTextarea } from "../src";
@@ -106,61 +107,63 @@ const Mark = ({
   );
 };
 
-export const Textlint = () => {
-  const [text, setText] = useState(
-    "⾼齢者の活躍と地域における⽀えあいの\u0019推進\u0010。\nホ゜ケット エンシ゛ン\nテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト"
-  );
+export const Textlint: StoryObj = {
+  render: () => {
+    const [text, setText] = useState(
+      "⾼齢者の活躍と地域における⽀えあいの\u0019推進\u0010。\nホ゜ケット エンシ゛ン\nテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト"
+    );
 
-  const [tokens, setTokens] = useState<TextlintMessage[]>([]);
-  useEffect(() => {
-    (async () => {
-      const res = await kernel.lintText(text, options);
-      setTokens(res.messages);
-    })();
-  }, [text]);
-  return (
-    <div style={{ marginTop: 16 }}>
-      <RichTextarea
-        style={style}
-        onChange={(e) => setText(e.target.value)}
-        value={text}
-      >
-        {(v) => {
-          if (!tokens.length) return v;
-          const nodes: (React.ReactElement | string)[] = [];
-          const tokensByLine = tokens.reduce((acc, t) => {
-            if (!acc[t.line]) acc[t.line] = [];
-            acc[t.line].push(t);
-            return acc;
-          }, {} as { [key: number]: TextlintMessage[] });
-          v.split("\n").forEach((l, i) => {
-            let res: (React.ReactElement | string)[] = [l];
-            if (tokensByLine[i + 1]) {
-              const texts: (React.ReactElement | string)[] = [];
-              let prevEnd = 0;
-              let prevStart = 0;
-              for (const token of tokensByLine[i + 1]) {
-                const start = token.column - 1;
-                const end = start + 1;
-                texts.push(l.slice(prevEnd, start));
-                texts.push(
-                  <Mark key={start} token={token}>
-                    {l.slice(start, end)}
-                  </Mark>
-                );
-                prevEnd = end;
-                prevStart = start;
+    const [tokens, setTokens] = useState<TextlintMessage[]>([]);
+    useEffect(() => {
+      (async () => {
+        const res = await kernel.lintText(text, options);
+        setTokens(res.messages);
+      })();
+    }, [text]);
+    return (
+      <div style={{ marginTop: 16 }}>
+        <RichTextarea
+          style={style}
+          onChange={(e) => setText(e.target.value)}
+          value={text}
+        >
+          {(v) => {
+            if (!tokens.length) return v;
+            const nodes: (React.ReactElement | string)[] = [];
+            const tokensByLine = tokens.reduce((acc, t) => {
+              if (!acc[t.line]) acc[t.line] = [];
+              acc[t.line].push(t);
+              return acc;
+            }, {} as { [key: number]: TextlintMessage[] });
+            v.split("\n").forEach((l, i) => {
+              let res: (React.ReactElement | string)[] = [l];
+              if (tokensByLine[i + 1]) {
+                const texts: (React.ReactElement | string)[] = [];
+                let prevEnd = 0;
+                let prevStart = 0;
+                for (const token of tokensByLine[i + 1]) {
+                  const start = token.column - 1;
+                  const end = start + 1;
+                  texts.push(l.slice(prevEnd, start));
+                  texts.push(
+                    <Mark key={start} token={token}>
+                      {l.slice(start, end)}
+                    </Mark>
+                  );
+                  prevEnd = end;
+                  prevStart = start;
+                }
+                texts.push(l.slice(prevEnd));
+                res = texts;
               }
-              texts.push(l.slice(prevEnd));
-              res = texts;
-            }
-            res.push(" ");
-            nodes.push(<div key={i}>{res}</div>);
-          });
+              res.push(" ");
+              nodes.push(<div key={i}>{res}</div>);
+            });
 
-          return nodes;
-        }}
-      </RichTextarea>
-    </div>
-  );
+            return nodes;
+          }}
+        </RichTextarea>
+      </div>
+    );
+  },
 };
