@@ -29,7 +29,7 @@
     "@storybook/addon-essentials": "6.5.10",
     "@storybook/addon-links": "6.5.10",
     "@storybook/react": "6.5.10",
-    "@storybook/test-runner": "0.7.0",
+    "@storybook/test-runner": "0.7.2",
     "@testing-library/react": "13.1.1",
     "@textlint/kernel": "12.1.0",
     "@textlint/textlint-plugin-text": "12.1.0",
