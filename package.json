@@ -33,7 +33,7 @@
     "@testing-library/react": "13.1.1",
     "@textlint/kernel": "12.1.0",
     "@textlint/textlint-plugin-text": "12.1.0",
-    "@types/node-emoji": "1.8.1",
+    "@types/node-emoji": "1.8.2",
     "@types/react": "18.0.18",
     "@types/react-highlight-words": "0.16.4",
     "@types/use-sync-external-store": "0.0.3",
