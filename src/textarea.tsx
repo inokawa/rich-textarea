@@ -184,19 +184,19 @@ const initSelectionStore = (ref: React.RefObject<HTMLTextAreaElement>) => {
   let cache: [number | null, number | null] = [null, null];
   let compositionEvent: CompositionEvent | null = null;
   const handle = {
-    _subscribe: (callback: () => void) => {
+    _subscribe(callback: () => void) {
       listener = callback;
       return () => {
         listener = NOOP;
       };
     },
-    _update: () => {
+    _update() {
       setTimeout(listener);
     },
-    _setComposition: (comp: CompositionEvent | null) => {
+    _setComposition(comp: CompositionEvent | null) {
       compositionEvent = comp;
     },
-    _getSelectionStart: (): number | null => {
+    _getSelectionStart(): number | null {
       const el = ref.current;
       if (!el) return null;
       let pos = el.selectionStart;
@@ -205,7 +205,7 @@ const initSelectionStore = (ref: React.RefObject<HTMLTextAreaElement>) => {
       }
       return pos;
     },
-    _getSelectionEnd: (): number | null => {
+    _getSelectionEnd(): number | null {
       const el = ref.current;
       if (!el) return null;
       let pos = el.selectionEnd;
@@ -214,7 +214,7 @@ const initSelectionStore = (ref: React.RefObject<HTMLTextAreaElement>) => {
       }
       return pos;
     },
-    _getSelection: (): [number | null, number | null] => {
+    _getSelection(): [number | null, number | null] {
       const selectionStart = handle._getSelectionStart();
       const selectionEnd = handle._getSelectionEnd();
       if (cache[0] === selectionStart && cache[1] === selectionEnd) {
@@ -320,18 +320,18 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               return sel;
             }
           },
-          setSelectionRange: (
+          setSelectionRange(
             ...args: Parameters<HTMLTextAreaElement["setSelectionRange"]>
-          ) => {
+          ) {
             el.focus();
             el.setSelectionRange(...args);
           },
-          setRangeText: (
+          setRangeText(
             text: string,
             start: number,
             end: number,
             preserve?: SelectionMode
-          ) => {
+          ) {
             if (el.setRangeText) {
               el.setRangeText(text, start, end, preserve);
             } else {
