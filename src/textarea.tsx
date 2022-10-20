@@ -12,220 +12,21 @@ import { useSyncExternalStore } from "use-sync-external-store/shim";
 // @ts-expect-error no type definition
 import rangeAtIndex from "range-at-index";
 import type { Renderer } from "./renderers";
-
-const NOOP = () => {};
-
-const TEXT_STYLE_KEYS: (keyof React.CSSProperties)[] = [
-  "direction",
-  "padding",
-  "paddingTop",
-  "paddingBottom",
-  "paddingLeft",
-  "paddingRight",
-  "margin",
-  "marginTop",
-  "marginBottom",
-  "marginLeft",
-  "marginRight",
-  "border",
-  "borderWidth",
-  "borderTopWidth",
-  "borderBottomWidth",
-  "borderLeftWidth",
-  "borderRightWidth",
-  "borderStyle",
-  "borderTopStyle",
-  "borderBottomStyle",
-  "borderLeftStyle",
-  "borderRightStyle",
-  "fontSize",
-  "fontFamily",
-  "fontStyle",
-  "fontVariant",
-  "fontWeight",
-  "fontStretch",
-  "fontSizeAdjust",
-  "textAlign",
-  "textTransform",
-  "textIndent",
-  "letterSpacing",
-  "wordSpacing",
-  "lineHeight",
-  "whiteSpace",
-  "wordBreak",
-  "overflowWrap",
-  "tabSize",
-  "MozTabSize",
-];
-
-const getPropertyValue = (style: CSSStyleDeclaration, key: string): string => {
-  return style.getPropertyValue(key);
-};
-const setProperty = (
-  style: CSSStyleDeclaration,
-  key: string,
-  value: string
-) => {
-  style.setProperty(key, value);
-};
-
-const getValueFromStyle = (style: CSSStyleDeclaration, key: string): number => {
-  const value = getPropertyValue(style, key);
-  if (!value) {
-    return 0;
-  } else {
-    return parseInt(value, 10);
-  }
-};
-
-const getStyle = getComputedStyle;
-
-const getVerticalPadding = (style: CSSStyleDeclaration): number => {
-  return (
-    getValueFromStyle(style, "padding-top") +
-    getValueFromStyle(style, "padding-bottom") +
-    getValueFromStyle(style, "border-top") +
-    getValueFromStyle(style, "border-bottom")
-  );
-};
-
-const getHorizontalPadding = (style: CSSStyleDeclaration): number => {
-  return (
-    getValueFromStyle(style, "padding-left") +
-    getValueFromStyle(style, "padding-right") +
-    getValueFromStyle(style, "border-left") +
-    getValueFromStyle(style, "border-right")
-  );
-};
-
-const getPointedElement = (
-  textarea: HTMLTextAreaElement,
-  backdrop: HTMLDivElement,
-  e: React.MouseEvent
-): HTMLElement | null => {
-  const POINTER_EVENTS = "pointer-events";
-
-  const textareaStyle = textarea.style;
-  const backdropStyle = backdrop.style;
-  const prev = getPropertyValue(textareaStyle, POINTER_EVENTS);
-  const backPrev = getPropertyValue(backdropStyle, POINTER_EVENTS);
-  setProperty(textareaStyle, POINTER_EVENTS, "none");
-  setProperty(backdropStyle, POINTER_EVENTS, "auto");
-
-  const pointed = document.elementFromPoint(
-    e.clientX,
-    e.clientY
-  ) as HTMLElement | null;
-
-  setProperty(textareaStyle, POINTER_EVENTS, prev);
-  setProperty(backdropStyle, POINTER_EVENTS, backPrev);
-
-  if (isInsideBackdrop(pointed, backdrop)) {
-    return pointed;
-  } else {
-    return null;
-  }
-};
-
-const isInsideBackdrop = (
-  pointed: HTMLElement | null,
-  backdrop: HTMLDivElement
-): boolean => !!pointed && backdrop !== pointed && backdrop.contains(pointed);
-
-const dispatchMouseEvent = (
-  target: HTMLElement,
-  type: string,
-  init: MouseEventInit
-) => {
-  target.dispatchEvent(new MouseEvent(type, init));
-};
-
-const dispatchClonedMouseEvent = (pointed: HTMLElement, e: MouseEvent) => {
-  dispatchMouseEvent(pointed, e.type, e);
-};
-
-const dispatchMouseMoveEvent = (
-  pointed: HTMLElement | null,
-  prevPointed: React.MutableRefObject<HTMLElement | null>,
-  e: MouseEvent
-) => {
-  if (pointed) {
-    dispatchClonedMouseEvent(pointed, e);
-  }
-
-  if (prevPointed.current !== pointed) {
-    dispatchMouseOutEvent(prevPointed, e, pointed);
-    if (pointed) {
-      dispatchMouseEvent(pointed, "mouseover", e);
-    }
-  }
-};
-
-const dispatchMouseOutEvent = (
-  prevPointed: React.MutableRefObject<HTMLElement | null>,
-  e: MouseEvent,
-  pointed: HTMLElement | null
-) => {
-  if (prevPointed.current) {
-    dispatchMouseEvent(prevPointed.current, "mouseout", e);
-  }
-  prevPointed.current = pointed;
-};
-
-const stopPropagation = (event: React.MouseEvent) => {
-  event.stopPropagation();
-};
+import {
+  dispatchClonedMouseEvent,
+  dispatchMouseMoveEvent,
+  dispatchMouseOutEvent,
+  getHorizontalPadding,
+  getPointedElement,
+  getStyle,
+  getVerticalPadding,
+  stopPropagation,
+  syncBackdropStyle,
+} from "./dom";
+import { initSelectionStore } from "./selection";
 
 // for caret position detection
 const CARET_DETECTOR = <span style={{ color: "transparent" }}>{"\u200b"}</span>;
-
-const initSelectionStore = (ref: React.RefObject<HTMLTextAreaElement>) => {
-  let listener = NOOP;
-  let cache: [number | null, number | null] = [null, null];
-  let compositionEvent: CompositionEvent | null = null;
-  const handle = {
-    _subscribe(callback: () => void) {
-      listener = callback;
-      return () => {
-        listener = NOOP;
-      };
-    },
-    _update() {
-      setTimeout(listener);
-    },
-    _setComposition(comp: CompositionEvent | null) {
-      compositionEvent = comp;
-    },
-    _getSelectionStart(): number | null {
-      const el = ref.current;
-      if (!el) return null;
-      let pos = el.selectionStart;
-      if (compositionEvent) {
-        pos = Math.min(pos, el.selectionEnd - compositionEvent.data.length);
-      }
-      return pos;
-    },
-    _getSelectionEnd(): number | null {
-      const el = ref.current;
-      if (!el) return null;
-      let pos = el.selectionEnd;
-      if (compositionEvent) {
-        pos = Math.min(pos, el.selectionStart + compositionEvent.data.length);
-      }
-      return pos;
-    },
-    _getSelection(): [number | null, number | null] {
-      const selectionStart = handle._getSelectionStart();
-      const selectionEnd = handle._getSelectionEnd();
-      if (cache[0] === selectionStart && cache[1] === selectionEnd) {
-        return cache;
-      }
-      cache = [selectionStart, selectionEnd];
-      return cache;
-    },
-  };
-  return handle;
-};
 
 export type CaretPosition =
   | {
@@ -382,21 +183,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       const textarea = textAreaRef.current;
       const backdrop = backdropRef.current;
       if (!backdrop || !textarea) return;
-      const computedTextAreaStyle = getStyle(textarea);
-      const textareaStyle = textarea.style;
-      const backdropStyle = backdrop.style;
-      if (!caretColorRef.current) {
-        caretColorRef.current = getPropertyValue(
-          computedTextAreaStyle,
-          "color"
-        );
-      }
-
-      TEXT_STYLE_KEYS.forEach((k) => {
-        backdropStyle[k as any] = computedTextAreaStyle[k as any]!;
-      });
-      textareaStyle.color = backdropStyle.borderColor = "transparent";
-      textareaStyle.caretColor = style?.caretColor || caretColorRef.current;
+      syncBackdropStyle(textarea, backdrop, caretColorRef, style);
     }, [style]);
 
     useEffect(() => {
