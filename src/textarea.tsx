@@ -358,7 +358,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       [textAreaRef]
     );
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       const textarea = textAreaRef.current;
       if (!textarea) return;
       const observer = new ResizeObserver(([entry]) => {
