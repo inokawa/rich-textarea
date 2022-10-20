@@ -1,0 +1,30 @@
+import { StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { RichInput } from "../../src";
+
+export default {
+  component: RichInput,
+};
+
+const style = { paddingLeft: 10, paddingRight: 10 };
+
+export const Basic: StoryObj = {
+  render: () => {
+    const [text, setText] = useState("Lorem ipsum");
+    return (
+      <RichInput
+        style={style}
+        onChange={(e) => setText(e.target.value)}
+        value={text}
+      >
+        {(v) => {
+          return v.split("").map((t, i) => (
+            <span key={i} style={{ color: i % 2 === 0 ? "red" : undefined }}>
+              {t}
+            </span>
+          ));
+        }}
+      </RichInput>
+    );
+  },
+};

@@ -1,7 +1,7 @@
 const NOOP = () => {};
 
 export const initSelectionStore = (
-  ref: React.RefObject<HTMLTextAreaElement>
+  ref: React.RefObject<HTMLTextAreaElement | HTMLInputElement>
 ) => {
   let listener = NOOP;
   let cache: [number | null, number | null] = [null, null];
@@ -22,18 +22,18 @@ export const initSelectionStore = (
     _getSelectionStart(): number | null {
       const el = ref.current;
       if (!el) return null;
-      let pos = el.selectionStart;
+      let pos = el.selectionStart!;
       if (compositionEvent) {
-        pos = Math.min(pos, el.selectionEnd - compositionEvent.data.length);
+        pos = Math.min(pos, el.selectionEnd! - compositionEvent.data.length);
       }
       return pos;
     },
     _getSelectionEnd(): number | null {
       const el = ref.current;
       if (!el) return null;
-      let pos = el.selectionEnd;
+      let pos = el.selectionEnd!;
       if (compositionEvent) {
-        pos = Math.min(pos, el.selectionStart + compositionEvent.data.length);
+        pos = Math.min(pos, el.selectionStart! + compositionEvent.data.length);
       }
       return pos;
     },
