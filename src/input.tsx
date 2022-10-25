@@ -20,6 +20,7 @@ import {
   getPointedElement,
   getStyle,
   getVerticalPadding,
+  isSafari,
   stopPropagation,
   syncBackdropStyle,
 } from "./dom";
@@ -43,10 +44,10 @@ export type CaretPosition =
       height: number;
     };
 
-export type RichTextareaHandle = HTMLTextAreaElement;
+export type RichInputHandle = HTMLInputElement;
 
-export type RichTextareaProps = Omit<
-  JSX.IntrinsicElements["textarea"],
+export type RichInputProps = Omit<
+  JSX.IntrinsicElements["input"],
   "value" | "defaultValue" | "children"
 > & {
   value: string;
@@ -55,7 +56,7 @@ export type RichTextareaProps = Omit<
   onSelectionChange?: (pos: CaretPosition, value: string) => void;
 };
 
-export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
+export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
   (
     {
       children: render,
@@ -80,7 +81,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     },
     propRef
   ): React.ReactElement => {
-    const textAreaRef = useRef<HTMLTextAreaElement>(null);
+    const textAreaRef = useRef<HTMLInputElement>(null);
     const backdropRef = useRef<HTMLDivElement>(null);
     const [[left, top], setPos] = useState<[left: number, top: number]>([0, 0]);
     const [[width, height, hPadding, vPadding], setRect] = useState<
@@ -122,7 +123,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             }
           },
           setSelectionRange(
-            ...args: Parameters<HTMLTextAreaElement["setSelectionRange"]>
+            ...args: Parameters<HTMLInputElement["setSelectionRange"]>
           ) {
             el.focus();
             el.setSelectionRange(...args);
@@ -147,14 +148,14 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         };
 
         return new Proxy(el, {
-          get(target, prop: keyof HTMLTextAreaElement) {
+          get(target, prop: keyof HTMLInputElement) {
             if ((overrides as any)[prop]) {
               return (overrides as any)[prop];
             }
             const value = target[prop];
             return typeof value === "function" ? value.bind(target) : value;
           },
-        }) as HTMLTextAreaElement;
+        }) as HTMLInputElement;
       },
       [textAreaRef]
     );
@@ -220,6 +221,17 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     }, [focused, selectionStart, selectionEnd]);
 
     useEffect(() => {
+      if (!isSafari()) return;
+
+      // FIXME: Safari does not fire scroll event on input so substitute with pseudo selection change event
+      return selectionStore._subscribe(() => {
+        const el = textAreaRef.current;
+        if (!el) return;
+        setPos([el.scrollLeft, el.scrollTop]);
+      });
+    }, []);
+
+    useEffect(() => {
       const textarea = textAreaRef.current;
       if (!autoHeight || !textarea) return;
       textarea.style.height = "auto";
@@ -258,20 +270,6 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           <div
             ref={backdropRef}
             aria-hidden
-            style={useMemo(
-              (): React.CSSProperties => ({
-                width,
-                transform: `translate(${-left}px, ${-top}px)`,
-                pointerEvents: "none",
-                userSelect: "none",
-                msUserSelect: "none",
-                WebkitUserSelect: "none",
-                // https://stackoverflow.com/questions/2545542/font-size-rendering-inconsistencies-on-an-iphone
-                textSizeAdjust: "100%",
-                WebkitTextSizeAdjust: "100%",
-              }),
-              [left, top, width]
-            )}
             // Stop propagation of events dispatched on backdrop
             onClick={stopPropagation}
             onMouseDown={stopPropagation}
@@ -280,11 +278,33 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             onMouseOut={stopPropagation}
             onMouseMove={stopPropagation}
           >
-            {useMemo(() => (render ? render(value) : value), [value, render])}
-            {CARET_DETECTOR}
+            <div style={{ width, height, overflow: "hidden" }}>
+              <div
+                style={useMemo(
+                  (): React.CSSProperties => ({
+                    transform: `translate(${-left}px, ${-top}px)`,
+                    pointerEvents: "none",
+                    userSelect: "none",
+                    msUserSelect: "none",
+                    WebkitUserSelect: "none",
+                    // https://stackoverflow.com/questions/2545542/font-size-rendering-inconsistencies-on-an-iphone
+                    textSizeAdjust: "100%",
+                    WebkitTextSizeAdjust: "100%",
+                    whiteSpace: "pre",
+                  }),
+                  [left, top]
+                )}
+              >
+                {useMemo(
+                  () => (render ? render(value) : value),
+                  [value, render]
+                )}
+                {CARET_DETECTOR}
+              </div>
+            </div>
           </div>
         </div>
-        <textarea
+        <input
           {...props}
           ref={textAreaRef}
           value={value}
@@ -299,42 +319,42 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             [style]
           )}
           onScroll={useCallback(
-            (e: React.UIEvent<HTMLTextAreaElement>) => {
+            (e: React.UIEvent<HTMLInputElement>) => {
               setPos([e.currentTarget.scrollLeft, e.currentTarget.scrollTop]);
               onScroll?.(e);
             },
             [onScroll]
           )}
           onInput={useCallback(
-            (e: React.FormEvent<HTMLTextAreaElement>) => {
+            (e: React.FormEvent<HTMLInputElement>) => {
               onInput?.(e);
               selectionStore._update();
             },
             [onInput]
           )}
           onCompositionStart={useCallback(
-            (e: React.CompositionEvent<HTMLTextAreaElement>) => {
+            (e: React.CompositionEvent<HTMLInputElement>) => {
               selectionStore._setComposition(e.nativeEvent);
               onCompositionStart?.(e);
             },
             [onCompositionStart]
           )}
           onCompositionUpdate={useCallback(
-            (e: React.CompositionEvent<HTMLTextAreaElement>) => {
+            (e: React.CompositionEvent<HTMLInputElement>) => {
               selectionStore._setComposition(e.nativeEvent);
               onCompositionUpdate?.(e);
             },
             [onCompositionUpdate]
           )}
           onCompositionEnd={useCallback(
-            (e: React.CompositionEvent<HTMLTextAreaElement>) => {
+            (e: React.CompositionEvent<HTMLInputElement>) => {
               selectionStore._setComposition(null);
               onCompositionEnd?.(e);
             },
             [onCompositionEnd]
           )}
           onKeyDown={useCallback(
-            (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+            (e: React.KeyboardEvent<HTMLInputElement>) => {
               // Ignore keydown events during IME composition.
               // Safari sometimes fires keydown event after compositionend so also ignore it.
               // https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event#ignoring_keydown_during_ime_composition
@@ -348,7 +368,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             [onKeyDown]
           )}
           onClick={useCallback(
-            (e: React.MouseEvent<HTMLTextAreaElement>) => {
+            (e: React.MouseEvent<HTMLInputElement>) => {
               onClick?.(e);
               const textarea = textAreaRef.current;
               const backdrop = backdropRef.current;
@@ -361,7 +381,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             [onClick]
           )}
           onMouseDown={useCallback(
-            (e: React.MouseEvent<HTMLTextAreaElement>) => {
+            (e: React.MouseEvent<HTMLInputElement>) => {
               onMouseDown?.(e);
               selectionStore._update();
               const MOUSE_UP = "mouseup";
@@ -381,7 +401,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             [onMouseDown]
           )}
           onMouseUp={useCallback(
-            (e: React.MouseEvent<HTMLTextAreaElement>) => {
+            (e: React.MouseEvent<HTMLInputElement>) => {
               onMouseUp?.(e);
               const textarea = textAreaRef.current;
               const backdrop = backdropRef.current;
@@ -394,7 +414,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             [onMouseUp]
           )}
           onMouseMove={useCallback(
-            (e: React.MouseEvent<HTMLTextAreaElement>) => {
+            (e: React.MouseEvent<HTMLInputElement>) => {
               onMouseMove?.(e);
               const textarea = textAreaRef.current;
               const backdrop = backdropRef.current;
@@ -405,21 +425,21 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             [onMouseMove]
           )}
           onMouseLeave={useCallback(
-            (e: React.MouseEvent<HTMLTextAreaElement>) => {
+            (e: React.MouseEvent<HTMLInputElement>) => {
               onMouseLeave?.(e);
               dispatchMouseOutEvent(pointedRef, e.nativeEvent, null);
             },
             [onMouseLeave]
           )}
           onFocus={useCallback(
-            (e: React.FocusEvent<HTMLTextAreaElement>) => {
+            (e: React.FocusEvent<HTMLInputElement>) => {
               onFocus?.(e);
               setFocused(true);
             },
             [onFocus]
           )}
           onBlur={useCallback(
-            (e: React.FocusEvent<HTMLTextAreaElement>) => {
+            (e: React.FocusEvent<HTMLInputElement>) => {
               onBlur?.(e);
               setFocused(false);
             },
