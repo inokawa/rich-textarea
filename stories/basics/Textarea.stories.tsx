@@ -9,6 +9,27 @@ export default {
 
 const style = { width: "600px", height: "400px" };
 
+export const HelloWorld: StoryObj = {
+  render: () => {
+    const [text, setText] = useState("Lorem ipsum");
+    return (
+      <RichTextarea
+        style={style}
+        onChange={(e) => setText(e.target.value)}
+        value={text}
+      >
+        {(v) => {
+          return v.split("").map((t, i) => (
+            <span key={i} style={{ color: i % 2 === 0 ? "red" : undefined }}>
+              {t}
+            </span>
+          ));
+        }}
+      </RichTextarea>
+    );
+  },
+};
+
 const basicRegex = createRegexRenderer([
   [/[A-Z][A-x]+/g, { color: "blue" }],
   [
@@ -20,7 +41,7 @@ const basicRegex = createRegexRenderer([
   [/[0123456789]+/g, { color: "violet", fontWeight: "bold" }],
 ]);
 
-export const Basic: StoryObj = {
+export const Style: StoryObj = {
   render: () => {
     const [text, setText] = useState(
       `This is just a TEXTAREA but bit rich!!!
@@ -38,27 +59,27 @@ export const Basic: StoryObj = {
   },
 };
 
-const manyRegex = createRegexRenderer([
-  [/[A-Z][a-z]+/g, { borderRadius: "3px", backgroundColor: "#d0bfff" }],
-  [/ipsum/g, { color: "blue", textDecoration: "underline wavy" }],
-  [/[abcdeip]/g, { color: "red", fontWeight: "bold" }],
-]);
-
-export const Many: StoryObj = {
+export const Rtl: StoryObj = {
   render: () => {
-    const [text, setText] = useState(LOREM);
+    const [text, setText] = useState(`אחד !
+two !
+שְׁלוֹשָׁה !`);
     return (
       <RichTextarea
-        style={style}
-        onChange={useCallback((e) => setText(e.target.value), [])}
+        style={{ width: "600px", height: "400px", direction: "rtl" }}
+        onChange={(e) => setText(e.target.value)}
         value={text}
       >
-        {manyRegex}
+        {(v) => {
+          return v.split("").map((t, i) => {
+            const El = i % 2 !== 0 ? "i" : "span";
+            return <El key={i}>{t}</El>;
+          });
+        }}
       </RichTextarea>
     );
   },
 };
-Many.storyName = "Many (WIP)";
 
 const emojiRegex = createRegexRenderer([
   [
@@ -125,3 +146,25 @@ export const Search: StoryObj = {
     );
   },
 };
+
+// const manyRegex = createRegexRenderer([
+//   [/[A-Z][a-z]+/g, { borderRadius: "3px", backgroundColor: "#d0bfff" }],
+//   [/ipsum/g, { color: "blue", textDecoration: "underline wavy" }],
+//   [/[abcdeip]/g, { color: "red", fontWeight: "bold" }],
+// ]);
+
+// export const Many: StoryObj = {
+//   render: () => {
+//     const [text, setText] = useState(LOREM);
+//     return (
+//       <RichTextarea
+//         style={style}
+//         onChange={useCallback((e) => setText(e.target.value), [])}
+//         value={text}
+//       >
+//         {manyRegex}
+//       </RichTextarea>
+//     );
+//   },
+// };
+// Many.storyName = "Many (WIP)";
