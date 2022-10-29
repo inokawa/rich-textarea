@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["global-externals:@storybook/addons", "../../../.storybook/manager.js"],
-  "sourcesContent": ["export default __STORYBOOKADDONS__;\nconst { AddonStore, HooksContext, addons, applyHooks, isSupportedType, makeDecorator, mockChannel, types, useArgs, useCallback, useChannel, useEffect, useGlobals, useMemo, useParameter, useReducer, useRef, useState, useStoryContext } = __STORYBOOKADDONS__;\nexport { AddonStore, HooksContext, addons, applyHooks, isSupportedType, makeDecorator, mockChannel, types, useArgs, useCallback, useChannel, useEffect, useGlobals, useMemo, useParameter, useReducer, useRef, useState, useStoryContext };", "import { addons } from \"@storybook/addons\";\n\naddons.setConfig({\n  showPanel: false,\n});\n"],
-  "mappings": "AAAA,IAAOA,EAAQ,oBACT,CAAE,WAAAC,EAAY,aAAAC,EAAc,OAAAC,EAAQ,WAAAC,EAAY,gBAAAC,EAAiB,cAAAC,EAAe,YAAAC,EAAa,MAAAC,EAAO,QAAAC,EAAS,YAAAC,EAAa,WAAAC,EAAY,UAAAC,EAAW,WAAAC,EAAY,QAAAC,EAAS,aAAAC,EAAc,WAAAC,EAAY,OAAAC,EAAQ,SAAAC,EAAU,gBAAAC,CAAgB,EAAI,oBCC5OC,EAAO,UAAU,CACf,UAAW,EACb,CAAC",
-  "names": ["addons_default", "AddonStore", "HooksContext", "addons", "applyHooks", "isSupportedType", "makeDecorator", "mockChannel", "types", "useArgs", "useCallback", "useChannel", "useEffect", "useGlobals", "useMemo", "useParameter", "useReducer", "useRef", "useState", "useStoryContext", "addons"]
-}

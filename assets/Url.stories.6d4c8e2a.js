@@ -1,4 +1,0 @@
-import"./index.46cfd363.js";import{r as s}from"./index.8e45f264.js";import{j as o}from"./jsx-runtime.96752331.js";import{R as a}from"./textarea.e03cca18.js";import{c as i}from"./renderers.fa4620c3.js";import"./chunk-Y6TTZ4RO.672b857c.js";import"./iframe.047c3e6d.js";import"./index.68bde87c.js";import"./selection.f2e9739e.js";const R={component:a},n={width:"400px",height:"300px"},p=i([[/https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+/g,({children:t,key:r,value:e})=>o("a",{href:e,target:"_blank",children:t},r)]]),_={render:()=>{const[t,r]=s.exports.useState(`Click this url https://github.com/inokawa/rich-textarea !
-
-`);return o("div",{children:o(a,{style:n,onChange:e=>r(e.target.value),value:t,children:p})})}},k=["Url"];export{_ as Url,k as __namedExportsOrder,R as default};
-//# sourceMappingURL=Url.stories.6d4c8e2a.js.map
