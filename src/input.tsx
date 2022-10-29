@@ -164,7 +164,16 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
       const textarea = textAreaRef.current;
       if (!textarea) return;
       const observer = new ResizeObserver(([entry]) => {
-        const contentRect = entry!.contentRect;
+        const { contentRect, borderBoxSize } = entry!;
+        if (borderBoxSize && borderBoxSize[0]) {
+          setRect([
+            contentRect.width,
+            contentRect.height,
+            borderBoxSize[0].inlineSize - contentRect.width,
+            borderBoxSize[0].blockSize - contentRect.height,
+          ]);
+          return;
+        }
         const style = getStyle(textarea);
         setRect([
           contentRect.width,
