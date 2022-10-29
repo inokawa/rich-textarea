@@ -28,3 +28,25 @@ export const Basic: StoryObj = {
     );
   },
 };
+
+export const WidthMax: StoryObj = {
+  render: () => {
+    const [text, setText] = useState("Lorem ipsum");
+    return (
+      <RichInput
+        style={{ width: "100%" }}
+        onChange={(e) => setText(e.target.value)}
+        value={text}
+      >
+        {(v) => {
+          return v.split("").map((t, i) => (
+            <span key={i} style={{ color: i % 2 === 0 ? "red" : undefined }}>
+              {t}
+            </span>
+          ));
+        }}
+      </RichInput>
+    );
+  },
+  name: "Width 100%",
+};
