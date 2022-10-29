@@ -6,7 +6,13 @@ module.exports = {
   addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
   staticDirs: [
     // for kuromojin
-    { from: "../node_modules/kuromoji/dict", to: "/dict" },
+    {
+      from: "../node_modules/kuromoji/dict",
+      to: "/dict",
+    },
   ],
-  framework: "@storybook/react",
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {},
+  },
 };
