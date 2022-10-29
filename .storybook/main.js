@@ -1,5 +1,3 @@
-const { mergeConfig } = require("vite");
-
 module.exports = {
   stories: [
     "../stories/**/*.stories.mdx",
@@ -14,21 +12,7 @@ module.exports = {
     },
   ],
   framework: {
-    name: "@storybook/react-vite",
+    name: "@storybook/react-webpack5",
     options: {},
-  },
-
-  async viteFinal(config, options) {
-    return mergeConfig(config, {
-      resolve: {
-        alias: {
-          // For kuromoji
-          path: "path-browserify",
-          // For textlint
-          assert: "assert",
-          events: "events",
-        },
-      },
-    });
   },
 };
