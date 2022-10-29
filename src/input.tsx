@@ -249,15 +249,28 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
 
     return (
       <div
-        style={useMemo(
-          (): React.CSSProperties => ({
+        style={useMemo((): React.CSSProperties => {
+          let w: string | number = totalWidth;
+          let h: string | number = totalHeight;
+          // Prefer prop to avoid miscalculation https://github.com/inokawa/rich-textarea/issues/39
+          if (style) {
+            if (typeof style.width === "string" && style.width.endsWith("%")) {
+              w = style.width;
+            }
+            if (
+              typeof style.height === "string" &&
+              style.height.endsWith("%")
+            ) {
+              h = style.height;
+            }
+          }
+          return {
             display: "inline-block",
             position: "relative",
-            width: totalWidth,
-            height: totalHeight,
-          }),
-          [totalWidth, totalHeight]
-        )}
+            width: w,
+            height: h,
+          };
+        }, [totalWidth, totalHeight, style])}
       >
         <div
           style={useMemo((): React.CSSProperties => {
