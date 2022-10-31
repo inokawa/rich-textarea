@@ -36,6 +36,8 @@ npm install rich-textarea
 
 - react >= 16.14
 
+If you use ESM and webpack 5, use react >= 18 to avoid [Can't resolve `react/jsx-runtime` error](https://github.com/facebook/react/issues/20235).
+
 ## Usage
 
 You can create your own render function
