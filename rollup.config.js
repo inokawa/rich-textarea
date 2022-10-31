@@ -29,7 +29,7 @@ export default {
         "@babel/plugin-transform-react-pure-annotations",
         [
           "replace-import-extensions",
-          { "^react/jsx-runtime$": "react/jsx-runtime.js" },
+          { "^use-sync-external-store/shim$": "use-sync-external-store/shim/index.js" },
         ],
       ],
     }),
