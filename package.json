@@ -61,7 +61,7 @@
     "rollup": "2.75.5",
     "rollup-plugin-terser": "7.0.2",
     "textlint-rule-preset-japanese": "7.0.0",
-    "ts-jest": "29.0.0",
+    "ts-jest": "29.0.3",
     "typescript": "4.6.4",
     "wait-on": "6.0.1",
     "webpack": "5.74.0"
