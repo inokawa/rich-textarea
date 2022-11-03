@@ -29,14 +29,17 @@ export default {
         "@babel/plugin-transform-react-pure-annotations",
         [
           "replace-import-extensions",
-          { "^use-sync-external-store/shim$": "use-sync-external-store/shim/index.js" },
+          {
+            "^use-sync-external-store/shim$":
+              "use-sync-external-store/shim/index.js",
+          },
         ],
       ],
     }),
     terser({
       ecma: 2015,
       module: true,
-      compress: { passes: 3, unsafe: true },
+      compress: { passes: 3, unsafe: true, keep_fargs: false },
       mangle: { properties: { regex: "^_" } },
       format: {
         // https://github.com/terser/terser/pull/550
