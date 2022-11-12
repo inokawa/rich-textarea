@@ -1,7 +1,11 @@
 import { StoryObj } from "@storybook/react";
-import { useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { RichTextarea, createRegexRenderer, RichTextareaHandle } from "../../src";
+import {
+  RichTextarea,
+  createRegexRenderer,
+  RichTextareaHandle,
+} from "../../src";
 import { CHARACTERS } from "../mocks";
 
 export default {

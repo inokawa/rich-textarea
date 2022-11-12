@@ -1,5 +1,5 @@
 import { StoryObj } from "@storybook/react";
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { createRegexRenderer, RichTextarea } from "../../src";
 import { LOREM } from "../mocks";
 

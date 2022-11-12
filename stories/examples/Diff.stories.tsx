@@ -1,5 +1,5 @@
 import type { StoryObj } from "@storybook/react";
-import { useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { Renderer, RichTextarea } from "../../src";
 import diff from "monaco-diff";
 import type { ILineChange } from "monaco-diff";

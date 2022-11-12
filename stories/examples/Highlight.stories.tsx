@@ -1,5 +1,5 @@
 import { StoryObj } from "@storybook/react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { RichTextarea } from "../../src";
 import { LOREM } from "../mocks";
 import Highlighter from "react-highlight-words";
