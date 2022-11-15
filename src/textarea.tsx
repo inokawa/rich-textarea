@@ -100,6 +100,8 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     const totalWidth = width + hPadding;
     const totalHeight = height + vPadding;
 
+    const isSizeCalculated = !!(totalWidth + totalHeight);
+
     useImperativeHandle(
       propRef,
       () => {
@@ -238,9 +240,9 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     return (
       <div
         style={useMemo((): React.CSSProperties => {
-          let w: string | number = totalWidth;
-          let h: string | number = totalHeight;
-          // Prefer prop to avoid miscalculation https://github.com/inokawa/rich-textarea/issues/39
+          let w: React.CSSProperties["width"] = totalWidth;
+          let h: React.CSSProperties["height"] = totalHeight;
+          // Prefer prop style to avoid miscalculation https://github.com/inokawa/rich-textarea/issues/39
           if (style) {
             if (typeof style.width === "string" && style.width.endsWith("%")) {
               w = style.width;
@@ -315,10 +317,16 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               ...style,
               background: "transparent",
               margin: 0,
-              // Fixed bug that sometimes texts disappear in Chrome for unknown reason
+              // Set `position: absolute` to fix bug that sometimes texts disappear in Chrome for unknown reason
               position: "absolute",
+              // And remove it until element size is calculated to avoid layout shift on mount
+              // https://github.com/inokawa/rich-textarea/issues/21
+              ...(!isSizeCalculated && {
+                position: undefined,
+                verticalAlign: "top",
+              }),
             }),
-            [style]
+            [style, isSizeCalculated]
           )}
           onScroll={useCallback(
             (e: React.UIEvent<HTMLTextAreaElement>) => {
