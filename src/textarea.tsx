@@ -95,7 +95,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     const [selectionStart, selectionEnd] = useSyncExternalStore(
       selectionStore._subscribe,
       selectionStore._getSelection,
-      () => [0, 0]
+      selectionStore._getSelection
     );
 
     const totalWidth = width + hPadding;
