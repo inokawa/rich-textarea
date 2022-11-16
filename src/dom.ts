@@ -66,7 +66,7 @@ const getValueFromStyle = (style: CSSStyleDeclaration, key: string): number => {
   }
 };
 
-export const getStyle = getComputedStyle;
+export const getStyle = (e: Element) => getComputedStyle(e);
 
 export const getVerticalPadding = (style: CSSStyleDeclaration): number => {
   return (

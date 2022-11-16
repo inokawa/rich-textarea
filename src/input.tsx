@@ -6,7 +6,6 @@ import {
   useCallback,
   forwardRef,
   useImperativeHandle,
-  useLayoutEffect,
 } from "react";
 import { useSyncExternalStore } from "use-sync-external-store/shim";
 // @ts-expect-error no type definition
@@ -25,6 +24,7 @@ import {
   syncBackdropStyle,
 } from "./dom";
 import { initSelectionStore } from "./selection";
+import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 
 // for caret position detection
 const CARET_DETECTOR = <span style={{ color: "transparent" }}>{"\u200b"}</span>;
@@ -95,7 +95,8 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
     const selectionStore = useState(() => initSelectionStore(textAreaRef))[0];
     const [selectionStart, selectionEnd] = useSyncExternalStore(
       selectionStore._subscribe,
-      selectionStore._getSelection
+      selectionStore._getSelection,
+      () => [0, 0]
     );
 
     const totalWidth = width + hPadding;
@@ -162,7 +163,7 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
       [textAreaRef]
     );
 
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
       const textarea = textAreaRef.current;
       if (!textarea) return;
       const observer = new ResizeObserver(([entry]) => {
@@ -190,7 +191,7 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
       };
     }, []);
 
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
       // Sync backdrop style
       const textarea = textAreaRef.current;
       const backdrop = backdropRef.current;
