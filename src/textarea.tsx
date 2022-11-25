@@ -58,7 +58,18 @@ export interface RichTextareaProps
    */
   value: string;
   /**
-   * This function should return ReactNodes which texts are positioned the same as textarea (see examples for detailed usage). Currently limited event handlers will work for the nodes (`onClick`, `onMouseOver`, `onMouseOut`, `onMouseMove`, `onMouseDown` and `onMouseUp`)
+   *
+   * Render function to create customized view from value.
+   *
+   * This function should return ReactNodes which texts are positioned the same as textarea (see examples for detailed usage).
+   *
+   * On the rendered nodes, currently limited event handlers will work.
+   * - `onClick`
+   * - `onMouseOver`
+   * - `onMouseOut`
+   * - `onMouseMove`
+   * - `onMouseDown`
+   * - `onMouseUp`
    * @defaultValue undefined
    */
   children?: Renderer;

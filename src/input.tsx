@@ -59,15 +59,28 @@ export interface RichInputProps
    */
   value: string;
   /**
-   * This function should return ReactNodes which texts are positioned the same as input (see examples for detailed usage). Currently limited event handlers will work for the nodes (`onClick`, `onMouseOver`, `onMouseOut`, `onMouseMove`, `onMouseDown` and `onMouseUp`)
+   * Render function to create customized view from value.
+   *
+   * This function should return ReactNodes which texts are positioned the same as textarea (see examples for detailed usage).
+   *
+   * On the rendered nodes, currently limited event handlers will work.
+   * - `onClick`
+   * - `onMouseOver`
+   * - `onMouseOut`
+   * - `onMouseMove`
+   * - `onMouseDown`
+   * - `onMouseUp`
+   * @defaultValue undefined
    */
   children?: Renderer;
   /**
-   * `undefined` | If true, input height is automatically resized and height of style prop does not work. Set `maxHeight` to style prop if you need limit.
+   * If true, textarea height is automatically resized and height of style prop does not work. Set `maxHeight` to style prop if you need limit.
+   * @defaultValue undefined
    */
   autoHeight?: boolean;
   /**
-   * Called when selection in input changes. It gives position of caret at the time, which is useful to position menu.
+   * Called when selection in textarea changes. It gives position of caret at the time, which is useful to position menu.
+   * @defaultValue undefined
    */
   onSelectionChange?: (pos: CaretPosition, value: string) => void;
 }
