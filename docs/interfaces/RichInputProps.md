@@ -30,7 +30,7 @@ Same as original but only string
 
 #### Defined in
 
-[src/input.tsx:60](https://github.com/inokawa/rich-textarea/blob/de234ee/src/input.tsx#L60)
+[src/input.tsx:60](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/input.tsx#L60)
 
 ___
 
@@ -38,11 +38,25 @@ ___
 
 • `Optional` **children**: [`Renderer`](../API.md#renderer)
 
-This function should return ReactNodes which texts are positioned the same as input (see examples for detailed usage). Currently limited event handlers will work for the nodes (`onClick`, `onMouseOver`, `onMouseOut`, `onMouseMove`, `onMouseDown` and `onMouseUp`)
+Render function to create customized view from value.
+
+This function should return ReactNodes which texts are positioned the same as textarea (see examples for detailed usage).
+
+On the rendered nodes, currently limited event handlers will work.
+- `onClick`
+- `onMouseOver`
+- `onMouseOut`
+- `onMouseMove`
+- `onMouseDown`
+- `onMouseUp`
+
+**`Default Value`**
+
+undefined
 
 #### Defined in
 
-[src/input.tsx:64](https://github.com/inokawa/rich-textarea/blob/de234ee/src/input.tsx#L64)
+[src/input.tsx:75](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/input.tsx#L75)
 
 ___
 
@@ -50,11 +64,15 @@ ___
 
 • `Optional` **autoHeight**: `boolean`
 
-`undefined` | If true, input height is automatically resized and height of style prop does not work. Set `maxHeight` to style prop if you need limit.
+If true, textarea height is automatically resized and height of style prop does not work. Set `maxHeight` to style prop if you need limit.
+
+**`Default Value`**
+
+undefined
 
 #### Defined in
 
-[src/input.tsx:68](https://github.com/inokawa/rich-textarea/blob/de234ee/src/input.tsx#L68)
+[src/input.tsx:80](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/input.tsx#L80)
 
 ___
 
@@ -66,7 +84,11 @@ ___
 
 ▸ (`pos`, `value`): `void`
 
-Called when selection in input changes. It gives position of caret at the time, which is useful to position menu.
+Called when selection in textarea changes. It gives position of caret at the time, which is useful to position menu.
+
+**`Default Value`**
+
+undefined
 
 ##### Parameters
 
@@ -81,4 +103,4 @@ Called when selection in input changes. It gives position of caret at the time, 
 
 #### Defined in
 
-[src/input.tsx:72](https://github.com/inokawa/rich-textarea/blob/de234ee/src/input.tsx#L72)
+[src/input.tsx:85](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/input.tsx#L85)

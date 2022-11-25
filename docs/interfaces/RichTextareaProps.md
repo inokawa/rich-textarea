@@ -30,7 +30,7 @@ Same as original but only string
 
 #### Defined in
 
-[src/textarea.tsx:59](https://github.com/inokawa/rich-textarea/blob/de234ee/src/textarea.tsx#L59)
+[src/textarea.tsx:59](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/textarea.tsx#L59)
 
 ___
 
@@ -38,7 +38,17 @@ ___
 
 • `Optional` **children**: [`Renderer`](../API.md#renderer)
 
-This function should return ReactNodes which texts are positioned the same as textarea (see examples for detailed usage). Currently limited event handlers will work for the nodes (`onClick`, `onMouseOver`, `onMouseOut`, `onMouseMove`, `onMouseDown` and `onMouseUp`)
+Render function to create customized view from value.
+
+This function should return ReactNodes which texts are positioned the same as textarea (see examples for detailed usage).
+
+On the rendered nodes, currently limited event handlers will work.
+- `onClick`
+- `onMouseOver`
+- `onMouseOut`
+- `onMouseMove`
+- `onMouseDown`
+- `onMouseUp`
 
 **`Default Value`**
 
@@ -46,7 +56,7 @@ undefined
 
 #### Defined in
 
-[src/textarea.tsx:64](https://github.com/inokawa/rich-textarea/blob/de234ee/src/textarea.tsx#L64)
+[src/textarea.tsx:75](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/textarea.tsx#L75)
 
 ___
 
@@ -62,7 +72,7 @@ undefined
 
 #### Defined in
 
-[src/textarea.tsx:69](https://github.com/inokawa/rich-textarea/blob/de234ee/src/textarea.tsx#L69)
+[src/textarea.tsx:80](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/textarea.tsx#L80)
 
 ___
 
@@ -93,4 +103,4 @@ undefined
 
 #### Defined in
 
-[src/textarea.tsx:74](https://github.com/inokawa/rich-textarea/blob/de234ee/src/textarea.tsx#L74)
+[src/textarea.tsx:85](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/textarea.tsx#L85)

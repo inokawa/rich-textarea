@@ -90,7 +90,7 @@ An utility to create renderer function with regex.
 
 #### Defined in
 
-[src/renderers.tsx:16](https://github.com/inokawa/rich-textarea/blob/de234ee/src/renderers.tsx#L16)
+[src/renderers.tsx:16](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/renderers.tsx#L16)
 
 ## Type Aliases
 
@@ -100,7 +100,7 @@ An utility to create renderer function with regex.
 
 #### Defined in
 
-[src/renderers.tsx:5](https://github.com/inokawa/rich-textarea/blob/de234ee/src/renderers.tsx#L5)
+[src/renderers.tsx:5](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/renderers.tsx#L5)
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/de234ee/src/types.ts#L1)
+[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/types.ts#L1)
 
 ___
 
@@ -134,4 +134,4 @@ ___
 
 #### Defined in
 
-[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/de234ee/src/types.ts#L3)
+[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/types.ts#L3)
