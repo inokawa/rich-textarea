@@ -10,7 +10,6 @@ import {
 import { useSyncExternalStore } from "use-sync-external-store/shim";
 // @ts-expect-error no type definition
 import rangeAtIndex from "range-at-index";
-import type { Renderer } from "./renderers";
 import {
   dispatchClonedMouseEvent,
   dispatchMouseMoveEvent,
@@ -25,37 +24,57 @@ import {
 } from "./dom";
 import { initSelectionStore } from "./selection";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
+import type { CaretPosition, Renderer } from "./types";
 
 // for caret position detection
 const CARET_DETECTOR = <span style={{ color: "transparent" }}>{"\u200b"}</span>;
 
-export type CaretPosition =
-  | {
-      focused: false;
-      selectionStart: number;
-      selectionEnd: number;
-    }
-  | {
-      focused: true;
-      selectionStart: number;
-      selectionEnd: number;
-      top: number;
-      left: number;
-      height: number;
-    };
+/**
+ * Methods of {@link RichInput}.
+ *
+ * All the others not mentioned are proxied to ref of [input](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
+ *
+ * | Name              | Type     | Description                                                            |
+ * | ----------------- | -------- | ---------------------------------------------------------------------- |
+ * | selectionStart    | `number` | Same as original but has handling of composition event                    |
+ * | selectionEnd      | `number` | Same as original but has handling of composition event                    |
+ * | setSelectionRange |          | Same as original but with focus                                           |
+ * | setRangeText      |          | Same as original but has fallback to `document.execCommand("insertText")` |
+ */
+export interface RichInputHandle extends HTMLInputElement {}
 
-export type RichInputHandle = HTMLInputElement;
-
-export type RichInputProps = Omit<
-  JSX.IntrinsicElements["input"],
-  "value" | "defaultValue" | "children"
-> & {
+/**
+ * Props of {@link RichInput}.
+ *
+ * For other props not mentioned below will be passed to [input](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
+ * `defaultValue` is omitted for simplicity of logic.
+ */
+export interface RichInputProps
+  extends Omit<
+    JSX.IntrinsicElements["input"],
+    "value" | "defaultValue" | "children"
+  > {
+  /**
+   * Same as original but only string
+   */
   value: string;
+  /**
+   * This function should return ReactNodes which texts are positioned the same as input (see examples for detailed usage). Currently limited event handlers will work for the nodes (`onClick`, `onMouseOver`, `onMouseOut`, `onMouseMove`, `onMouseDown` and `onMouseUp`)
+   */
   children?: Renderer;
+  /**
+   * `undefined` | If true, input height is automatically resized and height of style prop does not work. Set `maxHeight` to style prop if you need limit.
+   */
   autoHeight?: boolean;
+  /**
+   * Called when selection in input changes. It gives position of caret at the time, which is useful to position menu.
+   */
   onSelectionChange?: (pos: CaretPosition, value: string) => void;
-};
+}
 
+/**
+ * Input component with some extra props.
+ */
 export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
   (
     {

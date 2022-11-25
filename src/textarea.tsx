@@ -10,7 +10,6 @@ import {
 import { useSyncExternalStore } from "use-sync-external-store/shim";
 // @ts-expect-error no type definition
 import rangeAtIndex from "range-at-index";
-import type { Renderer } from "./renderers";
 import {
   dispatchClonedMouseEvent,
   dispatchMouseMoveEvent,
@@ -24,37 +23,60 @@ import {
 } from "./dom";
 import { initSelectionStore } from "./selection";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
+import type { CaretPosition, Renderer } from "./types";
 
 // for caret position detection
 const CARET_DETECTOR = <span style={{ color: "transparent" }}>{"\u200b"}</span>;
 
-export type CaretPosition =
-  | {
-      focused: false;
-      selectionStart: number;
-      selectionEnd: number;
-    }
-  | {
-      focused: true;
-      selectionStart: number;
-      selectionEnd: number;
-      top: number;
-      left: number;
-      height: number;
-    };
+/**
+ * Methods of {@link RichTextarea}.
+ *
+ * All the others not mentioned are proxied to ref of [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement).
+ *
+ * | Name              | Type     | Description                                                               |
+ * | ----------------- | -------- | ------------------------------------------------------------------------- |
+ * | selectionStart    | `number` | Same as original but has handling of composition event                    |
+ * | selectionEnd      | `number` | Same as original but has handling of composition event                    |
+ * | setSelectionRange |          | Same as original but with focus                                           |
+ * | setRangeText      |          | Same as original but has fallback to `document.execCommand("insertText")` |
+ */
+export interface RichTextareaHandle extends HTMLTextAreaElement {}
 
-export type RichTextareaHandle = HTMLTextAreaElement;
-
-export type RichTextareaProps = Omit<
-  JSX.IntrinsicElements["textarea"],
-  "value" | "defaultValue" | "children"
-> & {
+/**
+ * Props of {@link RichTextarea}.
+ *
+ * For other props not mentioned below will be passed to [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement).
+ * `defaultValue` is omitted for simplicity of logic.
+ */
+export interface RichTextareaProps
+  extends Omit<
+    JSX.IntrinsicElements["textarea"],
+    "value" | "defaultValue" | "children"
+  > {
+  /**
+   * Same as original but only string
+   */
   value: string;
+  /**
+   * This function should return ReactNodes which texts are positioned the same as textarea (see examples for detailed usage). Currently limited event handlers will work for the nodes (`onClick`, `onMouseOver`, `onMouseOut`, `onMouseMove`, `onMouseDown` and `onMouseUp`)
+   * @defaultValue undefined
+   */
   children?: Renderer;
+  /**
+   * If true, textarea height is automatically resized and height of style prop does not work. Set `maxHeight` to style prop if you need limit.
+   * @defaultValue undefined
+   */
   autoHeight?: boolean;
+  /**
+   * Called when selection in textarea changes. It gives position of caret at the time, which is useful to position menu.
+   * @defaultValue undefined
+   */
   onSelectionChange?: (pos: CaretPosition, value: string) => void;
-};
+}
 
+/**
+ * Textarea component with some extra props.
+ */
 export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
   (
     {
