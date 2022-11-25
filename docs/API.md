@@ -30,7 +30,7 @@
 
 ▸ **RichTextarea**(`props`): ``null`` \| `ReactElement`<`any`, `string` \| `JSXElementConstructor`<`any`\>\>
 
-Textarea component with some extra props.
+Textarea component with some extra props. See [RichTextareaProps](interfaces/RichTextareaProps.md) and [RichTextareaHandle](interfaces/RichTextareaHandle.md).
 
 #### Parameters
 
@@ -52,7 +52,7 @@ ___
 
 ▸ **RichInput**(`props`): ``null`` \| `ReactElement`<`any`, `string` \| `JSXElementConstructor`<`any`\>\>
 
-Input component with some extra props.
+Input component with some extra props. See [RichInputProps](interfaces/RichInputProps.md) and [RichInputHandle](interfaces/RichInputHandle.md).
 
 #### Parameters
 
@@ -90,7 +90,7 @@ An utility to create renderer function with regex.
 
 #### Defined in
 
-[src/renderers.tsx:16](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/renderers.tsx#L16)
+[src/renderers.tsx:16](https://github.com/inokawa/rich-textarea/blob/7ec01cf/src/renderers.tsx#L16)
 
 ## Type Aliases
 
@@ -100,7 +100,7 @@ An utility to create renderer function with regex.
 
 #### Defined in
 
-[src/renderers.tsx:5](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/renderers.tsx#L5)
+[src/renderers.tsx:5](https://github.com/inokawa/rich-textarea/blob/7ec01cf/src/renderers.tsx#L5)
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/types.ts#L1)
+[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/7ec01cf/src/types.ts#L1)
 
 ___
 
@@ -134,4 +134,4 @@ ___
 
 #### Defined in
 
-[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/a1bcc97/src/types.ts#L3)
+[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/7ec01cf/src/types.ts#L3)
