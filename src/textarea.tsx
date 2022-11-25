@@ -76,6 +76,7 @@ export interface RichTextareaProps
 
 /**
  * Textarea component with some extra props.
+ * @category Component
  */
 export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
   (

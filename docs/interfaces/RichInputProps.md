@@ -30,7 +30,7 @@ Same as original but only string
 
 #### Defined in
 
-[src/input.tsx:60](https://github.com/inokawa/rich-textarea/blob/67f6b60/src/input.tsx#L60)
+[src/input.tsx:60](https://github.com/inokawa/rich-textarea/blob/de234ee/src/input.tsx#L60)
 
 ___
 
@@ -42,7 +42,7 @@ This function should return ReactNodes which texts are positioned the same as in
 
 #### Defined in
 
-[src/input.tsx:64](https://github.com/inokawa/rich-textarea/blob/67f6b60/src/input.tsx#L64)
+[src/input.tsx:64](https://github.com/inokawa/rich-textarea/blob/de234ee/src/input.tsx#L64)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-[src/input.tsx:68](https://github.com/inokawa/rich-textarea/blob/67f6b60/src/input.tsx#L68)
+[src/input.tsx:68](https://github.com/inokawa/rich-textarea/blob/de234ee/src/input.tsx#L68)
 
 ___
 
@@ -81,4 +81,4 @@ Called when selection in input changes. It gives position of caret at the time, 
 
 #### Defined in
 
-[src/input.tsx:72](https://github.com/inokawa/rich-textarea/blob/67f6b60/src/input.tsx#L72)
+[src/input.tsx:72](https://github.com/inokawa/rich-textarea/blob/de234ee/src/input.tsx#L72)

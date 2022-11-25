@@ -2,10 +2,13 @@
 
 ## Table of contents
 
-### Functions
+### Component Functions
 
 - [RichTextarea](API.md#richtextarea)
 - [RichInput](API.md#richinput)
+
+### Other Functions
+
 - [createRegexRenderer](API.md#createregexrenderer)
 
 ### Interfaces
@@ -21,7 +24,7 @@
 - [Renderer](API.md#renderer)
 - [CaretPosition](API.md#caretposition)
 
-## Functions
+## Component Functions
 
 ### RichTextarea
 
@@ -67,6 +70,8 @@ node_modules/@types/react/index.d.ts:350
 
 ___
 
+## Other Functions
+
 ### createRegexRenderer
 
 ▸ **createRegexRenderer**(`matchers`): [`Renderer`](API.md#renderer)
@@ -85,7 +90,7 @@ An utility to create renderer function with regex.
 
 #### Defined in
 
-[src/renderers.tsx:16](https://github.com/inokawa/rich-textarea/blob/67f6b60/src/renderers.tsx#L16)
+[src/renderers.tsx:16](https://github.com/inokawa/rich-textarea/blob/de234ee/src/renderers.tsx#L16)
 
 ## Type Aliases
 
@@ -95,7 +100,7 @@ An utility to create renderer function with regex.
 
 #### Defined in
 
-[src/renderers.tsx:5](https://github.com/inokawa/rich-textarea/blob/67f6b60/src/renderers.tsx#L5)
+[src/renderers.tsx:5](https://github.com/inokawa/rich-textarea/blob/de234ee/src/renderers.tsx#L5)
 
 ___
 
@@ -119,7 +124,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/67f6b60/src/types.ts#L1)
+[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/de234ee/src/types.ts#L1)
 
 ___
 
@@ -129,4 +134,4 @@ ___
 
 #### Defined in
 
-[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/67f6b60/src/types.ts#L3)
+[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/de234ee/src/types.ts#L3)
