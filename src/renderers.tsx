@@ -1,7 +1,6 @@
 import { execReg } from "./regex";
+import type { Renderer } from "./types";
 import { RangeChunk, merge } from "./utils";
-
-export type Renderer = (value: string) => React.ReactNode;
 
 export type StyleOrRender =
   | React.CSSProperties
@@ -11,6 +10,9 @@ export type StyleOrRender =
       key?: string | undefined;
     }) => React.ReactNode);
 
+/**
+ * An utility to create renderer function with regex.
+ */
 export const createRegexRenderer = (
   matchers: [RegExp, StyleOrRender][]
 ): Renderer => {

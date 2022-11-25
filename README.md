@@ -95,28 +95,9 @@ export const App = () => {
 
 And see [examples](./stories) for more usages.
 
-## Props
+## Documentation
 
-For other props not mentioned below will be passed to textarea.
-
-| Name              | Type                                          | Default     | Description                                                                                                                                                                                                                                                               |
-| ----------------- | --------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| value             | `string`                                      | required    | Same as textarea but only string                                                                                                                                                                                                                                          |
-| defaultValue      | -                                             | -           | Omitted for simplicity of logic                                                                                                                                                                                                                                           |
-| children          | `(value: string) => React.ReactNode`          | `undefined` | This function should return ReactNodes which texts are positioned the same as textarea (see examples for detailed usage). Currently limited event handlers will work for the nodes (`onClick`, `onMouseOver`, `onMouseOut`, `onMouseMove`, `onMouseDown` and `onMouseUp`) |
-| autoHeight        | `boolean`                                     | `undefined` | If true, textarea height is automatically resized and height of style prop does not work. Set `maxHeight` to style prop if you need limit.                                                                                                                                |
-| onSelectionChange | `(pos: CaretPosition, value: string) => void` | `undefined` | Called when selection in textarea changes. It gives position of caret at the time, which is useful to position menu.                                                                                                                                                      |
-
-## Methods
-
-All the others not mentioned are proxied to ref of [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement).
-
-| Name              | Type     | Description                                                                                                                                       |
-| ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| selectionStart    | `number` | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/) but has handling of composition event                                       |
-| selectionEnd      | `number` | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/) but has handling of composition event                                       |
-| setSelectionRange |          | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement) but with focus                                           |
-| setRangeText      |          | Same as [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement) but has fallback to `document.execCommand("insertText")` |
+- [API reference](./docs/API.md)
 
 ## Contribute
 
