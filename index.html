@@ -1,59 +1,93 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><title>Webpack App</title><meta name="viewport" content="width=device-width,initial-scale=1"/><style>html, body {
-    overflow: hidden;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
 
-  * {
-    box-sizing: border-box;
-  }</style><script>/* globals window */
-  /* eslint-disable no-underscore-dangle */
-  try {
-    if (window.top !== window) {
-      window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.top.__REACT_DEVTOOLS_GLOBAL_HOOK__;
-    }
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.warn('unable to connect to top frame for connecting dev tools');
-  }
+    <title>@storybook/cli - Storybook</title>
 
-  window.onerror = function onerror(message, source, line, column, err) {
-    if (window.CONFIG_TYPE !== 'DEVELOPMENT') return;
-    // eslint-disable-next-line no-var, vars-on-top
-    var xhr = new window.XMLHttpRequest();
-    xhr.open('POST', '/runtime-error');
-    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    xhr.send(
-      JSON.stringify({
-        /* eslint-disable object-shorthand */
-        message: message,
-        source: source,
-        line: line,
-        column: column,
-        error: err && { message: err.message, name: err.name, stack: err.stack },
-        origin: 'manager',
-        /* eslint-enable object-shorthand */
-      })
-    );
-  };</script><style>#root[hidden],
-      #docs-root[hidden] {
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="./sb-preview/runtime.mjs" rel="preload" as="script">
+
+      
+
+    <style>
+      #storybook-root[hidden]{
         display: none !important;
-      }</style></head><body><div id="root"></div><div id="docs-root"></div><script>window['CONFIG_TYPE'] = "PRODUCTION";
-          
+      }
+    </style>
+
+    
+  </head>
+  <body>
+    <div id="root"></div>
+
+    
+    <script>
       
-          
-            window['LOGLEVEL'] = "info";
-          
+        
+          window['FEATURES'] = {
+  "postcss": true,
+  "warnOnLegacyHierarchySeparator": true,
+  "buildStoriesJson": false,
+  "storyStoreV7": true,
+  "breakingChangesV7": true,
+  "interactionsDebugger": false,
+  "babelModeV7": true,
+  "argTypeTargetsV7": true
+};
+        
       
-          
-            window['FEATURES'] = {"postcss":true,"emotionAlias":false,"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":true,"modernInlineRender":false,"breakingChangesV7":false,"interactionsDebugger":false,"babelModeV7":false,"argTypeTargetsV7":false,"previewMdx2":false};
-          
+        
+          window['REFS'] = {};
+        
       
-          
+        
+          window['LOGLEVEL'] = "info";
+        
       
-          
+        
+          window['DOCS_OPTIONS'] = {
+  "enabled": true,
+  "defaultName": "Docs",
+  "docsPage": true
+};
+        
       
-          
-            window['DOCS_MODE'] = false;</script><script src="runtime~main.689f733b16aabb67f4fe.manager.bundle.js"></script><script src="767.15b232b451c1487bafff.manager.bundle.js"></script><script src="main.e64b07caeece8c20b2e6.manager.bundle.js"></script></body></html>
+        
+          window['CONFIG_TYPE'] = "PRODUCTION";
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </script>
+    
+
+    <script type="module">
+      import './sb-manager/runtime.mjs';
+
+      
+      import '././sb-addons/controls/manager.mjs';
+      
+      import '././sb-addons/actions/manager.mjs';
+      
+      import '././sb-addons/backgrounds/manager.mjs';
+      
+      import '././sb-addons/viewport/manager.mjs';
+      
+      import '././sb-addons/toolbars/manager.mjs';
+      
+      import '././sb-addons/measure/manager.mjs';
+      
+      import '././sb-addons/outline/manager.mjs';
+      
+    </script>    
+  </body>
+</html>
