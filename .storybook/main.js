@@ -16,13 +16,18 @@ module.exports = {
     options: {},
   },
   async webpackFinal(config, options) {
-    config.module.rules.push({
-      test: /\.tsx?$/,
+    config.module.rules = config.module.rules.filter(
+      (r) => !r.use?.[0]?.loader?.includes("babel-loader")
+    );
+    config.module.rules.unshift({
+      test: /\.(mjs|tsx?|jsx?)$/,
       use: [
         {
-          loader: "ts-loader",
+          loader: "esbuild-loader",
           options: {
-            transpileOnly: true,
+            loader: "tsx",
+            target: "es2018",
+            implementation: require("esbuild"),
           },
         },
       ],
