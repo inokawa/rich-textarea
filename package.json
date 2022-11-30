@@ -31,7 +31,7 @@
     "@storybook/react": "7.0.0-alpha.54",
     "@storybook/react-webpack5": "^7.0.0-alpha.54",
     "@storybook/test-runner": "0.10.0-next.2",
-    "@testing-library/react": "13.1.1",
+    "@testing-library/react": "13.4.0",
     "@textlint/kernel": "12.2.3",
     "@textlint/textlint-plugin-text": "12.1.0",
     "@types/node-emoji": "1.8.2",
