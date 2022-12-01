@@ -40,7 +40,7 @@
     "@types/use-sync-external-store": "0.0.3",
     "assert": "2.0.0",
     "babel-plugin-replace-import-extensions": "1.0.1",
-    "concurrently": "7.2.2",
+    "concurrently": "7.6.0",
     "esbuild": "0.15.16",
     "esbuild-loader": "2.20.0",
     "events": "3.3.0",
