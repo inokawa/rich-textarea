@@ -24,7 +24,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - run: npm install
+      - run: npm ci
       - run: STORYBOOK_DEPLOY=true npm run storybook:build
 
       - name: Deploy
