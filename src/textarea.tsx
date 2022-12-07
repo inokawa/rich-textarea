@@ -21,7 +21,7 @@ import {
   stopPropagation,
   syncBackdropStyle,
 } from "./dom";
-import { initSelectionStore } from "./selection";
+import { useStore } from "./selection";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 import type { CaretPosition, Renderer } from "./types";
 
@@ -126,7 +126,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     const caretColorRef = useRef("");
     const pointedRef = useRef<HTMLElement | null>(null);
 
-    const selectionStore = useState(() => initSelectionStore(textAreaRef))[0];
+    const selectionStore = useStore(textAreaRef);
     const [selectionStart, selectionEnd] = useSyncExternalStore(
       selectionStore._subscribe,
       selectionStore._getSelection,

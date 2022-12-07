@@ -1,6 +1,10 @@
+import { useRef } from "react";
+
 const NOOP = () => {};
 
-export const initSelectionStore = (
+type SelectionStore = ReturnType<typeof initSelectionStore>;
+
+const initSelectionStore = (
   ref: React.RefObject<HTMLTextAreaElement | HTMLInputElement>
 ) => {
   let listener = NOOP;
@@ -48,4 +52,12 @@ export const initSelectionStore = (
     },
   };
   return handle;
+};
+
+export const useStore = (
+  ref: React.RefObject<HTMLTextAreaElement | HTMLInputElement>
+): SelectionStore => {
+  const storeRef = useRef<SelectionStore | undefined>();
+
+  return storeRef.current || (storeRef.current = initSelectionStore(ref));
 };
