@@ -326,6 +326,8 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
                 userSelect: "none",
                 msUserSelect: "none",
                 WebkitUserSelect: "none",
+                // https://github.com/inokawa/rich-textarea/issues/56
+                boxSizing: "content-box",
                 // https://stackoverflow.com/questions/2545542/font-size-rendering-inconsistencies-on-an-iphone
                 textSizeAdjust: "100%",
                 WebkitTextSizeAdjust: "100%",
