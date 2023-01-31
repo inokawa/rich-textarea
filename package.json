@@ -30,7 +30,7 @@
     "@storybook/addon-docs": "7.0.0-alpha.54",
     "@storybook/react": "7.0.0-alpha.54",
     "@storybook/react-webpack5": "^7.0.0-alpha.54",
-    "@storybook/test-runner": "0.10.0-next.4",
+    "@storybook/test-runner": "0.10.0-next.5",
     "@testing-library/react": "13.4.0",
     "@textlint/kernel": "12.2.3",
     "@textlint/textlint-plugin-text": "12.2.3",
