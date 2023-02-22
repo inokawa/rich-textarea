@@ -30,7 +30,7 @@ Same as original but only string
 
 #### Defined in
 
-[src/textarea.tsx:59](https://github.com/inokawa/rich-textarea/blob/fad3583/src/textarea.tsx#L59)
+[src/textarea.tsx:59](https://github.com/inokawa/rich-textarea/blob/dee6b75/src/textarea.tsx#L59)
 
 ___
 
@@ -56,7 +56,7 @@ undefined
 
 #### Defined in
 
-[src/textarea.tsx:75](https://github.com/inokawa/rich-textarea/blob/fad3583/src/textarea.tsx#L75)
+[src/textarea.tsx:75](https://github.com/inokawa/rich-textarea/blob/dee6b75/src/textarea.tsx#L75)
 
 ___
 
@@ -64,7 +64,9 @@ ___
 
 • `Optional` **autoHeight**: `boolean`
 
-If true, textarea height is automatically resized and height of style prop does not work. Set `maxHeight` to style prop if you need limit.
+If true, textarea height is automatically resized and height of style prop does not work.
+Set `maxHeight` to style prop if you need limit.
+Set `rows` prop to 1 if you need single-line textarea.
 
 **`Default Value`**
 
@@ -72,7 +74,7 @@ undefined
 
 #### Defined in
 
-[src/textarea.tsx:80](https://github.com/inokawa/rich-textarea/blob/fad3583/src/textarea.tsx#L80)
+[src/textarea.tsx:82](https://github.com/inokawa/rich-textarea/blob/dee6b75/src/textarea.tsx#L82)
 
 ___
 
@@ -103,4 +105,4 @@ undefined
 
 #### Defined in
 
-[src/textarea.tsx:85](https://github.com/inokawa/rich-textarea/blob/fad3583/src/textarea.tsx#L85)
+[src/textarea.tsx:87](https://github.com/inokawa/rich-textarea/blob/dee6b75/src/textarea.tsx#L87)
