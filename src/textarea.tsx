@@ -74,7 +74,9 @@ export interface RichTextareaProps
    */
   children?: Renderer;
   /**
-   * If true, textarea height is automatically resized and height of style prop does not work. Set `maxHeight` to style prop if you need limit.
+   * If true, textarea height is automatically resized and height of style prop does not work.
+   * Set `maxHeight` to style prop if you need limit.
+   * Set `rows` prop to 1 if you need single-line textarea.
    * @defaultValue undefined
    */
   autoHeight?: boolean;
