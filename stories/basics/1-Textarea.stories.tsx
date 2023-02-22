@@ -59,6 +59,21 @@ export const Style: StoryObj = {
   },
 };
 
+export const OneLineAutoHeight: StoryObj = {
+  render: () => {
+    const [text, setText] = useState("Lorem ipsum");
+    return (
+      <RichTextarea
+        style={{ width: 600 }}
+        onChange={(e) => setText(e.target.value)}
+        value={text}
+        rows={1}
+        autoHeight
+      />
+    );
+  },
+};
+
 export const Rtl: StoryObj = {
   render: () => {
     const [text, setText] = useState(`אחד !
