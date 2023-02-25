@@ -68,6 +68,12 @@ const getValueFromStyle = (style: CSSStyleDeclaration, key: string): number => {
 
 export const getStyle = (e: Element) => getComputedStyle(e);
 
+export const hasPercentageUnit = (
+  widthOrHeight: React.CSSProperties["width"] | React.CSSProperties["height"]
+): boolean => {
+  return typeof widthOrHeight === "string" && widthOrHeight.endsWith("%");
+};
+
 export const getVerticalPadding = (style: CSSStyleDeclaration): number => {
   return (
     getValueFromStyle(style, "padding-top") +

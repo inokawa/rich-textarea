@@ -18,6 +18,7 @@ import {
   getPointedElement,
   getStyle,
   getVerticalPadding,
+  hasPercentageUnit,
   stopPropagation,
   syncBackdropStyle,
 } from "./dom";
@@ -282,13 +283,10 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           let h: React.CSSProperties["height"] = totalHeight;
           // Prefer prop style to avoid miscalculation https://github.com/inokawa/rich-textarea/issues/39
           if (style) {
-            if (typeof style.width === "string" && style.width.endsWith("%")) {
+            if (hasPercentageUnit(style.width)) {
               w = style.width;
             }
-            if (
-              typeof style.height === "string" &&
-              style.height.endsWith("%")
-            ) {
+            if (hasPercentageUnit(style.height)) {
               h = style.height;
             }
           }
