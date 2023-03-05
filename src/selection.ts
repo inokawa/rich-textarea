@@ -9,7 +9,7 @@ const initSelectionStore = (
 ) => {
   let listener = NOOP;
   let cache: [number | null, number | null] = [null, null];
-  let compositionEvent: CompositionEvent | null = null;
+  let compositionEvent: CompositionEvent | void;
   const handle = {
     _subscribe(callback: () => void) {
       listener = callback;
@@ -17,16 +17,17 @@ const initSelectionStore = (
         listener = NOOP;
       };
     },
-    _update() {
+    _updateSeletion() {
       setTimeout(listener);
     },
-    _setComposition(comp: CompositionEvent | null) {
-      compositionEvent = comp;
+    _setComposition(event: CompositionEvent | void) {
+      compositionEvent = event;
     },
     _getSelectionStart(): number | null {
       const el = ref.current;
       if (!el) return null;
       let pos = el.selectionStart!;
+      // compensate selection range during compositioning
       if (compositionEvent) {
         pos = Math.min(pos, el.selectionEnd! - compositionEvent.data.length);
       }
@@ -36,6 +37,7 @@ const initSelectionStore = (
       const el = ref.current;
       if (!el) return null;
       let pos = el.selectionEnd!;
+      // compensate selection range during compositioning
       if (compositionEvent) {
         pos = Math.min(pos, el.selectionStart! + compositionEvent.data.length);
       }

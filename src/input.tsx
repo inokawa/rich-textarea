@@ -392,7 +392,7 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
           onInput={useCallback(
             (e: React.FormEvent<HTMLInputElement>) => {
               onInput?.(e);
-              selectionStore._update();
+              selectionStore._updateSeletion();
             },
             [onInput]
           )}
@@ -412,7 +412,7 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
           )}
           onCompositionEnd={useCallback(
             (e: React.CompositionEvent<HTMLInputElement>) => {
-              selectionStore._setComposition(null);
+              selectionStore._setComposition();
               onCompositionEnd?.(e);
             },
             [onCompositionEnd]
@@ -427,7 +427,7 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
               }
 
               onKeyDown?.(e);
-              selectionStore._update();
+              selectionStore._updateSeletion();
             },
             [onKeyDown]
           )}
@@ -447,13 +447,12 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
           onMouseDown={useCallback(
             (e: React.MouseEvent<HTMLInputElement>) => {
               onMouseDown?.(e);
-              selectionStore._update();
-              const MOUSE_UP = "mouseup";
+              selectionStore._updateSeletion();
               const mouseup = () => {
-                selectionStore._update();
-                document.removeEventListener(MOUSE_UP, mouseup);
+                selectionStore._updateSeletion();
+                document.removeEventListener("mouseup", mouseup);
               };
-              document.addEventListener(MOUSE_UP, mouseup);
+              document.addEventListener("mouseup", mouseup);
               const textarea = textAreaRef.current;
               const backdrop = backdropRef.current;
               if (!textarea || !backdrop) return;
