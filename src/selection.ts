@@ -1,24 +1,26 @@
 import { useRef } from "react";
 
-const NOOP = () => {};
-
 type SelectionStore = ReturnType<typeof initSelectionStore>;
 
 const initSelectionStore = (
   ref: React.RefObject<HTMLTextAreaElement | HTMLInputElement>
 ) => {
-  let listener = NOOP;
+  const subscribers = new Set<() => void>();
   let cache: [number | null, number | null] = [null, null];
   let compositionEvent: CompositionEvent | void;
   const handle = {
-    _subscribe(callback: () => void) {
-      listener = callback;
+    _subscribe(cb: () => void) {
+      subscribers.add(cb);
       return () => {
-        listener = NOOP;
+        subscribers.delete(cb);
       };
     },
     _updateSeletion() {
-      setTimeout(listener);
+      setTimeout(() => {
+        subscribers.forEach((cb) => {
+          cb();
+        });
+      });
     },
     _setComposition(event: CompositionEvent | void) {
       compositionEvent = event;
