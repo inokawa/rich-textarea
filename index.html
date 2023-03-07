@@ -4,16 +4,20 @@
     <meta charset="utf-8" />
 
     <title>@storybook/cli - Storybook</title>
-
-    <link rel="shortcut icon" href="./favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link href="./sb-preview/runtime.mjs" rel="preload" as="script">
+    
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    
+
+    <link rel="preload" href="./sb-common-assets/nunito-sans-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./sb-common-assets/nunito-sans-bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="./sb-common-assets/fonts.css" />
 
       
 
     <style>
-      #storybook-root[hidden]{
+      #storybook-root[hidden] {
         display: none !important;
       }
     </style>
@@ -28,14 +32,12 @@
       
         
           window['FEATURES'] = {
-  "postcss": true,
   "warnOnLegacyHierarchySeparator": true,
   "buildStoriesJson": false,
   "storyStoreV7": true,
   "breakingChangesV7": true,
-  "interactionsDebugger": false,
-  "babelModeV7": true,
-  "argTypeTargetsV7": true
+  "argTypeTargetsV7": true,
+  "legacyDecoratorFileOrder": false
 };
         
       
@@ -49,9 +51,8 @@
       
         
           window['DOCS_OPTIONS'] = {
-  "enabled": true,
   "defaultName": "Docs",
-  "docsPage": true
+  "autodocs": "tag"
 };
         
       
@@ -74,6 +75,8 @@
       import './sb-manager/runtime.mjs';
 
       
-    </script>    
+    </script>
+
+    <link href="./sb-preview/runtime.mjs" rel="preload" as="script" />
   </body>
 </html>
