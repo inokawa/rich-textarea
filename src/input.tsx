@@ -97,7 +97,6 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
       value,
       autoHeight,
       style,
-      onScroll,
       onInput,
       onCompositionStart,
       onCompositionUpdate,
@@ -198,7 +197,8 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
 
     useIsomorphicLayoutEffect(() => {
       const textarea = textAreaRef.current;
-      if (!textarea) return;
+      const backdrop = backdropRef.current;
+      if (!textarea || !backdrop) return;
       const observer = new ResizeObserver(([entry]) => {
         const { contentRect, borderBoxSize } = entry!;
         if (borderBoxSize && borderBoxSize[0]) {
@@ -218,8 +218,15 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
           getVerticalPadding(style),
         ]);
       });
+
+      const onScroll = () => {
+        const { scrollTop, scrollLeft } = textarea;
+        backdrop.style.transform = `translate(${-scrollLeft}px, ${-scrollTop}px)`;
+      };
+      textarea.addEventListener("scroll", onScroll);
       observer.observe(textarea);
       return () => {
+        textarea.removeEventListener("scroll", onScroll);
         observer.disconnect();
       };
     }, []);
@@ -380,16 +387,6 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
               }),
             }),
             [style, isSizeCalculated]
-          )}
-          onScroll={useCallback(
-            (e: React.UIEvent<HTMLInputElement>) => {
-              if (backdropRef.current) {
-                const { scrollTop, scrollLeft } = e.currentTarget;
-                backdropRef.current.style.transform = `translate(${-scrollLeft}px, ${-scrollTop}px)`;
-              }
-              onScroll?.(e);
-            },
-            [onScroll]
           )}
           onInput={useCallback(
             (e: React.FormEvent<HTMLInputElement>) => {
