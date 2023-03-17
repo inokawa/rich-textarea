@@ -105,11 +105,6 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       onCompositionUpdate,
       onCompositionEnd,
       onKeyDown,
-      onClick,
-      onMouseDown,
-      onMouseUp,
-      onMouseMove,
-      onMouseLeave,
       onSelectionChange,
       ...props
     },
@@ -230,14 +225,56 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         const { scrollTop, scrollLeft } = textarea;
         backdrop.style.transform = `translate(${-scrollLeft}px, ${-scrollTop}px)`;
       };
+      const onMouseDown = (e: MouseEvent) => {
+        selectionStore._updateSeletion();
+        const mouseup = () => {
+          selectionStore._updateSeletion();
+          document.removeEventListener("mouseup", mouseup);
+        };
+        document.addEventListener("mouseup", mouseup);
+        const pointed = getPointedElement(textarea, backdrop, e);
+        if (pointed) {
+          dispatchClonedMouseEvent(pointed, e);
+        }
+      };
+      const onMouseUp = (e: MouseEvent) => {
+        const pointed = getPointedElement(textarea, backdrop, e);
+        if (pointed) {
+          dispatchClonedMouseEvent(pointed, e);
+        }
+      };
+      const onMouseMove = (e: MouseEvent) => {
+        const pointed = getPointedElement(textarea, backdrop, e);
+        dispatchMouseMoveEvent(pointed, pointedRef, e);
+      };
+      const onMouseLeave = (e: MouseEvent) => {
+        dispatchMouseOutEvent(pointedRef, e, null);
+      };
+      const onClick = (e: MouseEvent) => {
+        const pointed = getPointedElement(textarea, backdrop, e);
+        if (pointed) {
+          dispatchClonedMouseEvent(pointed, e);
+        }
+      };
+
       textarea.addEventListener("focus", onFocus);
       textarea.addEventListener("blur", onBlur);
       textarea.addEventListener("scroll", onScroll);
+      textarea.addEventListener("mousedown", onMouseDown);
+      textarea.addEventListener("mouseup", onMouseUp);
+      textarea.addEventListener("mousemove", onMouseMove);
+      textarea.addEventListener("mouseleave", onMouseLeave);
+      textarea.addEventListener("click", onClick);
       observer.observe(textarea);
       return () => {
         textarea.removeEventListener("focus", onFocus);
         textarea.removeEventListener("blur", onBlur);
         textarea.removeEventListener("scroll", onScroll);
+        textarea.removeEventListener("mousedown", onMouseDown);
+        textarea.removeEventListener("mouseup", onMouseUp);
+        textarea.removeEventListener("mousemove", onMouseMove);
+        textarea.removeEventListener("mouseleave", onMouseLeave);
+        textarea.removeEventListener("click", onClick);
         observer.disconnect();
       };
     }, []);
@@ -421,69 +458,6 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               selectionStore._updateSeletion();
             },
             [onKeyDown]
-          )}
-          onClick={useCallback(
-            (e: React.MouseEvent<HTMLTextAreaElement>) => {
-              onClick?.(e);
-              const textarea = textAreaRef.current;
-              const backdrop = backdropRef.current;
-              if (!textarea || !backdrop) return;
-              const pointed = getPointedElement(textarea, backdrop, e);
-              if (pointed) {
-                dispatchClonedMouseEvent(pointed, e.nativeEvent);
-              }
-            },
-            [onClick]
-          )}
-          onMouseDown={useCallback(
-            (e: React.MouseEvent<HTMLTextAreaElement>) => {
-              onMouseDown?.(e);
-              selectionStore._updateSeletion();
-              const mouseup = () => {
-                selectionStore._updateSeletion();
-                document.removeEventListener("mouseup", mouseup);
-              };
-              document.addEventListener("mouseup", mouseup);
-              const textarea = textAreaRef.current;
-              const backdrop = backdropRef.current;
-              if (!textarea || !backdrop) return;
-              const pointed = getPointedElement(textarea, backdrop, e);
-              if (pointed) {
-                dispatchClonedMouseEvent(pointed, e.nativeEvent);
-              }
-            },
-            [onMouseDown]
-          )}
-          onMouseUp={useCallback(
-            (e: React.MouseEvent<HTMLTextAreaElement>) => {
-              onMouseUp?.(e);
-              const textarea = textAreaRef.current;
-              const backdrop = backdropRef.current;
-              if (!textarea || !backdrop) return;
-              const pointed = getPointedElement(textarea, backdrop, e);
-              if (pointed) {
-                dispatchClonedMouseEvent(pointed, e.nativeEvent);
-              }
-            },
-            [onMouseUp]
-          )}
-          onMouseMove={useCallback(
-            (e: React.MouseEvent<HTMLTextAreaElement>) => {
-              onMouseMove?.(e);
-              const textarea = textAreaRef.current;
-              const backdrop = backdropRef.current;
-              if (!textarea || !backdrop) return;
-              const pointed = getPointedElement(textarea, backdrop, e);
-              dispatchMouseMoveEvent(pointed, pointedRef, e.nativeEvent);
-            },
-            [onMouseMove]
-          )}
-          onMouseLeave={useCallback(
-            (e: React.MouseEvent<HTMLTextAreaElement>) => {
-              onMouseLeave?.(e);
-              dispatchMouseOutEvent(pointedRef, e.nativeEvent, null);
-            },
-            [onMouseLeave]
           )}
         />
       </div>
