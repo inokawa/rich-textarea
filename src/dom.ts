@@ -95,7 +95,7 @@ export const getHorizontalPadding = (style: CSSStyleDeclaration): number => {
 export const getPointedElement = (
   textarea: HTMLElement,
   backdrop: HTMLElement,
-  e: React.MouseEvent
+  e: MouseEvent
 ): HTMLElement | null => {
   const POINTER_EVENTS = "pointer-events";
 
