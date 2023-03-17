@@ -117,7 +117,6 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
   ): React.ReactElement => {
     const textAreaRef = useRef<HTMLInputElement>(null);
     const backdropRef = useRef<HTMLDivElement>(null);
-    const [[left, top], setPos] = useState<[left: number, top: number]>([0, 0]);
     const [[width, height, hPadding, vPadding], setRect] = useState<
       [width: number, height: number, hPadding: number, vPadding: number]
     >([0, 0, 0, 0]);
@@ -271,9 +270,9 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
 
       // FIXME: Safari does not fire scroll event on input so substitute with pseudo selection change event
       return selectionStore._subscribe(() => {
-        const el = textAreaRef.current;
-        if (!el) return;
-        setPos([el.scrollLeft, el.scrollTop]);
+        if (!textAreaRef.current || !backdropRef.current) return;
+        const { scrollTop, scrollLeft } = textAreaRef.current;
+        backdropRef.current.style.transform = `translate(${-scrollLeft}px, ${-scrollTop}px)`;
       });
     }, []);
 
@@ -338,7 +337,7 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
               <div
                 style={useMemo(
                   (): React.CSSProperties => ({
-                    transform: `translate(${-left}px, ${-top}px)`,
+                    transform: "translate(0px, 0px)",
                     pointerEvents: "none",
                     userSelect: "none",
                     msUserSelect: "none",
@@ -350,7 +349,7 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
                     WebkitTextSizeAdjust: "100%",
                     whiteSpace: "pre",
                   }),
-                  [left, top]
+                  []
                 )}
               >
                 {useMemo(
@@ -384,7 +383,10 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
           )}
           onScroll={useCallback(
             (e: React.UIEvent<HTMLInputElement>) => {
-              setPos([e.currentTarget.scrollLeft, e.currentTarget.scrollTop]);
+              if (backdropRef.current) {
+                const { scrollTop, scrollLeft } = e.currentTarget;
+                backdropRef.current.style.transform = `translate(${-scrollLeft}px, ${-scrollTop}px)`;
+              }
               onScroll?.(e);
             },
             [onScroll]

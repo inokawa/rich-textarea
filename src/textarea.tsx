@@ -120,7 +120,6 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
   ): React.ReactElement => {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
     const backdropRef = useRef<HTMLDivElement>(null);
-    const [[left, top], setPos] = useState<[left: number, top: number]>([0, 0]);
     const [[width, height, hPadding, vPadding], setRect] = useState<
       [width: number, height: number, hPadding: number, vPadding: number]
     >([0, 0, 0, 0]);
@@ -321,7 +320,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             style={useMemo(
               (): React.CSSProperties => ({
                 width,
-                transform: `translate(${-left}px, ${-top}px)`,
+                transform: "translate(0px, 0px)",
                 pointerEvents: "none",
                 userSelect: "none",
                 msUserSelect: "none",
@@ -332,7 +331,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
                 textSizeAdjust: "100%",
                 WebkitTextSizeAdjust: "100%",
               }),
-              [left, top, width]
+              [width]
             )}
             // Stop propagation of events dispatched on backdrop
             onClick={stopPropagation}
@@ -368,7 +367,10 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           )}
           onScroll={useCallback(
             (e: React.UIEvent<HTMLTextAreaElement>) => {
-              setPos([e.currentTarget.scrollLeft, e.currentTarget.scrollTop]);
+              if (backdropRef.current) {
+                const { scrollTop, scrollLeft } = e.currentTarget;
+                backdropRef.current.style.transform = `translate(${-scrollLeft}px, ${-scrollTop}px)`;
+              }
               onScroll?.(e);
             },
             [onScroll]
