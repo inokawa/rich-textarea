@@ -9,12 +9,25 @@
     
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     
-
-    <link rel="preload" href="./sb-common-assets/nunito-sans-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="./sb-common-assets/nunito-sans-bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="stylesheet" href="./sb-common-assets/fonts.css" />
 
-      
+    <link href="./sb-manager/runtime.mjs" rel="modulepreload" />
+
+       
 
     <style>
       #storybook-root[hidden] {
@@ -77,6 +90,6 @@
       
     </script>
 
-    <link href="./sb-preview/runtime.mjs" rel="preload" as="script" />
+    <link href="./sb-preview/runtime.mjs" rel="prefetch" as="script" />
   </body>
 </html>
