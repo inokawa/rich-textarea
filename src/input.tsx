@@ -97,10 +97,6 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
       value,
       autoHeight,
       style,
-      onInput,
-      onCompositionStart,
-      onCompositionUpdate,
-      onCompositionEnd,
       onKeyDown,
       onSelectionChange,
       ...props
@@ -253,6 +249,18 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
           dispatchClonedMouseEvent(pointed, e);
         }
       };
+      const onInput = () => {
+        selectionStore._updateSeletion();
+      };
+      const onCompositionStart = (e: CompositionEvent) => {
+        selectionStore._setComposition(e);
+      };
+      const onCompositionUpdate = (e: CompositionEvent) => {
+        selectionStore._setComposition(e);
+      };
+      const onCompositionEnd = () => {
+        selectionStore._setComposition();
+      };
 
       textarea.addEventListener("focus", onFocus);
       textarea.addEventListener("blur", onBlur);
@@ -262,6 +270,10 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
       textarea.addEventListener("mousemove", onMouseMove);
       textarea.addEventListener("mouseleave", onMouseLeave);
       textarea.addEventListener("click", onClick);
+      textarea.addEventListener("input", onInput);
+      textarea.addEventListener("compositionstart", onCompositionStart);
+      textarea.addEventListener("compositionupdate", onCompositionUpdate);
+      textarea.addEventListener("compositionend", onCompositionEnd);
       observer.observe(textarea);
       return () => {
         textarea.removeEventListener("focus", onFocus);
@@ -272,6 +284,10 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
         textarea.removeEventListener("mousemove", onMouseMove);
         textarea.removeEventListener("mouseleave", onMouseLeave);
         textarea.removeEventListener("click", onClick);
+        textarea.removeEventListener("input", onInput);
+        textarea.removeEventListener("compositionstart", onCompositionStart);
+        textarea.removeEventListener("compositionupdate", onCompositionUpdate);
+        textarea.removeEventListener("compositionend", onCompositionEnd);
         observer.disconnect();
       };
     }, []);
@@ -432,34 +448,6 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
               }),
             }),
             [style, isSizeCalculated]
-          )}
-          onInput={useCallback(
-            (e: React.FormEvent<HTMLInputElement>) => {
-              onInput?.(e);
-              selectionStore._updateSeletion();
-            },
-            [onInput]
-          )}
-          onCompositionStart={useCallback(
-            (e: React.CompositionEvent<HTMLInputElement>) => {
-              selectionStore._setComposition(e.nativeEvent);
-              onCompositionStart?.(e);
-            },
-            [onCompositionStart]
-          )}
-          onCompositionUpdate={useCallback(
-            (e: React.CompositionEvent<HTMLInputElement>) => {
-              selectionStore._setComposition(e.nativeEvent);
-              onCompositionUpdate?.(e);
-            },
-            [onCompositionUpdate]
-          )}
-          onCompositionEnd={useCallback(
-            (e: React.CompositionEvent<HTMLInputElement>) => {
-              selectionStore._setComposition();
-              onCompositionEnd?.(e);
-            },
-            [onCompositionEnd]
           )}
           onKeyDown={useCallback(
             (e: React.KeyboardEvent<HTMLInputElement>) => {
