@@ -107,8 +107,6 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
       onMouseUp,
       onMouseMove,
       onMouseLeave,
-      onFocus,
-      onBlur,
       onSelectionChange,
       ...props
     },
@@ -219,13 +217,23 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
         ]);
       });
 
+      const onFocus = () => {
+        setFocused(true);
+      };
+      const onBlur = () => {
+        setFocused(false);
+      };
       const onScroll = () => {
         const { scrollTop, scrollLeft } = textarea;
         backdrop.style.transform = `translate(${-scrollLeft}px, ${-scrollTop}px)`;
       };
+      textarea.addEventListener("focus", onFocus);
+      textarea.addEventListener("blur", onBlur);
       textarea.addEventListener("scroll", onScroll);
       observer.observe(textarea);
       return () => {
+        textarea.removeEventListener("focus", onFocus);
+        textarea.removeEventListener("blur", onBlur);
         textarea.removeEventListener("scroll", onScroll);
         observer.disconnect();
       };
@@ -492,20 +500,6 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
               dispatchMouseOutEvent(pointedRef, e.nativeEvent, null);
             },
             [onMouseLeave]
-          )}
-          onFocus={useCallback(
-            (e: React.FocusEvent<HTMLInputElement>) => {
-              onFocus?.(e);
-              setFocused(true);
-            },
-            [onFocus]
-          )}
-          onBlur={useCallback(
-            (e: React.FocusEvent<HTMLInputElement>) => {
-              onBlur?.(e);
-              setFocused(false);
-            },
-            [onBlur]
           )}
         />
       </div>
