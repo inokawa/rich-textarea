@@ -30,7 +30,7 @@ Same as original but only string
 
 #### Defined in
 
-[src/textarea.tsx:59](https://github.com/inokawa/rich-textarea/blob/dee6b75/src/textarea.tsx#L59)
+[src/textarea.tsx:60](https://github.com/inokawa/rich-textarea/blob/8cceba3/src/textarea.tsx#L60)
 
 ___
 
@@ -56,7 +56,7 @@ undefined
 
 #### Defined in
 
-[src/textarea.tsx:75](https://github.com/inokawa/rich-textarea/blob/dee6b75/src/textarea.tsx#L75)
+[src/textarea.tsx:76](https://github.com/inokawa/rich-textarea/blob/8cceba3/src/textarea.tsx#L76)
 
 ___
 
@@ -74,7 +74,7 @@ undefined
 
 #### Defined in
 
-[src/textarea.tsx:82](https://github.com/inokawa/rich-textarea/blob/dee6b75/src/textarea.tsx#L82)
+[src/textarea.tsx:83](https://github.com/inokawa/rich-textarea/blob/8cceba3/src/textarea.tsx#L83)
 
 ___
 
@@ -105,4 +105,4 @@ undefined
 
 #### Defined in
 
-[src/textarea.tsx:87](https://github.com/inokawa/rich-textarea/blob/dee6b75/src/textarea.tsx#L87)
+[src/textarea.tsx:88](https://github.com/inokawa/rich-textarea/blob/8cceba3/src/textarea.tsx#L88)

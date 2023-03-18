@@ -78,6 +78,8 @@ ___
 
 An utility to create renderer function with regex.
 
+The priority is descending order.
+
 #### Parameters
 
 | Name | Type |
@@ -90,7 +92,7 @@ An utility to create renderer function with regex.
 
 #### Defined in
 
-[src/renderers.tsx:16](https://github.com/inokawa/rich-textarea/blob/dee6b75/src/renderers.tsx#L16)
+[src/renderers.tsx:19](https://github.com/inokawa/rich-textarea/blob/8cceba3/src/renderers.tsx#L19)
 
 ## Type Aliases
 
@@ -100,7 +102,7 @@ An utility to create renderer function with regex.
 
 #### Defined in
 
-[src/renderers.tsx:5](https://github.com/inokawa/rich-textarea/blob/dee6b75/src/renderers.tsx#L5)
+[src/renderers.tsx:4](https://github.com/inokawa/rich-textarea/blob/8cceba3/src/renderers.tsx#L4)
 
 ___
 
@@ -124,7 +126,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/dee6b75/src/types.ts#L1)
+[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/8cceba3/src/types.ts#L1)
 
 ___
 
@@ -134,4 +136,4 @@ ___
 
 #### Defined in
 
-[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/dee6b75/src/types.ts#L3)
+[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/8cceba3/src/types.ts#L3)
