@@ -9,8 +9,6 @@ export type StyleOrRender =
       key?: string | undefined;
     }) => React.ReactNode);
 
-type RangeChunk = [start: number, end: number];
-
 /**
  * An utility to create renderer function with regex.
  *
@@ -24,10 +22,10 @@ export const createRegexRenderer = (
   return (value) => {
     const [indexSet, startToStyleMap, endToStyleMap] = matchers.reduce(
       (acc, [matcher, style]) => {
-        const ranges = execReg(matcher, value).map((m): RangeChunk => {
-          return [m.index, m.index + m[0]!.length];
-        });
-        ranges.forEach(([start, end]) => {
+        execReg(matcher, value).forEach((m) => {
+          const start = m.index;
+          const end = m.index + m[0]!.length;
+
           acc[0].add(start).add(end);
           let startStyles = acc[1].get(start);
           let endStyles = acc[2].get(end);
