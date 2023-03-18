@@ -18,10 +18,10 @@ export const createRegexRenderer = (
 ): Renderer => {
   return (value) => {
     const styles: StyleOrRender[] = [];
-    const ranges: RangeChunk[] = [];
+    const ranges: RangeChunk<number>[] = [];
     matchers.forEach(([matcher, style], i) => {
       ranges.push(
-        ...execReg(matcher, value).map((m): RangeChunk => {
+        ...execReg(matcher, value).map((m): RangeChunk<number> => {
           const start = m.index;
           const end = m.index + m[0]!.length;
           return [start, end, i];
@@ -33,7 +33,6 @@ export const createRegexRenderer = (
     const chunks = mergeRanges(ranges);
     const res: React.ReactNode[] = [];
     let prevEnd = 0;
-    // let prevStart = 0;
     for (let i = 0; i < chunks.length; i++) {
       const [start, end, styleIds] = chunks[i]!;
       res.push(value.slice(prevEnd, start));
@@ -55,7 +54,6 @@ export const createRegexRenderer = (
         }, v as React.ReactNode)
       );
       prevEnd = end;
-      // prevStart = start;
     }
     res.push(value.slice(prevEnd));
     return res;

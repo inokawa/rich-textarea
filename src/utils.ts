@@ -1,32 +1,42 @@
-export type RangeChunk = [start: number, end: number, styleId: number];
+export type RangeChunk<T> = [start: number, end: number, id: T];
 
-type MergedRangeChunk = [start: number, end: number, styleIds: Set<number>];
+type MergedRangeChunk<T> = [start: number, end: number, ids: Set<T>];
 
-export const mergeRanges = (ranges: RangeChunk[]): MergedRangeChunk[] => {
+export const mergeRanges = <T>(
+  ranges: RangeChunk<T>[]
+): MergedRangeChunk<T>[] => {
+  if (!ranges.length) return [];
+
   ranges.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
 
-  const results: MergedRangeChunk[] = [];
-  let last: MergedRangeChunk;
+  const results: MergedRangeChunk<T>[] = [];
+  let prev: MergedRangeChunk<T> | undefined;
 
-  ranges.forEach(([start, end, styleId]) => {
-    if (!last || start >= last[1]) {
-      results.push((last = [start, end, new Set([styleId])]));
-    } else if (end > last[1]) {
-      last[2].add(styleId);
-      results.push((last = [last[1], end, new Set([styleId])]));
-    } else if (end <= last[1]) {
-      const lastEnd = last[1];
-      const lastStyle = new Set(last[2]);
-      const lastStyle2 = new Set(last[2]);
-      if (last[0] !== start) {
-        last[1] = start;
+  ranges.forEach(([start, end, id]) => {
+    if (!prev) {
+      results.push((prev = [start, end, new Set([id])]));
+      return;
+    }
+    const [prevStart, prevEnd] = prev;
+    if (start >= prevEnd) {
+      // ex. [0,1]-[1,2] [0,1]-[2,3]
+      results.push((prev = [start, end, new Set([id])]));
+    } else if (end > prevEnd) {
+      // ex. [0,2]-[1,3]
+      prev[2].add(id);
+      results.push((prev = [prevEnd, end, new Set([id])]));
+    } else if (end <= prevEnd) {
+      // ex. [0,2]-[1,2] [0,3]-[1,2]
+      const ids1 = new Set([...prev[2], id]);
+      const id2s = new Set(prev[2]);
+      if (prevStart !== start) {
+        prev[1] = start;
       } else {
         results.pop();
       }
-      lastStyle.add(styleId);
-      results.push((last = [start, end, lastStyle]));
-      if (end !== lastEnd) {
-        results.push((last = [end, lastEnd, lastStyle2]));
+      results.push((prev = [start, end, ids1]));
+      if (end !== prevEnd) {
+        results.push((prev = [end, prevEnd, id2s]));
       }
     }
   });
