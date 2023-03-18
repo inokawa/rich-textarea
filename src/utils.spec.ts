@@ -1,33 +1,33 @@
 import { it, describe, expect } from "@jest/globals";
-import { merge } from "./utils";
+import { mergeRanges } from "./utils";
 
-describe("merge", () => {
-  it("ipsum", () => {
+describe("mergeRanges", () => {
+  it("a abcde b -> a b cde", () => {
     expect(
-      merge([
+      mergeRanges([
         [0, 1, 1],
         [0, 5, 2],
         [1, 2, 3],
       ])
     ).toEqual([
-      [0, 1, { 1: true, 2: true }],
-      [1, 2, { 2: true, 3: true }],
-      [2, 5, { 2: true }],
+      [0, 1, new Set([1, 2])],
+      [1, 2, new Set([2, 3])],
+      [2, 5, new Set([2])],
     ]);
   });
-  it("ipsumi", () => {
+  it("a abcde b f -> a b cde f", () => {
     expect(
-      merge([
+      mergeRanges([
         [0, 1, 1],
         [0, 5, 2],
         [1, 2, 3],
         [5, 6, 4],
       ])
     ).toEqual([
-      [0, 1, { 1: true, 2: true }],
-      [1, 2, { 2: true, 3: true }],
-      [2, 5, { 2: true }],
-      [5, 6, { 4: true }],
+      [0, 1, new Set([1, 2])],
+      [1, 2, new Set([2, 3])],
+      [2, 5, new Set([2])],
+      [5, 6, new Set([4])],
     ]);
   });
 });

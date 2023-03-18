@@ -1,6 +1,6 @@
 import { execReg } from "./regex";
 import type { Renderer } from "./types";
-import { RangeChunk, merge } from "./utils";
+import { RangeChunk, mergeRanges } from "./utils";
 
 export type StyleOrRender =
   | React.CSSProperties
@@ -17,7 +17,7 @@ export const createRegexRenderer = (
   matchers: [RegExp, StyleOrRender][]
 ): Renderer => {
   return (value) => {
-    const styles: { [key: string]: StyleOrRender } = {};
+    const styles: StyleOrRender[] = [];
     const ranges: RangeChunk[] = [];
     matchers.forEach(([matcher, style], i) => {
       ranges.push(
@@ -27,10 +27,10 @@ export const createRegexRenderer = (
           return [start, end, i];
         })
       );
-      styles[String(i)] = style;
+      styles.push(style);
     });
 
-    const chunks = merge(ranges);
+    const chunks = mergeRanges(ranges);
     const res: React.ReactNode[] = [];
     let prevEnd = 0;
     // let prevStart = 0;
@@ -40,7 +40,7 @@ export const createRegexRenderer = (
 
       const v = value.slice(start, end);
       res.push(
-        Object.keys(styleIds).reduceRight((acc, si, index) => {
+        Array.from(styleIds).reduceRight((acc, si, index) => {
           const styleOrRender = styles[si];
           const key = index === 0 ? String(start) : undefined;
           if (typeof styleOrRender === "function") {
