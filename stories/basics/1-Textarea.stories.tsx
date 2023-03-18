@@ -31,11 +31,11 @@ export const HelloWorld: StoryObj = {
 };
 
 const basicRegex = createRegexRenderer([
-  [/[A-Z][A-x]+/g, { color: "blue" }],
   [
     /[A-Z][A-Z]+/g,
     { borderRadius: "3px", backgroundColor: "blue", color: "white" },
   ],
+  [/[A-Z][A-x]+/g, { color: "blue" }],
   [/[!?]+/g, { textDecoration: "underline wavy", color: "red" }],
   [/(but|and|so|also)+/g, { textDecoration: "line-through", color: "green" }],
   [/[0123456789]+/g, { color: "violet", fontWeight: "bold" }],
@@ -213,24 +213,23 @@ export const Search: StoryObj = {
   },
 };
 
-// const manyRegex = createRegexRenderer([
-//   [/[A-Z][a-z]+/g, { borderRadius: "3px", backgroundColor: "#d0bfff" }],
-//   [/ipsum/g, { color: "blue", textDecoration: "underline wavy" }],
-//   [/[abcdeip]/g, { color: "red", fontWeight: "bold" }],
-// ]);
+const manyRegex = createRegexRenderer([
+  [/[A-Z][a-z]+/g, { backgroundColor: "lightgray" }],
+  [/[abcdeip]/g, { color: "red", fontWeight: "bold" }],
+  [/ipsum/g, { color: "blue", textDecoration: "underline wavy" }],
+]);
 
-// export const Many: StoryObj = {
-//   render: () => {
-//     const [text, setText] = useState(LOREM);
-//     return (
-//       <RichTextarea
-//         style={style}
-//         onChange={useCallback((e) => setText(e.target.value), [])}
-//         value={text}
-//       >
-//         {manyRegex}
-//       </RichTextarea>
-//     );
-//   },
-// };
-// Many.storyName = "Many (WIP)";
+export const Many: StoryObj = {
+  render: () => {
+    const [text, setText] = useState(LOREM);
+    return (
+      <RichTextarea
+        style={style}
+        onChange={useCallback((e) => setText(e.target.value), [])}
+        value={text}
+      >
+        {manyRegex}
+      </RichTextarea>
+    );
+  },
+};

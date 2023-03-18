@@ -1,5 +1,85 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`match double matchers 1`] = `
+<DocumentFragment>
+  <div
+    style="display: inline-block; position: relative; width: 0px; height: 0px;"
+  >
+    <div
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
+    >
+      <div
+        aria-hidden="true"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+      >
+        L
+        <span
+          style="color: blue; border: 1px solid blue;"
+        >
+          <span
+            style="color: red; background: red;"
+          >
+            o
+          </span>
+        </span>
+        <span
+          style="color: red; background: red;"
+        >
+          r
+        </span>
+        <span
+          style="color: blue; border: 1px solid blue;"
+        >
+          e
+        </span>
+        m ipsum d
+        <span
+          style="color: blue; border: 1px solid blue;"
+        >
+          <span
+            style="color: red; background: red;"
+          >
+            o
+          </span>
+        </span>
+        l
+        <span
+          style="color: blue; border: 1px solid blue;"
+        >
+          <span
+            style="color: red; background: red;"
+          >
+            o
+          </span>
+        </span>
+        <span
+          style="color: red; background: red;"
+        >
+          r
+        </span>
+         sit am
+        <span
+          style="color: blue; border: 1px solid blue;"
+        >
+          e
+        </span>
+        t
+        <span
+          style="color: transparent;"
+        >
+          ​
+        </span>
+      </div>
+    </div>
+    <textarea
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+    >
+      Lorem ipsum dolor sit amet
+    </textarea>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`match emoji 1`] = `
 <DocumentFragment>
   <div
@@ -403,7 +483,7 @@ exports[`match match one 1`] = `
 </DocumentFragment>
 `;
 
-exports[`match multiple matchers 1`] = `
+exports[`match triple matchers 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -415,54 +495,70 @@ exports[`match multiple matchers 1`] = `
         aria-hidden="true"
         style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
       >
-        L
         <span
-          style="color: red; background: red;"
+          style="background-color: lightgray;"
+        >
+          Lor
+        </span>
+        <span
+          style="color: red; font-weight: bold;"
         >
           <span
-            style="color: blue; border: 1px solid blue;"
+            style="background-color: lightgray;"
           >
-            o
+            e
           </span>
         </span>
         <span
-          style="color: red; background: red;"
+          style="background-color: lightgray;"
         >
-          r
+          m
         </span>
+         
         <span
-          style="color: blue; border: 1px solid blue;"
-        >
-          e
-        </span>
-        m ipsum d
-        <span
-          style="color: red; background: red;"
+          style="color: blue; text-decoration: underline wavy;"
         >
           <span
-            style="color: blue; border: 1px solid blue;"
+            style="color: red; font-weight: bold;"
           >
-            o
-          </span>
-        </span>
-        l
-        <span
-          style="color: red; background: red;"
-        >
-          <span
-            style="color: blue; border: 1px solid blue;"
-          >
-            o
+            i
           </span>
         </span>
         <span
-          style="color: red; background: red;"
+          style="color: blue; text-decoration: underline wavy;"
         >
-          r
+          <span
+            style="color: red; font-weight: bold;"
+          >
+            p
+          </span>
         </span>
-         sit am
         <span
-          style="color: blue; border: 1px solid blue;"
+          style="color: blue; text-decoration: underline wavy;"
+        >
+          sum
+        </span>
+         
+        <span
+          style="color: red; font-weight: bold;"
+        >
+          d
+        </span>
+        olor s
+        <span
+          style="color: red; font-weight: bold;"
+        >
+          i
+        </span>
+        t 
+        <span
+          style="color: red; font-weight: bold;"
+        >
+          a
+        </span>
+        m
+        <span
+          style="color: red; font-weight: bold;"
         >
           e
         </span>

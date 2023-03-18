@@ -168,12 +168,25 @@ describe("match", () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it("multiple matchers", () => {
+  it("double matchers", () => {
     const { asFragment } = render(
       <RichTextarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
         {createRegexRenderer([
           [/[or]/g, { color: "red", background: "red" }],
           [/[oe]/g, { color: "blue", border: "solid 1px blue" }],
+        ])}
+      </RichTextarea>
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it("triple matchers", () => {
+    const { asFragment } = render(
+      <RichTextarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
+        {createRegexRenderer([
+          [/[A-Z][a-z]+/g, { backgroundColor: "lightgray" }],
+          [/[abcdeip]/g, { color: "red", fontWeight: "bold" }],
+          [/ipsum/g, { color: "blue", textDecoration: "underline wavy" }],
         ])}
       </RichTextarea>
     );
