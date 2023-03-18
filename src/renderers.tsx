@@ -19,19 +19,14 @@ type RangeChunk = [start: number, end: number];
 export const createRegexRenderer = (
   matchers: [RegExp, StyleOrRender][]
 ): Renderer => {
+  const allStyles = matchers.map(([, style]) => style);
+
   return (value) => {
-    const matches = matchers.map(
-      ([matcher, style]): [RangeChunk[], StyleOrRender] => {
-        return [
-          execReg(matcher, value).map((m): RangeChunk => {
-            return [m.index, m.index + m[0]!.length];
-          }),
-          style,
-        ];
-      }
-    );
-    const [indexSet, startToStyleMap, endToStyleMap] = matches.reduce(
-      (acc, [ranges, style]) => {
+    const [indexSet, startToStyleMap, endToStyleMap] = matchers.reduce(
+      (acc, [matcher, style]) => {
+        const ranges = execReg(matcher, value).map((m): RangeChunk => {
+          return [m.index, m.index + m[0]!.length];
+        });
         ranges.forEach(([start, end]) => {
           acc[0].add(start).add(end);
           let startStyles = acc[1].get(start);
@@ -76,10 +71,7 @@ export const createRegexRenderer = (
           activeStyles.push(s);
         });
         activeStyles.sort((a, b) => {
-          return (
-            matchers.findIndex(([, s]) => s === b) -
-            matchers.findIndex(([, s]) => s === a)
-          );
+          return allStyles.indexOf(b) - allStyles.indexOf(a);
         });
       }
 
