@@ -59,7 +59,7 @@ export const createRegexRenderer = (
     });
 
     let prevEnd = 0;
-    const activeStyles = new Set<StyleOrRender>();
+    const activeStyles: StyleOrRender[] = [];
     const res: React.ReactNode[] = [];
     for (let i = 0; i < indexes.length; i++) {
       const start = indexes[i]!;
@@ -73,20 +73,19 @@ export const createRegexRenderer = (
       const endStyles = endToStyleMap.get(end);
       if (startStyles) {
         startStyles.forEach((s) => {
-          activeStyles.add(s);
+          activeStyles.push(s);
+        });
+        activeStyles.sort((a, b) => {
+          return (
+            matchers.findIndex(([, s]) => s === b) -
+            matchers.findIndex(([, s]) => s === a)
+          );
         });
       }
 
       const v = value.slice(start, end);
-      const sortedStyles = Array.from(activeStyles).sort((a, b) => {
-        return (
-          matchers.findIndex(([, s]) => s === b) -
-          matchers.findIndex(([, s]) => s === a)
-        );
-      });
-
       res.push(
-        sortedStyles.reduceRight((acc, styleOrRender, j) => {
+        activeStyles.reduceRight((acc, styleOrRender, j) => {
           const key = j === 0 ? String(start) : undefined;
           if (typeof styleOrRender === "function") {
             return styleOrRender({ children: acc, value: v, key });
@@ -102,7 +101,7 @@ export const createRegexRenderer = (
 
       if (endStyles) {
         endStyles.forEach((s) => {
-          activeStyles.delete(s);
+          activeStyles.splice(activeStyles.indexOf(s), 1);
         });
       }
 
