@@ -17,7 +17,7 @@
     "storybook:build": "storybook build",
     "storybook:test": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"npm run storybook -- --quiet --no-open\" \"wait-on tcp:6006 && test-storybook\"",
     "typedoc": "typedoc",
-    "prepublishOnly": "rimraf lib && npm run build"
+    "prepublishOnly": "npm run typedoc && rimraf lib && npm run build"
   },
   "dependencies": {
     "range-at-index": "^1.0.4",
