@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2018",
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "esnext"],
     "strict": true,
@@ -22,8 +22,7 @@
     "noFallthroughCasesInSwitch": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "exactOptionalPropertyTypes": true,
-    "importsNotUsedAsValues": "error"
+    "exactOptionalPropertyTypes": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]

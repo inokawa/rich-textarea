@@ -7,7 +7,7 @@ import {
   forwardRef,
   useImperativeHandle,
 } from "react";
-import { useSyncExternalStore } from "use-sync-external-store/shim";
+import { useSyncExternalStore } from "use-sync-external-store/shim/index.js";
 // @ts-expect-error no type definition
 import rangeAtIndex from "range-at-index";
 import {
