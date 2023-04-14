@@ -25,6 +25,7 @@ import {
 import { useStore } from "./selection";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 import type { CaretPosition, Renderer } from "./types";
+import { refKey } from "./utils";
 
 // for caret position detection
 const CARET_DETECTOR = <span style={{ color: "transparent" }}>{"\u200b"}</span>;
@@ -131,7 +132,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     useImperativeHandle(
       propRef,
       () => {
-        const el = textAreaRef.current!;
+        const el = textAreaRef[refKey]!;
         const overrides = {
           get selectionStart() {
             const sel = selectionStore._getSelectionStart();
@@ -188,8 +189,8 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     );
 
     useIsomorphicLayoutEffect(() => {
-      const textarea = textAreaRef.current;
-      const backdrop = backdropRef.current;
+      const textarea = textAreaRef[refKey];
+      const backdrop = backdropRef[refKey];
       if (!textarea || !backdrop) return;
       const observer = new ResizeObserver(([entry]) => {
         const { contentRect, borderBoxSize } = entry!;
@@ -297,8 +298,8 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
 
     useIsomorphicLayoutEffect(() => {
       // Sync backdrop style
-      const textarea = textAreaRef.current;
-      const backdrop = backdropRef.current;
+      const textarea = textAreaRef[refKey];
+      const backdrop = backdropRef[refKey];
       if (!backdrop || !textarea) return;
       syncBackdropStyle(textarea, backdrop, caretColorRef, style);
     }, [style]);
@@ -317,7 +318,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         );
       } else {
         const range = rangeAtIndex(
-          backdropRef.current,
+          backdropRef[refKey],
           selectionStart,
           selectionStart + 1
         ) as Range;
@@ -337,7 +338,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     }, [focused, selectionStart, selectionEnd]);
 
     useEffect(() => {
-      const textarea = textAreaRef.current;
+      const textarea = textAreaRef[refKey];
       if (!autoHeight || !textarea) return;
       textarea.style.height = "auto";
       textarea.style.height = `${textarea.scrollHeight}px`;

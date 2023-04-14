@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { refKey } from "./utils";
 
 type SelectionStore = ReturnType<typeof initSelectionStore>;
 
@@ -26,7 +27,7 @@ const initSelectionStore = (
       compositionEvent = event;
     },
     _getSelectionStart(): number | null {
-      const el = ref.current;
+      const el = ref[refKey];
       if (!el) return null;
       let pos = el.selectionStart!;
       // compensate selection range during compositioning
@@ -36,7 +37,7 @@ const initSelectionStore = (
       return pos;
     },
     _getSelectionEnd(): number | null {
-      const el = ref.current;
+      const el = ref[refKey];
       if (!el) return null;
       let pos = el.selectionEnd!;
       // compensate selection range during compositioning
@@ -63,5 +64,5 @@ export const useStore = (
 ): SelectionStore => {
   const storeRef = useRef<SelectionStore | undefined>();
 
-  return storeRef.current || (storeRef.current = initSelectionStore(ref));
+  return storeRef[refKey] || (storeRef[refKey] = initSelectionStore(ref));
 };

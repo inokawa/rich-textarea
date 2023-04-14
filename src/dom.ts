@@ -1,3 +1,5 @@
+import { refKey } from "./utils";
+
 export const isSafari = (): boolean => {
   const ua = navigator.userAgent.toLowerCase();
   return ua.indexOf("safari") > -1 && ua.indexOf("chrome") <= -1;
@@ -150,7 +152,7 @@ export const dispatchMouseMoveEvent = (
     dispatchClonedMouseEvent(pointed, e);
   }
 
-  if (prevPointed.current !== pointed) {
+  if (prevPointed[refKey] !== pointed) {
     dispatchMouseOutEvent(prevPointed, e, pointed);
     if (pointed) {
       dispatchMouseEvent(pointed, "mouseover", e);
@@ -163,10 +165,10 @@ export const dispatchMouseOutEvent = (
   e: MouseEvent,
   pointed: HTMLElement | null
 ) => {
-  if (prevPointed.current) {
-    dispatchMouseEvent(prevPointed.current, "mouseout", e);
+  if (prevPointed[refKey]) {
+    dispatchMouseEvent(prevPointed[refKey], "mouseout", e);
   }
-  prevPointed.current = pointed;
+  prevPointed[refKey] = pointed;
 };
 
 export const stopPropagation = (event: React.MouseEvent) => {
@@ -182,13 +184,13 @@ export const syncBackdropStyle = (
   const computedTextAreaStyle = getStyle(textarea);
   const textareaStyle = textarea.style;
   const backdropStyle = backdrop.style;
-  if (!caretColorRef.current) {
-    caretColorRef.current = getPropertyValue(computedTextAreaStyle, "color");
+  if (!caretColorRef[refKey]) {
+    caretColorRef[refKey] = getPropertyValue(computedTextAreaStyle, "color");
   }
 
   TEXT_STYLE_KEYS.forEach((k) => {
     backdropStyle[k as any] = computedTextAreaStyle[k as any]!;
   });
   textareaStyle.color = backdropStyle.borderColor = "transparent";
-  textareaStyle.caretColor = style?.caretColor || caretColorRef.current;
+  textareaStyle.caretColor = style?.caretColor || caretColorRef[refKey];
 };
