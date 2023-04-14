@@ -22,10 +22,11 @@ import {
   stopPropagation,
   syncBackdropStyle,
 } from "./dom";
-import { useStore } from "./selection";
+import { initSelectionStore } from "./selection";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 import type { CaretPosition, Renderer } from "./types";
 import { refKey } from "./utils";
+import { useStatic } from "./useStatic";
 
 // for caret position detection
 const CARET_DETECTOR = <span style={{ color: "transparent" }}>{"\u200b"}</span>;
@@ -117,7 +118,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     const caretColorRef = useRef("");
     const pointedRef = useRef<HTMLElement | null>(null);
 
-    const selectionStore = useStore(textAreaRef);
+    const selectionStore = useStatic(() => initSelectionStore(textAreaRef));
     const [selectionStart, selectionEnd] = useSyncExternalStore(
       selectionStore._subscribe,
       selectionStore._getSelection,

@@ -1,9 +1,6 @@
-import { useRef } from "react";
 import { refKey } from "./utils";
 
-type SelectionStore = ReturnType<typeof initSelectionStore>;
-
-const initSelectionStore = (
+export const initSelectionStore = (
   ref: React.RefObject<HTMLTextAreaElement | HTMLInputElement>
 ) => {
   const subscribers = new Set<() => void>();
@@ -57,12 +54,4 @@ const initSelectionStore = (
     },
   };
   return handle;
-};
-
-export const useStore = (
-  ref: React.RefObject<HTMLTextAreaElement | HTMLInputElement>
-): SelectionStore => {
-  const storeRef = useRef<SelectionStore | undefined>();
-
-  return storeRef[refKey] || (storeRef[refKey] = initSelectionStore(ref));
 };
