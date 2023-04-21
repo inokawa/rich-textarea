@@ -1,5 +1,3 @@
-const { mergeConfig } = require("vite");
-
 module.exports = {
   stories: [
     "../stories/**/*.stories.mdx",
@@ -14,25 +12,33 @@ module.exports = {
     },
   ],
   framework: {
-    name: "@storybook/react-vite",
+    name: "@storybook/react-webpack5",
     options: {},
   },
-  async viteFinal(config, options) {
-    return mergeConfig(config, {
-      define: {
-        // For kuromoji
-        "process.env.STORYBOOK_DEPLOY": process.env.STORYBOOK_DEPLOY,
-        // For textlint
-        "process.env.TIMING": undefined,
-      },
-      resolve: {
-        alias: {
-          // For kuromoji
-          path: "path-browserify",
-          // For textlint
-          assert: "assert",
+  async webpackFinal(config, options) {
+    config.module.rules = config.module.rules.filter(
+      (r) => !r.use?.[0]?.loader?.includes("babel-loader")
+    );
+    config.module.rules.unshift({
+      test: /\.(mjs|tsx?|jsx?)$/,
+      use: [
+        {
+          loader: "esbuild-loader",
+          options: {
+            loader: "tsx",
+            target: "es2018",
+            implementation: require("esbuild"),
+          },
         },
-      },
+      ],
     });
+    config.resolve.fallback = {
+      // For kuromoji
+      path: "path-browserify",
+      // For textlint
+      assert: "assert",
+      events: "events",
+    };
+    return config;
   },
 };
