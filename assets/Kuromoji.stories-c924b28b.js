@@ -11,7 +11,7 @@ import{a as Ln,j as Br}from"./useStatic-0a5cdcfd.js";import{c as kt,r as nr}from
     useEffect(() => {
       (async () => {
         const tokenizer = await getTokenizer({
-          dicPath: "true" ? "/rich-textarea/dict" : "/dict"
+          dicPath: true ? "/rich-textarea/dict" : "/dict"
         });
         setTokenizer(tokenizer);
       })();
@@ -36,4 +36,4 @@ import{a as Ln,j as Br}from"./useStatic-0a5cdcfd.js";import{c as kt,r as nr}from
       </div>;
   }
 }`,...(Bn=(In=Ir.parameters)==null?void 0:In.docs)==null?void 0:Bn.source}}};const cu=["Kuromoji"];export{Ir as Kuromoji,cu as __namedExportsOrder,fu as default};
-//# sourceMappingURL=Kuromoji.stories-2f2c9708.js.map
+//# sourceMappingURL=Kuromoji.stories-c924b28b.js.map
