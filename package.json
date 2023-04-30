@@ -34,7 +34,7 @@
     "@storybook/test-runner": "0.10.0",
     "@testing-library/react": "13.4.0",
     "@textlint/kernel": "12.6.1",
-    "@textlint/textlint-plugin-text": "12.2.3",
+    "@textlint/textlint-plugin-text": "12.6.1",
     "@types/node-emoji": "1.8.2",
     "@types/react": "18.0.27",
     "@types/react-highlight-words": "0.16.4",
