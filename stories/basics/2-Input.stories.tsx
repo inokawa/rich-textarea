@@ -1,6 +1,6 @@
 import { StoryObj } from "@storybook/react";
 import React, { useState } from "react";
-import { RichInput } from "../../src";
+import { experimental_RichInput as RichInput } from "../../src";
 
 export default {
   component: RichInput,
