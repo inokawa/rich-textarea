@@ -1,8 +1,7 @@
 import { StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 import { Renderer, RichTextarea } from "../../src";
-import Highlight, { defaultProps } from "prism-react-renderer";
-import theme from "prism-react-renderer/themes/dracula";
+import { Highlight, themes } from "prism-react-renderer";
 import prettier from "prettier";
 import parser from "prettier/parser-typescript";
 
@@ -19,7 +18,7 @@ const style: React.CSSProperties = {
 
 const renderer: Renderer = (value) => {
   return (
-    <Highlight {...defaultProps} theme={theme} code={value} language="jsx">
+    <Highlight theme={themes.dracula} code={value} language="jsx">
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <div className={className} style={style}>
           {tokens.map((line, i) => (
