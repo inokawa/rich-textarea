@@ -5,7 +5,7 @@
 ### Component Functions
 
 - [RichTextarea](API.md#richtextarea)
-- [RichInput](API.md#richinput)
+- [experimental\_RichInput](API.md#experimental_richinput)
 
 ### Other Functions
 
@@ -48,9 +48,9 @@ node_modules/@types/react/ts5.0/index.d.ts:345
 
 ___
 
-### RichInput
+### experimental\_RichInput
 
-▸ **RichInput**(`props`): ``null`` \| `ReactElement`<`any`, `string` \| `JSXElementConstructor`<`any`\>\>
+▸ **experimental_RichInput**(`props`): ``null`` \| `ReactElement`<`any`, `string` \| `JSXElementConstructor`<`any`\>\>
 
 Input component with some extra props. See [RichInputProps](interfaces/RichInputProps.md) and [RichInputHandle](interfaces/RichInputHandle.md).
 
@@ -94,7 +94,7 @@ The priority is descending order.
 
 #### Defined in
 
-[src/renderers.tsx:17](https://github.com/inokawa/rich-textarea/blob/1a44777/src/renderers.tsx#L17)
+[src/renderers.tsx:17](https://github.com/inokawa/rich-textarea/blob/d55547b/src/renderers.tsx#L17)
 
 ## Type Aliases
 
@@ -104,7 +104,7 @@ The priority is descending order.
 
 #### Defined in
 
-[src/renderers.tsx:4](https://github.com/inokawa/rich-textarea/blob/1a44777/src/renderers.tsx#L4)
+[src/renderers.tsx:4](https://github.com/inokawa/rich-textarea/blob/d55547b/src/renderers.tsx#L4)
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/1a44777/src/types.ts#L1)
+[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/d55547b/src/types.ts#L1)
 
 ___
 
@@ -138,4 +138,4 @@ ___
 
 #### Defined in
 
-[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/1a44777/src/types.ts#L3)
+[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/d55547b/src/types.ts#L3)

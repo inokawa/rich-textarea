@@ -1,6 +1,6 @@
 # Interface: RichInputProps
 
-Props of [RichInput](../API.md#richinput).
+Props of [experimental_RichInput](../API.md#experimental_richinput).
 
 For other props not mentioned below will be passed to [input](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
 `defaultValue` is omitted for simplicity of logic.
@@ -30,7 +30,7 @@ Same as original but only string
 
 #### Defined in
 
-[src/input.tsx:63](https://github.com/inokawa/rich-textarea/blob/1a44777/src/input.tsx#L63)
+[src/input.tsx:62](https://github.com/inokawa/rich-textarea/blob/d55547b/src/input.tsx#L62)
 
 ___
 
@@ -56,7 +56,7 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:78](https://github.com/inokawa/rich-textarea/blob/1a44777/src/input.tsx#L78)
+[src/input.tsx:77](https://github.com/inokawa/rich-textarea/blob/d55547b/src/input.tsx#L77)
 
 ___
 
@@ -72,7 +72,7 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:83](https://github.com/inokawa/rich-textarea/blob/1a44777/src/input.tsx#L83)
+[src/input.tsx:82](https://github.com/inokawa/rich-textarea/blob/d55547b/src/input.tsx#L82)
 
 ___
 
@@ -103,4 +103,4 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:88](https://github.com/inokawa/rich-textarea/blob/1a44777/src/input.tsx#L88)
+[src/input.tsx:87](https://github.com/inokawa/rich-textarea/blob/d55547b/src/input.tsx#L87)

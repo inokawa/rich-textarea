@@ -1,6 +1,6 @@
 # Interface: RichInputHandle
 
-Methods of [RichInput](../API.md#richinput).
+Methods of [experimental_RichInput](../API.md#experimental_richinput).
 
 All the others not mentioned are proxied to ref of [input](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
 
