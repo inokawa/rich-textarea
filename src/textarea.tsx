@@ -7,7 +7,6 @@ import {
   forwardRef,
   useImperativeHandle,
 } from "react";
-import { useSyncExternalStore } from "use-sync-external-store/shim/index.js";
 // @ts-expect-error no type definition
 import rangeAtIndex from "range-at-index";
 import {
@@ -22,7 +21,7 @@ import {
   stopPropagation,
   syncBackdropStyle,
 } from "./dom";
-import { initSelectionStore } from "./selection";
+import { SelectionRange, initSelectionStore } from "./selection";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 import type { CaretPosition, Renderer } from "./types";
 import { refKey } from "./utils";
@@ -118,11 +117,10 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     const caretColorRef = useRef("");
     const pointedRef = useRef<HTMLElement | null>(null);
 
-    const selectionStore = useStatic(() => initSelectionStore(textAreaRef));
-    const [selectionStart, selectionEnd] = useSyncExternalStore(
-      selectionStore._subscribe,
-      selectionStore._getSelection,
-      selectionStore._getSelection
+    const [[selectionStart, selectionEnd], setSelection] =
+      useState<SelectionRange>([null, null]);
+    const selectionStore = useStatic(() =>
+      initSelectionStore(textAreaRef, setSelection)
     );
 
     const totalWidth = width + hPadding;

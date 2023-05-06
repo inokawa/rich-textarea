@@ -7,7 +7,6 @@ import {
   forwardRef,
   useImperativeHandle,
 } from "react";
-import { useSyncExternalStore } from "use-sync-external-store/shim/index.js";
 // @ts-expect-error no type definition
 import rangeAtIndex from "range-at-index";
 import {
@@ -23,7 +22,7 @@ import {
   stopPropagation,
   syncBackdropStyle,
 } from "./dom";
-import { initSelectionStore } from "./selection";
+import { SelectionRange, initSelectionStore } from "./selection";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 import type { CaretPosition, Renderer } from "./types";
 import { refKey } from "./utils";
@@ -117,12 +116,24 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
     const caretColorRef = useRef("");
     const pointedRef = useRef<HTMLElement | null>(null);
 
-    const selectionStore = useStatic(() => initSelectionStore(textAreaRef));
-    const [selectionStart, selectionEnd] = useSyncExternalStore(
-      selectionStore._subscribe,
-      selectionStore._getSelection,
-      selectionStore._getSelection
-    );
+    const [[selectionStart, selectionEnd], setSelection] =
+      useState<SelectionRange>([null, null]);
+    const selectionStore = useStatic(() => {
+      const safari = isSafari();
+
+      return initSelectionStore(textAreaRef, (range) => {
+        setSelection(range);
+
+        if (safari) {
+          // FIXME: Safari does not fire scroll event on input so substitute with pseudo selection change event
+          if (!textAreaRef[refKey] || !backdropRef[refKey]) return;
+          const { scrollTop, scrollLeft } = textAreaRef[refKey];
+          backdropRef[
+            refKey
+          ].style.transform = `translate(${-scrollLeft}px, ${-scrollTop}px)`;
+        }
+      });
+    });
 
     const totalWidth = width + hPadding;
     const totalHeight = height + vPadding;
@@ -336,19 +347,6 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
         );
       }
     }, [focused, selectionStart, selectionEnd]);
-
-    useEffect(() => {
-      if (!isSafari()) return;
-
-      // FIXME: Safari does not fire scroll event on input so substitute with pseudo selection change event
-      return selectionStore._subscribe(() => {
-        if (!textAreaRef[refKey] || !backdropRef[refKey]) return;
-        const { scrollTop, scrollLeft } = textAreaRef[refKey];
-        backdropRef[
-          refKey
-        ].style.transform = `translate(${-scrollLeft}px, ${-scrollTop}px)`;
-      });
-    }, []);
 
     useEffect(() => {
       const textarea = textAreaRef[refKey];

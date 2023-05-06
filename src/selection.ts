@@ -1,23 +1,26 @@
 import { refKey } from "./utils";
 
+export type SelectionRange = [number | null, number | null];
+
 export const initSelectionStore = (
-  ref: React.RefObject<HTMLTextAreaElement | HTMLInputElement>
+  ref: React.RefObject<HTMLTextAreaElement | HTMLInputElement>,
+  onSelectionUpdate: (range: SelectionRange) => void
 ) => {
-  const subscribers = new Set<() => void>();
   let cache: [number | null, number | null] = [null, null];
   let compositionEvent: CompositionEvent | void;
+  const _getSelection = (): [number | null, number | null] => {
+    const selectionStart = handle._getSelectionStart();
+    const selectionEnd = handle._getSelectionEnd();
+    if (cache[0] === selectionStart && cache[1] === selectionEnd) {
+      return cache;
+    }
+    cache = [selectionStart, selectionEnd];
+    return cache;
+  };
   const handle = {
-    _subscribe(cb: () => void) {
-      subscribers.add(cb);
-      return () => {
-        subscribers.delete(cb);
-      };
-    },
     _updateSeletion() {
       setTimeout(() => {
-        subscribers.forEach((cb) => {
-          cb();
-        });
+        onSelectionUpdate(_getSelection());
       });
     },
     _setComposition(event: CompositionEvent | void) {
@@ -42,15 +45,6 @@ export const initSelectionStore = (
         pos = Math.min(pos, el.selectionStart! + compositionEvent.data.length);
       }
       return pos;
-    },
-    _getSelection(): [number | null, number | null] {
-      const selectionStart = handle._getSelectionStart();
-      const selectionEnd = handle._getSelectionEnd();
-      if (cache[0] === selectionStart && cache[1] === selectionEnd) {
-        return cache;
-      }
-      cache = [selectionStart, selectionEnd];
-      return cache;
     },
   };
   return handle;
