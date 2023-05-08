@@ -61,7 +61,7 @@
     "storybook": "^7.0.5",
     "textlint-rule-preset-japanese": "7.0.0",
     "ts-jest": "29.0.5",
-    "typedoc": "0.24.4",
+    "typedoc": "0.24.7",
     "typedoc-plugin-markdown": "3.15.3",
     "typescript": "5.0.4",
     "wait-on": "7.0.1",
