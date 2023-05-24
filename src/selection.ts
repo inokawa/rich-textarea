@@ -49,5 +49,3 @@ export const initSelectionStore = (
   };
   return handle;
 };
-
-export type SelectionStore = ReturnType<typeof initSelectionStore>;
