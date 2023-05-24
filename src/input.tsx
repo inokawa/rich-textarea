@@ -10,11 +10,7 @@ import {
 // @ts-expect-error no type definition
 import rangeAtIndex from "range-at-index";
 import {
-  dispatchClonedMouseEvent,
-  dispatchMouseMoveEvent,
-  dispatchMouseOutEvent,
   getHorizontalPadding,
-  getPointedElement,
   getStyle,
   getVerticalPadding,
   hasPercentageUnit,
@@ -27,6 +23,8 @@ import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 import type { CaretPosition, Renderer } from "./types";
 import { refKey } from "./utils";
 import { useStatic } from "./useStatic";
+import { useBackdropEvents } from "./useBackdropEvents";
+import { useSelection } from "./useSelection";
 
 // for caret position detection
 const CARET_DETECTOR = <span style={{ color: "transparent" }}>{"\u200b"}</span>;
@@ -114,7 +112,6 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
     const [focused, setFocused] = useState<boolean>(false);
 
     const caretColorRef = useRef("");
-    const pointedRef = useRef<HTMLElement | null>(null);
 
     const [[selectionStart, selectionEnd], setSelection] =
       useState<SelectionRange>([null, null]);
@@ -233,37 +230,6 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
         const { scrollTop, scrollLeft } = textarea;
         backdrop.style.transform = `translate(${-scrollLeft}px, ${-scrollTop}px)`;
       };
-      const onMouseDown = (e: MouseEvent) => {
-        selectionStore._updateSeletion();
-        const mouseup = () => {
-          selectionStore._updateSeletion();
-          document.removeEventListener("mouseup", mouseup);
-        };
-        document.addEventListener("mouseup", mouseup);
-        const pointed = getPointedElement(textarea, backdrop, e);
-        if (pointed) {
-          dispatchClonedMouseEvent(pointed, e);
-        }
-      };
-      const onMouseUp = (e: MouseEvent) => {
-        const pointed = getPointedElement(textarea, backdrop, e);
-        if (pointed) {
-          dispatchClonedMouseEvent(pointed, e);
-        }
-      };
-      const onMouseMove = (e: MouseEvent) => {
-        const pointed = getPointedElement(textarea, backdrop, e);
-        dispatchMouseMoveEvent(pointed, pointedRef, e);
-      };
-      const onMouseLeave = (e: MouseEvent) => {
-        dispatchMouseOutEvent(pointedRef, e, null);
-      };
-      const onClick = (e: MouseEvent) => {
-        const pointed = getPointedElement(textarea, backdrop, e);
-        if (pointed) {
-          dispatchClonedMouseEvent(pointed, e);
-        }
-      };
       const onInput = () => {
         selectionStore._updateSeletion();
       };
@@ -280,11 +246,6 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
       textarea.addEventListener("focus", onFocus);
       textarea.addEventListener("blur", onBlur);
       textarea.addEventListener("scroll", onScroll);
-      textarea.addEventListener("mousedown", onMouseDown);
-      textarea.addEventListener("mouseup", onMouseUp);
-      textarea.addEventListener("mousemove", onMouseMove);
-      textarea.addEventListener("mouseleave", onMouseLeave);
-      textarea.addEventListener("click", onClick);
       textarea.addEventListener("input", onInput);
       textarea.addEventListener("compositionstart", onCompositionStart);
       textarea.addEventListener("compositionupdate", onCompositionUpdate);
@@ -294,11 +255,6 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
         textarea.removeEventListener("focus", onFocus);
         textarea.removeEventListener("blur", onBlur);
         textarea.removeEventListener("scroll", onScroll);
-        textarea.removeEventListener("mousedown", onMouseDown);
-        textarea.removeEventListener("mouseup", onMouseUp);
-        textarea.removeEventListener("mousemove", onMouseMove);
-        textarea.removeEventListener("mouseleave", onMouseLeave);
-        textarea.removeEventListener("click", onClick);
         textarea.removeEventListener("input", onInput);
         textarea.removeEventListener("compositionstart", onCompositionStart);
         textarea.removeEventListener("compositionupdate", onCompositionUpdate);
@@ -306,6 +262,9 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
         observer.disconnect();
       };
     }, []);
+
+    useSelection(selectionStore, textAreaRef, backdropRef);
+    useBackdropEvents(textAreaRef, backdropRef);
 
     useIsomorphicLayoutEffect(() => {
       // Sync backdrop style
