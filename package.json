@@ -58,6 +58,7 @@
     "react-is": "18.2.0",
     "rimraf": "5.0.1",
     "rollup": "3.25.1",
+    "rollup-plugin-banner2": "1.2.2",
     "storybook": "^7.0.5",
     "textlint-rule-preset-japanese": "7.0.0",
     "ts-jest": "29.0.5",
