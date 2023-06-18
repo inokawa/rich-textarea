@@ -44,7 +44,7 @@ Textarea component with some extra props. See [RichTextareaProps](interfaces/Ric
 
 #### Defined in
 
-node_modules/@types/react/ts5.0/index.d.ts:345
+node_modules/@types/react/index.d.ts:383
 
 ___
 
@@ -68,7 +68,7 @@ Input component with some extra props. See [RichInputProps](interfaces/RichInput
 
 #### Defined in
 
-node_modules/@types/react/ts5.0/index.d.ts:345
+node_modules/@types/react/index.d.ts:383
 
 ___
 
@@ -94,7 +94,7 @@ The priority is descending order.
 
 #### Defined in
 
-[src/renderers.tsx:17](https://github.com/inokawa/rich-textarea/blob/b51a8eb/src/renderers.tsx#L17)
+[src/renderers.tsx:17](https://github.com/inokawa/rich-textarea/blob/8d705f9/src/renderers.tsx#L17)
 
 ## Type Aliases
 
@@ -104,7 +104,7 @@ The priority is descending order.
 
 #### Defined in
 
-[src/renderers.tsx:4](https://github.com/inokawa/rich-textarea/blob/b51a8eb/src/renderers.tsx#L4)
+[src/renderers.tsx:4](https://github.com/inokawa/rich-textarea/blob/8d705f9/src/renderers.tsx#L4)
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/b51a8eb/src/types.ts#L1)
+[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/8d705f9/src/types.ts#L1)
 
 ___
 
@@ -138,4 +138,4 @@ ___
 
 #### Defined in
 
-[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/b51a8eb/src/types.ts#L3)
+[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/8d705f9/src/types.ts#L3)
