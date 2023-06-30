@@ -35,7 +35,7 @@
     "@textlint/kernel": "13.3.2",
     "@textlint/textlint-plugin-text": "13.3.2",
     "@types/node-emoji": "1.8.2",
-    "@types/react": "18.2.7",
+    "@types/react": "18.2.14",
     "@types/react-highlight-words": "0.16.4",
     "assert": "2.0.0",
     "concurrently": "8.0.1",
