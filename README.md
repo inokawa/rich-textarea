@@ -21,7 +21,7 @@ https://inokawa.github.io/rich-textarea/
 - **Compatible with textarea:** Except added features, this library is designed to behave as native [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) as much as possible. If not worked properly, please report it in an [issue](https://github.com/inokawa/rich-textarea/issues) or [PR](https://github.com/inokawa/rich-textarea/pulls).
 - **Out of the box integration:** Supports [formik](https://github.com/jaredpalmer/formik) and [react-hook-form](https://github.com/react-hook-form/react-hook-form). Supports SSR in [Next.js](https://github.com/vercel/next.js).
 - **IME composition handling:** IME related events have some cross browser problems. This library handles them for easy to use.
-- **Lightweight:** Trying to support many usecases but also keep bundle size small. Currently [about 3kB (gzipped)](https://bundlephobia.com/package/rich-textarea).
+- **Lightweight:** Trying to support many usecases but also keep bundle size small. Currently [~3kB (gzipped)](https://bundlephobia.com/package/rich-textarea).
 
 ## Motivation
 

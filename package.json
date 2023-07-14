@@ -17,6 +17,7 @@
     "storybook:build": "storybook build",
     "storybook:test": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"npm run storybook -- --quiet --no-open\" \"wait-on tcp:6006 && test-storybook\"",
     "typedoc": "typedoc",
+    "size": "size-limit",
     "prepublishOnly": "npm run typedoc && rimraf lib && npm run build"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "@rollup/plugin-babel": "6.0.3",
     "@rollup/plugin-terser": "0.4.3",
     "@rollup/plugin-typescript": "11.1.2",
+    "@size-limit/preset-small-lib": "^8.2.6",
     "@storybook/addon-docs": "7.0.7",
     "@storybook/react": "7.0.7",
     "@storybook/react-webpack5": "^7.0.5",
@@ -59,6 +61,7 @@
     "rimraf": "5.0.1",
     "rollup": "3.25.1",
     "rollup-plugin-banner2": "1.2.2",
+    "size-limit": "^8.2.6",
     "storybook": "^7.0.5",
     "textlint-rule-preset-japanese": "7.0.0",
     "ts-jest": "29.0.5",
