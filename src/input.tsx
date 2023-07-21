@@ -492,7 +492,7 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
               backdropHandle[refKey]?.(e.target.value);
               onChange?.(e);
             },
-            [onKeyDown]
+            [onChange]
           )}
           onKeyDown={useCallback(
             (e: React.KeyboardEvent<HTMLInputElement>) => {
