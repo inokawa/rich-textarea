@@ -1,6 +1,6 @@
 import { StoryObj } from "@storybook/react";
 import React from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { RichTextarea } from "../../src";
 
 export default {
@@ -13,44 +13,35 @@ export const WithReactHookForm: StoryObj = {
   render: () => {
     const {
       handleSubmit,
-      control,
+      register,
       formState: { errors },
     } = useForm();
+
     return (
       <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}>
-        <Controller
-          defaultValue="Hello react-hook-form"
-          control={control}
-          name="text"
-          rules={{
+        <RichTextarea
+          {...register("text", {
             required: true,
             validate: (v) => v.toLowerCase().includes("hook"),
+          })}
+          defaultValue="Hello react-hook-form"
+          style={style}
+        >
+          {(v) => {
+            return v.split("").map((t, i) => (
+              <span
+                key={i}
+                style={{
+                  color: "hook".includes(t.toLowerCase())
+                    ? "violet"
+                    : undefined,
+                }}
+              >
+                {t}
+              </span>
+            ));
           }}
-          render={({ field: { ref, onChange, onBlur, value } }) => (
-            <RichTextarea
-              ref={ref}
-              value={value}
-              style={style}
-              onChange={onChange}
-              onBlur={onBlur}
-            >
-              {(v) => {
-                return v.split("").map((t, i) => (
-                  <span
-                    key={i}
-                    style={{
-                      color: "hook".includes(t.toLowerCase())
-                        ? "violet"
-                        : undefined,
-                    }}
-                  >
-                    {t}
-                  </span>
-                ));
-              }}
-            </RichTextarea>
-          )}
-        />
+        </RichTextarea>
         {errors.text?.type === "required" && (
           <span style={{ color: "red" }}>This field is required</span>
         )}

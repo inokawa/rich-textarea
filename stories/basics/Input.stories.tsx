@@ -8,7 +8,7 @@ export default {
 
 const style = { paddingLeft: 10, paddingRight: 10 };
 
-export const Basic: StoryObj = {
+export const Controlled: StoryObj = {
   render: () => {
     const [text, setText] = useState("Lorem ipsum");
     return (
@@ -17,6 +17,22 @@ export const Basic: StoryObj = {
         onChange={(e) => setText(e.target.value)}
         value={text}
       >
+        {(v) => {
+          return v.split("").map((t, i) => (
+            <span key={i} style={{ color: i % 2 === 0 ? "red" : undefined }}>
+              {t}
+            </span>
+          ));
+        }}
+      </RichInput>
+    );
+  },
+};
+
+export const Uncontrolled: StoryObj = {
+  render: () => {
+    return (
+      <RichInput style={style} defaultValue={"Lorem ipsum"}>
         {(v) => {
           return v.split("").map((t, i) => (
             <span key={i} style={{ color: i % 2 === 0 ? "red" : undefined }}>
