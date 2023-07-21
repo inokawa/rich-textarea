@@ -18,6 +18,7 @@ import {
   getStyle,
   getVerticalPadding,
   hasPercentageUnit,
+  setEventListener,
   stopPropagation,
   syncBackdropStyle,
 } from "./dom";
@@ -211,86 +212,93 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         ]);
       });
 
-      const onFocus = () => {
+      const cleanUpOnFocus = setEventListener(textarea, "focus", () => {
         setFocused(true);
-      };
-      const onBlur = () => {
+      });
+      const cleanUpOnBlur = setEventListener(textarea, "blur", () => {
         setFocused(false);
-      };
-      const onScroll = () => {
+      });
+      const cleanUpOnScroll = setEventListener(textarea, "scroll", () => {
         const { scrollTop, scrollLeft } = textarea;
         backdrop.style.transform = `translate(${-scrollLeft}px, ${-scrollTop}px)`;
-      };
-      const onMouseDown = (e: MouseEvent) => {
-        selectionStore._updateSeletion();
-        const mouseup = () => {
+      });
+      const cleanUpOnMouseDown = setEventListener(
+        textarea,
+        "mousedown",
+        (e) => {
           selectionStore._updateSeletion();
-          document.removeEventListener("mouseup", mouseup);
-        };
-        document.addEventListener("mouseup", mouseup);
+          const mouseup = () => {
+            selectionStore._updateSeletion();
+            document.removeEventListener("mouseup", mouseup);
+          };
+          document.addEventListener("mouseup", mouseup);
+          const pointed = getPointedElement(textarea, backdrop, e);
+          if (pointed) {
+            dispatchClonedMouseEvent(pointed, e);
+          }
+        }
+      );
+      const cleanUpOnMouseMove = setEventListener(textarea, "mouseup", (e) => {
         const pointed = getPointedElement(textarea, backdrop, e);
         if (pointed) {
           dispatchClonedMouseEvent(pointed, e);
         }
-      };
-      const onMouseUp = (e: MouseEvent) => {
-        const pointed = getPointedElement(textarea, backdrop, e);
-        if (pointed) {
-          dispatchClonedMouseEvent(pointed, e);
-        }
-      };
-      const onMouseMove = (e: MouseEvent) => {
+      });
+      const cleanUpMouseMove = setEventListener(textarea, "mousemove", (e) => {
         const pointed = getPointedElement(textarea, backdrop, e);
         dispatchMouseMoveEvent(pointed, pointedRef, e);
-      };
-      const onMouseLeave = (e: MouseEvent) => {
-        dispatchMouseOutEvent(pointedRef, e, null);
-      };
-      const onClick = (e: MouseEvent) => {
+      });
+      const cleanUpOnMouseLeave = setEventListener(
+        textarea,
+        "mouseleave",
+        (e) => {
+          dispatchMouseOutEvent(pointedRef, e, null);
+        }
+      );
+      const cleanUpOnClick = setEventListener(textarea, "click", (e) => {
         const pointed = getPointedElement(textarea, backdrop, e);
         if (pointed) {
           dispatchClonedMouseEvent(pointed, e);
         }
-      };
-      const onInput = () => {
+      });
+      const cleanUpOnInput = setEventListener(textarea, "input", () => {
         selectionStore._updateSeletion();
-      };
-      const onCompositionStart = (e: CompositionEvent) => {
-        selectionStore._setComposition(e);
-      };
-      const onCompositionUpdate = (e: CompositionEvent) => {
-        selectionStore._setComposition(e);
-      };
-      const onCompositionEnd = () => {
-        selectionStore._setComposition();
-      };
-
-      textarea.addEventListener("focus", onFocus);
-      textarea.addEventListener("blur", onBlur);
-      textarea.addEventListener("scroll", onScroll);
-      textarea.addEventListener("mousedown", onMouseDown);
-      textarea.addEventListener("mouseup", onMouseUp);
-      textarea.addEventListener("mousemove", onMouseMove);
-      textarea.addEventListener("mouseleave", onMouseLeave);
-      textarea.addEventListener("click", onClick);
-      textarea.addEventListener("input", onInput);
-      textarea.addEventListener("compositionstart", onCompositionStart);
-      textarea.addEventListener("compositionupdate", onCompositionUpdate);
-      textarea.addEventListener("compositionend", onCompositionEnd);
+      });
+      const cleanUpOnCompositionStart = setEventListener(
+        textarea,
+        "compositionstart",
+        (e) => {
+          selectionStore._setComposition(e);
+        }
+      );
+      const cleanUpOnCompositionUpdate = setEventListener(
+        textarea,
+        "compositionupdate",
+        (e) => {
+          selectionStore._setComposition(e);
+        }
+      );
+      const cleanUpOnCompositionEnd = setEventListener(
+        textarea,
+        "compositionend",
+        () => {
+          selectionStore._setComposition();
+        }
+      );
       observer.observe(textarea);
       return () => {
-        textarea.removeEventListener("focus", onFocus);
-        textarea.removeEventListener("blur", onBlur);
-        textarea.removeEventListener("scroll", onScroll);
-        textarea.removeEventListener("mousedown", onMouseDown);
-        textarea.removeEventListener("mouseup", onMouseUp);
-        textarea.removeEventListener("mousemove", onMouseMove);
-        textarea.removeEventListener("mouseleave", onMouseLeave);
-        textarea.removeEventListener("click", onClick);
-        textarea.removeEventListener("input", onInput);
-        textarea.removeEventListener("compositionstart", onCompositionStart);
-        textarea.removeEventListener("compositionupdate", onCompositionUpdate);
-        textarea.removeEventListener("compositionend", onCompositionEnd);
+        cleanUpOnFocus();
+        cleanUpOnBlur();
+        cleanUpOnScroll();
+        cleanUpOnMouseDown();
+        cleanUpOnMouseMove();
+        cleanUpMouseMove();
+        cleanUpOnMouseLeave();
+        cleanUpOnClick();
+        cleanUpOnInput();
+        cleanUpOnCompositionStart();
+        cleanUpOnCompositionUpdate();
+        cleanUpOnCompositionEnd();
         observer.disconnect();
       };
     }, []);
