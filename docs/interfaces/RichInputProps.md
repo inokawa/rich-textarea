@@ -30,7 +30,7 @@ Same as original but only string
 
 #### Defined in
 
-[src/input.tsx:62](https://github.com/inokawa/rich-textarea/blob/8d705f9/src/input.tsx#L62)
+[src/input.tsx:60](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/input.tsx#L60)
 
 ___
 
@@ -56,7 +56,7 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:77](https://github.com/inokawa/rich-textarea/blob/8d705f9/src/input.tsx#L77)
+[src/input.tsx:75](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/input.tsx#L75)
 
 ___
 
@@ -72,17 +72,17 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:82](https://github.com/inokawa/rich-textarea/blob/8d705f9/src/input.tsx#L82)
+[src/input.tsx:80](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/input.tsx#L80)
 
 ___
 
 ### onSelectionChange
 
-• `Optional` **onSelectionChange**: (`pos`: [`CaretPosition`](../API.md#caretposition), `value`: `string`) => `void`
+• `Optional` **onSelectionChange**: (`pos`: [`CaretPosition`](../API.md#caretposition)) => `void`
 
 #### Type declaration
 
-▸ (`pos`, `value`): `void`
+▸ (`pos`): `void`
 
 Called when selection in textarea changes. It gives position of caret at the time, which is useful to position menu.
 
@@ -95,7 +95,6 @@ undefined
 | Name | Type |
 | :------ | :------ |
 | `pos` | [`CaretPosition`](../API.md#caretposition) |
-| `value` | `string` |
 
 ##### Returns
 
@@ -103,4 +102,4 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:87](https://github.com/inokawa/rich-textarea/blob/8d705f9/src/input.tsx#L87)
+[src/input.tsx:85](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/input.tsx#L85)

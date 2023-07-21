@@ -28,7 +28,7 @@
 
 ### RichTextarea
 
-▸ **RichTextarea**(`props`): ``null`` \| `ReactElement`<`any`, `string` \| `JSXElementConstructor`<`any`\>\>
+▸ **RichTextarea**(`props`): `ReactNode`
 
 Textarea component with some extra props. See [RichTextareaProps](interfaces/RichTextareaProps.md) and [RichTextareaHandle](interfaces/RichTextareaHandle.md).
 
@@ -40,17 +40,17 @@ Textarea component with some extra props. See [RichTextareaProps](interfaces/Ric
 
 #### Returns
 
-``null`` \| `ReactElement`<`any`, `string` \| `JSXElementConstructor`<`any`\>\>
+`ReactNode`
 
 #### Defined in
 
-node_modules/@types/react/index.d.ts:383
+node_modules/@types/react/index.d.ts:386
 
 ___
 
 ### experimental\_RichInput
 
-▸ **experimental_RichInput**(`props`): ``null`` \| `ReactElement`<`any`, `string` \| `JSXElementConstructor`<`any`\>\>
+▸ **experimental_RichInput**(`props`): `ReactNode`
 
 Input component with some extra props. See [RichInputProps](interfaces/RichInputProps.md) and [RichInputHandle](interfaces/RichInputHandle.md).
 
@@ -64,11 +64,11 @@ Input component with some extra props. See [RichInputProps](interfaces/RichInput
 
 #### Returns
 
-``null`` \| `ReactElement`<`any`, `string` \| `JSXElementConstructor`<`any`\>\>
+`ReactNode`
 
 #### Defined in
 
-node_modules/@types/react/index.d.ts:383
+node_modules/@types/react/index.d.ts:386
 
 ___
 
@@ -94,7 +94,7 @@ The priority is descending order.
 
 #### Defined in
 
-[src/renderers.tsx:17](https://github.com/inokawa/rich-textarea/blob/8d705f9/src/renderers.tsx#L17)
+[src/renderers.tsx:17](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/renderers.tsx#L17)
 
 ## Type Aliases
 
@@ -104,7 +104,7 @@ The priority is descending order.
 
 #### Defined in
 
-[src/renderers.tsx:4](https://github.com/inokawa/rich-textarea/blob/8d705f9/src/renderers.tsx#L4)
+[src/renderers.tsx:4](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/renderers.tsx#L4)
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/8d705f9/src/types.ts#L1)
+[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/types.ts#L1)
 
 ___
 
@@ -138,4 +138,4 @@ ___
 
 #### Defined in
 
-[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/8d705f9/src/types.ts#L3)
+[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/types.ts#L3)
