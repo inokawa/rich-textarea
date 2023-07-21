@@ -19,7 +19,7 @@ https://inokawa.github.io/rich-textarea/
 - **Styleable texts:** Not just highlighting texts like similar libraries, this library also supports colorizing, decorating and more. Regex or any tokenizers can be used.
 - **Easy to interact with events:** You can get caret position and can catch some mouse events on texts, which are useful to display something reflects user actions.
 - **Compatible with textarea:** Except added features, this library is designed to behave as native [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) as much as possible. If not worked properly, please report it in an [issue](https://github.com/inokawa/rich-textarea/issues) or [PR](https://github.com/inokawa/rich-textarea/pulls).
-- **Out of the box integration:** Supports [formik](https://github.com/jaredpalmer/formik) and [react-hook-form](https://github.com/react-hook-form/react-hook-form). Supports SSR in [Next.js](https://github.com/vercel/next.js).
+- **Out of the box integration:** Works as both [controlled](https://react.dev/reference/react-dom/components/textarea#controlling-a-text-area-with-a-state-variable) and [uncontrolled](https://react.dev/reference/react-dom/components/textarea#providing-an-initial-value-for-a-text-area). Supports [formik](https://github.com/jaredpalmer/formik) and [react-hook-form](https://github.com/react-hook-form/react-hook-form). Supports SSR in [Next.js](https://github.com/vercel/next.js) and React Server Components (marked as a client component).
 - **IME composition handling:** IME related events have some cross browser problems. This library handles them for easy to use.
 - **Lightweight:** Trying to support many usecases but also keep bundle size small. Currently [~3kB (gzipped)](https://bundlephobia.com/package/rich-textarea).
 
@@ -41,7 +41,7 @@ If you use ESM and webpack 5, use react >= 18 to avoid [Can't resolve `react/jsx
 
 ## Usage
 
-You can create your own render function
+### Controlled
 
 ```jsx
 import { useState } from "react";
@@ -68,7 +68,33 @@ export const App = () => {
 };
 ```
 
-or you can use helper for regex.
+### Uncontrolled
+
+```jsx
+import { useState } from "react";
+import { RichTextarea } from "rich-textarea";
+
+export const App = () => {
+  return (
+    <RichTextarea
+      defaultValue="Lorem ipsum"
+      style={{ width: "600px", height: "400px" }}
+    >
+      {(v) => {
+        return v.split("").map((t, i) => (
+          <span key={i} style={{ color: i % 2 === 0 ? "red" : undefined }}>
+            {t}
+          </span>
+        ));
+      }}
+    </RichTextarea>
+  );
+};
+```
+
+### Regex helper
+
+You can use helper for regex if you don't want to create your own render function.
 
 ```jsx
 import { useState } from "react";

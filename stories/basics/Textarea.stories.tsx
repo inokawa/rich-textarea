@@ -9,7 +9,7 @@ export default {
 
 const style = { width: "600px", height: "400px" };
 
-export const HelloWorld: StoryObj = {
+export const Controlled: StoryObj = {
   render: () => {
     const [text, setText] = useState("Lorem ipsum");
     return (
@@ -18,6 +18,22 @@ export const HelloWorld: StoryObj = {
         onChange={(e) => setText(e.target.value)}
         value={text}
       >
+        {(v) => {
+          return v.split("").map((t, i) => (
+            <span key={i} style={{ color: i % 2 === 0 ? "red" : undefined }}>
+              {t}
+            </span>
+          ));
+        }}
+      </RichTextarea>
+    );
+  },
+};
+
+export const Uncontrolled: StoryObj = {
+  render: () => {
+    return (
+      <RichTextarea style={style} defaultValue={"Lorem ipsum"}>
         {(v) => {
           return v.split("").map((t, i) => (
             <span key={i} style={{ color: i % 2 === 0 ? "red" : undefined }}>

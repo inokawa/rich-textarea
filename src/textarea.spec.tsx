@@ -18,6 +18,38 @@ const NOP = () => {};
 
 afterEach(cleanup);
 
+describe("smoke", () => {
+  it("controlled", () => {
+    const { asFragment } = render(
+      <RichTextarea value={"Lorem ipsum dolor sit amet"} onChange={NOP}>
+        {(v) => {
+          return v.split("").map((t, i) => (
+            <span key={i} style={{ color: i % 2 === 0 ? "red" : undefined }}>
+              {t}
+            </span>
+          ));
+        }}
+      </RichTextarea>
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it("uncontrolled", () => {
+    const { asFragment } = render(
+      <RichTextarea defaultValue={"Lorem ipsum dolor sit amet"}>
+        {(v) => {
+          return v.split("").map((t, i) => (
+            <span key={i} style={{ color: i % 2 === 0 ? "red" : undefined }}>
+              {t}
+            </span>
+          ));
+        }}
+      </RichTextarea>
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+});
+
 describe("style value", () => {
   it("color", () => {
     const { asFragment } = render(

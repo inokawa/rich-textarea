@@ -6,6 +6,8 @@ import {
   useCallback,
   forwardRef,
   useImperativeHandle,
+  memo,
+  RefObject,
 } from "react";
 // @ts-expect-error no type definition
 import rangeAtIndex from "range-at-index";
@@ -28,6 +30,59 @@ import type { CaretPosition, Renderer } from "./types";
 import { CARET_DETECTOR, refKey } from "./utils";
 import { useStatic } from "./useStatic";
 
+type BackdropHandle = (value: string) => void;
+
+const Backdrop = memo(
+  ({
+    _ref: backdropRef,
+    _handle: handle,
+    _render: render,
+    _width: width,
+  }: {
+    _ref: RefObject<HTMLDivElement>;
+    _handle: RefObject<BackdropHandle>;
+    _render: Renderer | undefined;
+    _width: number;
+  }) => {
+    const [value, setValue] = useState("");
+
+    useImperativeHandle(handle, () => setValue, []);
+
+    return (
+      <div
+        ref={backdropRef}
+        aria-hidden
+        style={useMemo(
+          (): React.CSSProperties => ({
+            width,
+            transform: "translate(0px, 0px)",
+            pointerEvents: "none",
+            userSelect: "none",
+            msUserSelect: "none",
+            WebkitUserSelect: "none",
+            // https://github.com/inokawa/rich-textarea/issues/56
+            boxSizing: "content-box",
+            // https://stackoverflow.com/questions/2545542/font-size-rendering-inconsistencies-on-an-iphone
+            textSizeAdjust: "100%",
+            WebkitTextSizeAdjust: "100%",
+          }),
+          [width]
+        )}
+        // Stop propagation of events dispatched on backdrop
+        onClick={stopPropagation}
+        onMouseDown={stopPropagation}
+        onMouseUp={stopPropagation}
+        onMouseOver={stopPropagation}
+        onMouseOut={stopPropagation}
+        onMouseMove={stopPropagation}
+      >
+        {useMemo(() => (render ? render(value) : value), [value, render])}
+        {CARET_DETECTOR}
+      </div>
+    );
+  }
+);
+
 /**
  * Methods of {@link RichTextarea}.
  *
@@ -46,17 +101,9 @@ export interface RichTextareaHandle extends HTMLTextAreaElement {}
  * Props of {@link RichTextarea}.
  *
  * For other props not mentioned below will be passed to [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement).
- * `defaultValue` is omitted for simplicity of logic.
  */
 export interface RichTextareaProps
-  extends Omit<
-    JSX.IntrinsicElements["textarea"],
-    "value" | "defaultValue" | "children"
-  > {
-  /**
-   * Same as original but only string
-   */
-  value: string;
+  extends Omit<JSX.IntrinsicElements["textarea"], "children"> {
   /**
    *
    * Render function to create customized view from value.
@@ -96,9 +143,9 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
   (
     {
       children: render,
-      value,
       autoHeight,
       style,
+      onChange,
       onKeyDown,
       onSelectionChange,
       ...props
@@ -107,6 +154,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
   ): React.ReactElement => {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
     const backdropRef = useRef<HTMLDivElement>(null);
+    const backdropHandle = useRef<BackdropHandle>(null);
     const [[width, height, hPadding, vPadding], setRect] = useState<
       [width: number, height: number, hPadding: number, vPadding: number]
     >([0, 0, 0, 0]);
@@ -179,6 +227,10 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             const value = target[prop];
             return typeof value === "function" ? value.bind(target) : value;
           },
+          set(target, prop, value) {
+            (target as any)[prop] = value;
+            return true;
+          },
         }) as HTMLTextAreaElement;
       },
       [textAreaRef]
@@ -188,6 +240,9 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       const textarea = textAreaRef[refKey];
       const backdrop = backdropRef[refKey];
       if (!textarea || !backdrop) return;
+
+      // Sync initial value
+      backdropHandle[refKey]!(textarea.value);
 
       let prevPointed: HTMLElement | null = null;
 
@@ -385,41 +440,16 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             return s;
           }, [totalWidth, totalHeight, style])}
         >
-          <div
-            ref={backdropRef}
-            aria-hidden
-            style={useMemo(
-              (): React.CSSProperties => ({
-                width,
-                transform: "translate(0px, 0px)",
-                pointerEvents: "none",
-                userSelect: "none",
-                msUserSelect: "none",
-                WebkitUserSelect: "none",
-                // https://github.com/inokawa/rich-textarea/issues/56
-                boxSizing: "content-box",
-                // https://stackoverflow.com/questions/2545542/font-size-rendering-inconsistencies-on-an-iphone
-                textSizeAdjust: "100%",
-                WebkitTextSizeAdjust: "100%",
-              }),
-              [width]
-            )}
-            // Stop propagation of events dispatched on backdrop
-            onClick={stopPropagation}
-            onMouseDown={stopPropagation}
-            onMouseUp={stopPropagation}
-            onMouseOver={stopPropagation}
-            onMouseOut={stopPropagation}
-            onMouseMove={stopPropagation}
-          >
-            {useMemo(() => (render ? render(value) : value), [value, render])}
-            {CARET_DETECTOR}
-          </div>
+          <Backdrop
+            _ref={backdropRef}
+            _handle={backdropHandle}
+            _render={render}
+            _width={width}
+          />
         </div>
         <textarea
           {...props}
           ref={textAreaRef}
-          value={value}
           style={useMemo(
             () => ({
               ...style,
@@ -435,6 +465,13 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               }),
             }),
             [style, isSizeCalculated]
+          )}
+          onChange={useCallback(
+            (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+              backdropHandle[refKey]?.(e.target.value);
+              onChange?.(e);
+            },
+            [onKeyDown]
           )}
           onKeyDown={useCallback(
             (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
