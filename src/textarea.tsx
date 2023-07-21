@@ -84,7 +84,7 @@ export interface RichTextareaProps
    * Called when selection in textarea changes. It gives position of caret at the time, which is useful to position menu.
    * @defaultValue undefined
    */
-  onSelectionChange?: (pos: CaretPosition, value: string) => void;
+  onSelectionChange?: (pos: CaretPosition) => void;
 }
 
 /**
@@ -312,14 +312,11 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       if (selectionStart == null || selectionEnd == null || !onSelectionChange)
         return;
       if (!focused) {
-        onSelectionChange(
-          {
-            focused: false,
-            selectionStart: selectionStart,
-            selectionEnd: selectionEnd,
-          },
-          value
-        );
+        onSelectionChange({
+          focused: false,
+          selectionStart: selectionStart,
+          selectionEnd: selectionEnd,
+        });
       } else {
         const range = rangeAtIndex(
           backdropRef[refKey],
@@ -327,17 +324,14 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           selectionStart + 1
         ) as Range;
         const rect = range.getBoundingClientRect();
-        onSelectionChange(
-          {
-            focused: true,
-            top: rect.top,
-            left: rect.left,
-            height: rect.height,
-            selectionStart: selectionStart,
-            selectionEnd: selectionEnd,
-          },
-          value
-        );
+        onSelectionChange({
+          focused: true,
+          top: rect.top,
+          left: rect.left,
+          height: rect.height,
+          selectionStart: selectionStart,
+          selectionEnd: selectionEnd,
+        });
       }
     }, [focused, selectionStart, selectionEnd]);
 
