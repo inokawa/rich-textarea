@@ -261,9 +261,6 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
       const backdrop = backdropRef[refKey];
       if (!textarea || !backdrop) return;
 
-      // Sync initial value
-      backdropHandle[refKey]!(textarea.value);
-
       let prevPointed: HTMLElement | null = null;
 
       const observer = new ResizeObserver(([entry]) => {
@@ -378,6 +375,13 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
         observer.disconnect();
       };
     }, []);
+
+    useIsomorphicLayoutEffect(() => {
+      const textarea = textAreaRef[refKey];
+      if (!textarea) return;
+      // Sync value
+      backdropHandle[refKey]!(textarea.value);
+    }, [props.value]);
 
     useIsomorphicLayoutEffect(() => {
       // Sync backdrop style
