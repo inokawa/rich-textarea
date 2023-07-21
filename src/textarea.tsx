@@ -359,7 +359,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     useIsomorphicLayoutEffect(() => {
       const textarea = textAreaRef[refKey];
       if (!textarea) return;
-      // Sync value
+      // Sync value on init and change
       backdropHandle[refKey]!(textarea.value);
     }, [props.value]);
 
