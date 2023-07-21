@@ -94,7 +94,7 @@ The priority is descending order.
 
 #### Defined in
 
-[src/renderers.tsx:17](https://github.com/inokawa/rich-textarea/blob/f46d4b9/src/renderers.tsx#L17)
+[src/renderers.tsx:17](https://github.com/inokawa/rich-textarea/blob/4a2fcf4/src/renderers.tsx#L17)
 
 ## Type Aliases
 
@@ -104,7 +104,7 @@ The priority is descending order.
 
 #### Defined in
 
-[src/renderers.tsx:4](https://github.com/inokawa/rich-textarea/blob/f46d4b9/src/renderers.tsx#L4)
+[src/renderers.tsx:4](https://github.com/inokawa/rich-textarea/blob/4a2fcf4/src/renderers.tsx#L4)
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/f46d4b9/src/types.ts#L1)
+[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/4a2fcf4/src/types.ts#L1)
 
 ___
 
@@ -138,4 +138,4 @@ ___
 
 #### Defined in
 
-[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/f46d4b9/src/types.ts#L3)
+[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/4a2fcf4/src/types.ts#L3)
