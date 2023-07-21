@@ -471,7 +471,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               backdropHandle[refKey]?.(e.target.value);
               onChange?.(e);
             },
-            [onKeyDown]
+            [onChange]
           )}
           onKeyDown={useCallback(
             (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
