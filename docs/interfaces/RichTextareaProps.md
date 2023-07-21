@@ -3,11 +3,10 @@
 Props of [RichTextarea](../API.md#richtextarea).
 
 For other props not mentioned below will be passed to [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement).
-`defaultValue` is omitted for simplicity of logic.
 
 ## Hierarchy
 
-- `Omit`<`JSX.IntrinsicElements`[``"textarea"``], ``"value"`` \| ``"defaultValue"`` \| ``"children"``\>
+- `Omit`<`JSX.IntrinsicElements`[``"textarea"``], ``"children"``\>
 
   ↳ **`RichTextareaProps`**
 
@@ -15,24 +14,11 @@ For other props not mentioned below will be passed to [textarea](https://develop
 
 ### Properties
 
-- [value](RichTextareaProps.md#value)
 - [children](RichTextareaProps.md#children)
 - [autoHeight](RichTextareaProps.md#autoheight)
 - [onSelectionChange](RichTextareaProps.md#onselectionchange)
 
 ## Properties
-
-### value
-
-• **value**: `string`
-
-Same as original but only string
-
-#### Defined in
-
-[src/textarea.tsx:59](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/textarea.tsx#L59)
-
-___
 
 ### children
 
@@ -56,7 +42,7 @@ undefined
 
 #### Defined in
 
-[src/textarea.tsx:75](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/textarea.tsx#L75)
+[src/textarea.tsx:122](https://github.com/inokawa/rich-textarea/blob/f46d4b9/src/textarea.tsx#L122)
 
 ___
 
@@ -74,7 +60,7 @@ undefined
 
 #### Defined in
 
-[src/textarea.tsx:82](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/textarea.tsx#L82)
+[src/textarea.tsx:129](https://github.com/inokawa/rich-textarea/blob/f46d4b9/src/textarea.tsx#L129)
 
 ___
 
@@ -104,4 +90,4 @@ undefined
 
 #### Defined in
 
-[src/textarea.tsx:87](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/textarea.tsx#L87)
+[src/textarea.tsx:134](https://github.com/inokawa/rich-textarea/blob/f46d4b9/src/textarea.tsx#L134)

@@ -7,7 +7,7 @@ For other props not mentioned below will be passed to [input](https://developer.
 
 ## Hierarchy
 
-- `Omit`<`JSX.IntrinsicElements`[``"input"``], ``"value"`` \| ``"defaultValue"`` \| ``"children"``\>
+- `Omit`<`JSX.IntrinsicElements`[``"input"``], ``"children"``\>
 
   ↳ **`RichInputProps`**
 
@@ -15,24 +15,11 @@ For other props not mentioned below will be passed to [input](https://developer.
 
 ### Properties
 
-- [value](RichInputProps.md#value)
 - [children](RichInputProps.md#children)
 - [autoHeight](RichInputProps.md#autoheight)
 - [onSelectionChange](RichInputProps.md#onselectionchange)
 
 ## Properties
-
-### value
-
-• **value**: `string`
-
-Same as original but only string
-
-#### Defined in
-
-[src/input.tsx:60](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/input.tsx#L60)
-
-___
 
 ### children
 
@@ -56,7 +43,7 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:75](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/input.tsx#L75)
+[src/input.tsx:130](https://github.com/inokawa/rich-textarea/blob/f46d4b9/src/input.tsx#L130)
 
 ___
 
@@ -72,7 +59,7 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:80](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/input.tsx#L80)
+[src/input.tsx:135](https://github.com/inokawa/rich-textarea/blob/f46d4b9/src/input.tsx#L135)
 
 ___
 
@@ -102,4 +89,4 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:85](https://github.com/inokawa/rich-textarea/blob/01f7de5/src/input.tsx#L85)
+[src/input.tsx:140](https://github.com/inokawa/rich-textarea/blob/f46d4b9/src/input.tsx#L140)
