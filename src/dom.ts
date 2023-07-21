@@ -145,15 +145,15 @@ export const dispatchClonedMouseEvent = (
 
 export const dispatchMouseMoveEvent = (
   pointed: HTMLElement | null,
-  prevPointed: React.MutableRefObject<HTMLElement | null>,
+  prevPointed: HTMLElement | null,
   e: MouseEvent
 ) => {
   if (pointed) {
     dispatchClonedMouseEvent(pointed, e);
   }
 
-  if (prevPointed[refKey] !== pointed) {
-    dispatchMouseOutEvent(prevPointed, e, pointed);
+  if (prevPointed !== pointed) {
+    dispatchMouseOutEvent(prevPointed, e);
     if (pointed) {
       dispatchMouseEvent(pointed, "mouseover", e);
     }
@@ -161,14 +161,12 @@ export const dispatchMouseMoveEvent = (
 };
 
 export const dispatchMouseOutEvent = (
-  prevPointed: React.MutableRefObject<HTMLElement | null>,
-  e: MouseEvent,
-  pointed: HTMLElement | null
+  prevPointed: HTMLElement | null,
+  e: MouseEvent
 ) => {
-  if (prevPointed[refKey]) {
-    dispatchMouseEvent(prevPointed[refKey], "mouseout", e);
+  if (prevPointed) {
+    dispatchMouseEvent(prevPointed, "mouseout", e);
   }
-  prevPointed[refKey] = pointed;
 };
 
 export const stopPropagation = (event: React.MouseEvent) => {

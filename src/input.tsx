@@ -112,7 +112,6 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
     const [focused, setFocused] = useState<boolean>(false);
 
     const caretColorRef = useRef("");
-    const pointedRef = useRef<HTMLElement | null>(null);
 
     const [[selectionStart, selectionEnd], setSelection] =
       useState<SelectionRange>([null, null]);
@@ -201,6 +200,9 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
       const textarea = textAreaRef[refKey];
       const backdrop = backdropRef[refKey];
       if (!textarea || !backdrop) return;
+
+      let prevPointed: HTMLElement | null = null;
+
       const observer = new ResizeObserver(([entry]) => {
         const { contentRect, borderBoxSize } = entry!;
         if (borderBoxSize && borderBoxSize[0]) {
@@ -254,14 +256,16 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
         }
       });
       const cleanUpMouseMove = setEventListener(textarea, "mousemove", (e) => {
-        const pointed = getPointedElement(textarea, backdrop, e);
-        dispatchMouseMoveEvent(pointed, pointedRef, e);
+        const p = getPointedElement(textarea, backdrop, e);
+        dispatchMouseMoveEvent(p, prevPointed, e);
+        prevPointed = p;
       });
       const cleanUpOnMouseLeave = setEventListener(
         textarea,
         "mouseleave",
         (e) => {
-          dispatchMouseOutEvent(pointedRef, e, null);
+          dispatchMouseOutEvent(prevPointed, e);
+          prevPointed = null;
         }
       );
       const cleanUpOnClick = setEventListener(textarea, "click", (e) => {
