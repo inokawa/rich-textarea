@@ -25,11 +25,8 @@ import {
 import { SelectionRange, initSelectionStore } from "./selection";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 import type { CaretPosition, Renderer } from "./types";
-import { refKey } from "./utils";
+import { CARET_DETECTOR, refKey } from "./utils";
 import { useStatic } from "./useStatic";
-
-// for caret position detection
-const CARET_DETECTOR = <span style={{ color: "transparent" }}>{"\u200b"}</span>;
 
 /**
  * Methods of {@link RichTextarea}.
