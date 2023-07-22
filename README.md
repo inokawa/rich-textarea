@@ -20,7 +20,7 @@ https://inokawa.github.io/rich-textarea/
 - **Easy to interact with events:** You can get caret position and can catch some mouse events on texts, which are useful to display something reflects user actions.
 - **Compatible with textarea:** Except added features, this library is designed to behave as native [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) as much as possible. If not worked properly, please report it in an [issue](https://github.com/inokawa/rich-textarea/issues) or [PR](https://github.com/inokawa/rich-textarea/pulls).
 - **Out of the box integration:** Works as both [controlled](https://react.dev/reference/react-dom/components/textarea#controlling-a-text-area-with-a-state-variable) and [uncontrolled](https://react.dev/reference/react-dom/components/textarea#providing-an-initial-value-for-a-text-area). Supports [formik](https://github.com/jaredpalmer/formik), [react-hook-form](https://github.com/react-hook-form/react-hook-form) and more. Supports SSR in [Next.js](https://github.com/vercel/next.js). This library is marked as a client component supporting React Server Components (RSC).
-- **IME composition handling:** IME related events have some cross browser problems. This library handles them for easy to use.
+- **IME composition handling:** [IME](https://en.wikipedia.org/wiki/Input_method) related events have some cross browser problems. This library handles them for easy to use.
 - **Lightweight:** Trying to support many usecases but also keep bundle size small. Currently [~3kB (gzipped)](https://bundlephobia.com/package/rich-textarea).
 
 ## Motivation

@@ -93,10 +93,12 @@
     "highlight",
     "autocomplete",
     "tagging",
+    "combobox",
     "autosize",
     "richtext",
     "editor",
-    "contenteditable"
+    "contenteditable",
+    "wysiwyg"
   ],
   "author": "inokawa <stratoooo-taster@yahoo.co.jp> (https://github.com/inokawa/)",
   "license": "MIT",
