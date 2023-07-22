@@ -14,7 +14,7 @@ export default {
 
 const style = { width: "400px", height: "300px" };
 
-const MAX_CHARS = 8;
+const MAX_LIST_LENGTH = 8;
 const MENTION_REG = /\B@([\-+\w]*)$/;
 const MENTION_HIGHLIGHT_REG = new RegExp(
   `(${CHARACTERS.map((c) => `@${c}`).join("|")})`,
@@ -91,16 +91,16 @@ export const Mention: StoryObj = {
     const targetText = pos ? text.slice(0, pos.caret) : text;
     const match = pos && targetText.match(MENTION_REG);
     const name = match?.[1] ?? "";
-    const chars = useMemo(
+    const filtered = useMemo(
       () =>
         CHARACTERS.filter((c) =>
           c.toLowerCase().startsWith(name.toLowerCase())
-        ).slice(0, MAX_CHARS),
+        ).slice(0, MAX_LIST_LENGTH),
       [name]
     );
     const complete = (i: number) => {
       if (!ref.current || !pos) return;
-      const selected = chars[i];
+      const selected = filtered[i];
       ref.current.setRangeText(
         `@${selected} `,
         pos.caret - name.length - 1,
@@ -119,16 +119,16 @@ export const Mention: StoryObj = {
           onChange={(e) => setText(e.target.value)}
           value={text}
           onKeyDown={(e) => {
-            if (!pos || !chars.length) return;
+            if (!pos || !filtered.length) return;
             switch (e.code) {
               case "ArrowUp":
                 e.preventDefault();
-                const nextIndex = index <= 0 ? chars.length - 1 : index - 1;
+                const nextIndex = index <= 0 ? filtered.length - 1 : index - 1;
                 setIndex(nextIndex);
                 break;
               case "ArrowDown":
                 e.preventDefault();
-                const prevIndex = index >= chars.length - 1 ? 0 : index + 1;
+                const prevIndex = index >= filtered.length - 1 ? 0 : index + 1;
                 setIndex(prevIndex);
                 break;
               case "Enter":
@@ -168,7 +168,7 @@ export const Mention: StoryObj = {
             <Menu
               top={pos.top}
               left={pos.left}
-              chars={chars}
+              chars={filtered}
               index={index}
               complete={complete}
             />,
