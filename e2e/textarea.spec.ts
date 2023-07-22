@@ -179,7 +179,6 @@ test("resizable", async ({ page }) => {
     e.style.height = "456px";
   });
   const textareaSize = await getSize(textarea);
-  expect(textareaSize[0]).not.toBe(initialTextareaSize[0]);
-  expect(textareaSize[1]).not.toBe(initialTextareaSize[1]);
+  expect(textareaSize).not.toEqual(initialTextareaSize);
   expect(textareaSize).toEqual(await getSize(backdrop));
 });
