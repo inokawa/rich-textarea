@@ -253,7 +253,7 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
           },
         }) as HTMLInputElement;
       },
-      [textAreaRef]
+      []
     );
 
     useIsomorphicLayoutEffect(() => {

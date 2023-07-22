@@ -233,7 +233,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           },
         }) as HTMLTextAreaElement;
       },
-      [textAreaRef]
+      []
     );
 
     useIsomorphicLayoutEffect(() => {
