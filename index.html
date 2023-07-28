@@ -27,6 +27,8 @@
 
     <link href="./sb-manager/runtime.mjs" rel="modulepreload" />
 
+    
+    <link href="./sb-addons/manager-bundle.mjs" rel="modulepreload" />
        
 
     <style>
@@ -62,10 +64,7 @@
         
       
         
-          window['DOCS_OPTIONS'] = {
-  "defaultName": "Docs",
-  "autodocs": "tag"
-};
+          window['DOCS_OPTIONS'] = {};
         
       
         
@@ -86,6 +85,8 @@
     <script type="module">
       import './sb-manager/runtime.mjs';
 
+      
+      import './sb-addons/manager-bundle.mjs';
       
     </script>
 
