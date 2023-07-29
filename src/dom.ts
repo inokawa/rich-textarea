@@ -193,13 +193,16 @@ export const syncBackdropStyle = (
   textareaStyle.caretColor = style?.caretColor || caretColorRef[refKey];
 };
 
-export const setEventListener = <K extends keyof HTMLElementEventMap>(
-  el: HTMLElement,
+export const listenEvent = <
+  E extends HTMLElement | Document,
+  K extends keyof GlobalEventHandlersEventMap
+>(
+  el: E,
   key: K,
-  cb: (this: HTMLElement, ev: HTMLElementEventMap[K]) => void
+  cb: (this: E, ev: GlobalEventHandlersEventMap[K]) => void
 ) => {
-  el.addEventListener(key, cb);
+  el.addEventListener(key, cb as EventListenerOrEventListenerObject);
   return () => {
-    el.removeEventListener(key, cb);
+    el.removeEventListener(key, cb as EventListenerOrEventListenerObject);
   };
 };
