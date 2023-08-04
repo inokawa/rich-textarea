@@ -31,13 +31,11 @@ const Backdrop = memo(
     _ref: backdropRef,
     _handle: handle,
     _render: render,
-    _width: width,
     _height: height,
   }: {
     _ref: RefObject<HTMLDivElement>;
     _handle: RefObject<BackdropHandle>;
     _render: Renderer | undefined;
-    _width: number;
     _height: number;
   }) => {
     const [value, setValue] = useState("");
@@ -56,7 +54,7 @@ const Backdrop = memo(
         onMouseOut={stopPropagation}
         onMouseMove={stopPropagation}
       >
-        <div style={{ width, height, overflow: "hidden" }}>
+        <div style={{ height }}>
           <div
             style={useMemo(
               (): React.CSSProperties => ({
@@ -354,7 +352,6 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
             _ref={backdropRef}
             _handle={backdropHandle}
             _render={render}
-            _width={width}
             _height={height}
           />
         </div>
