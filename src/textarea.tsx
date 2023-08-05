@@ -81,7 +81,6 @@ const Backdrop = memo(
  * | ----------------- | -------- | ------------------------------------------------------------------------- |
  * | selectionStart    | `number` | Same as original but has handling of composition event                    |
  * | selectionEnd      | `number` | Same as original but has handling of composition event                    |
- * | setSelectionRange |          | Same as original but with focus                                           |
  * | setRangeText      |          | Same as original but has fallback to `document.execCommand("insertText")` |
  */
 export interface RichTextareaHandle extends HTMLTextAreaElement {}
@@ -181,12 +180,6 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
             } else {
               return sel;
             }
-          },
-          setSelectionRange(
-            ...args: Parameters<HTMLTextAreaElement["setSelectionRange"]>
-          ) {
-            el.focus();
-            el.setSelectionRange(...args);
           },
           setRangeText(
             text: string,
