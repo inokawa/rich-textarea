@@ -43,7 +43,7 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:121](https://github.com/inokawa/rich-textarea/blob/965af5a/src/input.tsx#L121)
+[src/input.tsx:120](https://github.com/inokawa/rich-textarea/blob/0f29bdb/src/input.tsx#L120)
 
 ___
 
@@ -59,7 +59,7 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:126](https://github.com/inokawa/rich-textarea/blob/965af5a/src/input.tsx#L126)
+[src/input.tsx:125](https://github.com/inokawa/rich-textarea/blob/0f29bdb/src/input.tsx#L125)
 
 ___
 
@@ -89,4 +89,4 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:131](https://github.com/inokawa/rich-textarea/blob/965af5a/src/input.tsx#L131)
+[src/input.tsx:130](https://github.com/inokawa/rich-textarea/blob/0f29bdb/src/input.tsx#L130)
