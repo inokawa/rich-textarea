@@ -166,20 +166,10 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         const el = textAreaRef[refKey]!;
         const overrides = {
           get selectionStart() {
-            const sel = selectionStore._getSelectionStart();
-            if (sel == null) {
-              return 0;
-            } else {
-              return sel;
-            }
+            return selectionStore._getSelectionStart();
           },
           get selectionEnd() {
-            const sel = selectionStore._getSelectionEnd();
-            if (sel == null) {
-              return 0;
-            } else {
-              return sel;
-            }
+            return selectionStore._getSelectionEnd();
           },
           setRangeText(
             text: string,

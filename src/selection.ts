@@ -29,17 +29,17 @@ export const initSelectionStore = (
     _setComposition(event: CompositionEvent | void) {
       compositionEvent = event;
     },
-    _getSelectionStart(): number | null {
+    _getSelectionStart(): number {
       const el = ref[refKey];
-      if (!el) return null;
+      if (!el) return 0;
       const pos = el.selectionStart!;
       if (!compositionEvent) return pos;
       // compensate selection range during compositioning
       return Math.min(pos, el.selectionEnd! - compositionEvent.data.length);
     },
-    _getSelectionEnd(): number | null {
+    _getSelectionEnd(): number {
       const el = ref[refKey];
-      if (!el) return null;
+      if (!el) return 0;
       const pos = el.selectionEnd!;
       // compensate selection range during compositioning
       if (!compositionEvent) return pos;
