@@ -3,14 +3,9 @@
  * https://github.com/webmodules/range-at-index/
  * Nathan Rajlich
  *
- * Forked from version 1.0.4.
+ * Forked from version 1.0.4; includes the following modifications:
+ * 1) Change module.exports to export default.
  **/
-
-/**
- * Module exports.
- */
-
-module.exports = RangeAtIndex;
 
 /**
  * Returns a Range instance selecting text within HTML Element `el`,
@@ -54,3 +49,5 @@ function RangeAtIndex(el, index, offset, range) {
 
   return range;
 }
+
+export default RangeAtIndex;
