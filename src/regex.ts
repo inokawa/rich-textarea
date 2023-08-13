@@ -1,9 +1,8 @@
 export const execReg = (reg: RegExp, text: string): RegExpExecArray[] => {
   const results: RegExpExecArray[] = [];
-  let match = reg.exec(text);
-  while (!!match) {
+  let match: RegExpExecArray | null = null;
+  while ((match = reg.exec(text))) {
     results.push(match);
-    match = reg.exec(text);
   }
   return results;
 };
