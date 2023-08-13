@@ -9,7 +9,6 @@ import {
   memo,
   RefObject,
 } from "react";
-// @ts-expect-error no type definition
 import rangeAtIndex from "./vendor/range-at-index";
 import {
   hasPercentageUnit,
@@ -269,7 +268,7 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
         });
       } else {
         const range = rangeAtIndex(
-          backdropRef[refKey],
+          backdropRef[refKey]!,
           selectionStart,
           selectionStart + 1
         ) as Range;
