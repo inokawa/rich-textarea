@@ -9,8 +9,7 @@ import {
   memo,
   RefObject,
 } from "react";
-// @ts-expect-error no type definition
-import rangeAtIndex from "range-at-index";
+import rangeAtIndex from "./vendor/range-at-index";
 import { hasPercentageUnit, stopPropagation, syncBackdropStyle } from "./dom";
 import { SelectionRange, initSelectionStore } from "./selection";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
@@ -247,7 +246,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         });
       } else {
         const range = rangeAtIndex(
-          backdropRef[refKey],
+          backdropRef[refKey]!,
           selectionStart,
           selectionStart + 1
         ) as Range;
