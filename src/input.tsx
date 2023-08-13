@@ -10,7 +10,7 @@ import {
   RefObject,
 } from "react";
 // @ts-expect-error no type definition
-import rangeAtIndex from "range-at-index";
+import rangeAtIndex from "./vendor/range-at-index";
 import {
   hasPercentageUnit,
   isSafari,

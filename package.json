@@ -30,9 +30,7 @@
     "size": "size-limit",
     "prepublishOnly": "npm run typedoc && rimraf lib && npm run build"
   },
-  "dependencies": {
-    "range-at-index": "^1.0.4"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/plugin-transform-react-pure-annotations": "7.22.5",
     "@playwright/test": "^1.36.1",
