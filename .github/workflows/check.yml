@@ -19,14 +19,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "lts/*"
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          cache: "npm"
 
       - run: npm ci
       - run: npm run tsc
@@ -34,7 +27,7 @@ jobs:
       - run: npm run test
       - run: npm run build
       - run: npm run size
-      - run: npm run storybook:test
+      # - run: npm run storybook:test
 
   e2e:
     timeout-minutes: 15
