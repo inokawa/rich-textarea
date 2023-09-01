@@ -2,8 +2,9 @@ import { StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 import { Renderer, RichTextarea } from "../../src";
 import { Highlight, themes } from "prism-react-renderer";
-import prettier from "prettier";
-import parser from "prettier/parser-typescript";
+import prettier from "prettier/standalone";
+import * as estree from "prettier/plugins/estree";
+import * as typescript from "prettier/plugins/typescript";
 
 export default {
   component: RichTextarea,
@@ -56,11 +57,11 @@ function Example() {
       <div>
         <div>
           <button
-            onClick={() =>
-              setText((prev) =>
-                prettier.format(prev, {
+            onClick={async () =>
+              setText(
+                await prettier.format(text, {
                   parser: "typescript",
-                  plugins: [parser],
+                  plugins: [typescript, estree],
                 })
               )
             }
