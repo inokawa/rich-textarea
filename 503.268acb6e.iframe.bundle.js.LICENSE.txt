@@ -1,3 +1,9 @@
+/*
+    object-assign
+    (c) Sindre Sorhus
+    @license MIT
+    */
+
 /**
  * @license React
  * react-jsx-runtime.production.min.js
