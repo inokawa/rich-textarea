@@ -67,6 +67,7 @@ const Backdrop = memo(
                 // https://stackoverflow.com/questions/2545542/font-size-rendering-inconsistencies-on-an-iphone
                 textSizeAdjust: "100%",
                 WebkitTextSizeAdjust: "100%",
+                MozTextSizeAdjust: "100%",
                 whiteSpace: "pre",
               }),
               []
