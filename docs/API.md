@@ -2,13 +2,10 @@
 
 ## Table of contents
 
-### Component Functions
+### Functions
 
 - [RichTextarea](API.md#richtextarea)
 - [experimental\_RichInput](API.md#experimental_richinput)
-
-### Other Functions
-
 - [createRegexRenderer](API.md#createregexrenderer)
 
 ### Interfaces
@@ -24,7 +21,7 @@
 - [Renderer](API.md#renderer)
 - [CaretPosition](API.md#caretposition)
 
-## Component Functions
+## Component
 
 ### RichTextarea
 
@@ -44,7 +41,7 @@ Textarea component with some extra props. See [RichTextareaProps](interfaces/Ric
 
 #### Defined in
 
-node_modules/@types/react/index.d.ts:386
+node_modules/@types/react/index.d.ts:428
 
 ___
 
@@ -68,35 +65,9 @@ Input component with some extra props. See [RichInputProps](interfaces/RichInput
 
 #### Defined in
 
-node_modules/@types/react/index.d.ts:386
+node_modules/@types/react/index.d.ts:428
 
-___
-
-## Other Functions
-
-### createRegexRenderer
-
-▸ **createRegexRenderer**(`matchers`): [`Renderer`](API.md#renderer)
-
-An utility to create renderer function with regex.
-
-The priority is descending order.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `matchers` | [`RegExp`, [`StyleOrRender`](API.md#styleorrender)][] |
-
-#### Returns
-
-[`Renderer`](API.md#renderer)
-
-#### Defined in
-
-[src/renderers.tsx:17](https://github.com/inokawa/rich-textarea/blob/4cd0f24/src/renderers.tsx#L17)
-
-## Type Aliases
+## Other
 
 ### StyleOrRender
 
@@ -104,7 +75,7 @@ The priority is descending order.
 
 #### Defined in
 
-[src/renderers.tsx:4](https://github.com/inokawa/rich-textarea/blob/4cd0f24/src/renderers.tsx#L4)
+[src/renderers.tsx:4](https://github.com/inokawa/rich-textarea/blob/6fd4c20/src/renderers.tsx#L4)
 
 ___
 
@@ -128,7 +99,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/4cd0f24/src/types.ts#L1)
+[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/6fd4c20/src/types.ts#L1)
 
 ___
 
@@ -138,4 +109,28 @@ ___
 
 #### Defined in
 
-[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/4cd0f24/src/types.ts#L3)
+[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/6fd4c20/src/types.ts#L3)
+
+___
+
+### createRegexRenderer
+
+▸ **createRegexRenderer**(`matchers`): [`Renderer`](API.md#renderer)
+
+An utility to create renderer function with regex.
+
+The priority is descending order.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `matchers` | [`RegExp`, [`StyleOrRender`](API.md#styleorrender)][] |
+
+#### Returns
+
+[`Renderer`](API.md#renderer)
+
+#### Defined in
+
+[src/renderers.tsx:17](https://github.com/inokawa/rich-textarea/blob/6fd4c20/src/renderers.tsx#L17)

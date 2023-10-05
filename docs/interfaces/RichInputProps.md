@@ -1,6 +1,6 @@
 # Interface: RichInputProps
 
-Props of [experimental_RichInput](../API.md#experimental_richinput).
+Props of [RichInput](../API.md#experimental_richinput).
 
 For other props not mentioned below will be passed to [input](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
 `defaultValue` is omitted for simplicity of logic.
@@ -39,11 +39,13 @@ On the rendered nodes, currently limited event handlers will work.
 
 **`Default Value`**
 
+```ts
 undefined
+```
 
 #### Defined in
 
-[src/input.tsx:119](https://github.com/inokawa/rich-textarea/blob/4cd0f24/src/input.tsx#L119)
+[src/input.tsx:120](https://github.com/inokawa/rich-textarea/blob/6fd4c20/src/input.tsx#L120)
 
 ___
 
@@ -55,11 +57,13 @@ If true, textarea height is automatically resized and height of style prop does 
 
 **`Default Value`**
 
+```ts
 undefined
+```
 
 #### Defined in
 
-[src/input.tsx:124](https://github.com/inokawa/rich-textarea/blob/4cd0f24/src/input.tsx#L124)
+[src/input.tsx:125](https://github.com/inokawa/rich-textarea/blob/6fd4c20/src/input.tsx#L125)
 
 ___
 
@@ -73,10 +77,6 @@ ___
 
 Called when selection in textarea changes. It gives position of caret at the time, which is useful to position menu.
 
-**`Default Value`**
-
-undefined
-
 ##### Parameters
 
 | Name | Type |
@@ -87,6 +87,12 @@ undefined
 
 `void`
 
+**`Default Value`**
+
+```ts
+undefined
+```
+
 #### Defined in
 
-[src/input.tsx:129](https://github.com/inokawa/rich-textarea/blob/4cd0f24/src/input.tsx#L129)
+[src/input.tsx:130](https://github.com/inokawa/rich-textarea/blob/6fd4c20/src/input.tsx#L130)

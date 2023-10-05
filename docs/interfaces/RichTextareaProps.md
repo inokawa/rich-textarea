@@ -38,11 +38,13 @@ On the rendered nodes, currently limited event handlers will work.
 
 **`Default Value`**
 
+```ts
 undefined
+```
 
 #### Defined in
 
-[src/textarea.tsx:109](https://github.com/inokawa/rich-textarea/blob/4cd0f24/src/textarea.tsx#L109)
+[src/textarea.tsx:110](https://github.com/inokawa/rich-textarea/blob/6fd4c20/src/textarea.tsx#L110)
 
 ___
 
@@ -56,11 +58,13 @@ Set `rows` prop to 1 if you need single-line textarea.
 
 **`Default Value`**
 
+```ts
 undefined
+```
 
 #### Defined in
 
-[src/textarea.tsx:116](https://github.com/inokawa/rich-textarea/blob/4cd0f24/src/textarea.tsx#L116)
+[src/textarea.tsx:117](https://github.com/inokawa/rich-textarea/blob/6fd4c20/src/textarea.tsx#L117)
 
 ___
 
@@ -74,10 +78,6 @@ ___
 
 Called when selection in textarea changes. It gives position of caret at the time, which is useful to position menu.
 
-**`Default Value`**
-
-undefined
-
 ##### Parameters
 
 | Name | Type |
@@ -88,6 +88,12 @@ undefined
 
 `void`
 
+**`Default Value`**
+
+```ts
+undefined
+```
+
 #### Defined in
 
-[src/textarea.tsx:121](https://github.com/inokawa/rich-textarea/blob/4cd0f24/src/textarea.tsx#L121)
+[src/textarea.tsx:122](https://github.com/inokawa/rich-textarea/blob/6fd4c20/src/textarea.tsx#L122)
