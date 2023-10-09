@@ -134,7 +134,6 @@ export interface RichInputProps
  * Input component with some extra props. See {@link RichInputProps} and {@link RichInputHandle}.
  *
  * **NOTE: This component is experimental one so it may have some bugs.**
- * @category Component
  */
 export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
   (
