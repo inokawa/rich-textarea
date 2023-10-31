@@ -35,7 +35,7 @@
     "@babel/plugin-transform-react-pure-annotations": "7.22.5",
     "@playwright/test": "^1.36.1",
     "@rollup/plugin-babel": "6.0.4",
-    "@rollup/plugin-terser": "0.4.3",
+    "@rollup/plugin-terser": "0.4.4",
     "@rollup/plugin-typescript": "11.1.4",
     "@size-limit/preset-small-lib": "^9.0.0",
     "@storybook/addon-storysource": "7.2.1",
