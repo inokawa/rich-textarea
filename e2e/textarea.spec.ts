@@ -85,7 +85,7 @@ test("smoke controlled", async ({ page }) => {
     backdrop
   );
   expect(editedTextareaValue).toBe(insertText(textareaValue, text, 1));
-  expect(editedBackdropValue).toBe(insertText(backdropValue, text, 1));
+  expect(editedTextareaValue).toBe(editedBackdropValue);
 
   // Click outside and unfocus
   await click(page, 0, 0);
@@ -120,7 +120,7 @@ test("smoke uncontrolled", async ({ page }) => {
     backdrop
   );
   expect(editedTextareaValue).toBe(insertText(textareaValue, text, 1));
-  expect(editedBackdropValue).toBe(insertText(backdropValue, text, 1));
+  expect(editedTextareaValue).toBe(editedBackdropValue);
 
   // Click outside and unfocus
   await click(page, 0, 0);
@@ -181,4 +181,37 @@ test("resizable", async ({ page }) => {
   const textareaSize = await getSize(textarea);
   expect(textareaSize).not.toEqual(initialTextareaSize);
   expect(textareaSize).toEqual(await getSize(backdrop));
+});
+
+test("ime", async ({ page, browserName }) => {
+  test.skip(browserName !== "chromium");
+
+  await page.goto(storyUrl("basics-textarea--controlled"));
+
+  const [textarea, backdrop] = await getTextarea(page);
+  const [textareaValue, backdropValue] = await getValue(textarea, backdrop);
+  expect(textareaValue).toBe(backdropValue);
+
+  const client = await page.context().newCDPSession(page);
+  await textarea.focus();
+  await client.send("Input.imeSetComposition", {
+    selectionStart: -1,
+    selectionEnd: -1,
+    text: "😂😂",
+  });
+  await client.send("Input.imeSetComposition", {
+    selectionStart: 1,
+    selectionEnd: 2,
+    text: "😭",
+  });
+  await client.send("Input.insertText", {
+    text: "😂😭",
+  });
+
+  const [editedTextareaValue, editedBackdropValue] = await getValue(
+    textarea,
+    backdrop
+  );
+  expect(editedTextareaValue).toBe(insertText(textareaValue, "😂😭", 0));
+  expect(editedTextareaValue).toBe(editedBackdropValue);
 });
