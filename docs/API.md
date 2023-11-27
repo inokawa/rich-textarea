@@ -21,7 +21,7 @@
 - [Renderer](API.md#renderer)
 - [CaretPosition](API.md#caretposition)
 
-## Component
+## Functions
 
 ### RichTextarea
 
@@ -41,7 +41,7 @@ Textarea component with some extra props. See [RichTextareaProps](interfaces/Ric
 
 #### Defined in
 
-node_modules/@types/react/index.d.ts:428
+node_modules/@types/react/index.d.ts:395
 
 ___
 
@@ -65,51 +65,7 @@ Input component with some extra props. See [RichInputProps](interfaces/RichInput
 
 #### Defined in
 
-node_modules/@types/react/index.d.ts:428
-
-## Other
-
-### StyleOrRender
-
-Ƭ **StyleOrRender**: `React.CSSProperties` \| (`props`: { `children`: `React.ReactNode` ; `value`: `string` ; `key?`: `string`  }) => `React.ReactNode`
-
-#### Defined in
-
-[src/renderers.tsx:4](https://github.com/inokawa/rich-textarea/blob/6fd4c20/src/renderers.tsx#L4)
-
-___
-
-### Renderer
-
-Ƭ **Renderer**: (`value`: `string`) => `React.ReactNode`
-
-#### Type declaration
-
-▸ (`value`): `React.ReactNode`
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `value` | `string` |
-
-##### Returns
-
-`React.ReactNode`
-
-#### Defined in
-
-[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/6fd4c20/src/types.ts#L1)
-
-___
-
-### CaretPosition
-
-Ƭ **CaretPosition**: { `focused`: ``false`` ; `selectionStart`: `number` ; `selectionEnd`: `number`  } \| { `focused`: ``true`` ; `selectionStart`: `number` ; `selectionEnd`: `number` ; `top`: `number` ; `left`: `number` ; `height`: `number`  }
-
-#### Defined in
-
-[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/6fd4c20/src/types.ts#L3)
+node_modules/@types/react/index.d.ts:395
 
 ___
 
@@ -133,4 +89,48 @@ The priority is descending order.
 
 #### Defined in
 
-[src/renderers.tsx:17](https://github.com/inokawa/rich-textarea/blob/6fd4c20/src/renderers.tsx#L17)
+[src/renderers.tsx:17](https://github.com/inokawa/rich-textarea/blob/c7423d9/src/renderers.tsx#L17)
+
+## Type Aliases
+
+### StyleOrRender
+
+Ƭ **StyleOrRender**: `React.CSSProperties` \| (`props`: { `children`: `React.ReactNode` ; `value`: `string` ; `key?`: `string`  }) => `React.ReactNode`
+
+#### Defined in
+
+[src/renderers.tsx:4](https://github.com/inokawa/rich-textarea/blob/c7423d9/src/renderers.tsx#L4)
+
+___
+
+### Renderer
+
+Ƭ **Renderer**: (`value`: `string`) => `React.ReactNode`
+
+#### Type declaration
+
+▸ (`value`): `React.ReactNode`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `string` |
+
+##### Returns
+
+`React.ReactNode`
+
+#### Defined in
+
+[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/c7423d9/src/types.ts#L1)
+
+___
+
+### CaretPosition
+
+Ƭ **CaretPosition**: { `focused`: ``false`` ; `selectionStart`: `number` ; `selectionEnd`: `number`  } \| { `focused`: ``true`` ; `selectionStart`: `number` ; `selectionEnd`: `number` ; `top`: `number` ; `left`: `number` ; `height`: `number`  }
+
+#### Defined in
+
+[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/c7423d9/src/types.ts#L3)
