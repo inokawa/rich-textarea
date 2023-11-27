@@ -1,3 +1,6 @@
+/**
+ * @internal
+ */
 export const execReg = (reg: RegExp, text: string): RegExpExecArray[] => {
   const results: RegExpExecArray[] = [];
   let match: RegExpExecArray | null = null;

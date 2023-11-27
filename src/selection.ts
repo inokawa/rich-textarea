@@ -1,7 +1,13 @@
 import { refKey } from "./utils";
 
+/**
+ * @internal
+ */
 export type SelectionRange = [number | null, number | null];
 
+/**
+ * @internal
+ */
 export const initSelectionStore = (
   ref: React.RefObject<HTMLTextAreaElement | HTMLInputElement>,
   onSelectionUpdate: (range: SelectionRange) => void
@@ -49,4 +55,7 @@ export const initSelectionStore = (
   return handle;
 };
 
+/**
+ * @internal
+ */
 export type SelectionStore = ReturnType<typeof initSelectionStore>;

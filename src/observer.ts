@@ -10,13 +10,19 @@ import {
 } from "./dom";
 import { SelectionStore } from "./selection";
 
+/**
+ * @internal
+ */
 export type TextareaRect = [
   width: number,
   height: number,
   hPadding: number,
-  vPadding: number
+  vPadding: number,
 ];
 
+/**
+ * @internal
+ */
 export const createTextareaObserver = (
   textarea: HTMLTextAreaElement | HTMLInputElement,
   backdrop: HTMLDivElement,

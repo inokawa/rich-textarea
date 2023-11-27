@@ -1,5 +1,8 @@
 import { refKey } from "./utils";
 
+/**
+ * @internal
+ */
 export const isSafari = (): boolean => {
   const ua = navigator.userAgent.toLowerCase();
   return ua.indexOf("safari") > -1 && ua.indexOf("chrome") <= -1;
@@ -68,14 +71,23 @@ const getValueFromStyle = (style: CSSStyleDeclaration, key: string): number => {
   }
 };
 
+/**
+ * @internal
+ */
 export const getStyle = (e: Element) => getComputedStyle(e);
 
+/**
+ * @internal
+ */
 export const hasPercentageUnit = (
   widthOrHeight: React.CSSProperties["width"] | React.CSSProperties["height"]
 ): boolean => {
   return typeof widthOrHeight === "string" && widthOrHeight.endsWith("%");
 };
 
+/**
+ * @internal
+ */
 export const getVerticalPadding = (style: CSSStyleDeclaration): number => {
   return (
     getValueFromStyle(style, "padding-top") +
@@ -85,6 +97,9 @@ export const getVerticalPadding = (style: CSSStyleDeclaration): number => {
   );
 };
 
+/**
+ * @internal
+ */
 export const getHorizontalPadding = (style: CSSStyleDeclaration): number => {
   return (
     getValueFromStyle(style, "padding-left") +
@@ -94,6 +109,9 @@ export const getHorizontalPadding = (style: CSSStyleDeclaration): number => {
   );
 };
 
+/**
+ * @internal
+ */
 export const getPointedElement = (
   textarea: HTMLElement,
   backdrop: HTMLElement,
@@ -136,6 +154,9 @@ const dispatchMouseEvent = (
   target.dispatchEvent(new MouseEvent(type, init));
 };
 
+/**
+ * @internal
+ */
 export const dispatchClonedMouseEvent = (
   pointed: HTMLElement,
   e: MouseEvent
@@ -143,6 +164,9 @@ export const dispatchClonedMouseEvent = (
   dispatchMouseEvent(pointed, e.type, e);
 };
 
+/**
+ * @internal
+ */
 export const dispatchMouseMoveEvent = (
   pointed: HTMLElement | null,
   prevPointed: HTMLElement | null,
@@ -160,6 +184,9 @@ export const dispatchMouseMoveEvent = (
   }
 };
 
+/**
+ * @internal
+ */
 export const dispatchMouseOutEvent = (
   prevPointed: HTMLElement | null,
   e: MouseEvent
@@ -169,10 +196,16 @@ export const dispatchMouseOutEvent = (
   }
 };
 
+/**
+ * @internal
+ */
 export const stopPropagation = (event: React.MouseEvent) => {
   event.stopPropagation();
 };
 
+/**
+ * @internal
+ */
 export const syncBackdropStyle = (
   textarea: HTMLElement,
   backdrop: HTMLElement,
@@ -193,9 +226,12 @@ export const syncBackdropStyle = (
   textareaStyle.caretColor = style?.caretColor || caretColorRef[refKey];
 };
 
+/**
+ * @internal
+ */
 export const listenEvent = <
   E extends HTMLElement | Document,
-  K extends keyof GlobalEventHandlersEventMap
+  K extends keyof GlobalEventHandlersEventMap,
 >(
   el: E,
   key: K,
