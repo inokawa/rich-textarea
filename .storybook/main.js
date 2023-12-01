@@ -13,24 +13,9 @@ export default {
   ],
   framework: {
     name: "@storybook/react-webpack5",
-    options: {},
+    options: { builder: { useSWC: true } },
   },
   async webpackFinal(config, options) {
-    config.module.rules = config.module.rules.filter(
-      (r) => !r.use?.[0]?.loader?.includes("babel-loader")
-    );
-    config.module.rules.unshift({
-      test: /\.(mjs|tsx?|jsx?)$/,
-      use: [
-        {
-          loader: "esbuild-loader",
-          options: {
-            target: 'es2020',
-            implementation: require("esbuild"),
-          },
-        },
-      ],
-    });
     config.resolve.fallback = {
       // For kuromoji
       path: "path-browserify",
@@ -39,5 +24,17 @@ export default {
       events: "events",
     };
     return config;
+  },
+  swc: (config) => {
+    return {
+      ...config,
+      jsc: {
+        ...config.jsc,
+        transform: {
+          ...config.jsc?.tranform,
+          react: { ...config.jsc?.tranform?.react, runtime: "automatic" },
+        },
+      },
+    };
   },
 };
