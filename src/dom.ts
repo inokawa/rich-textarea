@@ -4,6 +4,9 @@ import { refKey } from "./utils";
  * @internal
  */
 export const isSafari = (): boolean => {
+  if (typeof navigator === "undefined") {
+    return false;
+  }
   const ua = navigator.userAgent.toLowerCase();
   return ua.indexOf("safari") > -1 && ua.indexOf("chrome") <= -1;
 };
