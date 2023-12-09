@@ -76,13 +76,13 @@ export const createTextareaObserver = (
       dispatchClonedMouseEvent(pointed, e);
     }
   });
-  const cleanUpOnMouseMove = listenEvent(textarea, "mouseup", (e) => {
+  const cleanUpOnMouseUp = listenEvent(textarea, "mouseup", (e) => {
     const pointed = getPointedElement(textarea, backdrop, e);
     if (pointed) {
       dispatchClonedMouseEvent(pointed, e);
     }
   });
-  const cleanUpMouseMove = listenEvent(textarea, "mousemove", (e) => {
+  const cleanUpOnMouseMove = listenEvent(textarea, "mousemove", (e) => {
     const p = getPointedElement(textarea, backdrop, e);
     dispatchMouseMoveEvent(p, prevPointed, e);
     prevPointed = p;
@@ -127,8 +127,8 @@ export const createTextareaObserver = (
     cleanUpOnBlur();
     cleanUpOnScroll();
     cleanUpOnMouseDown();
+    cleanUpOnMouseUp();
     cleanUpOnMouseMove();
-    cleanUpMouseMove();
     cleanUpOnMouseLeave();
     cleanUpOnClick();
     cleanUpOnInput();
