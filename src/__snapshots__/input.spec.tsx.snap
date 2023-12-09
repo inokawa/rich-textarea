@@ -1,0 +1,279 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`smoke controlled 1`] = `
+<DocumentFragment>
+  <div
+    style="display: inline-block; position: relative; width: 0px; height: 0px;"
+  >
+    <div
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
+    >
+      <div
+        aria-hidden="true"
+        style="padding: 1px 1px 1px 1px; margin: 0px 0px 0px 0px; border: 2px inset; border-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-right-width: 2px; border-style: inset; border-top-style: inset; border-bottom-style: inset; border-left-style: inset; border-right-style: inset; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; border-color: transparent;"
+      >
+        <div
+          style="height: 0px;"
+        >
+          <div
+            style="transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; white-space: pre;"
+          >
+            <span
+              style="color: red;"
+            >
+              L
+            </span>
+            <span>
+              o
+            </span>
+            <span
+              style="color: red;"
+            >
+              r
+            </span>
+            <span>
+              e
+            </span>
+            <span
+              style="color: red;"
+            >
+              m
+            </span>
+            <span>
+               
+            </span>
+            <span
+              style="color: red;"
+            >
+              i
+            </span>
+            <span>
+              p
+            </span>
+            <span
+              style="color: red;"
+            >
+              s
+            </span>
+            <span>
+              u
+            </span>
+            <span
+              style="color: red;"
+            >
+              m
+            </span>
+            <span>
+               
+            </span>
+            <span
+              style="color: red;"
+            >
+              d
+            </span>
+            <span>
+              o
+            </span>
+            <span
+              style="color: red;"
+            >
+              l
+            </span>
+            <span>
+              o
+            </span>
+            <span
+              style="color: red;"
+            >
+              r
+            </span>
+            <span>
+               
+            </span>
+            <span
+              style="color: red;"
+            >
+              s
+            </span>
+            <span>
+              i
+            </span>
+            <span
+              style="color: red;"
+            >
+              t
+            </span>
+            <span>
+               
+            </span>
+            <span
+              style="color: red;"
+            >
+              a
+            </span>
+            <span>
+              m
+            </span>
+            <span
+              style="color: red;"
+            >
+              e
+            </span>
+            <span>
+              t
+            </span>
+            <span
+              style="color: transparent;"
+            >
+              ​
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      value="Lorem ipsum dolor sit amet"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`smoke uncontrolled 1`] = `
+<DocumentFragment>
+  <div
+    style="display: inline-block; position: relative; width: 0px; height: 0px;"
+  >
+    <div
+      style="position: absolute; overflow: hidden; top: 0px; left: 0px; width: 0px; height: 0px;"
+    >
+      <div
+        aria-hidden="true"
+        style="padding: 1px 1px 1px 1px; margin: 0px 0px 0px 0px; border: 2px inset; border-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-right-width: 2px; border-style: inset; border-top-style: inset; border-bottom-style: inset; border-left-style: inset; border-right-style: inset; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; border-color: transparent;"
+      >
+        <div
+          style="height: 0px;"
+        >
+          <div
+            style="transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; white-space: pre;"
+          >
+            <span
+              style="color: red;"
+            >
+              L
+            </span>
+            <span>
+              o
+            </span>
+            <span
+              style="color: red;"
+            >
+              r
+            </span>
+            <span>
+              e
+            </span>
+            <span
+              style="color: red;"
+            >
+              m
+            </span>
+            <span>
+               
+            </span>
+            <span
+              style="color: red;"
+            >
+              i
+            </span>
+            <span>
+              p
+            </span>
+            <span
+              style="color: red;"
+            >
+              s
+            </span>
+            <span>
+              u
+            </span>
+            <span
+              style="color: red;"
+            >
+              m
+            </span>
+            <span>
+               
+            </span>
+            <span
+              style="color: red;"
+            >
+              d
+            </span>
+            <span>
+              o
+            </span>
+            <span
+              style="color: red;"
+            >
+              l
+            </span>
+            <span>
+              o
+            </span>
+            <span
+              style="color: red;"
+            >
+              r
+            </span>
+            <span>
+               
+            </span>
+            <span
+              style="color: red;"
+            >
+              s
+            </span>
+            <span>
+              i
+            </span>
+            <span
+              style="color: red;"
+            >
+              t
+            </span>
+            <span>
+               
+            </span>
+            <span
+              style="color: red;"
+            >
+              a
+            </span>
+            <span>
+              m
+            </span>
+            <span
+              style="color: red;"
+            >
+              e
+            </span>
+            <span>
+              t
+            </span>
+            <span
+              style="color: transparent;"
+            >
+              ​
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      value="Lorem ipsum dolor sit amet"
+    />
+  </div>
+</DocumentFragment>
+`;
