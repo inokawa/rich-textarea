@@ -69,7 +69,7 @@
     "react-highlight-words": "0.20.0",
     "react-hook-form": "7.48.2",
     "react-is": "18.2.0",
-    "rimraf": "5.0.1",
+    "rimraf": "5.0.5",
     "rollup": "4.6.0",
     "rollup-plugin-banner2": "1.2.2",
     "size-limit": "^11.0.0",
