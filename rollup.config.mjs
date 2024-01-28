@@ -29,7 +29,7 @@ export default {
       plugins: ["@babel/plugin-transform-react-pure-annotations"],
     }),
     terser({
-      ecma: 2015,
+      ecma: 2018,
       module: true,
       compress: { passes: 5, unsafe: true, keep_fargs: false },
       mangle: { properties: { regex: "^_" } },
