@@ -36,7 +36,7 @@
     "@playwright/test": "^1.40.1",
     "@rollup/plugin-babel": "6.0.4",
     "@rollup/plugin-terser": "0.4.4",
-    "@rollup/plugin-typescript": "11.1.5",
+    "@rollup/plugin-typescript": "11.1.6",
     "@size-limit/preset-small-lib": "^11.0.0",
     "@storybook/addon-storysource": "7.6.4",
     "@storybook/react": "7.6.4",
