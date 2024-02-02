@@ -9,7 +9,8 @@ export default {
 
 const style = { width: "600px", height: "400px" };
 
-export const WithTanstackForm: StoryObj = {
+export const Default: StoryObj = {
+  name: "With Tanstack Form",
   render: () => {
     const form = useForm({
       defaultValues: { text: "Hello tanstack" },

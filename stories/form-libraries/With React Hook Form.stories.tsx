@@ -9,7 +9,8 @@ export default {
 
 const style = { width: "600px", height: "400px" };
 
-export const WithReactHookForm: StoryObj = {
+export const Default: StoryObj = {
+  name: "With React Hook Form",
   render: () => {
     const {
       handleSubmit,

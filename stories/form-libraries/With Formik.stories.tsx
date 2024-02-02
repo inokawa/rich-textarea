@@ -9,7 +9,8 @@ export default {
 
 const style = { width: "600px", height: "400px" };
 
-export const WithFormik: StoryObj = {
+export const Default: StoryObj = {
+  name: "With Formik",
   render: () => {
     const formik = useFormik({
       initialValues: { text: "Hello formik" },
