@@ -30,7 +30,6 @@
     "size": "size-limit",
     "prepublishOnly": "npm run typedoc && rimraf lib && npm run build"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/plugin-transform-react-pure-annotations": "7.22.5",
     "@playwright/test": "^1.40.1",
@@ -43,6 +42,7 @@
     "@storybook/react-webpack5": "^7.6.4",
     "@storybook/source-loader": "7.6.4",
     "@storybook/test-runner": "0.16.0",
+    "@tanstack/react-form": "0.13.4",
     "@testing-library/react": "14.0.0",
     "@textlint/kernel": "13.3.3",
     "@textlint/textlint-plugin-text": "13.3.3",

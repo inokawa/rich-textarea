@@ -28,8 +28,8 @@ export const WithFormik: StoryObj = {
         <RichTextarea
           style={style}
           name="text"
-          onChange={formik.handleChange}
           value={formik.values.text}
+          onChange={formik.handleChange}
         >
           {(v) => {
             return v.split("").map((t, i) => (

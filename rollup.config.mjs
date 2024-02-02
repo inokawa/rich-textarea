@@ -4,6 +4,12 @@ import terser from "@rollup/plugin-terser";
 import banner from "rollup-plugin-banner2";
 import pkg from "./package.json" assert { type: "json" };
 
+const external = (id) =>
+  [
+    ...Object.keys(pkg.dependencies || {}),
+    ...Object.keys(pkg.devDependencies || {}),
+  ].some((d) => id.startsWith(d));
+
 export default {
   input: "src/index.ts",
   output: [
@@ -42,9 +48,5 @@ export default {
     }),
     banner(() => '"use client";\n'),
   ],
-  external: (id) =>
-    [
-      ...Object.keys(pkg.dependencies),
-      ...Object.keys(pkg.devDependencies),
-    ].some((d) => id.startsWith(d)),
+  external,
 };
