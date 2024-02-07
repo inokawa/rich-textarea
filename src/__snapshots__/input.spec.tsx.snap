@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`smoke controlled 1`] = `
+exports[`smoke > controlled 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -139,7 +139,7 @@ exports[`smoke controlled 1`] = `
 </DocumentFragment>
 `;
 
-exports[`smoke uncontrolled 1`] = `
+exports[`smoke > uncontrolled 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"

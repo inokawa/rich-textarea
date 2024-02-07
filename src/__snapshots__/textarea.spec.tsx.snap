@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`match double matchers 1`] = `
+exports[`match > double matchers 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -80,7 +80,7 @@ exports[`match double matchers 1`] = `
 </DocumentFragment>
 `;
 
-exports[`match emoji 1`] = `
+exports[`match > emoji 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -162,7 +162,7 @@ exports[`match emoji 1`] = `
 </DocumentFragment>
 `;
 
-exports[`match japanese 1`] = `
+exports[`match > japanese 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -391,7 +391,7 @@ exports[`match japanese 1`] = `
 </DocumentFragment>
 `;
 
-exports[`match match many 1`] = `
+exports[`match > match many 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -448,7 +448,7 @@ exports[`match match many 1`] = `
 </DocumentFragment>
 `;
 
-exports[`match match one 1`] = `
+exports[`match > match one 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -483,7 +483,7 @@ exports[`match match one 1`] = `
 </DocumentFragment>
 `;
 
-exports[`match triple matchers 1`] = `
+exports[`match > triple matchers 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -579,7 +579,7 @@ exports[`match triple matchers 1`] = `
 </DocumentFragment>
 `;
 
-exports[`smoke controlled 1`] = `
+exports[`smoke > controlled 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -711,7 +711,7 @@ exports[`smoke controlled 1`] = `
 </DocumentFragment>
 `;
 
-exports[`smoke uncontrolled 1`] = `
+exports[`smoke > uncontrolled 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -843,7 +843,7 @@ exports[`smoke uncontrolled 1`] = `
 </DocumentFragment>
 `;
 
-exports[`style textarea background 1`] = `
+exports[`style textarea > background 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -878,7 +878,7 @@ exports[`style textarea background 1`] = `
 </DocumentFragment>
 `;
 
-exports[`style textarea background-color 1`] = `
+exports[`style textarea > background-color 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -913,7 +913,7 @@ exports[`style textarea background-color 1`] = `
 </DocumentFragment>
 `;
 
-exports[`style textarea border 1`] = `
+exports[`style textarea > border 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -948,7 +948,7 @@ exports[`style textarea border 1`] = `
 </DocumentFragment>
 `;
 
-exports[`style textarea border-color 1`] = `
+exports[`style textarea > border-color 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -983,7 +983,7 @@ exports[`style textarea border-color 1`] = `
 </DocumentFragment>
 `;
 
-exports[`style textarea caret-color 1`] = `
+exports[`style textarea > caret-color 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -1018,7 +1018,7 @@ exports[`style textarea caret-color 1`] = `
 </DocumentFragment>
 `;
 
-exports[`style textarea color 1`] = `
+exports[`style textarea > color 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -1045,7 +1045,7 @@ exports[`style textarea color 1`] = `
       </div>
     </div>
     <textarea
-      style="color: transparent; background: transparent; margin: 0px; vertical-align: top; caret-color: blue;"
+      style="color: transparent; background: transparent; margin: 0px; vertical-align: top; caret-color: rgb(0, 0, 255);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -1053,7 +1053,7 @@ exports[`style textarea color 1`] = `
 </DocumentFragment>
 `;
 
-exports[`style textarea width & height 1`] = `
+exports[`style textarea > width & height 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -1088,7 +1088,7 @@ exports[`style textarea width & height 1`] = `
 </DocumentFragment>
 `;
 
-exports[`style value background 1`] = `
+exports[`style value > background 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -1123,7 +1123,7 @@ exports[`style value background 1`] = `
 </DocumentFragment>
 `;
 
-exports[`style value border 1`] = `
+exports[`style value > border 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -1158,7 +1158,7 @@ exports[`style value border 1`] = `
 </DocumentFragment>
 `;
 
-exports[`style value color 1`] = `
+exports[`style value > color 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"
@@ -1193,7 +1193,7 @@ exports[`style value color 1`] = `
 </DocumentFragment>
 `;
 
-exports[`style value decoration 1`] = `
+exports[`style value > decoration 1`] = `
 <DocumentFragment>
   <div
     style="display: inline-block; position: relative; width: 0px; height: 0px;"

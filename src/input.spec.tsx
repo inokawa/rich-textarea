@@ -1,4 +1,4 @@
-import { it, describe, expect, afterEach } from "@jest/globals";
+import { it, describe, expect, afterEach } from "vitest";
 import { cleanup, render } from "@testing-library/react";
 import { experimental_RichInput as RichInput } from ".";
 

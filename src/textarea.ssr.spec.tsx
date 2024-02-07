@@ -1,7 +1,7 @@
 /**
  * @jest-environment node
  */
-import { it, describe, expect } from "@jest/globals";
+import { it, describe, expect } from "vitest";
 import { renderToString, renderToStaticMarkup } from "react-dom/server";
 import { RichTextarea } from ".";
 
