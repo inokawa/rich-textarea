@@ -1,10 +1,10 @@
 /** @type { import('@storybook/react-webpack5').StorybookConfig } */
 export default {
-  stories: [
-    "../stories/**/*.stories.mdx",
-    "../stories/**/*.stories.@(js|jsx|ts|tsx)",
+  stories: ["../stories/**/*.mdx", "../stories/**/*.stories.@(js|jsx|ts|tsx)"],
+  addons: [
+    "@storybook/addon-storysource",
+    "@storybook/addon-webpack5-compiler-swc",
   ],
-  addons: ["@storybook/addon-storysource"],
   staticDirs: [
     // for kuromojin
     {
@@ -14,7 +14,7 @@ export default {
   ],
   framework: {
     name: "@storybook/react-webpack5",
-    options: { builder: { useSWC: true } },
+    options: { builder: {} },
   },
   async webpackFinal(config, options) {
     config.resolve.fallback = {
@@ -28,12 +28,9 @@ export default {
   },
   swc: (config) => {
     return {
-      ...config,
       jsc: {
-        ...config.jsc,
         transform: {
-          ...config.jsc?.tranform,
-          react: { ...config.jsc?.tranform?.react, runtime: "automatic" },
+          react: { runtime: "automatic" },
         },
       },
     };
