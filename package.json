@@ -71,7 +71,7 @@
     "react-is": "18.2.0",
     "rimraf": "5.0.5",
     "rollup": "4.6.0",
-    "rollup-plugin-banner2": "1.2.2",
+    "rollup-plugin-banner2": "1.2.3",
     "size-limit": "11.0.2",
     "storybook": "8.0.0",
     "textlint-rule-preset-japanese": "7.0.0",
