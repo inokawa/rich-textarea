@@ -8,7 +8,7 @@ import {
   getVerticalPadding,
   listenEvent,
 } from "./dom";
-import { SelectionStore } from "./selection";
+import { type SelectionStore } from "./selection";
 
 /**
  * @internal

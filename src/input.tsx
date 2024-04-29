@@ -7,7 +7,7 @@ import {
   forwardRef,
   useImperativeHandle,
   memo,
-  RefObject,
+  type RefObject,
 } from "react";
 import rangeAtIndex from "./vendor/range-at-index";
 import {
@@ -16,12 +16,12 @@ import {
   stopPropagation,
   syncBackdropStyle,
 } from "./dom";
-import { SelectionRange, initSelectionStore } from "./selection";
+import { type SelectionRange, initSelectionStore } from "./selection";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 import type { CaretPosition, Renderer } from "./types";
 import { CARET_DETECTOR, refKey } from "./utils";
 import { useStatic } from "./useStatic";
-import { TextareaRect, createTextareaObserver } from "./observer";
+import { type TextareaRect, createTextareaObserver } from "./observer";
 
 type BackdropHandle = (value: string) => void;
 

@@ -17,62 +17,60 @@ export const Default: StoryObj = {
       onSubmit: (data) => alert(JSON.stringify(data.value)),
     });
     return (
-      <form.Provider>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            form.handleSubmit();
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          form.handleSubmit();
+        }}
+      >
+        <form.Field
+          name="text"
+          validators={{
+            onChange: ({ value }) => {
+              if (!value) {
+                return "This field is required";
+              }
+              if (!value.toLowerCase().includes("tanstack")) {
+                return "Text must include tanstack";
+              }
+            },
           }}
         >
-          <form.Field
-            name="text"
-            validators={{
-              onChange: ({ value }) => {
-                if (!value) {
-                  return "This field is required";
-                }
-                if (!value.toLowerCase().includes("tanstack")) {
-                  return "Text must include tanstack";
-                }
-              },
-            }}
-          >
-            {(field) => (
-              <>
-                <RichTextarea
-                  style={style}
-                  name={field.name}
-                  value={field.state.value}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                  onBlur={field.handleBlur}
-                >
-                  {(v) => {
-                    return v.split("").map((t, i) => (
-                      <span
-                        key={i}
-                        style={{
-                          color: "tanstack".includes(t.toLowerCase())
-                            ? "tan"
-                            : undefined,
-                        }}
-                      >
-                        {t}
-                      </span>
-                    ));
-                  }}
-                </RichTextarea>
-                {field.state.meta.errors && (
-                  <span style={{ color: "red" }}>
-                    {field.state.meta.errors.join(", ")}
-                  </span>
-                )}
-              </>
-            )}
-          </form.Field>
-          <button type="submit">submit</button>
-        </form>
-      </form.Provider>
+          {(field) => (
+            <>
+              <RichTextarea
+                style={style}
+                name={field.name}
+                value={field.state.value}
+                onChange={(e) => field.handleChange(e.target.value)}
+                onBlur={field.handleBlur}
+              >
+                {(v) => {
+                  return v.split("").map((t, i) => (
+                    <span
+                      key={i}
+                      style={{
+                        color: "tanstack".includes(t.toLowerCase())
+                          ? "tan"
+                          : undefined,
+                      }}
+                    >
+                      {t}
+                    </span>
+                  ));
+                }}
+              </RichTextarea>
+              {field.state.meta.errors && (
+                <span style={{ color: "red" }}>
+                  {field.state.meta.errors.join(", ")}
+                </span>
+              )}
+            </>
+          )}
+        </form.Field>
+        <button type="submit">submit</button>
+      </form>
     );
   },
 };
