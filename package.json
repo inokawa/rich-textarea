@@ -70,7 +70,7 @@
     "react-hook-form": "7.51.3",
     "react-is": "18.3.1",
     "rimraf": "5.0.5",
-    "rollup": "4.17.0",
+    "rollup": "4.17.2",
     "rollup-plugin-banner2": "1.2.3",
     "size-limit": "11.0.2",
     "storybook": "8.0.9",
