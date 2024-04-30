@@ -75,7 +75,7 @@
     "size-limit": "11.0.2",
     "storybook": "8.0.9",
     "textlint-rule-preset-japanese": "7.0.0",
-    "typedoc": "0.25.12",
+    "typedoc": "0.25.13",
     "typedoc-plugin-markdown": "3.16.0",
     "typescript": "5.4.5",
     "vitest": "1.5.2",
