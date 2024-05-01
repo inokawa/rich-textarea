@@ -31,7 +31,7 @@
     "prepublishOnly": "npm run typedoc && rimraf lib && npm run build"
   },
   "devDependencies": {
-    "@babel/plugin-transform-react-pure-annotations": "7.22.5",
+    "@babel/plugin-transform-react-pure-annotations": "7.24.1",
     "@playwright/test": "1.43.1",
     "@rollup/plugin-babel": "6.0.4",
     "@rollup/plugin-terser": "0.4.4",
