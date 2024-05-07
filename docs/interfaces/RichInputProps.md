@@ -45,7 +45,7 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:120](https://github.com/inokawa/rich-textarea/blob/2ecc1e7/src/input.tsx#L120)
+[src/input.tsx:120](https://github.com/inokawa/rich-textarea/blob/e6b9ee587a2bd4f3cd7a426ae978b00325eb167c/src/input.tsx#L120)
 
 ___
 
@@ -63,7 +63,7 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:125](https://github.com/inokawa/rich-textarea/blob/2ecc1e7/src/input.tsx#L125)
+[src/input.tsx:125](https://github.com/inokawa/rich-textarea/blob/e6b9ee587a2bd4f3cd7a426ae978b00325eb167c/src/input.tsx#L125)
 
 ___
 
@@ -71,11 +71,17 @@ ___
 
 • `Optional` **onSelectionChange**: (`pos`: [`CaretPosition`](../API.md#caretposition)) => `void`
 
+Called when selection in textarea changes. It gives position of caret at the time, which is useful to position menu.
+
+**`Default Value`**
+
+```ts
+undefined
+```
+
 #### Type declaration
 
 ▸ (`pos`): `void`
-
-Called when selection in textarea changes. It gives position of caret at the time, which is useful to position menu.
 
 ##### Parameters
 
@@ -87,12 +93,6 @@ Called when selection in textarea changes. It gives position of caret at the tim
 
 `void`
 
-**`Default Value`**
-
-```ts
-undefined
-```
-
 #### Defined in
 
-[src/input.tsx:130](https://github.com/inokawa/rich-textarea/blob/2ecc1e7/src/input.tsx#L130)
+[src/input.tsx:130](https://github.com/inokawa/rich-textarea/blob/e6b9ee587a2bd4f3cd7a426ae978b00325eb167c/src/input.tsx#L130)
