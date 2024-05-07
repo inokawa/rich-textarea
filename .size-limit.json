@@ -1,19 +1,19 @@
 [
   {
     "name": "RichTextarea",
-    "path": "lib/index.mjs",
+    "path": "lib/index.js",
     "import": "{ RichTextarea }",
     "limit": "3 kB"
   },
   {
     "name": "experimental_RichInput",
-    "path": "lib/index.mjs",
+    "path": "lib/index.js",
     "import": "{ experimental_RichInput }",
     "limit": "3.5 kB"
   },
   {
     "name": "createRegexRenderer",
-    "path": "lib/index.mjs",
+    "path": "lib/index.js",
     "import": "{ createRegexRenderer }",
     "limit": "1.5 kB"
   }
