@@ -1,5 +1,5 @@
-import { execReg } from "./regex";
-import type { Renderer } from "./types";
+import { execReg } from "./utils";
+import type { Renderer } from "../../types";
 
 export type StyleOrRender =
   | React.CSSProperties
