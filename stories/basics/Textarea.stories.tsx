@@ -1,6 +1,10 @@
 import { StoryObj } from "@storybook/react";
 import React, { useCallback, useState } from "react";
-import { createRegexRenderer, RichTextarea } from "../../src";
+import {
+  createCSSCustomHighlightRenderer,
+  createRegexRenderer,
+  RichTextarea,
+} from "../../src";
 import { LOREM } from "../mocks";
 
 export default {
@@ -70,6 +74,32 @@ export const Style: StoryObj = {
         value={text}
       >
         {basicRegex}
+      </RichTextarea>
+    );
+  },
+};
+
+const cssHighlight = createCSSCustomHighlightRenderer([
+  [/[A-Z][A-Z]+/g, `border-radius: 3px; background-color: blue; color: white`],
+  [/[A-Z][A-x]+/g, `color: blue`],
+  [/[!?]+/g, `text-decoration: underline wavy; color: red`],
+  [/(but|and|so|also)+/g, `text-decoration: line-through; color: green`],
+  [/[0123456789]+/g, `color: violet; font-weight: bold`],
+]);
+
+export const CSSHighlight: StoryObj = {
+  render: () => {
+    const [text, setText] = useState(
+      `This is just a TEXTAREA but bit rich!!!
+12345`
+    );
+    return (
+      <RichTextarea
+        style={style}
+        onChange={useCallback((e) => setText(e.target.value), [])}
+        value={text}
+      >
+        {cssHighlight}
       </RichTextarea>
     );
   },

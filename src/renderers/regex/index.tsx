@@ -1,5 +1,7 @@
 import { execReg } from "./utils";
 import type { Renderer } from "../../types";
+import { useIsomorphicLayoutEffect } from "../../useIsomorphicLayoutEffect";
+import { memo, useRef } from "react";
 
 export type StyleOrRender =
   | React.CSSProperties
@@ -104,5 +106,68 @@ export const createRegexRenderer = (
     }
 
     return res;
+  };
+};
+
+const createCSSHighlightID = (i: number): string => `rich-textarea-${i}`;
+
+const CSSHighlighter = memo(
+  ({
+    _value: value,
+    _regexes: regexes,
+  }: {
+    _value: string;
+    _regexes: RegExp[];
+  }) => {
+    const ref = useRef<HTMLDivElement>(null);
+    useIsomorphicLayoutEffect(() => {
+      const el = ref.current!.firstChild!;
+
+      const highlights = regexes.flatMap((r, i) => {
+        const highlight = new Highlight(
+          ...execReg(r, value).map((m) => {
+            const start = m.index;
+            const end = m.index + m[0]!.length;
+
+            const range = new Range();
+            range.setStart(el, start);
+            range.setEnd(el, end);
+            return range;
+          })
+        );
+        CSS.highlights.set(createCSSHighlightID(i), highlight);
+        return highlight;
+      });
+
+      return () => {
+        highlights.forEach((h, i) => {
+          CSS.highlights.delete(createCSSHighlightID(i));
+          h.clear();
+        });
+      };
+    }, [value]);
+    return <div ref={ref}>{value}</div>;
+  }
+);
+
+/**
+ * {@link createRegexRenderer} but rendered with [CSS Custom Highlight API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API).
+ * @experimental
+ */
+export const createCSSCustomHighlightRenderer = (
+  matchers: [RegExp, string][]
+): Renderer => {
+  const styleStr = matchers.reduce((acc, [, style], i) => {
+    return acc + `::highlight(${createCSSHighlightID(i)}){${style}}`;
+  }, "");
+  const regexes = matchers.map(([r]) => r);
+
+  return (value) => {
+    return (
+      <>
+        <CSSHighlighter _value={value} _regexes={regexes} />
+        <style>{styleStr}</style>
+      </>
+    );
   };
 };
