@@ -123,7 +123,7 @@ const CSSHighlighter = memo(
     useIsomorphicLayoutEffect(() => {
       const el = ref.current!.firstChild!;
 
-      const highlights = regexes.flatMap((r) => {
+      const highlights = regexes.map((r) => {
         return new Highlight(
           ...execReg(r, value).map((m) => {
             const start = m.index;
