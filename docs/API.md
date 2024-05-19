@@ -7,6 +7,7 @@
 - [RichTextarea](API.md#richtextarea)
 - [experimental\_RichInput](API.md#experimental_richinput)
 - [createRegexRenderer](API.md#createregexrenderer)
+- [createCSSCustomHighlightRenderer](API.md#createcsscustomhighlightrenderer)
 
 ### Interfaces
 
@@ -41,7 +42,7 @@ Textarea component with some extra props. See [RichTextareaProps](interfaces/Ric
 
 #### Defined in
 
-[src/textarea.tsx:128](https://github.com/inokawa/rich-textarea/blob/31b5ae77b854e9571f6c66069389e36ef16f55ce/src/textarea.tsx#L128)
+[src/textarea.tsx:128](https://github.com/inokawa/rich-textarea/blob/cf673fcee2721486efeabd299f561e218415000b/src/textarea.tsx#L128)
 
 ___
 
@@ -65,7 +66,7 @@ Input component with some extra props. See [RichInputProps](interfaces/RichInput
 
 #### Defined in
 
-[src/input.tsx:138](https://github.com/inokawa/rich-textarea/blob/31b5ae77b854e9571f6c66069389e36ef16f55ce/src/input.tsx#L138)
+[src/input.tsx:138](https://github.com/inokawa/rich-textarea/blob/cf673fcee2721486efeabd299f561e218415000b/src/input.tsx#L138)
 
 ___
 
@@ -81,7 +82,7 @@ The priority is descending order.
 
 | Name | Type |
 | :------ | :------ |
-| `matchers` | [`RegExp`, [`StyleOrRender`](API.md#styleorrender)][] |
+| `matchers` | [regex: RegExp, style: StyleOrRender][] |
 
 #### Returns
 
@@ -89,7 +90,29 @@ The priority is descending order.
 
 #### Defined in
 
-[src/renderers.tsx:17](https://github.com/inokawa/rich-textarea/blob/31b5ae77b854e9571f6c66069389e36ef16f55ce/src/renderers.tsx#L17)
+[src/renderers/regex/index.tsx:19](https://github.com/inokawa/rich-textarea/blob/cf673fcee2721486efeabd299f561e218415000b/src/renderers/regex/index.tsx#L19)
+
+___
+
+### createCSSCustomHighlightRenderer
+
+▸ **createCSSCustomHighlightRenderer**(`matchers`): [`Renderer`](API.md#renderer)
+
+[createRegexRenderer](API.md#createregexrenderer) but rendered with [CSS Custom Highlight API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API).
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `matchers` | [regex: RegExp, style: string][] |
+
+#### Returns
+
+[`Renderer`](API.md#renderer)
+
+#### Defined in
+
+[src/renderers/regex/index.tsx:159](https://github.com/inokawa/rich-textarea/blob/cf673fcee2721486efeabd299f561e218415000b/src/renderers/regex/index.tsx#L159)
 
 ## Type Aliases
 
@@ -99,7 +122,7 @@ The priority is descending order.
 
 #### Defined in
 
-[src/renderers.tsx:4](https://github.com/inokawa/rich-textarea/blob/31b5ae77b854e9571f6c66069389e36ef16f55ce/src/renderers.tsx#L4)
+[src/renderers/regex/index.tsx:6](https://github.com/inokawa/rich-textarea/blob/cf673fcee2721486efeabd299f561e218415000b/src/renderers/regex/index.tsx#L6)
 
 ___
 
@@ -123,7 +146,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/31b5ae77b854e9571f6c66069389e36ef16f55ce/src/types.ts#L1)
+[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/cf673fcee2721486efeabd299f561e218415000b/src/types.ts#L1)
 
 ___
 
@@ -133,4 +156,4 @@ ___
 
 #### Defined in
 
-[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/31b5ae77b854e9571f6c66069389e36ef16f55ce/src/types.ts#L3)
+[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/cf673fcee2721486efeabd299f561e218415000b/src/types.ts#L3)
