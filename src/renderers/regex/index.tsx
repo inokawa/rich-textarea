@@ -123,8 +123,8 @@ const CSSHighlighter = memo(
     useIsomorphicLayoutEffect(() => {
       const el = ref.current!.firstChild!;
 
-      const highlights = regexes.flatMap((r, i) => {
-        const highlight = new Highlight(
+      const highlights = regexes.flatMap((r) => {
+        return new Highlight(
           ...execReg(r, value).map((m) => {
             const start = m.index;
             const end = m.index + m[0]!.length;
@@ -135,8 +135,10 @@ const CSSHighlighter = memo(
             return range;
           })
         );
-        CSS.highlights.set(createCSSHighlightID(i), highlight);
-        return highlight;
+      });
+
+      highlights.forEach((h, i) => {
+        CSS.highlights.set(createCSSHighlightID(i), h);
       });
 
       return () => {
