@@ -17,7 +17,7 @@ export type StyleOrRender =
  * The priority is descending order.
  */
 export const createRegexRenderer = (
-  matchers: [RegExp, StyleOrRender][]
+  matchers: [regex: RegExp, style: StyleOrRender][]
 ): Renderer => {
   const allStyles = matchers.map(([, style]) => style);
 
@@ -157,7 +157,7 @@ const CSSHighlighter = memo(
  * @experimental
  */
 export const createCSSCustomHighlightRenderer = (
-  matchers: [RegExp, string][]
+  matchers: [regex: RegExp, style: string][]
 ): Renderer => {
   const styleStr = matchers.reduce((acc, [, style], i) => {
     return acc + `::highlight(${createCSSHighlightID(i)}){${style}}`;
