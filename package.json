@@ -43,7 +43,7 @@
     "@storybook/react-webpack5": "^8.0.9",
     "@storybook/source-loader": "^8.0.9",
     "@storybook/test-runner": "^0.17.0",
-    "@tanstack/react-form": "^0.19.4",
+    "@tanstack/react-form": "^0.20.0",
     "@testing-library/react": "^15.0.5",
     "@textlint/kernel": "^13.3.3",
     "@textlint/textlint-plugin-text": "^13.3.3",
