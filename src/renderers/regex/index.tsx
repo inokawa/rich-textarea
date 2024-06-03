@@ -17,14 +17,14 @@ export type StyleOrRender =
  * The priority is descending order.
  */
 export const createRegexRenderer = (
-  matchers: [regex: RegExp, style: StyleOrRender][]
+  matchers: ([regex: RegExp, style: StyleOrRender] | [regex: RegExp, style: StyleOrRender, fn?: (_: string) => boolean])[],
 ): Renderer => {
   const allStyles = matchers.map(([, style]) => style);
 
   return (value) => {
     const [indexSet, startToStyleMap, endToStyleMap] = matchers.reduce(
-      (acc, [matcher, style]) => {
-        execReg(matcher, value).forEach((m) => {
+      (acc, [matcher, style, fn]) => {
+        execReg(matcher, value, fn).forEach((m) => {
           const start = m.index;
           const end = m.index + m[0]!.length;
 
