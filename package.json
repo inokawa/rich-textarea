@@ -54,6 +54,7 @@
     "assert": "^2.0.0",
     "concurrently": "^8.0.1",
     "eslint": "^8.45.0",
+    "eslint-plugin-react-compiler": "^0.0.0-experimental-51a85ea-20240601",
     "eslint-plugin-react-hooks": "^4.6.0",
     "events": "^3.3.0",
     "formik": "^2.4.6",

@@ -20,7 +20,11 @@
   "overrides": [
     {
       "files": ["src/**/*.{jsx,tsx}"],
-      "extends": ["plugin:react-hooks/recommended"]
+      "extends": ["plugin:react-hooks/recommended"],
+      "plugins": ["react-compiler"],
+      "rules": {
+        "react-compiler/react-compiler": "error"
+      }
     }
   ]
 }
