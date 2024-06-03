@@ -102,9 +102,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `matchers` | [regex: RegExp, style: string][] |
+| Name       | Type                            |
+| :--------- | :------------------------------ | -------------------------------------------------------------- |
+| `matchers` | ([regex: RegExp, style: string] | [regex: RegExp, style: string, fn?: (_: string) => boolean])[] |
 
 #### Returns
 
