@@ -22,7 +22,7 @@ export const createRegexRenderer = (
     | [
         regex: RegExp,
         style: StyleOrRender,
-        shouldRender?: (matchedText: string) => boolean,
+        shouldRender?: (matchedText: string, matchResult: RegExpExecArray) => boolean,
       ]
   )[]
 ): Renderer => {
@@ -30,8 +30,8 @@ export const createRegexRenderer = (
 
   return (value) => {
     const [indexSet, startToStyleMap, endToStyleMap] = matchers.reduce(
-      (acc, [matcher, style, shouldRender]) => {
-        execReg(matcher, value, shouldRender).forEach((m) => {
+      (acc, [regex, style, shouldRender]) => {
+        execReg(regex, value, shouldRender).forEach((m) => {
           const start = m.index;
           const end = m.index + m[0]!.length;
 
