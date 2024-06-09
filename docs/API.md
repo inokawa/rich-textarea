@@ -42,7 +42,7 @@ Textarea component with some extra props. See [RichTextareaProps](interfaces/Ric
 
 #### Defined in
 
-[src/textarea.tsx:128](https://github.com/inokawa/rich-textarea/blob/69db8d453baffb6b6833d705d2f21955623a4d1c/src/textarea.tsx#L128)
+[src/textarea.tsx:128](https://github.com/inokawa/rich-textarea/blob/dc63a9fde91f2e2855d6240be87ca131d128cc23/src/textarea.tsx#L128)
 
 ___
 
@@ -66,7 +66,7 @@ Input component with some extra props. See [RichInputProps](interfaces/RichInput
 
 #### Defined in
 
-[src/input.tsx:138](https://github.com/inokawa/rich-textarea/blob/69db8d453baffb6b6833d705d2f21955623a4d1c/src/input.tsx#L138)
+[src/input.tsx:138](https://github.com/inokawa/rich-textarea/blob/dc63a9fde91f2e2855d6240be87ca131d128cc23/src/input.tsx#L138)
 
 ___
 
@@ -90,7 +90,7 @@ The priority is descending order.
 
 #### Defined in
 
-[src/renderers/regex/index.tsx:19](https://github.com/inokawa/rich-textarea/blob/69db8d453baffb6b6833d705d2f21955623a4d1c/src/renderers/regex/index.tsx#L19)
+[src/renderers/regex/index.tsx:19](https://github.com/inokawa/rich-textarea/blob/dc63a9fde91f2e2855d6240be87ca131d128cc23/src/renderers/regex/index.tsx#L19)
 
 ___
 
@@ -112,7 +112,7 @@ ___
 
 #### Defined in
 
-[src/renderers/regex/index.tsx:166](https://github.com/inokawa/rich-textarea/blob/69db8d453baffb6b6833d705d2f21955623a4d1c/src/renderers/regex/index.tsx#L166)
+[src/renderers/regex/index.tsx:166](https://github.com/inokawa/rich-textarea/blob/dc63a9fde91f2e2855d6240be87ca131d128cc23/src/renderers/regex/index.tsx#L166)
 
 ## Type Aliases
 
@@ -122,7 +122,7 @@ ___
 
 #### Defined in
 
-[src/renderers/regex/index.tsx:6](https://github.com/inokawa/rich-textarea/blob/69db8d453baffb6b6833d705d2f21955623a4d1c/src/renderers/regex/index.tsx#L6)
+[src/renderers/regex/index.tsx:6](https://github.com/inokawa/rich-textarea/blob/dc63a9fde91f2e2855d6240be87ca131d128cc23/src/renderers/regex/index.tsx#L6)
 
 ___
 
@@ -146,7 +146,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/69db8d453baffb6b6833d705d2f21955623a4d1c/src/types.ts#L1)
+[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/dc63a9fde91f2e2855d6240be87ca131d128cc23/src/types.ts#L1)
 
 ___
 
@@ -156,4 +156,4 @@ ___
 
 #### Defined in
 
-[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/69db8d453baffb6b6833d705d2f21955623a4d1c/src/types.ts#L3)
+[src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/dc63a9fde91f2e2855d6240be87ca131d128cc23/src/types.ts#L3)
