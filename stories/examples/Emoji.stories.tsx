@@ -2,7 +2,7 @@ import { StoryObj } from "@storybook/react";
 import React, { useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { RichTextarea } from "../../src";
-import emoji from "node-emoji";
+import * as emoji from "node-emoji";
 import { RichTextareaHandle } from "../../src";
 
 export default {
@@ -21,7 +21,7 @@ const Menu = ({
   left,
   complete,
 }: {
-  chars: emoji.Emoji[];
+  chars: { emoji: string; name: string }[];
   index: number;
   top: number;
   left: number;
@@ -42,7 +42,7 @@ const Menu = ({
     >
       {chars.map((c, i) => (
         <div
-          key={c.key}
+          key={c.name}
           style={{
             padding: "4px",
             ...(index === i && {
@@ -55,7 +55,7 @@ const Menu = ({
             complete(i);
           }}
         >
-          {`${c.emoji} ${c.key}`}
+          {`${c.emoji} ${c.name}`}
         </div>
       ))}
     </div>
