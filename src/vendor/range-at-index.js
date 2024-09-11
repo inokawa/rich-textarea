@@ -1,3 +1,5 @@
+import { max } from "../utils";
+
 /**
  * range-at-index
  * https://github.com/webmodules/range-at-index/
@@ -5,6 +7,7 @@
  *
  * Forked from version 1.0.4; includes the following modifications:
  * 1) Change module.exports to export default.
+ * 2) Fix for https://github.com/inokawa/rich-textarea/issues/160
  **/
 
 /**
@@ -44,8 +47,8 @@ function RangeAtIndex(el, index, offset, range) {
   }
 
   // update the range with the start and end offsets
-  if (start.node) range.setStart(start.node, start.offset);
-  if (end.node) range.setEnd(end.node, end.offset);
+  if (start.node) range.setStart(start.node, max(start.offset, 0));
+  if (end.node) range.setEnd(end.node, max(end.offset, 0));
 
   return range;
 }
