@@ -1,6 +1,10 @@
+[**API**](../API.md) • **Docs**
+
+***
+
 # Interface: RichInputHandle
 
-Methods of [RichInput](../API.md#experimental_richinput).
+Methods of [RichInput](../functions/experimental_RichInput.md).
 
 All the others not mentioned are proxied to ref of [input](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
 
@@ -10,8 +14,6 @@ All the others not mentioned are proxied to ref of [input](https://developer.moz
 | selectionEnd      | `number` | Same as original but has handling of composition event                    |
 | setRangeText      |          | Same as original but has fallback to `document.execCommand("insertText")` |
 
-## Hierarchy
+## Extends
 
 - `HTMLInputElement`
-
-  ↳ **`RichInputHandle`**

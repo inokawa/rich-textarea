@@ -1,6 +1,10 @@
+[**API**](../API.md) • **Docs**
+
+***
+
 # Interface: RichTextareaHandle
 
-Methods of [RichTextarea](../API.md#richtextarea).
+Methods of [RichTextarea](../functions/RichTextarea.md).
 
 All the others not mentioned are proxied to ref of [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement).
 
@@ -10,8 +14,6 @@ All the others not mentioned are proxied to ref of [textarea](https://developer.
 | selectionEnd      | `number` | Same as original but has handling of composition event                    |
 | setRangeText      |          | Same as original but has fallback to `document.execCommand("insertText")` |
 
-## Hierarchy
+## Extends
 
 - `HTMLTextAreaElement`
-
-  ↳ **`RichTextareaHandle`**

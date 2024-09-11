@@ -1,29 +1,23 @@
+[**API**](../API.md) • **Docs**
+
+***
+
 # Interface: RichInputProps
 
-Props of [RichInput](../API.md#experimental_richinput).
+Props of [RichInput](../functions/experimental_RichInput.md).
 
 For other props not mentioned below will be passed to [input](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
 `defaultValue` is omitted for simplicity of logic.
 
-## Hierarchy
+## Extends
 
-- `Omit`<`JSX.IntrinsicElements`[``"input"``], ``"children"``\>
-
-  ↳ **`RichInputProps`**
-
-## Table of contents
-
-### Properties
-
-- [children](RichInputProps.md#children)
-- [autoHeight](RichInputProps.md#autoheight)
-- [onSelectionChange](RichInputProps.md#onselectionchange)
+- `Omit`\<`JSX.IntrinsicElements`\[`"input"`\], `"children"`\>
 
 ## Properties
 
-### children
+### children?
 
-• `Optional` **children**: [`Renderer`](../API.md#renderer)
+> `optional` **children**: [`Renderer`](../type-aliases/Renderer.md)
 
 Render function to create customized view from value.
 
@@ -37,7 +31,7 @@ On the rendered nodes, currently limited event handlers will work.
 - `onMouseDown`
 - `onMouseUp`
 
-**`Default Value`**
+#### Default Value
 
 ```ts
 undefined
@@ -45,17 +39,17 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:120](https://github.com/inokawa/rich-textarea/blob/dc63a9fde91f2e2855d6240be87ca131d128cc23/src/input.tsx#L120)
+[src/input.tsx:120](https://github.com/inokawa/rich-textarea/blob/f68d9e7ccb43f4a3c1bc208fe5bee1c78fa77f0e/src/input.tsx#L120)
 
-___
+***
 
-### autoHeight
+### autoHeight?
 
-• `Optional` **autoHeight**: `boolean`
+> `optional` **autoHeight**: `boolean`
 
 If true, textarea height is automatically resized and height of style prop does not work. Set `maxHeight` to style prop if you need limit.
 
-**`Default Value`**
+#### Default Value
 
 ```ts
 undefined
@@ -63,36 +57,30 @@ undefined
 
 #### Defined in
 
-[src/input.tsx:125](https://github.com/inokawa/rich-textarea/blob/dc63a9fde91f2e2855d6240be87ca131d128cc23/src/input.tsx#L125)
+[src/input.tsx:125](https://github.com/inokawa/rich-textarea/blob/f68d9e7ccb43f4a3c1bc208fe5bee1c78fa77f0e/src/input.tsx#L125)
 
-___
+***
 
-### onSelectionChange
+### onSelectionChange()?
 
-• `Optional` **onSelectionChange**: (`pos`: [`CaretPosition`](../API.md#caretposition)) => `void`
+> `optional` **onSelectionChange**: (`pos`) => `void`
 
 Called when selection in textarea changes. It gives position of caret at the time, which is useful to position menu.
 
-**`Default Value`**
+#### Parameters
+
+• **pos**: [`CaretPosition`](../type-aliases/CaretPosition.md)
+
+#### Returns
+
+`void`
+
+#### Default Value
 
 ```ts
 undefined
 ```
 
-#### Type declaration
-
-▸ (`pos`): `void`
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `pos` | [`CaretPosition`](../API.md#caretposition) |
-
-##### Returns
-
-`void`
-
 #### Defined in
 
-[src/input.tsx:130](https://github.com/inokawa/rich-textarea/blob/dc63a9fde91f2e2855d6240be87ca131d128cc23/src/input.tsx#L130)
+[src/input.tsx:130](https://github.com/inokawa/rich-textarea/blob/f68d9e7ccb43f4a3c1bc208fe5bee1c78fa77f0e/src/input.tsx#L130)
