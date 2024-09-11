@@ -1,6 +1,11 @@
 /**
  * @internal
  */
+export const { min } = Math;
+
+/**
+ * @internal
+ */
 export const refKey = "current";
 
 /**
