@@ -31,16 +31,16 @@ const Mark = ({
     pos === "名詞"
       ? "rgba(255, 0, 0, 0.2)"
       : pos === "動詞"
-      ? "rgba(0, 255, 0, 0.2)"
-      : pos === "形容詞"
-      ? "rgba(0, 0, 255, 0.2)"
-      : pos === "副詞"
-      ? "rgba(255, 0, 255, 0.2)"
-      : pos === "助詞"
-      ? "rgba(0, 255, 255, 0.2)"
-      : pos === "助動詞"
-      ? "rgba(255, 255, 0, 0.2)"
-      : undefined;
+        ? "rgba(0, 255, 0, 0.2)"
+        : pos === "形容詞"
+          ? "rgba(0, 0, 255, 0.2)"
+          : pos === "副詞"
+            ? "rgba(255, 0, 255, 0.2)"
+            : pos === "助詞"
+              ? "rgba(0, 255, 255, 0.2)"
+              : pos === "助動詞"
+                ? "rgba(255, 255, 0, 0.2)"
+                : undefined;
 
   return (
     <span
@@ -112,15 +112,13 @@ export const Kuromoji: StoryObj = {
           {(v) => {
             if (!tokenizer) return v;
             const tokens = tokenizer.tokenize(text);
-            const nodes: React.ReactElement[] = [];
-            for (const token of tokens) {
-              nodes.push(
+            return tokens.map((token) => {
+              return (
                 <Mark key={token.word_position} token={token}>
                   {token.surface_form}
                 </Mark>
               );
-            }
-            return nodes;
+            });
           }}
         </RichTextarea>
       </div>
