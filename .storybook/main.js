@@ -1,9 +1,10 @@
-import { mergeConfig } from "vite";
-
-/** @type { import('@storybook/react-vite').StorybookConfig } */
+/** @type { import('@storybook/react-webpack5').StorybookConfig } */
 export default {
   stories: ["../stories/**/*.mdx", "../stories/**/*.stories.@(js|jsx|ts|tsx)"],
-  addons: ["@storybook/addon-storysource"],
+  addons: [
+    "@storybook/addon-storysource",
+    "@storybook/addon-webpack5-compiler-swc",
+  ],
   staticDirs: [
     // for kuromojin
     {
@@ -12,24 +13,26 @@ export default {
     },
   ],
   framework: {
-    name: "@storybook/react-vite",
+    name: "@storybook/react-webpack5",
     options: { builder: {} },
   },
-  async viteFinal(config) {
-    return mergeConfig(config, {
-      resolve: {
-        alias: {
-          // For kuromoji
-          path: "path-browserify",
-          // For textlint
-          assert: "assert",
-          events: "events",
+  async webpackFinal(config, options) {
+    config.resolve.fallback = {
+      // For kuromoji
+      path: "path-browserify",
+      // For textlint
+      assert: "assert",
+      events: "events",
+    };
+    return config;
+  },
+  swc: (config) => {
+    return {
+      jsc: {
+        transform: {
+          react: { runtime: "automatic" },
         },
       },
-      define: {
-        // For @textlint/kernel
-        "process.env.TIMING": false,
-      },
-    });
+    };
   },
 };

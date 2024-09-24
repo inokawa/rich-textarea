@@ -1,4 +1,4 @@
-import type { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 import { experimental_RichInput as RichInput } from "../../src";
 

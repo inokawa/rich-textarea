@@ -1,6 +1,6 @@
-import type { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/react";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { RichTextarea, type RichTextareaHandle } from "../../src";
+import { RichTextarea, RichTextareaHandle } from "../../src";
 import { CHARACTERS } from "../mocks";
 
 export default {

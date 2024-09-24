@@ -1,6 +1,6 @@
-import type { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/react";
 import React, { useState } from "react";
-import { type Renderer, RichTextarea } from "../../src";
+import { Renderer, RichTextarea } from "../../src";
 import { Highlight, themes } from "prism-react-renderer";
 import prettier from "prettier/standalone";
 import * as estree from "prettier/plugins/estree";

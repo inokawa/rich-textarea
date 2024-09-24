@@ -1,9 +1,9 @@
-import type { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/react";
 import React, { useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { RichTextarea } from "../../src";
 import * as emoji from "node-emoji";
-import { type RichTextareaHandle } from "../../src";
+import { RichTextareaHandle } from "../../src";
 
 export default {
   component: RichTextarea,

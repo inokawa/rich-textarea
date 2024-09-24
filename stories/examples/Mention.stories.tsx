@@ -1,10 +1,10 @@
-import type { StoryObj } from "@storybook/react";
+import { StoryObj } from "@storybook/react";
 import React, { useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   RichTextarea,
   createRegexRenderer,
-  type RichTextareaHandle,
+  RichTextareaHandle,
 } from "../../src";
 import { CHARACTERS } from "../mocks";
 
