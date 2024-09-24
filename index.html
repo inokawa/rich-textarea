@@ -3,50 +3,32 @@
   <head>
     <meta charset="utf-8" />
 
-    <title>@storybook/core - Storybook</title>
+    <title>@storybook/cli - Storybook</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
     
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     
-    <style>
-      @font-face {
-        font-family: 'Nunito Sans';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url('./sb-common-assets/nunito-sans-regular.woff2') format('woff2');
-      }
-
-      @font-face {
-        font-family: 'Nunito Sans';
-        font-style: italic;
-        font-weight: 400;
-        font-display: swap;
-        src: url('./sb-common-assets/nunito-sans-italic.woff2') format('woff2');
-      }
-
-      @font-face {
-        font-family: 'Nunito Sans';
-        font-style: normal;
-        font-weight: 700;
-        font-display: swap;
-        src: url('./sb-common-assets/nunito-sans-bold.woff2') format('woff2');
-      }
-
-      @font-face {
-        font-family: 'Nunito Sans';
-        font-style: italic;
-        font-weight: 700;
-        font-display: swap;
-        src: url('./sb-common-assets/nunito-sans-bold-italic.woff2') format('woff2');
-      }
-    </style>
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./sb-common-assets/fonts.css" />
 
     <link href="./sb-manager/runtime.js" rel="modulepreload" />
 
     
-    <link href="./sb-addons/storybook-core-core-server-presets-0/common-manager-bundle.js" rel="modulepreload" />
+    <link href="./sb-addons/storybook-core-server-presets-0/common-manager-bundle.js" rel="modulepreload" />
     
     <link href="./sb-addons/storysource-1/manager-bundle.js" rel="modulepreload" />
     
@@ -115,11 +97,11 @@
         
       
         
-          window['STORYBOOK_BUILDER'] = "@storybook/builder-vite";
+          window['STORYBOOK_BUILDER'] = "@storybook/builder-webpack5";
         
       
         
-          window['STORYBOOK_FRAMEWORK'] = "@storybook/react-vite";
+          window['STORYBOOK_FRAMEWORK'] = "@storybook/react-webpack5";
         
       
     </script>
@@ -129,7 +111,7 @@
       import './sb-manager/globals-runtime.js';
       
       
-        import './sb-addons/storybook-core-core-server-presets-0/common-manager-bundle.js';
+        import './sb-addons/storybook-core-server-presets-0/common-manager-bundle.js';
       
         import './sb-addons/storysource-1/manager-bundle.js';
       
