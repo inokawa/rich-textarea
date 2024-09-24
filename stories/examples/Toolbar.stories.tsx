@@ -1,8 +1,8 @@
-import { StoryObj } from "@storybook/react";
+import type { StoryObj } from "@storybook/react";
 import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { RichTextarea } from "../../src";
-import { RichTextareaHandle } from "../../src";
+import { type RichTextareaHandle } from "../../src";
 
 export default {
   component: RichTextarea,

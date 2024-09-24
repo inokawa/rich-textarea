@@ -1,8 +1,8 @@
-import { StoryObj } from "@storybook/react";
+import type { StoryObj } from "@storybook/react";
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { RichTextarea } from "../../src";
-import { TextlintKernel, TextlintMessage } from "@textlint/kernel";
+import { TextlintKernel, type TextlintMessage } from "@textlint/kernel";
 import { TextlintKernelOptions } from "@textlint/kernel/lib/src/textlint-kernel-interface";
 
 import pluginText from "@textlint/textlint-plugin-text";

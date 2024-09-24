@@ -1,4 +1,4 @@
-import { StoryObj } from "@storybook/react";
+import type { StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 import { RichTextarea } from "../../src";
 import { LOREM } from "../mocks";

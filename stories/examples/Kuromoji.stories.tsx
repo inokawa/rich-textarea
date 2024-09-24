@@ -1,4 +1,4 @@
-import { StoryObj } from "@storybook/react";
+import type { StoryObj } from "@storybook/react";
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { RichTextarea } from "../../src";
@@ -93,7 +93,7 @@ export const Kuromoji: StoryObj = {
     useEffect(() => {
       (async () => {
         const tokenizer = await getTokenizer({
-          dicPath: process.env.STORYBOOK_DEPLOY
+          dicPath: (import.meta as any).env.STORYBOOK_DEPLOY
             ? "/rich-textarea/dict"
             : "/dict",
         });
