@@ -55,17 +55,16 @@ const style: React.CSSProperties = {
 };
 
 const Mark = ({
-  token: { column, message, fix },
+  token,
   children,
 }: {
-  token: TextlintMessage;
+  token: TextlintMessage[];
   children: string;
 }) => {
   const ref = useRef<HTMLSpanElement>(null);
   const [tooltip, setTooltip] = useState<{
     top: number;
     left: number;
-    description: string;
   } | null>(null);
 
   return (
@@ -80,7 +79,6 @@ const Mark = ({
         setTooltip({
           top: rect.top - rect.height * 2 /* FIXME */,
           left: rect.left,
-          description: message,
         });
       }}
       onMouseOut={() => setTooltip(null)}
@@ -99,7 +97,11 @@ const Mark = ({
               border: "solid 1px gray",
             }}
           >
-            {tooltip.description}
+            {token.map((t, i) => (
+              <div key={i}>
+                {i}: {t.message}
+              </div>
+            ))}
           </div>,
           document.body
         )}
@@ -130,19 +132,23 @@ export const Textlint: StoryObj = {
           {(v) => {
             if (!tokens.length) return v;
             const nodes: (React.ReactElement | string)[] = [];
-            const tokensByLine = tokens.reduce((acc, t) => {
-              if (!acc[t.line]) acc[t.line] = [];
-              acc[t.line].push(t);
-              return acc;
-            }, {} as { [key: number]: TextlintMessage[] });
+            const tokensByLine = tokens.reduce(
+              (acc, t) => {
+                if (!acc[t.line]) acc[t.line] = {};
+                if (!acc[t.line][t.column]) acc[t.line][t.column] = [];
+                acc[t.line][t.column].push(t);
+                return acc;
+              },
+              {} as { [key: number]: { [column: number]: TextlintMessage[] } }
+            );
             v.split("\n").forEach((l, i) => {
               let res: (React.ReactElement | string)[] = [l];
               if (tokensByLine[i + 1]) {
                 const texts: (React.ReactElement | string)[] = [];
+                const tokensMap = tokensByLine[i + 1] || {};
                 let prevEnd = 0;
-                let prevStart = 0;
-                for (const token of tokensByLine[i + 1]) {
-                  const start = token.column - 1;
+                for (const token of Object.values(tokensMap)) {
+                  const start = token[0].column - 1;
                   const end = start + 1;
                   texts.push(l.slice(prevEnd, start));
                   texts.push(
@@ -151,7 +157,6 @@ export const Textlint: StoryObj = {
                     </Mark>
                   );
                   prevEnd = end;
-                  prevStart = start;
                 }
                 texts.push(l.slice(prevEnd));
                 res = texts;
