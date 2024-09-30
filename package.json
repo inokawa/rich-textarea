@@ -54,7 +54,7 @@
     "@types/react-highlight-words": "^0.20.0",
     "@typescript-eslint/parser": "^8.0.1",
     "assert": "^2.1.0",
-    "concurrently": "^8.2.2",
+    "concurrently": "^9.0.0",
     "eslint": "^9.9.0",
     "eslint-plugin-react-compiler": "^0.0.0-experimental-9ed098e-20240725",
     "eslint-plugin-react-hooks": "^4.6.2",
