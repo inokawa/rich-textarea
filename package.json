@@ -28,6 +28,7 @@
     "e2e": "npx playwright test",
     "typedoc": "typedoc",
     "size": "size-limit",
+    "prepare": "patch-package",
     "prepublishOnly": "npm run typedoc && rimraf lib && npm run build"
   },
   "devDependencies": {
@@ -63,6 +64,7 @@
     "kuromojin": "^3.0.0",
     "monaco-diff": "^1.2.1",
     "node-emoji": "^2.1.3",
+    "patch-package": "^8.0.0",
     "path-browserify": "^1.0.1",
     "prettier": "^3.3.2",
     "prism-react-renderer": "^2.3.1",

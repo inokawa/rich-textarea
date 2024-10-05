@@ -1,0 +1,29 @@
+diff --git a/node_modules/kuromoji/src/loader/BrowserDictionaryLoader.js b/node_modules/kuromoji/src/loader/BrowserDictionaryLoader.js
+index 04bfdcd..f04b261 100644
+--- a/node_modules/kuromoji/src/loader/BrowserDictionaryLoader.js
++++ b/node_modules/kuromoji/src/loader/BrowserDictionaryLoader.js
+@@ -17,7 +17,6 @@
+ 
+ "use strict";
+ 
+-var zlib = require("zlibjs/bin/gunzip.min.js");
+ var DictionaryLoader = require("./DictionaryLoader");
+ 
+ /**
+@@ -47,9 +46,13 @@ BrowserDictionaryLoader.prototype.loadArrayBuffer = function (url, callback) {
+         }
+         var arraybuffer = this.response;
+ 
+-        var gz = new zlib.Zlib.Gunzip(new Uint8Array(arraybuffer));
+-        var typed_array = gz.decompress();
+-        callback(null, typed_array.buffer);
++        // https://zenn.dev/inaniwaudon/scraps/dffdc876ccaf6d
++        const ds = new DecompressionStream("gzip");
++        const blob = new Blob([arraybuffer]);
++        const decompressedStream = blob.stream().pipeThrough(ds);
++        new Response(decompressedStream).arrayBuffer().then(buffer => {
++          callback(null, buffer);
++        });
+     };
+     xhr.onerror = function (err) {
+         callback(err, null);
