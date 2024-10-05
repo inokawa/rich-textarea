@@ -1,4 +1,4 @@
-import { StoryObj } from "@storybook/react";
+import type { StoryObj } from "@storybook/react";
 import React from "react";
 import { useForm } from "@tanstack/react-form";
 import { RichTextarea } from "../../src";
