@@ -1,4 +1,3 @@
-import { fixupPluginRules } from "@eslint/compat";
 import typescriptEslintParser from "@typescript-eslint/parser";
 import pluginReactHooks from "eslint-plugin-react-hooks";
 import pluginReactCompiler from "eslint-plugin-react-compiler";
@@ -22,8 +21,7 @@ export default [
       },
     },
     plugins: {
-      // https://github.com/facebook/react/issues/28313#issuecomment-2180984628
-      "react-hooks": fixupPluginRules(pluginReactHooks),
+      "react-hooks": pluginReactHooks,
       "react-compiler": pluginReactCompiler,
     },
     rules: {
