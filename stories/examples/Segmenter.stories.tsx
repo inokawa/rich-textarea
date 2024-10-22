@@ -13,13 +13,14 @@ const style: React.CSSProperties = {
 
 export const Segmenter: StoryObj = {
   render: () => {
+    type Granularity = "grapheme" | "word" | "sentence";
     const [text, setText] = useState(
       "すもももももももものうち。\n\n吾輩 （ わがはい ） は猫である。名前はまだ無い。"
     );
     const [locale, setLocale] = useState("ja");
-    const [granularity, setGranularity] = useState<string>("word");
+    const [granularity, setGranularity] = useState<Granularity>("word");
 
-    const hasSegmenter = !!(Intl as any)?.Segmenter;
+    const hasSegmenter = !!Intl?.Segmenter;
     return (
       <div>
         {!hasSegmenter && (
@@ -29,7 +30,7 @@ export const Segmenter: StoryObj = {
           <input value={locale} onChange={(e) => setLocale(e.target.value)} />
           <select
             value={granularity}
-            onChange={(e) => setGranularity(e.target.value)}
+            onChange={(e) => setGranularity(e.target.value as Granularity)}
           >
             <option value={"grapheme"}>grapheme</option>
             <option value={"word"}>word</option>
@@ -45,7 +46,7 @@ export const Segmenter: StoryObj = {
             if (!hasSegmenter) return v;
 
             try {
-              const segmenter = new (Intl as any).Segmenter(locale, {
+              const segmenter = new Intl.Segmenter(locale, {
                 granularity,
               });
               const tokens = segmenter.segment(v);
