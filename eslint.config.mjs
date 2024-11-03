@@ -1,4 +1,4 @@
-import typescriptEslintParser from "@typescript-eslint/parser";
+import tseslint from "typescript-eslint";
 import pluginReactHooks from "eslint-plugin-react-hooks";
 import pluginReactCompiler from "eslint-plugin-react-compiler";
 
@@ -6,7 +6,7 @@ export default [
   {
     files: ["src/**/*.{jsx,tsx}"],
     languageOptions: {
-      parser: typescriptEslintParser,
+      parser: tseslint.parser,
       parserOptions: {
         ecmaVersion: 2018,
         sourceType: "module",
