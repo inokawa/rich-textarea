@@ -1,44 +1,48 @@
-import { test, expect, Page, ElementHandle } from "@playwright/test";
+import { test, expect, Page, Locator } from "@playwright/test";
 
 const storyUrl = (id: string) =>
   `http://localhost:6006/iframe.html?id=${id}&viewMode=story`;
 
 const getTextarea = async (page: Page) => {
-  const textarea = await page.waitForSelector("textarea");
-  const backdrop = await textarea.evaluateHandle((e) => e.previousSibling!);
+  const textarea = page.locator("textarea");
+  const backdrop = page.locator("div[aria-hidden]").locator("..");
+  await Promise.all([textarea.waitFor(), backdrop.waitFor()]);
   return [textarea, backdrop] as const;
 };
 
-const isFocused = async (handle: ElementHandle) => {
+const isFocused = async (handle: Locator) => {
   return handle.evaluate((e) => e === document.activeElement);
 };
 
 const getValue = async (
-  textarea: ElementHandle<HTMLTextAreaElement>,
-  backdrop: ElementHandle
+  textarea: Locator,
+  backdrop: Locator
 ): Promise<[string, string]> => {
   const backdropValue = (await backdrop.textContent())!;
 
   return [await textarea.inputValue(), backdropValue.replace(/\u200b$/, "")];
 };
 
-const getSelection = async (textarea: ElementHandle<HTMLTextAreaElement>) => {
-  return textarea.evaluate((e) => [e.selectionStart, e.selectionEnd]);
+const getSelection = async (textarea: Locator) => {
+  return textarea.evaluate((e) => [
+    (e as HTMLInputElement).selectionStart,
+    (e as HTMLInputElement).selectionEnd,
+  ]);
 };
 
-const getSize = async (textarea: ElementHandle): Promise<[number, number]> => {
+const getSize = async (textarea: Locator): Promise<[number, number]> => {
   const rect = (await textarea.boundingBox())!;
   return [rect.width, rect.height];
 };
 
 const getScrollPosition = async (
-  handle: ElementHandle
+  handle: Locator
 ): Promise<[number, number]> => {
   return handle.evaluate((e: HTMLElement) => [e.scrollLeft, e.scrollTop]);
 };
 
 const getBackdropPosition = async (
-  handle: ElementHandle
+  handle: Locator
 ): Promise<[number, number]> => {
   return handle.evaluate((e: HTMLElement) => {
     const transform = window.getComputedStyle(e.children[0]).transform;
