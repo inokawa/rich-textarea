@@ -8,6 +8,8 @@
 
 **`Experimental`**
 
+[createRegexRenderer](createRegexRenderer.md) but rendered with [CSS Custom Highlight API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API).
+
 ## Parameters
 
 • **matchers**: [`RegExp`, `string`][]
@@ -18,4 +20,4 @@
 
 ## Defined in
 
-[src/renderers/regex/index.tsx:166](https://github.com/inokawa/rich-textarea/blob/f68d9e7ccb43f4a3c1bc208fe5bee1c78fa77f0e/src/renderers/regex/index.tsx#L166)
+[src/renderers/regex/index.tsx:166](https://github.com/inokawa/rich-textarea/blob/d85a9d37692a634c883a1362722567fa1003e79e/src/renderers/regex/index.tsx#L166)

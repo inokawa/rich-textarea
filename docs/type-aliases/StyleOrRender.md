@@ -8,4 +8,4 @@
 
 ## Defined in
 
-[src/renderers/regex/index.tsx:6](https://github.com/inokawa/rich-textarea/blob/f68d9e7ccb43f4a3c1bc208fe5bee1c78fa77f0e/src/renderers/regex/index.tsx#L6)
+[src/renderers/regex/index.tsx:6](https://github.com/inokawa/rich-textarea/blob/d85a9d37692a634c883a1362722567fa1003e79e/src/renderers/regex/index.tsx#L6)

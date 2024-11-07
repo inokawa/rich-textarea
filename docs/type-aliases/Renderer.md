@@ -16,4 +16,4 @@
 
 ## Defined in
 
-[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/f68d9e7ccb43f4a3c1bc208fe5bee1c78fa77f0e/src/types.ts#L1)
+[src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/d85a9d37692a634c883a1362722567fa1003e79e/src/types.ts#L1)

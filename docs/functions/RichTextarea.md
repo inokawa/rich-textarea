@@ -18,4 +18,4 @@ Textarea component with some extra props. See [RichTextareaProps](../interfaces/
 
 ## Defined in
 
-[src/textarea.tsx:128](https://github.com/inokawa/rich-textarea/blob/f68d9e7ccb43f4a3c1bc208fe5bee1c78fa77f0e/src/textarea.tsx#L128)
+[src/textarea.tsx:128](https://github.com/inokawa/rich-textarea/blob/d85a9d37692a634c883a1362722567fa1003e79e/src/textarea.tsx#L128)
