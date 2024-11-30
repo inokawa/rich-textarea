@@ -42,7 +42,7 @@
     "@storybook/react": "^8.4.0",
     "@storybook/react-vite": "^8.4.0",
     "@storybook/source-loader": "^8.4.0",
-    "@storybook/test-runner": "^0.19.1",
+    "@storybook/test-runner": "^0.20.0",
     "@tanstack/react-form": "^0.34.0",
     "@testing-library/dom": "^10.3.1",
     "@testing-library/react": "^16.0.0",
