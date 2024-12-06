@@ -9,7 +9,7 @@ export type SelectionRange = [number | null, number | null];
  * @internal
  */
 export const initSelectionStore = (
-  ref: React.RefObject<HTMLTextAreaElement | HTMLInputElement>,
+  ref: React.RefObject<HTMLTextAreaElement | HTMLInputElement | null>,
   onSelectionUpdate: (range: SelectionRange) => void
 ) => {
   let prevSelection: [number | null, number | null] = [null, null];

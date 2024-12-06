@@ -8,6 +8,7 @@ import {
   useImperativeHandle,
   memo,
   type RefObject,
+  type JSX,
 } from "react";
 import rangeAtIndex from "./vendor/range-at-index";
 import { hasPercentageUnit, stopPropagation, syncBackdropStyle } from "./dom";
@@ -27,8 +28,8 @@ const Backdrop = memo(
     _render: render,
     _width: width,
   }: {
-    _ref: RefObject<HTMLDivElement>;
-    _handle: RefObject<BackdropHandle>;
+    _ref: RefObject<HTMLDivElement | null>;
+    _handle: RefObject<BackdropHandle | null>;
     _render: Renderer | undefined;
     _width: number;
   }) => {
@@ -158,52 +159,48 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
 
     const isSizeCalculated = !!(totalWidth + totalHeight);
 
-    useImperativeHandle(
-      ref,
-      () => {
-        const el = textAreaRef[refKey]!;
-        const overrides = {
-          get selectionStart() {
-            return selectionStore._getSelectionStart();
-          },
-          get selectionEnd() {
-            return selectionStore._getSelectionEnd();
-          },
-          setRangeText(
-            text: string,
-            start: number,
-            end: number,
-            preserve?: SelectionMode
-          ) {
-            if (el.setRangeText) {
-              el.setRangeText(text, start, end, preserve);
-            } else {
-              el.focus();
-              el.selectionStart = start;
-              el.selectionEnd = end;
-              document.execCommand("insertText", false, text);
-            }
-            // Invoke onChange to lift state up
-            el.dispatchEvent(new Event("input", { bubbles: true }));
-          },
-        };
+    useImperativeHandle(ref, () => {
+      const el = textAreaRef[refKey]!;
+      const overrides = {
+        get selectionStart() {
+          return selectionStore._getSelectionStart();
+        },
+        get selectionEnd() {
+          return selectionStore._getSelectionEnd();
+        },
+        setRangeText(
+          text: string,
+          start: number,
+          end: number,
+          preserve?: SelectionMode
+        ) {
+          if (el.setRangeText) {
+            el.setRangeText(text, start, end, preserve);
+          } else {
+            el.focus();
+            el.selectionStart = start;
+            el.selectionEnd = end;
+            document.execCommand("insertText", false, text);
+          }
+          // Invoke onChange to lift state up
+          el.dispatchEvent(new Event("input", { bubbles: true }));
+        },
+      };
 
-        return new Proxy(el, {
-          get(target, prop: keyof HTMLTextAreaElement) {
-            if ((overrides as any)[prop]) {
-              return (overrides as any)[prop];
-            }
-            const value = target[prop];
-            return typeof value === "function" ? value.bind(target) : value;
-          },
-          set(target, prop, value) {
-            (target as any)[prop] = value;
-            return true;
-          },
-        }) as HTMLTextAreaElement;
-      },
-      []
-    );
+      return new Proxy(el, {
+        get(target, prop: keyof HTMLTextAreaElement) {
+          if ((overrides as any)[prop]) {
+            return (overrides as any)[prop];
+          }
+          const value = target[prop];
+          return typeof value === "function" ? value.bind(target) : value;
+        },
+        set(target, prop, value) {
+          (target as any)[prop] = value;
+          return true;
+        },
+      }) as HTMLTextAreaElement;
+    }, []);
 
     useIsomorphicLayoutEffect(() => {
       const textarea = textAreaRef[refKey];
