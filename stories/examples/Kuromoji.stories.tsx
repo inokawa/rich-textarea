@@ -1,4 +1,4 @@
-import type { StoryObj } from "@storybook/react-vite";
+import type { StoryObj } from "@storybook/react";
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { RichTextarea } from "../../src";

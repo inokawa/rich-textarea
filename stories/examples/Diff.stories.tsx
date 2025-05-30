@@ -1,4 +1,4 @@
-import type { StoryObj } from "@storybook/react-vite";
+import type { StoryObj } from "@storybook/react";
 import React, { useState, useMemo } from "react";
 import { type Renderer, RichTextarea } from "../../src";
 import { diff, type ILineChange } from "monaco-diff";
