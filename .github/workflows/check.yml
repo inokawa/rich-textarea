@@ -42,7 +42,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps # chromium
       - name: Smoke test stories
-        run: npm run storybook:test
+        run: npm run test-storybook
       - name: Run Playwright tests
         run: npm run e2e
       # - uses: actions/upload-artifact@v3

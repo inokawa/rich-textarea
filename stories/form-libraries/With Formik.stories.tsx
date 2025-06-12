@@ -1,4 +1,4 @@
-import type { StoryObj } from "@storybook/react";
+import type { StoryObj } from "@storybook/react-vite";
 import React from "react";
 import { useFormik } from "formik";
 import { RichTextarea } from "../../src";

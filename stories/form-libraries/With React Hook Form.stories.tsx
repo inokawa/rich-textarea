@@ -1,4 +1,4 @@
-import type { StoryObj } from "@storybook/react";
+import type { StoryObj } from "@storybook/react-vite";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { RichTextarea } from "../../src";
