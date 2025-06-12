@@ -1,4 +1,4 @@
-import{j as s}from"./observer-ChNWUPNK.js";import{a as x}from"./index-CeHYjMkx.js";import{R as i}from"./textarea-D05uwaBC.js";import{c as h}from"./index-C2wRtkz4.js";const R={component:i},l={width:"400px",height:"300px"},p=h([[/https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+/g,({children:t,key:r,value:a})=>s.jsx("a",{href:a,target:"_blank",children:t},r)]]),e={render:()=>{const[t,r]=x.useState(`Click this url https://github.com/inokawa/rich-textarea !
+import{j as s}from"./observer-B5GHaPvN.js";import{r as x}from"./index-RYns6xqu.js";import{R as i}from"./textarea-DZOz3AQ5.js";import{c as h}from"./index-C649IZqc.js";const R={component:i},l={width:"400px",height:"300px"},p=h([[/https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+/g,({children:t,key:r,value:a})=>s.jsx("a",{href:a,target:"_blank",children:t},r)]]),e={render:()=>{const[t,r]=x.useState(`Click this url https://github.com/inokawa/rich-textarea !
 
 `);return s.jsx("div",{children:s.jsx(i,{style:l,onChange:a=>r(a.target.value),value:t,children:p})})}};var n,o,c;e.parameters={...e.parameters,docs:{...(n=e.parameters)==null?void 0:n.docs,source:{originalSource:`{
   render: () => {
