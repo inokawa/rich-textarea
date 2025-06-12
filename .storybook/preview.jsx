@@ -8,9 +8,5 @@ export default {
         order: ["basics", ["Textarea", "Input"]],
       },
     },
-
-    docs: {
-      codePanel: true
-    }
   },
 };

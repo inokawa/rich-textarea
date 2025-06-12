@@ -38,7 +38,6 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@size-limit/preset-small-lib": "^11.1.4",
-    "@storybook/addon-docs": "^9.0.8",
     "@storybook/react-vite": "^9.0.8",
     "@storybook/test-runner": "^0.23.0",
     "@tanstack/react-form": "^1.12.0",

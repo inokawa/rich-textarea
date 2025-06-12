@@ -1,7 +1,6 @@
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 export default {
   stories: ["../stories/**/*.mdx", "../stories/**/*.stories.@(js|jsx|ts|tsx)"],
-  addons: ["@storybook/addon-docs"],
   staticDirs: [
     // for kuromojin
     {
