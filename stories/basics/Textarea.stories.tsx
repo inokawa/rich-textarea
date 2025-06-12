@@ -1,4 +1,4 @@
-import type { StoryObj } from "@storybook/react";
+import type { StoryObj } from "@storybook/react-vite";
 import React, { useCallback, useState } from "react";
 import {
   createCSSCustomHighlightRenderer,
