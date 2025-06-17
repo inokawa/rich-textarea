@@ -7,9 +7,9 @@ import {
   forwardRef,
   useImperativeHandle,
   memo,
-  type HTMLAttributes,
   type RefObject,
 } from "react";
+import type React from "react";
 import rangeAtIndex from "./vendor/range-at-index";
 import { hasPercentageUnit, stopPropagation, syncBackdropStyle } from "./dom";
 import { type SelectionRange, initSelectionStore } from "./selection";
@@ -92,7 +92,7 @@ export interface RichTextareaHandle extends HTMLTextAreaElement {}
  * For other props not mentioned below will be passed to [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement).
  */
 export interface RichTextareaProps
-  extends Omit<HTMLAttributes<HTMLTextAreaElement>, "children"> {
+  extends Omit<React.ComponentProps<"textarea">, "children"> {
   /**
    *
    * Render function to create customized view from value.
