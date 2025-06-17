@@ -7,7 +7,7 @@ import {
   forwardRef,
   useImperativeHandle,
   memo,
-  HTMLAttributes,
+  type HTMLAttributes,
   type RefObject,
 } from "react";
 import rangeAtIndex from "./vendor/range-at-index";
