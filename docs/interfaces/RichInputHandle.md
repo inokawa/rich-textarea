@@ -1,8 +1,10 @@
-[**API**](../API.md) • **Docs**
+[**API**](../API.md)
 
 ***
 
 # Interface: RichInputHandle
+
+Defined in: [src/input.tsx:97](https://github.com/inokawa/rich-textarea/blob/7eb748f42b59f753b6ba4e33c0a5f82e934d33c9/src/input.tsx#L97)
 
 Methods of [RichInput](../functions/experimental_RichInput.md).
 

@@ -1,8 +1,10 @@
-[**API**](../API.md) • **Docs**
+[**API**](../API.md)
 
 ***
 
 # Interface: RichTextareaProps
+
+Defined in: [src/textarea.tsx:94](https://github.com/inokawa/rich-textarea/blob/7eb748f42b59f753b6ba4e33c0a5f82e934d33c9/src/textarea.tsx#L94)
 
 Props of [RichTextarea](../functions/RichTextarea.md).
 
@@ -10,13 +12,15 @@ For other props not mentioned below will be passed to [textarea](https://develop
 
 ## Extends
 
-- `Omit`\<`JSX.IntrinsicElements`\[`"textarea"`\], `"children"`\>
+- `Omit`\<`React.ComponentProps`\<`"textarea"`\>, `"children"`\>
 
 ## Properties
 
 ### children?
 
 > `optional` **children**: [`Renderer`](../type-aliases/Renderer.md)
+
+Defined in: [src/textarea.tsx:111](https://github.com/inokawa/rich-textarea/blob/7eb748f42b59f753b6ba4e33c0a5f82e934d33c9/src/textarea.tsx#L111)
 
 Render function to create customized view from value.
 
@@ -36,15 +40,13 @@ On the rendered nodes, currently limited event handlers will work.
 undefined
 ```
 
-#### Defined in
-
-[src/textarea.tsx:110](https://github.com/inokawa/rich-textarea/blob/d85a9d37692a634c883a1362722567fa1003e79e/src/textarea.tsx#L110)
-
 ***
 
 ### autoHeight?
 
 > `optional` **autoHeight**: `boolean`
+
+Defined in: [src/textarea.tsx:118](https://github.com/inokawa/rich-textarea/blob/7eb748f42b59f753b6ba4e33c0a5f82e934d33c9/src/textarea.tsx#L118)
 
 If true, textarea height is automatically resized and height of style prop does not work.
 Set `maxHeight` to style prop if you need limit.
@@ -56,21 +58,21 @@ Set `rows` prop to 1 if you need single-line textarea.
 undefined
 ```
 
-#### Defined in
-
-[src/textarea.tsx:117](https://github.com/inokawa/rich-textarea/blob/d85a9d37692a634c883a1362722567fa1003e79e/src/textarea.tsx#L117)
-
 ***
 
 ### onSelectionChange()?
 
 > `optional` **onSelectionChange**: (`pos`) => `void`
 
+Defined in: [src/textarea.tsx:123](https://github.com/inokawa/rich-textarea/blob/7eb748f42b59f753b6ba4e33c0a5f82e934d33c9/src/textarea.tsx#L123)
+
 Called when selection in textarea changes. It gives position of caret at the time, which is useful to position menu.
 
 #### Parameters
 
-• **pos**: [`CaretPosition`](../type-aliases/CaretPosition.md)
+##### pos
+
+[`CaretPosition`](../type-aliases/CaretPosition.md)
 
 #### Returns
 
@@ -81,7 +83,3 @@ Called when selection in textarea changes. It gives position of caret at the tim
 ```ts
 undefined
 ```
-
-#### Defined in
-
-[src/textarea.tsx:122](https://github.com/inokawa/rich-textarea/blob/d85a9d37692a634c883a1362722567fa1003e79e/src/textarea.tsx#L122)
