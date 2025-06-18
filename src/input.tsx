@@ -8,8 +8,8 @@ import {
   useImperativeHandle,
   memo,
   type RefObject,
-  type JSX,
 } from "react";
+import type React from "react";
 import rangeAtIndex from "./vendor/range-at-index";
 import {
   hasPercentageUnit,
@@ -103,7 +103,7 @@ export interface RichInputHandle extends HTMLInputElement {}
  * `defaultValue` is omitted for simplicity of logic.
  */
 export interface RichInputProps
-  extends Omit<JSX.IntrinsicElements["input"], "children"> {
+  extends Omit<React.ComponentProps<"input">, "children"> {
   /**
    * Render function to create customized view from value.
    *
