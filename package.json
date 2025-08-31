@@ -47,7 +47,7 @@
     "@testing-library/dom": "^10.3.1",
     "@testing-library/react": "^16.1.0",
     "@textlint/kernel": "^14.2.0",
-    "@textlint/textlint-plugin-text": "^14.2.0",
+    "@textlint/textlint-plugin-text": "^15.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@types/react-highlight-words": "^0.20.0",
