@@ -1,4 +1,4 @@
-import type { StoryObj } from "@storybook/react";
+import type { StoryObj } from "@storybook/react-vite";
 import React, { useState } from "react";
 import { type Renderer, RichTextarea } from "../../src";
 import { Highlight, themes } from "prism-react-renderer";

@@ -2,7 +2,7 @@ import { it, describe, expect, afterEach } from "vitest";
 import { cleanup, render } from "@testing-library/react";
 import { RichTextarea, createRegexRenderer } from ".";
 
-global.ResizeObserver = class mockResizeObjerver {
+globalThis.ResizeObserver = class mockResizeObjerver {
   instanceResize: ResizeObserver | null = null;
   callbackResize: ResizeObserverCallback | null = null;
   constructor(callback: ResizeObserverCallback) {
