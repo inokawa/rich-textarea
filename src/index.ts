@@ -1,6 +1,6 @@
-export { RichTextarea } from "./textarea";
-export type { RichTextareaProps, RichTextareaHandle } from "./textarea";
-export { RichInput as experimental_RichInput } from "./input";
-export type { RichInputProps, RichInputHandle } from "./input";
-export * from "./renderers";
-export * from "./types";
+export { RichTextarea } from "./textarea.js";
+export type { RichTextareaProps, RichTextareaHandle } from "./textarea.js";
+export { RichInput as experimental_RichInput } from "./input.js";
+export type { RichInputProps, RichInputHandle } from "./input.js";
+export * from "./renderers/index.js";
+export * from "./types.js";

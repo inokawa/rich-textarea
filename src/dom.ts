@@ -1,4 +1,4 @@
-import { refKey } from "./utils";
+import { refKey } from "./utils.js";
 
 /**
  * @internal
