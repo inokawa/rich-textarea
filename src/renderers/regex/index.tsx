@@ -1,6 +1,6 @@
-import { execReg } from "./utils";
-import type { Renderer } from "../../types";
-import { useIsomorphicLayoutEffect } from "../../useIsomorphicLayoutEffect";
+import { execReg } from "./utils.js";
+import type { Renderer } from "../../types.js";
+import { useIsomorphicLayoutEffect } from "../../useIsomorphicLayoutEffect.js";
 import { memo, useRef } from "react";
 
 export type StyleOrRender =

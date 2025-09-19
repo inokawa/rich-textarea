@@ -10,14 +10,14 @@ import {
   type RefObject,
 } from "react";
 import type React from "react";
-import rangeAtIndex from "./vendor/range-at-index";
-import { hasPercentageUnit, stopPropagation, syncBackdropStyle } from "./dom";
-import { type SelectionRange, initSelectionStore } from "./selection";
-import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
-import type { CaretPosition, Renderer } from "./types";
-import { CARET_DETECTOR, refKey } from "./utils";
-import { useStatic } from "./useStatic";
-import { type TextareaRect, createTextareaObserver } from "./observer";
+import rangeAtIndex from "./vendor/range-at-index.js";
+import { hasPercentageUnit, stopPropagation, syncBackdropStyle } from "./dom.js";
+import { type SelectionRange, initSelectionStore } from "./selection.js";
+import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
+import type { CaretPosition, Renderer } from "./types.js";
+import { CARET_DETECTOR, refKey } from "./utils.js";
+import { useStatic } from "./useStatic.js";
+import { type TextareaRect, createTextareaObserver } from "./observer.js";
 
 type BackdropHandle = (value: string) => void;
 

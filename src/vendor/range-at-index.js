@@ -1,4 +1,4 @@
-import { max } from "../utils";
+import { max } from "../utils.js";
 
 /**
  * range-at-index

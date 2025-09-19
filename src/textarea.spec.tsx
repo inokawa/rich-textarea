@@ -1,6 +1,6 @@
 import { it, describe, expect, afterEach } from "vitest";
 import { cleanup, render } from "@testing-library/react";
-import { RichTextarea, createRegexRenderer } from ".";
+import { RichTextarea, createRegexRenderer } from "./index.js";
 
 globalThis.ResizeObserver = class mockResizeObjerver {
   instanceResize: ResizeObserver | null = null;

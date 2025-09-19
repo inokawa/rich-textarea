@@ -7,8 +7,8 @@ import {
   getStyle,
   getVerticalPadding,
   listenEvent,
-} from "./dom";
-import { type SelectionStore } from "./selection";
+} from "./dom.js";
+import { type SelectionStore } from "./selection.js";
 
 /**
  * @internal

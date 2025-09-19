@@ -3,7 +3,7 @@
  */
 import { it, describe, expect } from "vitest";
 import { renderToString, renderToStaticMarkup } from "react-dom/server";
-import { experimental_RichInput as RichInput } from ".";
+import { experimental_RichInput as RichInput } from "./index.js";
 
 const NOP = () => {};
 

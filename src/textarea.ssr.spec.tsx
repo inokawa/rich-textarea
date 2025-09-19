@@ -3,7 +3,7 @@
  */
 import { it, describe, expect } from "vitest";
 import { renderToString, renderToStaticMarkup } from "react-dom/server";
-import { RichTextarea } from ".";
+import { RichTextarea } from "./index.js";
 
 const NOP = () => {};
 
