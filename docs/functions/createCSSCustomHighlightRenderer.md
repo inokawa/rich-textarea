@@ -6,7 +6,7 @@
 
 > **createCSSCustomHighlightRenderer**(`matchers`): [`Renderer`](../type-aliases/Renderer.md)
 
-Defined in: [src/renderers/regex/index.tsx:166](https://github.com/inokawa/rich-textarea/blob/7eb748f42b59f753b6ba4e33c0a5f82e934d33c9/src/renderers/regex/index.tsx#L166)
+Defined in: [src/renderers/regex/index.tsx:166](https://github.com/inokawa/rich-textarea/blob/014fce22747814ddccd7d4075d76e5778c804d3c/src/renderers/regex/index.tsx#L166)
 
 **`Experimental`**
 

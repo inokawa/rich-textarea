@@ -4,7 +4,7 @@
 
 # Interface: RichTextareaHandle
 
-Defined in: [src/textarea.tsx:87](https://github.com/inokawa/rich-textarea/blob/7eb748f42b59f753b6ba4e33c0a5f82e934d33c9/src/textarea.tsx#L87)
+Defined in: [src/textarea.tsx:87](https://github.com/inokawa/rich-textarea/blob/014fce22747814ddccd7d4075d76e5778c804d3c/src/textarea.tsx#L87)
 
 Methods of [RichTextarea](../functions/RichTextarea.md).
 
