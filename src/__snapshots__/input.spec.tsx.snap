@@ -10,13 +10,13 @@ exports[`smoke > controlled 1`] = `
     >
       <div
         aria-hidden="true"
-        style="padding: 1px 1px 1px 1px; margin: 0px 0px 0px 0px; border: 2px inset; border-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-right-width: 2px; border-style: inset; border-top-style: inset; border-bottom-style: inset; border-left-style: inset; border-right-style: inset; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; border-color: transparent;"
+        style="margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; border-color: transparent;"
       >
         <div
           style="height: 0px;"
         >
           <div
-            style="transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; white-space: pre;"
+            style="transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; white-space: pre;"
           >
             <span
               style="color: red;"
@@ -132,7 +132,7 @@ exports[`smoke > controlled 1`] = `
       </div>
     </div>
     <input
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
       value="Lorem ipsum dolor sit amet"
     />
   </div>
@@ -149,13 +149,13 @@ exports[`smoke > uncontrolled 1`] = `
     >
       <div
         aria-hidden="true"
-        style="padding: 1px 1px 1px 1px; margin: 0px 0px 0px 0px; border: 2px inset; border-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-right-width: 2px; border-style: inset; border-top-style: inset; border-bottom-style: inset; border-left-style: inset; border-right-style: inset; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; border-color: transparent;"
+        style="margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; border-color: transparent;"
       >
         <div
           style="height: 0px;"
         >
           <div
-            style="transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; white-space: pre;"
+            style="transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; white-space: pre;"
           >
             <span
               style="color: red;"
@@ -271,7 +271,7 @@ exports[`smoke > uncontrolled 1`] = `
       </div>
     </div>
     <input
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
       value="Lorem ipsum dolor sit amet"
     />
   </div>

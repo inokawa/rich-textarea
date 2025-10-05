@@ -10,7 +10,7 @@ exports[`match > double matchers 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         L
         <span
@@ -72,7 +72,7 @@ exports[`match > double matchers 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -90,7 +90,7 @@ exports[`match > emoji 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         Lorem
         <span
@@ -154,7 +154,7 @@ exports[`match > emoji 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem😇 ipsum dolor sit amet👨‍👩‍👧‍👦 Lorem ipsum dolor👍🏽 sit amet Lorem👩‍💻 ipsum dolor sit amet
     </textarea>
@@ -172,7 +172,7 @@ exports[`match > japanese 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         <span
           style="background: yellow;"
@@ -383,7 +383,7 @@ exports[`match > japanese 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。
     </textarea>
@@ -401,7 +401,7 @@ exports[`match > match many 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         L
         <span
@@ -440,7 +440,7 @@ exports[`match > match many 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -458,7 +458,7 @@ exports[`match > match one 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         Lorem 
         <span
@@ -475,7 +475,7 @@ exports[`match > match one 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -493,7 +493,7 @@ exports[`match > triple matchers 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         <span
           style="background-color: lightgray;"
@@ -571,7 +571,7 @@ exports[`match > triple matchers 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -589,7 +589,7 @@ exports[`smoke > controlled 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         <span
           style="color: red;"
@@ -703,7 +703,7 @@ exports[`smoke > controlled 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -721,7 +721,7 @@ exports[`smoke > uncontrolled 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         <span
           style="color: red;"
@@ -835,7 +835,7 @@ exports[`smoke > uncontrolled 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -853,7 +853,7 @@ exports[`style textarea > background 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         L
         <span
@@ -870,7 +870,7 @@ exports[`style textarea > background 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -888,7 +888,7 @@ exports[`style textarea > background-color 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         L
         <span
@@ -905,7 +905,7 @@ exports[`style textarea > background-color 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -923,7 +923,7 @@ exports[`style textarea > border 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid blue; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; border-width: 1px; border-style: solid; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         L
         <span
@@ -940,7 +940,7 @@ exports[`style textarea > border 1`] = `
       </div>
     </div>
     <textarea
-      style="border: 1px solid blue; background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="border: 1px solid blue; background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -958,7 +958,7 @@ exports[`style textarea > border-color 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         L
         <span
@@ -975,7 +975,7 @@ exports[`style textarea > border-color 1`] = `
       </div>
     </div>
     <textarea
-      style="border-color: blue; background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="border-color: blue; background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -993,7 +993,7 @@ exports[`style textarea > caret-color 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         L
         <span
@@ -1028,7 +1028,7 @@ exports[`style textarea > color 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         L
         <span
@@ -1063,7 +1063,7 @@ exports[`style textarea > width & height 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         L
         <span
@@ -1080,7 +1080,7 @@ exports[`style textarea > width & height 1`] = `
       </div>
     </div>
     <textarea
-      style="width: 123px; height: 456px; background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="width: 123px; height: 456px; background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -1098,7 +1098,7 @@ exports[`style value > background 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         L
         <span
@@ -1115,7 +1115,7 @@ exports[`style value > background 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -1133,7 +1133,7 @@ exports[`style value > border 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         L
         <span
@@ -1150,7 +1150,7 @@ exports[`style value > border 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -1168,7 +1168,7 @@ exports[`style value > color 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         L
         <span
@@ -1185,7 +1185,7 @@ exports[`style value > color 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -1203,12 +1203,10 @@ exports[`style value > decoration 1`] = `
     >
       <div
         aria-hidden="true"
-        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; padding: 2px 2px 2px 2px; margin: 0px 0px 0px 0px; border: 1px solid; border-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-right-width: 1px; border-style: solid; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-style: solid; font-family: -webkit-small-control; text-align: start; text-transform: none; text-indent: 0; letter-spacing: normal; word-spacing: normal; line-height: normal; white-space: pre-wrap; border-color: transparent;"
+        style="width: 0px; transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; white-space: pre-wrap; border-color: transparent;"
       >
         L
-        <span
-          style="text-decoration: undeline;"
-        >
+        <span>
           ore
         </span>
         m ipsum dolor sit amet
@@ -1220,7 +1218,7 @@ exports[`style value > decoration 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
     >
       Lorem ipsum dolor sit amet
     </textarea>
