@@ -2,6 +2,7 @@ import typescript from "@rollup/plugin-typescript";
 import { getBabelOutputPlugin } from "@rollup/plugin-babel";
 import terser from "@rollup/plugin-terser";
 import banner from "rollup-plugin-banner2";
+import { dirname } from 'node:path'
 import pkg from "./package.json" with { type: "json" };
 
 const external = (id) =>
@@ -29,6 +30,7 @@ export default {
       tsconfig: "./tsconfig.json",
       outDir: ".",
       declaration: true,
+      declarationDir: dirname(pkg.types),
       exclude: ["**/*.{spec,stories}.*"],
     }),
     getBabelOutputPlugin({
