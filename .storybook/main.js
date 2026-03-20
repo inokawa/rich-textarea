@@ -26,6 +26,9 @@ export default {
           events: "events",
         },
       },
+      legacy: {
+        inconsistentCjsInterop: true // textlint
+      },
       define: {
         // For @textlint/kernel
         "process.env.TIMING": false,
