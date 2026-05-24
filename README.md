@@ -5,7 +5,7 @@
 A small customizable textarea for [React](https://github.com/facebook/react) to colorize, highlight, decorate texts, offer autocomplete and much more.
 
 > [!NOTE]
-> You may also like https://github.com/inokawa/edix
+> You may also like https://github.com/inokawa/editate
 
 <img src="./images/sample-mention.gif" width="350px" /><img src="./images/sample-diff.gif" width="350px" />
 
