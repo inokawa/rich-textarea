@@ -2,7 +2,7 @@ import tseslint from "typescript-eslint";
 import pluginReactHooks from "eslint-plugin-react-hooks";
 
 export default [
-  pluginReactHooks.configs.recommended,
+  pluginReactHooks.configs.flat.recommended,
   {
     files: ["src/**/*.{jsx,tsx}"],
     languageOptions: {
@@ -19,9 +19,6 @@ export default [
       react: {
         version: "detect",
       },
-    },
-    rules: {
-      "react-hooks/react-compiler": "error",
     },
   },
 ];
