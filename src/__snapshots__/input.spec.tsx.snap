@@ -10,13 +10,13 @@ exports[`smoke > controlled 1`] = `
     >
       <div
         aria-hidden="true"
-        style="margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; border-color: transparent;"
+        style="direction: ltr; padding: 0px; margin: 0px; border: transparent; font-size: medium; font-family: "depends on user agent"; font-style: normal; font-weight: normal; font-size-adjust: none; text-align: start; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: normal; line-height: normal; word-break: normal; overflow-wrap: normal; tab-size: 8;"
       >
         <div
           style="height: 0px;"
         >
           <div
-            style="transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; white-space: pre;"
+            style="transform: translate(0px, 0px); pointer-events: none; user-select: none; -webkit-user-select: none; box-sizing: content-box; text-size-adjust: 100%; -webkit-text-size-adjust: 100%; white-space: pre;"
           >
             <span
               style="color: red;"
@@ -149,13 +149,13 @@ exports[`smoke > uncontrolled 1`] = `
     >
       <div
         aria-hidden="true"
-        style="margin: 0px; text-align: initial; text-transform: initial; text-indent: initial; letter-spacing: initial; word-spacing: initial; line-height: initial; border-color: transparent;"
+        style="direction: ltr; padding: 0px; margin: 0px; border: transparent; font-size: medium; font-family: "depends on user agent"; font-style: normal; font-weight: normal; font-size-adjust: none; text-align: start; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: normal; line-height: normal; word-break: normal; overflow-wrap: normal; tab-size: 8;"
       >
         <div
           style="height: 0px;"
         >
           <div
-            style="transform: translate(0px, 0px); pointer-events: none; user-select: none; box-sizing: content-box; -webkit-text-size-adjust: 100%; white-space: pre;"
+            style="transform: translate(0px, 0px); pointer-events: none; user-select: none; -webkit-user-select: none; box-sizing: content-box; text-size-adjust: 100%; -webkit-text-size-adjust: 100%; white-space: pre;"
           >
             <span
               style="color: red;"
