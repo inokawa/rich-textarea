@@ -22,9 +22,12 @@ export const createRegexRenderer = (
     | [
         regex: RegExp,
         style: StyleOrRender,
-        shouldRender?: (matchedText: string, matchResult: RegExpExecArray) => boolean,
+        shouldRender?: (
+          matchedText: string,
+          matchResult: RegExpExecArray,
+        ) => boolean,
       ]
-  )[]
+  )[],
 ): Renderer => {
   const allStyles = matchers.map(([, style]) => style);
 
@@ -53,7 +56,7 @@ export const createRegexRenderer = (
         new Set<number>(),
         new Map<number, StyleOrRender[]>(),
         new Map<number, StyleOrRender[]>(),
-      ] as const
+      ] as const,
     );
     const indexes = Array.from(indexSet);
     indexes.sort((a, b) => {
@@ -95,7 +98,7 @@ export const createRegexRenderer = (
               </span>
             );
           }
-        }, v as React.ReactNode)
+        }, v as React.ReactNode),
       );
 
       if (endStyles) {
@@ -118,7 +121,7 @@ export const createRegexRenderer = (
 
 const createCSSHighlightID = (i: number): string => `rich-textarea-${i}`;
 
-const CSSHighlighter = memo(
+const CSSHighlighter = /*#__PURE__*/ memo(
   ({
     _value: value,
     _regexes: regexes,
@@ -140,7 +143,7 @@ const CSSHighlighter = memo(
             range.setStart(el, start);
             range.setEnd(el, end);
             return range;
-          })
+          }),
         );
       });
 
@@ -156,7 +159,7 @@ const CSSHighlighter = memo(
       };
     }, [value]);
     return <div ref={ref}>{value}</div>;
-  }
+  },
 );
 
 /**
@@ -164,7 +167,7 @@ const CSSHighlighter = memo(
  * @experimental
  */
 export const createCSSCustomHighlightRenderer = (
-  matchers: [regex: RegExp, style: string][]
+  matchers: [regex: RegExp, style: string][],
 ): Renderer => {
   const styleStr = matchers.reduce((acc, [, style], i) => {
     return acc + `::highlight(${createCSSHighlightID(i)}){${style}}`;

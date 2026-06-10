@@ -26,7 +26,7 @@ import { type TextareaRect, createTextareaObserver } from "./observer.js";
 
 type BackdropHandle = (value: string) => void;
 
-const Backdrop = memo(
+const Backdrop = /*#__PURE__*/ memo(
   ({
     _ref: backdropRef,
     _handle: handle,
@@ -71,7 +71,7 @@ const Backdrop = memo(
                 MozTextSizeAdjust: "100%",
                 whiteSpace: "pre",
               }),
-              []
+              [],
             )}
           >
             {useMemo(() => (render ? render(value) : value), [value, render])}
@@ -80,7 +80,7 @@ const Backdrop = memo(
         </div>
       </div>
     );
-  }
+  },
 );
 
 /**
@@ -136,7 +136,10 @@ export interface RichInputProps
  *
  * **NOTE: This component is experimental one so it may have some bugs.**
  */
-export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
+export const RichInput = /*#__PURE__*/ forwardRef<
+  RichInputHandle,
+  RichInputProps
+>(
   (
     {
       children: render,
@@ -147,7 +150,7 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
       onSelectionChange,
       ...props
     },
-    ref
+    ref,
   ): React.ReactElement => {
     const textAreaRef = useRef<HTMLInputElement>(null);
     const backdropRef = useRef<HTMLDivElement>(null);
@@ -194,7 +197,7 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
           text: string,
           start: number,
           end: number,
-          preserve?: SelectionMode
+          preserve?: SelectionMode,
         ) {
           if (el.setRangeText) {
             el.setRangeText(text, start, end, preserve);
@@ -234,7 +237,7 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
         backdrop,
         selectionStore,
         setRect,
-        setFocused
+        setFocused,
       );
     }, []);
 
@@ -266,7 +269,7 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
         const range = rangeAtIndex(
           backdropRef[refKey]!,
           selectionStart,
-          selectionStart + 1
+          selectionStart + 1,
         ) as Range;
         const rect = range.getBoundingClientRect();
         onSelectionChange({
@@ -350,14 +353,14 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
                 verticalAlign: "top",
               }),
             }),
-            [style, isSizeCalculated]
+            [style, isSizeCalculated],
           )}
           onChange={useCallback(
             (e: React.ChangeEvent<HTMLInputElement>) => {
               backdropHandle[refKey]?.(e.target.value);
               onChange?.(e);
             },
-            [onChange]
+            [onChange],
           )}
           onKeyDown={useCallback(
             (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -371,10 +374,10 @@ export const RichInput = forwardRef<RichInputHandle, RichInputProps>(
               onKeyDown?.(e);
               selectionStore._updateSeletion();
             },
-            [onKeyDown]
+            [onKeyDown],
           )}
         />
       </div>
     );
-  }
+  },
 );
