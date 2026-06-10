@@ -11,7 +11,11 @@ import {
 } from "react";
 import type React from "react";
 import rangeAtIndex from "./vendor/range-at-index.js";
-import { hasPercentageUnit, stopPropagation, syncBackdropStyle } from "./dom.js";
+import {
+  hasPercentageUnit,
+  stopPropagation,
+  syncBackdropStyle,
+} from "./dom.js";
 import { type SelectionRange, initSelectionStore } from "./selection.js";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
 import type { CaretPosition, Renderer } from "./types.js";
@@ -21,7 +25,7 @@ import { type TextareaRect, createTextareaObserver } from "./observer.js";
 
 type BackdropHandle = (value: string) => void;
 
-const Backdrop = memo(
+const Backdrop /*#__PURE__*/ = memo(
   ({
     _ref: backdropRef,
     _handle: handle,
@@ -56,7 +60,7 @@ const Backdrop = memo(
             WebkitTextSizeAdjust: "100%",
             MozTextSizeAdjust: "100%",
           }),
-          [width]
+          [width],
         )}
         // Stop propagation of events dispatched on backdrop
         onClick={stopPropagation}
@@ -70,7 +74,7 @@ const Backdrop = memo(
         {CARET_DETECTOR}
       </div>
     );
-  }
+  },
 );
 
 /**
@@ -126,7 +130,10 @@ export interface RichTextareaProps
 /**
  * Textarea component with some extra props. See {@link RichTextareaProps} and {@link RichTextareaHandle}.
  */
-export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
+export const RichTextarea = /*#__PURE__*/ forwardRef<
+  RichTextareaHandle,
+  RichTextareaProps
+>(
   (
     {
       children: render,
@@ -137,7 +144,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
       onSelectionChange,
       ...props
     },
-    ref
+    ref,
   ): React.ReactElement => {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
     const backdropRef = useRef<HTMLDivElement>(null);
@@ -151,7 +158,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
     const [[selectionStart, selectionEnd], setSelection] =
       useState<SelectionRange>([null, null]);
     const selectionStore = useStatic(() =>
-      initSelectionStore(textAreaRef, setSelection)
+      initSelectionStore(textAreaRef, setSelection),
     );
 
     const totalWidth = width + hPadding;
@@ -172,7 +179,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
           text: string,
           start: number,
           end: number,
-          preserve?: SelectionMode
+          preserve?: SelectionMode,
         ) {
           if (el.setRangeText) {
             el.setRangeText(text, start, end, preserve);
@@ -212,7 +219,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         backdrop,
         selectionStore,
         setRect,
-        setFocused
+        setFocused,
       );
     }, []);
 
@@ -244,7 +251,7 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
         const range = rangeAtIndex(
           backdropRef[refKey]!,
           selectionStart,
-          selectionStart + 1
+          selectionStart + 1,
         ) as Range;
         const rect = range.getBoundingClientRect();
         onSelectionChange({
@@ -328,14 +335,14 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
                 verticalAlign: "top",
               }),
             }),
-            [style, isSizeCalculated]
+            [style, isSizeCalculated],
           )}
           onChange={useCallback(
             (e: React.ChangeEvent<HTMLTextAreaElement>) => {
               backdropHandle[refKey]?.(e.target.value);
               onChange?.(e);
             },
-            [onChange]
+            [onChange],
           )}
           onKeyDown={useCallback(
             (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -349,10 +356,10 @@ export const RichTextarea = forwardRef<RichTextareaHandle, RichTextareaProps>(
               onKeyDown?.(e);
               selectionStore._updateSeletion();
             },
-            [onKeyDown]
+            [onKeyDown],
           )}
         />
       </div>
     );
-  }
+  },
 );

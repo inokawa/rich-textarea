@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDir": "./src",
     "target": "es2018",
     "module": "nodenext",
     "moduleResolution": "nodenext",
