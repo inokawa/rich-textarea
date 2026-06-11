@@ -1,7 +1,13 @@
 import type { StoryObj } from "@storybook/react-vite";
-import React, { useState, useMemo } from "react";
-import { type Renderer, RichTextarea } from "../../src";
-import { diff, type ILineChange } from "monaco-diff";
+import React, {
+  ChangeEvent,
+  ReactNode,
+  useCallback,
+  useMemo,
+  useState,
+} from "react";
+import { RichTextarea } from "../../src";
+import { diffLines, diffChars, type Change } from "diff";
 
 export default {
   component: RichTextarea,
@@ -12,166 +18,182 @@ const style: React.CSSProperties = {
   height: "400px",
 };
 
-const createDiffRenderer =
-  (tokens: ILineChange[], type: "base" | "target"): Renderer =>
-  (value) => {
-    const orgLines: ({ start?: number; end?: number }[] | undefined)[] =
-      Array.from({ length: value.length });
-    const modLines: ({ start?: number; end?: number }[] | undefined)[] =
-      Array.from({ length: value.length });
-    for (const token of tokens) {
-      for (
-        let i = token.originalStartLineNumber;
-        i <= token.originalEndLineNumber;
-        i++
-      ) {
-        orgLines[i - 1] || (orgLines[i - 1] = []);
-        if (token.modifiedEndLineNumber === 0) {
-          orgLines[i - 1]!.push({ start: undefined, end: undefined });
-        }
-      }
-      for (
-        let i = token.modifiedStartLineNumber;
-        i <= token.modifiedEndLineNumber;
-        i++
-      ) {
-        modLines[i - 1] || (modLines[i - 1] = []);
-        if (token.originalEndLineNumber === 0) {
-          modLines[i - 1]!.push({ start: undefined, end: undefined });
-        }
-      }
+type DiffResult = { [line: number]: boolean | Change[] | undefined };
 
-      token.charChanges?.forEach((c) => {
-        for (
-          let i = c.originalStartLineNumber;
-          i <= c.originalEndLineNumber;
-          i++
-        ) {
-          if (i === c.originalStartLineNumber) {
-            if (c.originalStartLineNumber === c.originalEndLineNumber) {
-              (orgLines[i - 1] || (orgLines[i - 1] = [])).push({
-                start: c.originalStartColumn,
-                end: c.originalEndColumn,
-              });
-            } else {
-              (orgLines[i - 1] || (orgLines[i - 1] = [])).push({
-                start: c.originalStartColumn,
-                end: undefined,
-              });
-            }
-          } else if (i === c.originalEndLineNumber) {
-            (orgLines[i - 1] || (orgLines[i - 1] = [])).push({
-              start: undefined,
-              end: c.originalEndColumn,
-            });
-          } else {
-            (orgLines[i - 1] || (orgLines[i - 1] = [])).push({
-              start: undefined,
-              end: undefined,
-            });
-          }
-        }
-        for (
-          let i = c.modifiedStartLineNumber;
-          i <= c.modifiedEndLineNumber;
-          i++
-        ) {
-          if (i === c.modifiedStartLineNumber) {
-            if (c.modifiedStartLineNumber === c.modifiedEndLineNumber) {
-              (modLines[i - 1] || (modLines[i - 1] = [])).push({
-                start: c.modifiedStartColumn,
-                end: c.modifiedEndColumn,
-              });
-            } else {
-              (modLines[i - 1] || (modLines[i - 1] = [])).push({
-                start: c.modifiedStartColumn,
-                end: undefined,
-              });
-            }
-          } else if (i === c.modifiedEndLineNumber) {
-            (modLines[i - 1] || (modLines[i - 1] = [])).push({
-              start: undefined,
-              end: c.modifiedEndColumn,
-            });
-          } else {
-            (modLines[i - 1] || (modLines[i - 1] = [])).push({
-              start: undefined,
-              end: undefined,
-            });
-          }
-        }
-      });
-    }
-    const bgStyle =
-      type === "base"
-        ? { background: "rgba(255, 0, 0, 0.2)" }
-        : { background: "rgba(155, 185, 85, 0.2)" };
-    return value.split("\n").map((s, i) => {
-      const diff =
-        (type === "base" && orgLines[i]) ||
-        (type === "target" && modLines[i]) ||
-        undefined;
-      let node: (React.ReactElement | string)[] = [s];
-      if (diff && diff.length) {
-        let prevEnd = 0;
-        let prevStart = 0;
-        const res: (React.ReactElement | string)[] = [];
-        for (let di = 0; di < diff.length; di++) {
-          const d = diff[di];
+const REMOVED_COLOR = "rgba(255, 0, 0, 0.2)";
+const ADDED_COLOR = "rgba(155, 185, 85, 0.2)";
 
-          const start = d.start ? d.start - 1 : 0;
-          const end = d.end ? d.end - 1 : s.length;
-          res.push(s.slice(prevEnd, start));
-          res.push(
-            <span key={`${i}-${di}`} style={bgStyle}>
-              {s.slice(start, end)}
-            </span>
+const Span = ({
+  type,
+  children,
+}: {
+  type: "base" | "target";
+  children: ReactNode;
+}) => {
+  return (
+    <span
+      style={{
+        background: type === "base" ? REMOVED_COLOR : ADDED_COLOR,
+      }}
+    >
+      {children}
+    </span>
+  );
+};
+
+const Editor = ({
+  result,
+  type,
+  text,
+  onChange,
+}: {
+  result: DiffResult;
+  type: "base" | "target";
+  text: string;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+}) => {
+  return (
+    <RichTextarea value={text} onChange={onChange} style={style}>
+      {(value) =>
+        value.split("\n").map((l, i) => {
+          const rowResult = result[i];
+
+          return (
+            <div
+              key={i}
+              style={
+                rowResult
+                  ? {
+                      background: type === "base" ? REMOVED_COLOR : ADDED_COLOR,
+                    }
+                  : undefined
+              }
+            >
+              {l ? (
+                Array.isArray(rowResult) ? (
+                  rowResult.map((t, j) => {
+                    if (!t.added && !t.removed) {
+                      return t.value;
+                    }
+                    if (
+                      (type === "base" && t.added) ||
+                      (type === "target" && t.removed)
+                    ) {
+                      return null;
+                    }
+                    return (
+                      <Span key={j} type={type}>
+                        {t.value}
+                      </Span>
+                    );
+                  })
+                ) : rowResult ? (
+                  <Span type={type}>{l}</Span>
+                ) : (
+                  l
+                )
+              ) : (
+                <br />
+              )}
+            </div>
           );
-          prevStart = start;
-          prevEnd = end;
-        }
-        res.push(s.slice(prevEnd));
-
-        node = res;
+        })
       }
-      node.push(" ");
-      return (
-        <div key={i} style={diff && bgStyle}>
-          {node}
-        </div>
-      );
-    });
-  };
+    </RichTextarea>
+  );
+};
 
 export const Diff: StoryObj = {
   render: () => {
     const [baseText, setBaseText] = useState(
-      "This line is removed on the right.\njust some text\nabcd\nefgh\nSome more text\nSome more text\nSome more text"
+      "This line is removed on the right.\njust some text\nabcd\nefgh\nSome more text\nSome more text\nSome more text",
     );
     const [targetText, setTargetText] = useState(
-      "just some text\nabcz\nzzzzefgh\nSome more text.\nThis line is removed on the left."
+      "just some text\nabcz\nzzzzefgh\nSome more text.\nThis line is removed on the left.",
     );
-    const tokens = useMemo(
-      () => diff(baseText.split("\n"), targetText.split("\n")),
-      [baseText, targetText]
-    );
+
+    const result = useMemo(() => {
+      const getLines = (v: string) => {
+        const trimmedValue = v.endsWith("\n") ? v.slice(0, -1) : v;
+        return trimmedValue.split("\n");
+      };
+
+      const diff = diffLines(baseText, targetText);
+
+      let baseCount = 0;
+      let targetCount = 0;
+      const base: DiffResult = {};
+      const target: DiffResult = {};
+      for (let diffIndex = 0; diffIndex < diff.length; diffIndex++) {
+        const { removed, added, value } = diff[diffIndex]!;
+        const lines = getLines(value);
+        if (!removed && !added) {
+          baseCount += lines.length;
+          targetCount += lines.length;
+        }
+        if (removed) {
+          const next = diff[diffIndex + 1];
+          if (next && next.added) {
+            const nextLines = getLines(next.value);
+
+            const maxLength = Math.max(lines.length, nextLines.length);
+            for (let i = 0; i < maxLength; i++) {
+              const b = lines[i];
+              const t = nextLines[i];
+              if (b != null && t != null) {
+                const charDiff = diffChars(b, t);
+                base[baseCount] = charDiff;
+                target[targetCount] = charDiff;
+              }
+              if (b != null) {
+                if (!base[baseCount]) {
+                  base[baseCount] = true;
+                }
+                baseCount++;
+              }
+              if (t != null) {
+                if (!target[targetCount]) {
+                  target[targetCount] = true;
+                }
+                targetCount++;
+              }
+            }
+            diffIndex++;
+            continue;
+          }
+          for (const l of lines) {
+            base[baseCount] = true;
+            baseCount++;
+          }
+        }
+        if (added) {
+          for (const l of lines) {
+            target[targetCount] = true;
+            targetCount++;
+          }
+        }
+      }
+      return { base, target };
+    }, [baseText, targetText]);
 
     return (
       <div>
-        <RichTextarea
-          style={style}
-          onChange={(e) => setBaseText(e.target.value)}
-          value={baseText}
-        >
-          {createDiffRenderer(tokens, "base")}
-        </RichTextarea>
-        <RichTextarea
-          style={style}
-          onChange={(e) => setTargetText(e.target.value)}
-          value={targetText}
-        >
-          {createDiffRenderer(tokens, "target")}
-        </RichTextarea>
+        <Editor
+          type="base"
+          result={result.base}
+          text={baseText}
+          onChange={useCallback((e) => {
+            setBaseText(e.target.value);
+          }, [])}
+        />
+        <Editor
+          type="target"
+          result={result.target}
+          text={targetText}
+          onChange={useCallback((e) => {
+            setTargetText(e.target.value);
+          }, [])}
+        />
       </div>
     );
   },
