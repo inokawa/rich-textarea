@@ -4,6 +4,6 @@
 
 # Type Alias: CaretPosition
 
-> **CaretPosition**: \{ `focused`: `false`; `selectionStart`: `number`; `selectionEnd`: `number`; \} \| \{ `focused`: `true`; `selectionStart`: `number`; `selectionEnd`: `number`; `top`: `number`; `left`: `number`; `height`: `number`; \}
+> **CaretPosition** = \{ `focused`: `false`; `selectionStart`: `number`; `selectionEnd`: `number`; \} \| \{ `focused`: `true`; `selectionStart`: `number`; `selectionEnd`: `number`; `top`: `number`; `left`: `number`; `height`: `number`; \}
 
-Defined in: [src/types.ts:3](https://github.com/inokawa/rich-textarea/blob/014fce22747814ddccd7d4075d76e5778c804d3c/src/types.ts#L3)
+Defined in: [types.ts:3](https://github.com/inokawa/rich-textarea/blob/f35e066bd168167e8832c503e91b15544962f879/src/types.ts#L3)

@@ -4,9 +4,9 @@
 
 # Interface: RichInputHandle
 
-Defined in: [src/input.tsx:97](https://github.com/inokawa/rich-textarea/blob/014fce22747814ddccd7d4075d76e5778c804d3c/src/input.tsx#L97)
+Defined in: [input.tsx:97](https://github.com/inokawa/rich-textarea/blob/f35e066bd168167e8832c503e91b15544962f879/src/input.tsx#L97)
 
-Methods of [RichInput](../functions/experimental_RichInput.md).
+Methods of [RichInput](../variables/experimental_RichInput.md).
 
 All the others not mentioned are proxied to ref of [input](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
 

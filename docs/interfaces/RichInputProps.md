@@ -4,9 +4,9 @@
 
 # Interface: RichInputProps
 
-Defined in: [src/input.tsx:105](https://github.com/inokawa/rich-textarea/blob/014fce22747814ddccd7d4075d76e5778c804d3c/src/input.tsx#L105)
+Defined in: [input.tsx:105](https://github.com/inokawa/rich-textarea/blob/f35e066bd168167e8832c503e91b15544962f879/src/input.tsx#L105)
 
-Props of [RichInput](../functions/experimental_RichInput.md).
+Props of [RichInput](../variables/experimental_RichInput.md).
 
 For other props not mentioned below will be passed to [input](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
 `defaultValue` is omitted for simplicity of logic.
@@ -19,9 +19,9 @@ For other props not mentioned below will be passed to [input](https://developer.
 
 ### children?
 
-> `optional` **children**: [`Renderer`](../type-aliases/Renderer.md)
+> `optional` **children?**: [`Renderer`](../type-aliases/Renderer.md)
 
-Defined in: [src/input.tsx:121](https://github.com/inokawa/rich-textarea/blob/014fce22747814ddccd7d4075d76e5778c804d3c/src/input.tsx#L121)
+Defined in: [input.tsx:121](https://github.com/inokawa/rich-textarea/blob/f35e066bd168167e8832c503e91b15544962f879/src/input.tsx#L121)
 
 Render function to create customized view from value.
 
@@ -45,9 +45,9 @@ undefined
 
 ### autoHeight?
 
-> `optional` **autoHeight**: `boolean`
+> `optional` **autoHeight?**: `boolean`
 
-Defined in: [src/input.tsx:126](https://github.com/inokawa/rich-textarea/blob/014fce22747814ddccd7d4075d76e5778c804d3c/src/input.tsx#L126)
+Defined in: [input.tsx:126](https://github.com/inokawa/rich-textarea/blob/f35e066bd168167e8832c503e91b15544962f879/src/input.tsx#L126)
 
 If true, textarea height is automatically resized and height of style prop does not work. Set `maxHeight` to style prop if you need limit.
 
@@ -59,11 +59,11 @@ undefined
 
 ***
 
-### onSelectionChange()?
+### onSelectionChange?
 
-> `optional` **onSelectionChange**: (`pos`) => `void`
+> `optional` **onSelectionChange?**: (`pos`) => `void`
 
-Defined in: [src/input.tsx:131](https://github.com/inokawa/rich-textarea/blob/014fce22747814ddccd7d4075d76e5778c804d3c/src/input.tsx#L131)
+Defined in: [input.tsx:131](https://github.com/inokawa/rich-textarea/blob/f35e066bd168167e8832c503e91b15544962f879/src/input.tsx#L131)
 
 Called when selection in textarea changes. It gives position of caret at the time, which is useful to position menu.
 

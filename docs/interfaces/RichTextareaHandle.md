@@ -4,9 +4,9 @@
 
 # Interface: RichTextareaHandle
 
-Defined in: [src/textarea.tsx:87](https://github.com/inokawa/rich-textarea/blob/014fce22747814ddccd7d4075d76e5778c804d3c/src/textarea.tsx#L87)
+Defined in: [textarea.tsx:91](https://github.com/inokawa/rich-textarea/blob/f35e066bd168167e8832c503e91b15544962f879/src/textarea.tsx#L91)
 
-Methods of [RichTextarea](../functions/RichTextarea.md).
+Methods of [RichTextarea](../variables/RichTextarea.md).
 
 All the others not mentioned are proxied to ref of [textarea](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement).
 

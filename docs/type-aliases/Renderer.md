@@ -2,11 +2,11 @@
 
 ***
 
-# Type Alias: Renderer()
+# Type Alias: Renderer
 
-> **Renderer**: (`value`) => `React.ReactNode`
+> **Renderer** = (`value`) => `React.ReactNode`
 
-Defined in: [src/types.ts:1](https://github.com/inokawa/rich-textarea/blob/014fce22747814ddccd7d4075d76e5778c804d3c/src/types.ts#L1)
+Defined in: [types.ts:1](https://github.com/inokawa/rich-textarea/blob/f35e066bd168167e8832c503e91b15544962f879/src/types.ts#L1)
 
 ## Parameters
 
