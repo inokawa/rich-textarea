@@ -5,7 +5,7 @@
 A small customizable textarea for [React](https://github.com/facebook/react) to colorize, highlight, decorate texts, offer autocomplete and much more.
 
 > [!NOTE]
-> You may also like https://github.com/inokawa/editate
+> I also recommend trying [editate](https://github.com/inokawa/editate). It is a spiritual successor to rich-textarea.
 
 <img src="./images/sample-mention.gif" width="350px" /><img src="./images/sample-diff.gif" width="350px" />
 
@@ -129,7 +129,7 @@ export const App = () => {
 import { RichTextarea, RichTextareaProps } from "rich-textarea";
 
 export const Textarea = (
-  props: Omit<RichTextareaProps, "children" | "ref">
+  props: Omit<RichTextareaProps, "children" | "ref">,
 ) => {
   return (
     <RichTextarea {...props}>
