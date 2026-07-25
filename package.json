@@ -52,7 +52,7 @@
     "@vitest/coverage-v8": "^4.1.8",
     "assert": "^2.1.0",
     "diff": "^9.0.0",
-    "eslint": "^9.38.0",
+    "eslint": "^10.0.0",
     "eslint-plugin-react-hooks": "^7.0.1",
     "events": "^3.3.0",
     "formik": "^2.4.6",
