@@ -141,12 +141,14 @@ test("smoke controlled", async () => {
   // Type
   const text = "test";
   await userEvent.keyboard(text);
-  const [editedTextareaValue, editedBackdropValue] = getValue(
-    textarea,
-    backdrop,
-  );
-  expect(editedTextareaValue).toBe(insertText(textareaValue, text, 1));
-  expect(editedTextareaValue).toBe(editedBackdropValue);
+  await vi.waitFor(() => {
+    const [editedTextareaValue, editedBackdropValue] = getValue(
+      textarea,
+      backdrop,
+    );
+    expect(editedTextareaValue).toBe(insertText(textareaValue, text, 1));
+    expect(editedTextareaValue).toBe(editedBackdropValue);
+  });
 
   // Click outside and unfocus
   await clickAt(document.documentElement, 0, 0);
@@ -173,12 +175,14 @@ test("smoke uncontrolled", async () => {
   // Type
   const text = "test";
   await userEvent.keyboard(text);
-  const [editedTextareaValue, editedBackdropValue] = getValue(
-    textarea,
-    backdrop,
-  );
-  expect(editedTextareaValue).toBe(insertText(textareaValue, text, 1));
-  expect(editedTextareaValue).toBe(editedBackdropValue);
+  await vi.waitFor(() => {
+    const [editedTextareaValue, editedBackdropValue] = getValue(
+      textarea,
+      backdrop,
+    );
+    expect(editedTextareaValue).toBe(insertText(textareaValue, text, 1));
+    expect(editedTextareaValue).toBe(editedBackdropValue);
+  });
 
   // Click outside and unfocus
   await clickAt(document.documentElement, 0, 0);

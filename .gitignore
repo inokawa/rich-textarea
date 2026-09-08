@@ -2,4 +2,4 @@
 lib
 node_modules
 __screenshots__
-.vitest-attachments
+.vitest
