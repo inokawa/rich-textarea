@@ -50,9 +50,7 @@
     
     <link href="./sb-addons/docs-1/manager-bundle.js" rel="modulepreload" />
     
-    <link href="./sb-addons/vitest-2/manager-bundle.js" rel="modulepreload" />
-    
-    <link href="./sb-addons/storybook-3/manager-bundle.js" rel="modulepreload" />
+    <link href="./sb-addons/storybook-2/manager-bundle.js" rel="modulepreload" />
        
 
     <style>
@@ -73,6 +71,7 @@
           window['FEATURES'] = {
   "actions": true,
   "argTypeTargetsV7": true,
+  "babelRemoveBugfixes": false,
   "backgrounds": true,
   "changeDetection": true,
   "componentsManifest": false,
@@ -83,6 +82,7 @@
   "legacyDecoratorFileOrder": false,
   "measure": true,
   "outline": true,
+  "menuOnboardingChecklist": true,
   "sidebarOnboardingChecklist": true,
   "viewport": true
 };
@@ -104,6 +104,10 @@
       
         
           window['CONFIG_TYPE'] = "PRODUCTION";
+        
+      
+        
+          window['DOCGEN_STORY_PREPARED'] = false;
         
       
         
@@ -139,9 +143,7 @@
       
         import './sb-addons/docs-1/manager-bundle.js';
       
-        import './sb-addons/vitest-2/manager-bundle.js';
-      
-        import './sb-addons/storybook-3/manager-bundle.js';
+        import './sb-addons/storybook-2/manager-bundle.js';
       
 
       import './sb-manager/runtime.js';
