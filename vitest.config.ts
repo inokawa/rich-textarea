@@ -1,8 +1,9 @@
 import { defineConfig } from "vitest/config";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import react from "@vitejs/plugin-react";
 import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
-import { playwright } from '@vitest/browser-playwright';
+import { playwright } from "@vitest/browser-playwright";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -37,6 +38,26 @@ export default defineConfig({
             headless: true,
             provider: playwright(),
             instances: [{ browser: "chromium" }],
+          },
+        },
+      },
+      {
+        extends: true,
+        plugins: [react()],
+        test: {
+          name: "e2e",
+          include: ["e2e/**/*.spec.tsx"],
+          browser: {
+            enabled: true,
+            headless: true,
+            provider: playwright(),
+            // same as playwright's devices["Desktop Chrome"]
+            viewport: { width: 1280, height: 720 },
+            instances: [
+              { browser: "chromium" },
+              { browser: "firefox" },
+              { browser: "webkit" },
+            ],
           },
         },
       },

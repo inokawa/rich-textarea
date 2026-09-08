@@ -43,11 +43,5 @@ jobs:
         run: npx playwright install --with-deps # chromium
       - name: Smoke test stories
         run: npm run test-storybook
-      - name: Run Playwright tests
+      - name: Run e2e tests
         run: npm run e2e
-      # - uses: actions/upload-artifact@v3
-      #   if: always()
-      #   with:
-      #     name: playwright-report
-      #     path: playwright-report/
-      #     retention-days: 30

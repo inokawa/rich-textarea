@@ -26,14 +26,13 @@
     "test-storybook": "vitest run --project=storybook",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "e2e": "npx playwright test",
+    "e2e": "vitest run --project=e2e",
     "typedoc": "typedoc",
     "size": "size-limit",
     "prepare": "patch-package",
     "prepublishOnly": "npm run typedoc && rimraf lib && npm run build"
   },
   "devDependencies": {
-    "@playwright/test": "^1.60.0",
     "@size-limit/preset-small-lib": "^11.1.4",
     "@storybook/addon-docs": "^10.4.0",
     "@storybook/addon-vitest": "^10.4.0",
