@@ -4,11 +4,6 @@
 export const { min, max } = Math;
 
 /**
- * @internal
- */
-export const refKey = "current";
-
-/**
  * for caret position detection
  * @internal
  */

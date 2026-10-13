@@ -72,30 +72,14 @@ const TEXT_STYLE_KEYS: (keyof React.CSSProperties)[] = [
   "MozTabSize",
 ];
 
-const getPropertyValue = (style: CSSStyleDeclaration, key: string): string => {
-  return style.getPropertyValue(key);
-};
-const setProperty = (
-  style: CSSStyleDeclaration,
-  key: string,
-  value: string
-) => {
-  style.setProperty(key, value);
-};
-
 const getValueFromStyle = (style: CSSStyleDeclaration, key: string): number => {
-  const value = getPropertyValue(style, key);
+  const value = style.getPropertyValue(key);
   if (!value) {
     return 0;
   } else {
     return parseInt(value, 10);
   }
 };
-
-/**
- * @internal
- */
-export const getStyle = (e: Element) => getComputedStyle(e);
 
 /**
  * @internal
@@ -138,22 +122,20 @@ export const getPointedElement = (
   backdrop: HTMLElement,
   e: MouseEvent
 ): HTMLElement | null => {
-  const POINTER_EVENTS = "pointer-events";
-
   const textareaStyle = textarea.style;
   const backdropStyle = backdrop.style;
-  const prev = getPropertyValue(textareaStyle, POINTER_EVENTS);
-  const backPrev = getPropertyValue(backdropStyle, POINTER_EVENTS);
-  setProperty(textareaStyle, POINTER_EVENTS, "none");
-  setProperty(backdropStyle, POINTER_EVENTS, "auto");
+  const prev = textareaStyle.pointerEvents;
+  const backPrev = backdropStyle.pointerEvents;
+  textareaStyle.pointerEvents = "none";
+  backdropStyle.pointerEvents = "auto";
 
   const pointed = document.elementFromPoint(
     e.clientX,
     e.clientY
   ) as HTMLElement | null;
 
-  setProperty(textareaStyle, POINTER_EVENTS, prev);
-  setProperty(backdropStyle, POINTER_EVENTS, backPrev);
+  textareaStyle.pointerEvents = prev;
+  backdropStyle.pointerEvents = backPrev;
 
   if (isInsideBackdrop(pointed, backdrop)) {
     return pointed;
@@ -165,7 +147,7 @@ export const getPointedElement = (
 const isInsideBackdrop = (
   pointed: HTMLElement | null,
   backdrop: HTMLElement
-): boolean => !!pointed && backdrop !== pointed && backdrop.contains(pointed);
+): boolean => backdrop !== pointed && backdrop.contains(pointed);
 
 const dispatchMouseEvent = (
   target: HTMLElement,
@@ -231,7 +213,7 @@ export const syncBackdropStyle = (
   textarea: HTMLElement,
   backdrop: HTMLElement
 ) => {
-  const computedTextAreaStyle = getStyle(textarea);
+  const computedTextAreaStyle = getComputedStyle(textarea);
   const backdropStyle = backdrop.style;
 
   TEXT_STYLE_KEYS.forEach((k) => {

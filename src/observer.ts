@@ -4,7 +4,6 @@ import {
   dispatchMouseOutEvent,
   getHorizontalPadding,
   getPointedElement,
-  getStyle,
   getVerticalPadding,
   listenEvent,
 } from "./dom.js";
@@ -46,7 +45,7 @@ export const createTextareaObserver = (
       ]);
       return;
     }
-    const style = getStyle(textarea);
+    const style = getComputedStyle(textarea);
     onResize([
       width,
       height,
@@ -55,86 +54,59 @@ export const createTextareaObserver = (
     ]);
   });
 
-  const cleanUpOnFocus = listenEvent(textarea, "focus", () => {
-    onFocus(true);
-  });
-  const cleanUpOnBlur = listenEvent(textarea, "blur", () => {
-    onFocus(false);
-  });
-  const cleanUpOnScroll = listenEvent(textarea, "scroll", () => {
-    const { scrollTop, scrollLeft } = textarea;
-    backdrop.style.transform = `translate(${-scrollLeft}px, ${-scrollTop}px)`;
-  });
-  const cleanUpOnMouseDown = listenEvent(textarea, "mousedown", (e) => {
+  const dispatchToPointed = (e: MouseEvent) => {
+    const pointed = getPointedElement(textarea, backdrop, e);
+    if (pointed) {
+      dispatchClonedMouseEvent(pointed, e);
+    }
+  };
+  const updateSelection = () => {
     selectionStore._updateSeletion();
-    const cleanup = listenEvent(document, "mouseup", () => {
-      selectionStore._updateSeletion();
-      cleanup();
-    });
-    const pointed = getPointedElement(textarea, backdrop, e);
-    if (pointed) {
-      dispatchClonedMouseEvent(pointed, e);
-    }
-  });
-  const cleanUpOnMouseUp = listenEvent(textarea, "mouseup", (e) => {
-    const pointed = getPointedElement(textarea, backdrop, e);
-    if (pointed) {
-      dispatchClonedMouseEvent(pointed, e);
-    }
-  });
-  const cleanUpOnMouseMove = listenEvent(textarea, "mousemove", (e) => {
-    const p = getPointedElement(textarea, backdrop, e);
-    dispatchMouseMoveEvent(p, prevPointed, e);
-    prevPointed = p;
-  });
-  const cleanUpOnMouseLeave = listenEvent(textarea, "mouseleave", (e) => {
-    dispatchMouseOutEvent(prevPointed, e);
-    prevPointed = null;
-  });
-  const cleanUpOnClick = listenEvent(textarea, "click", (e) => {
-    const pointed = getPointedElement(textarea, backdrop, e);
-    if (pointed) {
-      dispatchClonedMouseEvent(pointed, e);
-    }
-  });
-  const cleanUpOnInput = listenEvent(textarea, "input", () => {
-    selectionStore._updateSeletion();
-  });
-  const cleanUpOnCompositionStart = listenEvent(
-    textarea,
-    "compositionstart",
-    (e) => {
-      selectionStore._setComposition(e);
-    }
-  );
-  const cleanUpOnCompositionUpdate = listenEvent(
-    textarea,
-    "compositionupdate",
-    (e) => {
-      selectionStore._setComposition(e);
-    }
-  );
-  const cleanUpOnCompositionEnd = listenEvent(
-    textarea,
-    "compositionend",
-    () => {
+  };
+  const setComposition = (e: CompositionEvent) => {
+    selectionStore._setComposition(e);
+  };
+
+  const cleanups = [
+    listenEvent(textarea, "focus", () => {
+      onFocus(true);
+    }),
+    listenEvent(textarea, "blur", () => {
+      onFocus(false);
+    }),
+    listenEvent(textarea, "scroll", () => {
+      const { scrollTop, scrollLeft } = textarea;
+      backdrop.style.transform = `translate(${-scrollLeft}px, ${-scrollTop}px)`;
+    }),
+    listenEvent(textarea, "mousedown", (e) => {
+      updateSelection();
+      const cleanup = listenEvent(document, "mouseup", () => {
+        updateSelection();
+        cleanup();
+      });
+      dispatchToPointed(e);
+    }),
+    listenEvent(textarea, "mouseup", dispatchToPointed),
+    listenEvent(textarea, "mousemove", (e) => {
+      const p = getPointedElement(textarea, backdrop, e);
+      dispatchMouseMoveEvent(p, prevPointed, e);
+      prevPointed = p;
+    }),
+    listenEvent(textarea, "mouseleave", (e) => {
+      dispatchMouseOutEvent(prevPointed, e);
+      prevPointed = null;
+    }),
+    listenEvent(textarea, "click", dispatchToPointed),
+    listenEvent(textarea, "input", updateSelection),
+    listenEvent(textarea, "compositionstart", setComposition),
+    listenEvent(textarea, "compositionupdate", setComposition),
+    listenEvent(textarea, "compositionend", () => {
       selectionStore._setComposition();
-    }
-  );
+    }),
+  ];
   observer.observe(textarea);
   return () => {
-    cleanUpOnFocus();
-    cleanUpOnBlur();
-    cleanUpOnScroll();
-    cleanUpOnMouseDown();
-    cleanUpOnMouseUp();
-    cleanUpOnMouseMove();
-    cleanUpOnMouseLeave();
-    cleanUpOnClick();
-    cleanUpOnInput();
-    cleanUpOnCompositionStart();
-    cleanUpOnCompositionUpdate();
-    cleanUpOnCompositionEnd();
+    cleanups.forEach((cleanup) => cleanup());
     observer.disconnect();
   };
 };

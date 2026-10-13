@@ -20,8 +20,7 @@ import {
 import { type SelectionRange, initSelectionStore } from "./selection.js";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
 import type { CaretPosition, Renderer } from "./types.js";
-import { CARET_DETECTOR, refKey } from "./utils.js";
-import { useStatic } from "./useStatic.js";
+import { CARET_DETECTOR } from "./utils.js";
 import { type TextareaRect, createTextareaObserver } from "./observer.js";
 
 type BackdropHandle = (value: string) => void;
@@ -165,7 +164,7 @@ export const RichInput = /*#__PURE__*/ forwardRef<
 
     const [[selectionStart, selectionEnd], setSelection] =
       useState<SelectionRange>([null, null]);
-    const selectionStore = useStatic(() => {
+    const [selectionStore] = useState(() => {
       const safari = isSafari();
 
       return initSelectionStore(textAreaRef, (range) => {
@@ -173,9 +172,9 @@ export const RichInput = /*#__PURE__*/ forwardRef<
 
         if (safari) {
           // FIXME: Safari does not fire scroll event on input so substitute with pseudo selection change event
-          if (!textAreaRef[refKey] || !backdropRef[refKey]) return;
-          const { scrollTop, scrollLeft } = textAreaRef[refKey];
-          backdropRef[refKey].style.transform =
+          if (!textAreaRef.current || !backdropRef.current) return;
+          const { scrollTop, scrollLeft } = textAreaRef.current;
+          backdropRef.current.style.transform =
             `translate(${-scrollLeft}px, ${-scrollTop}px)`;
         }
       });
@@ -187,7 +186,7 @@ export const RichInput = /*#__PURE__*/ forwardRef<
     const isSizeCalculated = !!(totalWidth + totalHeight);
 
     useImperativeHandle(ref, () => {
-      const el = textAreaRef[refKey]!;
+      const el = textAreaRef.current!;
       const overrides = {
         get selectionStart() {
           return selectionStore._getSelectionStart();
@@ -230,8 +229,8 @@ export const RichInput = /*#__PURE__*/ forwardRef<
     }, []);
 
     useIsomorphicLayoutEffect(() => {
-      const textarea = textAreaRef[refKey];
-      const backdrop = backdropRef[refKey];
+      const textarea = textAreaRef.current;
+      const backdrop = backdropRef.current;
       if (!textarea || !backdrop) return;
 
       return createTextareaObserver(
@@ -244,17 +243,17 @@ export const RichInput = /*#__PURE__*/ forwardRef<
     }, []);
 
     useIsomorphicLayoutEffect(() => {
-      const textarea = textAreaRef[refKey];
+      const textarea = textAreaRef.current;
       if (!textarea) return;
       // Sync value on init and change
-      backdropHandle[refKey]!(textarea.value);
+      backdropHandle.current!(textarea.value);
       setHasText(!!textarea.value);
     }, [props.value]);
 
     useIsomorphicLayoutEffect(() => {
       // Sync backdrop style
-      const textarea = textAreaRef[refKey];
-      const backdrop = backdropRef[refKey];
+      const textarea = textAreaRef.current;
+      const backdrop = backdropRef.current;
       if (!backdrop || !textarea) return;
       syncBackdropStyle(textarea, backdrop);
     }, [style]);
@@ -270,7 +269,7 @@ export const RichInput = /*#__PURE__*/ forwardRef<
         });
       } else {
         const range = rangeAtIndex(
-          backdropRef[refKey]!,
+          backdropRef.current!,
           selectionStart,
           selectionStart + 1,
         ) as Range;
@@ -287,7 +286,7 @@ export const RichInput = /*#__PURE__*/ forwardRef<
     }, [focused, selectionStart, selectionEnd]);
 
     useEffect(() => {
-      const textarea = textAreaRef[refKey];
+      const textarea = textAreaRef.current;
       if (!autoHeight || !textarea) return;
       textarea.style.height = "auto";
       textarea.style.height = `${textarea.scrollHeight}px`;
@@ -370,7 +369,7 @@ export const RichInput = /*#__PURE__*/ forwardRef<
           )}
           onChange={useCallback(
             (e: React.ChangeEvent<HTMLInputElement>) => {
-              backdropHandle[refKey]?.(e.target.value);
+              backdropHandle.current?.(e.target.value);
               setHasText(!!e.target.value);
               onChange?.(e);
             },
