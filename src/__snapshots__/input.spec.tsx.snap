@@ -10,7 +10,7 @@ exports[`smoke > controlled 1`] = `
     >
       <div
         aria-hidden="true"
-        style="direction: ltr; padding: 0px; margin: 0px; border: transparent; font-size: medium; font-family: "depends on user agent"; font-style: normal; font-weight: normal; font-size-adjust: none; text-align: start; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: normal; line-height: normal; word-break: normal; overflow-wrap: normal; tab-size: 8;"
+        style="direction: ltr; unicode-bidi: normal; padding: 0px; margin: 0px; border: transparent; font-size: medium; font-family: "depends on user agent"; font-style: normal; font-weight: normal; font-size-adjust: none; font-kerning: auto; font-feature-settings: normal; font-variation-settings: normal; font-optical-sizing: auto; font-synthesis-weight: auto; font-synthesis-style: auto; font-synthesis-small-caps: auto; text-rendering: auto; text-align: start; text-align-last: auto; text-justify: auto; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: normal; line-height: normal; word-break: normal; overflow-wrap: normal; line-break: auto; hyphens: manual; hyphenate-character: auto; hyphenate-limit-chars: auto; text-wrap-style: auto; hanging-punctuation: none; text-spacing-trim: normal; text-autospace: normal; tab-size: 8;"
       >
         <div
           style="height: 0px;"
@@ -149,7 +149,7 @@ exports[`smoke > uncontrolled 1`] = `
     >
       <div
         aria-hidden="true"
-        style="direction: ltr; padding: 0px; margin: 0px; border: transparent; font-size: medium; font-family: "depends on user agent"; font-style: normal; font-weight: normal; font-size-adjust: none; text-align: start; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: normal; line-height: normal; word-break: normal; overflow-wrap: normal; tab-size: 8;"
+        style="direction: ltr; unicode-bidi: normal; padding: 0px; margin: 0px; border: transparent; font-size: medium; font-family: "depends on user agent"; font-style: normal; font-weight: normal; font-size-adjust: none; font-kerning: auto; font-feature-settings: normal; font-variation-settings: normal; font-optical-sizing: auto; font-synthesis-weight: auto; font-synthesis-style: auto; font-synthesis-small-caps: auto; text-rendering: auto; text-align: start; text-align-last: auto; text-justify: auto; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: normal; line-height: normal; word-break: normal; overflow-wrap: normal; line-break: auto; hyphens: manual; hyphenate-character: auto; hyphenate-limit-chars: auto; text-wrap-style: auto; hanging-punctuation: none; text-spacing-trim: normal; text-autospace: normal; tab-size: 8;"
       >
         <div
           style="height: 0px;"
