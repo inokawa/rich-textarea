@@ -6,7 +6,7 @@
 
 > `const` **experimental\_RichInput**: `ForwardRefExoticComponent`\<`Omit`\<[`RichInputProps`](../interfaces/RichInputProps.md), `"ref"`\> & `RefAttributes`\<[`RichInputHandle`](../interfaces/RichInputHandle.md)\>\>
 
-Defined in: [input.tsx:139](https://github.com/inokawa/rich-textarea/blob/f35e066bd168167e8832c503e91b15544962f879/src/input.tsx#L139)
+Defined in: [input.tsx:138](https://github.com/inokawa/rich-textarea/blob/a6c7e9412d20f1c5126a66cabda131f3c6106c15/src/input.tsx#L138)
 
 Input component with some extra props. See [RichInputProps](../interfaces/RichInputProps.md) and [RichInputHandle](../interfaces/RichInputHandle.md).
 

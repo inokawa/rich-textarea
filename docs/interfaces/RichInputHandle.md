@@ -4,7 +4,7 @@
 
 # Interface: RichInputHandle
 
-Defined in: [input.tsx:97](https://github.com/inokawa/rich-textarea/blob/f35e066bd168167e8832c503e91b15544962f879/src/input.tsx#L97)
+Defined in: [input.tsx:96](https://github.com/inokawa/rich-textarea/blob/a6c7e9412d20f1c5126a66cabda131f3c6106c15/src/input.tsx#L96)
 
 Methods of [RichInput](../variables/experimental_RichInput.md).
 

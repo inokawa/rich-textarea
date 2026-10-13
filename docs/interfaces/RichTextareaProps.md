@@ -4,7 +4,7 @@
 
 # Interface: RichTextareaProps
 
-Defined in: [textarea.tsx:98](https://github.com/inokawa/rich-textarea/blob/f35e066bd168167e8832c503e91b15544962f879/src/textarea.tsx#L98)
+Defined in: [textarea.tsx:97](https://github.com/inokawa/rich-textarea/blob/a6c7e9412d20f1c5126a66cabda131f3c6106c15/src/textarea.tsx#L97)
 
 Props of [RichTextarea](../variables/RichTextarea.md).
 
@@ -20,7 +20,7 @@ For other props not mentioned below will be passed to [textarea](https://develop
 
 > `optional` **children?**: [`Renderer`](../type-aliases/Renderer.md)
 
-Defined in: [textarea.tsx:115](https://github.com/inokawa/rich-textarea/blob/f35e066bd168167e8832c503e91b15544962f879/src/textarea.tsx#L115)
+Defined in: [textarea.tsx:114](https://github.com/inokawa/rich-textarea/blob/a6c7e9412d20f1c5126a66cabda131f3c6106c15/src/textarea.tsx#L114)
 
 Render function to create customized view from value.
 
@@ -46,7 +46,7 @@ undefined
 
 > `optional` **autoHeight?**: `boolean`
 
-Defined in: [textarea.tsx:122](https://github.com/inokawa/rich-textarea/blob/f35e066bd168167e8832c503e91b15544962f879/src/textarea.tsx#L122)
+Defined in: [textarea.tsx:121](https://github.com/inokawa/rich-textarea/blob/a6c7e9412d20f1c5126a66cabda131f3c6106c15/src/textarea.tsx#L121)
 
 If true, textarea height is automatically resized and height of style prop does not work.
 Set `maxHeight` to style prop if you need limit.
@@ -64,7 +64,7 @@ undefined
 
 > `optional` **onSelectionChange?**: (`pos`) => `void`
 
-Defined in: [textarea.tsx:127](https://github.com/inokawa/rich-textarea/blob/f35e066bd168167e8832c503e91b15544962f879/src/textarea.tsx#L127)
+Defined in: [textarea.tsx:126](https://github.com/inokawa/rich-textarea/blob/a6c7e9412d20f1c5126a66cabda131f3c6106c15/src/textarea.tsx#L126)
 
 Called when selection in textarea changes. It gives position of caret at the time, which is useful to position menu.
 
