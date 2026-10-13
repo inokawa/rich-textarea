@@ -1,5 +1,3 @@
-import { refKey } from "./utils.js";
-
 /**
  * @internal
  */
@@ -231,22 +229,15 @@ export const stopPropagation = (event: React.MouseEvent) => {
  */
 export const syncBackdropStyle = (
   textarea: HTMLElement,
-  backdrop: HTMLElement,
-  caretColorRef: React.MutableRefObject<string>,
-  style?: React.CSSProperties
+  backdrop: HTMLElement
 ) => {
   const computedTextAreaStyle = getStyle(textarea);
-  const textareaStyle = textarea.style;
   const backdropStyle = backdrop.style;
-  if (!caretColorRef[refKey]) {
-    caretColorRef[refKey] = getPropertyValue(computedTextAreaStyle, "color");
-  }
 
   TEXT_STYLE_KEYS.forEach((k) => {
     backdropStyle[k as any] = computedTextAreaStyle[k as any]!;
   });
-  textareaStyle.color = backdropStyle.borderColor = "transparent";
-  textareaStyle.caretColor = style?.caretColor || caretColorRef[refKey];
+  backdropStyle.borderColor = "transparent";
 };
 
 /**
