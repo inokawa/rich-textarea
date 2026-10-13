@@ -19,13 +19,12 @@ import {
 import { type SelectionRange, initSelectionStore } from "./selection.js";
 import { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect.js";
 import type { CaretPosition, Renderer } from "./types.js";
-import { CARET_DETECTOR, refKey } from "./utils.js";
-import { useStatic } from "./useStatic.js";
+import { CARET_DETECTOR } from "./utils.js";
 import { type TextareaRect, createTextareaObserver } from "./observer.js";
 
 type BackdropHandle = (value: string) => void;
 
-const Backdrop /*#__PURE__*/ = memo(
+const Backdrop = /*#__PURE__*/ memo(
   ({
     _ref: backdropRef,
     _handle: handle,
@@ -159,7 +158,7 @@ export const RichTextarea = /*#__PURE__*/ forwardRef<
 
     const [[selectionStart, selectionEnd], setSelection] =
       useState<SelectionRange>([null, null]);
-    const selectionStore = useStatic(() =>
+    const [selectionStore] = useState(() =>
       initSelectionStore(textAreaRef, setSelection),
     );
 
@@ -169,7 +168,7 @@ export const RichTextarea = /*#__PURE__*/ forwardRef<
     const isSizeCalculated = !!(totalWidth + totalHeight);
 
     useImperativeHandle(ref, () => {
-      const el = textAreaRef[refKey]!;
+      const el = textAreaRef.current!;
       const overrides = {
         get selectionStart() {
           return selectionStore._getSelectionStart();
@@ -212,8 +211,8 @@ export const RichTextarea = /*#__PURE__*/ forwardRef<
     }, []);
 
     useIsomorphicLayoutEffect(() => {
-      const textarea = textAreaRef[refKey];
-      const backdrop = backdropRef[refKey];
+      const textarea = textAreaRef.current;
+      const backdrop = backdropRef.current;
       if (!textarea || !backdrop) return;
 
       return createTextareaObserver(
@@ -226,17 +225,17 @@ export const RichTextarea = /*#__PURE__*/ forwardRef<
     }, []);
 
     useIsomorphicLayoutEffect(() => {
-      const textarea = textAreaRef[refKey];
+      const textarea = textAreaRef.current;
       if (!textarea) return;
       // Sync value on init and change
-      backdropHandle[refKey]!(textarea.value);
+      backdropHandle.current!(textarea.value);
       setHasText(!!textarea.value);
     }, [props.value]);
 
     useIsomorphicLayoutEffect(() => {
       // Sync backdrop style
-      const textarea = textAreaRef[refKey];
-      const backdrop = backdropRef[refKey];
+      const textarea = textAreaRef.current;
+      const backdrop = backdropRef.current;
       if (!backdrop || !textarea) return;
       syncBackdropStyle(textarea, backdrop);
     }, [style]);
@@ -252,7 +251,7 @@ export const RichTextarea = /*#__PURE__*/ forwardRef<
         });
       } else {
         const range = rangeAtIndex(
-          backdropRef[refKey]!,
+          backdropRef.current!,
           selectionStart,
           selectionStart + 1,
         ) as Range;
@@ -269,7 +268,7 @@ export const RichTextarea = /*#__PURE__*/ forwardRef<
     }, [focused, selectionStart, selectionEnd]);
 
     useEffect(() => {
-      const textarea = textAreaRef[refKey];
+      const textarea = textAreaRef.current;
       if (!autoHeight || !textarea) return;
       textarea.style.height = "auto";
       textarea.style.height = `${textarea.scrollHeight}px`;
@@ -352,7 +351,7 @@ export const RichTextarea = /*#__PURE__*/ forwardRef<
           )}
           onChange={useCallback(
             (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-              backdropHandle[refKey]?.(e.target.value);
+              backdropHandle.current?.(e.target.value);
               setHasText(!!e.target.value);
               onChange?.(e);
             },

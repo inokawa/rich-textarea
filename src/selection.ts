@@ -1,4 +1,4 @@
-import { min, refKey } from "./utils.js";
+import { min } from "./utils.js";
 
 /**
  * @internal
@@ -36,7 +36,7 @@ export const initSelectionStore = (
       compositionEvent = event;
     },
     _getSelectionStart(): number {
-      const el = ref[refKey];
+      const el = ref.current;
       if (!el) return 0;
       const pos = el.selectionStart!;
       if (!compositionEvent) return pos;
@@ -44,7 +44,7 @@ export const initSelectionStore = (
       return min(pos, el.selectionEnd! - compositionEvent.data.length);
     },
     _getSelectionEnd(): number {
-      const el = ref[refKey];
+      const el = ref.current;
       if (!el) return 0;
       const pos = el.selectionEnd!;
       // compensate selection range during compositioning
