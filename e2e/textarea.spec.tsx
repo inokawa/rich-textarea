@@ -27,6 +27,20 @@ const Controlled = () => {
   );
 };
 
+const Empty = () => {
+  const [text, setText] = useState("");
+  return (
+    <RichTextarea
+      style={style}
+      onChange={(e) => setText(e.target.value)}
+      value={text}
+      placeholder="placeholder"
+    >
+      {renderer}
+    </RichTextarea>
+  );
+};
+
 const Uncontrolled = () => {
   return (
     <RichTextarea style={style} defaultValue="Lorem ipsum">
@@ -375,5 +389,62 @@ test("border-box", async () => {
     expect(textareaValue).toBe("Lorem ipsum dolor");
     expect(textareaValue).toBe(backdropValue);
     expectAligned(textarea, backdrop);
+  });
+});
+
+const TRANSPARENT = "rgba(0, 0, 0, 0)";
+
+// https://github.com/inokawa/rich-textarea/issues/185
+test("placeholder", async () => {
+  const [textarea] = await renderTextarea(<Empty />);
+  const computed = getComputedStyle(textarea);
+
+  const expectTextVisible = (visible: boolean) => {
+    if (visible) {
+      expect(computed.webkitTextFillColor).not.toBe(TRANSPARENT);
+    } else {
+      expect(computed.webkitTextFillColor).toBe(TRANSPARENT);
+    }
+    // Keep color to show placeholder and border, that may refer currentcolor
+    expect(computed.color).not.toBe(TRANSPARENT);
+    expect(computed.borderTopColor).not.toBe(TRANSPARENT);
+  };
+
+  // Placeholder is visible while empty
+  expectTextVisible(true);
+
+  // Texts are hidden after typing
+  await clickAt(textarea, 1, 1);
+  await userEvent.keyboard("a");
+  await vi.waitFor(() => {
+    expect(textarea.value).toBe("a");
+    expectTextVisible(false);
+  });
+
+  // Placeholder is visible again after clearing
+  await pressKey("Backspace");
+  await vi.waitFor(() => {
+    expect(textarea.value).toBe("");
+    expectTextVisible(true);
+  });
+});
+
+test.skipIf(server.browser !== "chromium")("placeholder ime", async () => {
+  const [textarea] = await renderTextarea(<Empty />);
+  const computed = getComputedStyle(textarea);
+  expect(computed.webkitTextFillColor).not.toBe(TRANSPARENT);
+
+  const client = cdp();
+  textarea.focus();
+  await client.send("Input.imeSetComposition", {
+    selectionStart: -1,
+    selectionEnd: -1,
+    text: "あ",
+  });
+
+  // Texts are hidden during composition
+  await vi.waitFor(() => {
+    expect(textarea.value).toBe("あ");
+    expect(computed.webkitTextFillColor).toBe(TRANSPARENT);
   });
 });

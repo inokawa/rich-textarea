@@ -153,7 +153,9 @@ export const RichTextarea = /*#__PURE__*/ forwardRef<
       useState<TextareaRect>([0, 0, 0, 0]);
     const [focused, setFocused] = useState<boolean>(false);
 
-    const caretColorRef = useRef("");
+    // Whether the textarea has value or not, to show placeholder.
+    // Start with false to keep texts visible in SSR until backdrop is rendered on client.
+    const [hasText, setHasText] = useState<boolean>(false);
 
     const [[selectionStart, selectionEnd], setSelection] =
       useState<SelectionRange>([null, null]);
@@ -228,6 +230,7 @@ export const RichTextarea = /*#__PURE__*/ forwardRef<
       if (!textarea) return;
       // Sync value on init and change
       backdropHandle[refKey]!(textarea.value);
+      setHasText(!!textarea.value);
     }, [props.value]);
 
     useIsomorphicLayoutEffect(() => {
@@ -235,7 +238,7 @@ export const RichTextarea = /*#__PURE__*/ forwardRef<
       const textarea = textAreaRef[refKey];
       const backdrop = backdropRef[refKey];
       if (!backdrop || !textarea) return;
-      syncBackdropStyle(textarea, backdrop, caretColorRef, style);
+      syncBackdropStyle(textarea, backdrop);
     }, [style]);
 
     useEffect(() => {
@@ -334,12 +337,23 @@ export const RichTextarea = /*#__PURE__*/ forwardRef<
                 position: undefined,
                 verticalAlign: "top",
               }),
+              // Hide texts with text-fill-color instead of color, to keep placeholder and border visible
+              // https://github.com/inokawa/rich-textarea/issues/185
+              // Placeholder inherits text-fill-color so disable it while value is empty
+              // NOTE: In WebKit, color of ::selection is ignored with this because it doesn't support highlight inheritance yet
+              // https://bugs.webkit.org/show_bug.cgi?id=220325
+              ...(hasText && {
+                WebkitTextFillColor: "transparent",
+                textDecorationColor: "transparent",
+                textShadow: "none",
+              }),
             }),
-            [style, isSizeCalculated],
+            [style, isSizeCalculated, hasText],
           )}
           onChange={useCallback(
             (e: React.ChangeEvent<HTMLTextAreaElement>) => {
               backdropHandle[refKey]?.(e.target.value);
+              setHasText(!!e.target.value);
               onChange?.(e);
             },
             [onChange],

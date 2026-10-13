@@ -72,7 +72,7 @@ exports[`match > double matchers 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -154,7 +154,7 @@ exports[`match > emoji 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem😇 ipsum dolor sit amet👨‍👩‍👧‍👦 Lorem ipsum dolor👍🏽 sit amet Lorem👩‍💻 ipsum dolor sit amet
     </textarea>
@@ -383,7 +383,7 @@ exports[`match > japanese 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。
     </textarea>
@@ -440,7 +440,7 @@ exports[`match > match many 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -475,7 +475,7 @@ exports[`match > match one 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -571,7 +571,7 @@ exports[`match > triple matchers 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -703,7 +703,7 @@ exports[`smoke > controlled 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -835,7 +835,7 @@ exports[`smoke > uncontrolled 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -870,7 +870,7 @@ exports[`style textarea > background 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -905,7 +905,7 @@ exports[`style textarea > background-color 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -940,7 +940,7 @@ exports[`style textarea > border 1`] = `
       </div>
     </div>
     <textarea
-      style="border: 1px solid blue; background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="border: 1px solid blue; background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -975,7 +975,7 @@ exports[`style textarea > border-color 1`] = `
       </div>
     </div>
     <textarea
-      style="border-color: blue; background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="border-color: blue; background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -1010,7 +1010,7 @@ exports[`style textarea > caret-color 1`] = `
       </div>
     </div>
     <textarea
-      style="caret-color: blue; background: transparent; margin: 0px; vertical-align: top; color: transparent;"
+      style="caret-color: blue; background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -1045,7 +1045,7 @@ exports[`style textarea > color 1`] = `
       </div>
     </div>
     <textarea
-      style="color: transparent; background: transparent; margin: 0px; vertical-align: top; caret-color: rgb(0, 0, 255);"
+      style="color: blue; background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -1080,7 +1080,7 @@ exports[`style textarea > width & height 1`] = `
       </div>
     </div>
     <textarea
-      style="width: 123px; height: 456px; background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="width: 123px; height: 456px; background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -1115,7 +1115,7 @@ exports[`style value > background 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -1150,7 +1150,7 @@ exports[`style value > border 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -1185,7 +1185,7 @@ exports[`style value > color 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>
@@ -1218,7 +1218,7 @@ exports[`style value > decoration 1`] = `
       </div>
     </div>
     <textarea
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
     >
       Lorem ipsum dolor sit amet
     </textarea>

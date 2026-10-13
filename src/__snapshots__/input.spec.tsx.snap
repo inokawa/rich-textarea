@@ -132,7 +132,7 @@ exports[`smoke > controlled 1`] = `
       </div>
     </div>
     <input
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
       value="Lorem ipsum dolor sit amet"
     />
   </div>
@@ -271,7 +271,7 @@ exports[`smoke > uncontrolled 1`] = `
       </div>
     </div>
     <input
-      style="background: transparent; margin: 0px; vertical-align: top; color: transparent; caret-color: rgb(0, 0, 0);"
+      style="background: transparent; margin: 0px; vertical-align: top; -webkit-text-fill-color: transparent; text-decoration-color: transparent; text-shadow: none;"
       value="Lorem ipsum dolor sit amet"
     />
   </div>
